@@ -1,0 +1,35 @@
+---
+description: Em todo inicio de desenvolvimento, perguntar Agent Pro vs Agent Simples com seletor
+alwaysApply: true
+---
+
+# Escolha de agent de desenvolvimento
+
+Quando o usuário **iniciar um desenvolvimento** (nova feature, app, API, CLI, script, ferramenta, refatoração com implementação, “vamos desenvolver”, “implementar X”):
+
+1. **Antes** de carregar skills de fluxo (`dev-all-in-one`, `especificacao`, etc.) e antes de codar, pergunte com o tool **`AskQuestion`** (seletor clicável do Cursor), **não** como lista numerada em texto pedindo para digitar `pro`/`simples`.
+
+   - Prompt: `Para este desenvolvimento, qual agent você quer?`
+   - Opções (single-select):
+     - `Pro` — all-in-one (especificação → … → docs → Definition of Done)
+     - `Simples` — rápido, sem skills / sem fases
+   - `allow_multiple`: false
+
+2. Se responder **pro** → seguir agent `desenvolvimento-pro` (`~/.cursor/agents/desenvolvimento-pro.md`).
+3. Se responder **simples** → seguir agent `desenvolvimento-simples` (`~/.cursor/agents/desenvolvimento-simples.md`).
+4. Se já vier explícito (“pro” / “simples” / “agent pro” / “agent simples”), não pergunte de novo.
+
+**Não perguntar** em: status, “travou?”, limpar arquivo, um comando, dúvida rápida sem implementação.
+
+## Perguntas com seletor (obrigatório neste fluxo)
+
+Em agents/skills de desenvolvimento, sempre que a pergunta tiver **opções fixas** (escolha de agent, aprovação de fase, próximo passo, stack entre alternativas conhecidas):
+
+1. Usar o tool **`AskQuestion`** — UI de seleção do Cursor.
+2. **Não** escrever listas `1/2/3` ou “responda X ou Y” pedindo texto livre.
+3. No máximo **um** `AskQuestion` por mensagem do assistente.
+4. Labels curtos; prompt curto.
+5. Incluir no máximo uma fuga freeform, preferindo: `Outro (eu digito)`.
+6. Se `AskQuestion` **não estiver disponível** no turno, aí sim perguntar em prosa curta com as mesmas opções.
+
+Perguntas abertas (ex.: “cole o log do erro”) continuam em texto livre — só não misture opções fixas como texto para o usuário digitar.

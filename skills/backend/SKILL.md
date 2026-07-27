@@ -1,0 +1,54 @@
+---
+name: backend
+description: Implementa APIs e servicos com Node/TypeScript, Go ou Python, Docker Compose e bancos Postgres, Sybase ou MongoDB. Use quando o trabalho for backend nao-SAP, API, banco, migracoes, servicos Docker. Nao usar para ABAP/RAP/CDS/OData SAP (skill abap).
+---
+
+# Backend
+
+Responda em portugues. Em tarefas grandes, valide o plano antes de implementar. Siga a especificacao e o system design aprovados.
+
+## Fronteiras
+
+| Assunto | Skill |
+|---------|--------|
+| API Node/Go/Python, Compose, Postgres/Sybase/Mongo | **esta skill (`backend`)** |
+| ABAP, CDS, RAP, OData SAP, BAPI | `abap` |
+| MCP expondo DB ao agent | `mcp` (contrato) + esta skill se houver API auxiliar |
+| RAG sobre docs/dados | `rag` |
+
+## Stack preferida
+
+- Linguagens: Node/TS, Go, Python (nao tratar PowerBuilder aqui — so duvidas via `arquitetura`; C++ desktop tambem via `arquitetura`)
+- Infra: Docker + Docker Compose em Linux/WSL
+- DB: Postgres, Sybase, MongoDB — escolha a do projeto; nao misture sem necessidade
+
+## Regras
+
+- Implemente a melhor opcao planejada, com codigo legivel (sem complexidade gratuita)
+- Durante o desenvolvimento: cobrir cenarios de **regra de negocio** da especificacao (RN-xx). Suíte ampla fica apos o desenvolvimento.
+- Secrets apenas via env / secrets do Compose — nunca no codigo
+- Separar handlers, dominio e acesso a dados quando o tamanho justificar
+- Migracoes/versionamento de schema quando houver DB relacional
+- Healthcheck e logs estruturados em servicos novos
+- Preferir ferramentas Linux (bash, make, compose) a scripts Windows
+- Branch: `feat/` ou `fix/` conforme o caso
+
+## Docker Compose
+
+Ao criar/ajustar servicos:
+
+- Rede interna entre app e DB
+- Volumes para dados persistentes
+- Variaveis documentadas em `.env.example` (sem valores secretos reais)
+
+## Checklist
+
+- [ ] Sobe com Compose (quando aplicavel)
+- [ ] Conexao DB configuravel por env
+- [ ] README ou secao de como rodar em portugues
+- [ ] Sem secrets commitados
+
+## Ao terminar
+
+Resuma endpoints/servicos. Em seguida use **`AskQuestion`** — prompt: `Proximo passo?`
+- `Ir para code review` | `Seguir com frontend` | `Ajustar backend` | `Outro (eu digito)`
