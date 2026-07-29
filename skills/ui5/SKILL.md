@@ -1,6 +1,6 @@
 ---
 name: ui5
-description: Especialista em SAPUI5 — views XML, controllers, fragments, routing, models (JSON/OData), binding, custom controls e build UI5. Use quando o usuario pedir UI5, SAPUI5, XML View, controller, fragment, ODataModel, manifest.json de UI5, ou componentes OpenUI5/SAPUI5 — nao para catalogo Launchpad/Fiori app design nem ABAP de backend.
+description: Especialista em SAPUI5 — views XML, controllers, fragments, routing, models (JSON/OData), binding, custom controls, build UI5 e padrao obrigatorio de telas CRUD (lista + filtros + ativar/inativar). Use quando o usuario pedir UI5, SAPUI5, XML View, controller, fragment, ODataModel, manifest.json de UI5, lista CRUD, ou componentes OpenUI5/SAPUI5 — nao para catalogo Launchpad/Fiori app design nem ABAP de backend.
 ---
 
 # Especialista SAPUI5 / OpenUI5
@@ -68,6 +68,20 @@ webapp/
 - Fragments para dialogs/reuso — nao duplicar XML
 - Mensagens via `MessageBox` / `MessagePopover` / `sap.m.MessageStrip` conforme o padrao do app
 - Respeitar Fiori design (spacing, density Cozy/Compact) quando o app for Fiori
+
+## Padrao obrigatorio — telas CRUD (lista)
+
+Ao criar ou refatorar **qualquer** tela de consulta/CRUD (lista + cadastrar/editar/ativar-inativar):
+
+1. **Ler e aplicar** [crud-lista.md](crud-lista.md) na integra — nao improvisar layout diferente.
+2. Resumo rapido (detalhe no arquivo):
+   - Menu: so a lista (sem item “Cadastro de X”)
+   - Filtros separados da lista; situacao padrao **Ativo**
+   - Lista com margem, **sem** caixa/borda extra em volta da tabela
+   - Sem botao Atualizar
+   - Acoes so com **icone + tooltip**; Ativar/Inativar no mesmo lugar
+   - Situacao **fora** do dialog de editar; Inativo em vermelho
+3. Incluir o checklist DoD de `crud-lista.md` na entrega da tela.
 
 ## Implementacao
 

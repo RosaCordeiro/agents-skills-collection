@@ -27,7 +27,7 @@ cursor-kit/
 
 ### Skills
 
-`dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review`, `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5`, `mcp`, `rag`
+`dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review`, `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`
 
 ### Rules
 
@@ -35,6 +35,7 @@ cursor-kit/
 |---------|--------|
 | `escolha-agent-desenvolvimento.mdc` | Sempre perguntar Pro vs Simples no início de um desenvolvimento |
 | `execucao-wsl.mdc` | Como rodar comandos no WSL sem travar o chat |
+| `crud-lista-ui5-fiori.mdc` | Padrao de telas CRUD lista (UI5/Fiori) |
 
 ---
 

@@ -29,6 +29,7 @@ Responda em portugues. Em tarefas grandes, valide o plano antes de implementar. 
 - Secrets apenas via env / secrets do Compose — nunca no codigo
 - Separar handlers, dominio e acesso a dados quando o tamanho justificar
 - Migracoes/versionamento de schema quando houver DB relacional
+- **Postgres:** ler e seguir `modelagem-dados` (`~/.cursor/skills/modelagem-dados/SKILL.md`) — PK/FK `uuid`, `varchar(n)`, `TEXT` só para texto longo
 - Healthcheck e logs estruturados em servicos novos
 - Preferir ferramentas Linux (bash, make, compose) a scripts Windows
 - Branch: `feat/` ou `fix/` conforme o caso

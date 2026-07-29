@@ -1,6 +1,6 @@
 ---
 name: fiori
-description: Especialista em aplicativos SAP Fiori — design de app, tiles, Launchpad, space/page, navegacao, intents, Fiori Elements vs freestyle, e entrega ponta a ponta no ecossistema Fiori. Use quando o usuario pedir Fiori, Launchpad, tile, intent, FLP, Fiori Elements, ou app Fiori SAP — nao para detalhes puros de controle UI5 nem ABAP isolado.
+description: Especialista em aplicativos SAP Fiori — design de app, tiles, Launchpad, space/page, navegacao, intents, Fiori Elements vs freestyle, padrao de telas CRUD (lista), e entrega ponta a ponta no ecossistema Fiori. Use quando o usuario pedir Fiori, Launchpad, tile, intent, FLP, Fiori Elements, lista CRUD Fiori, ou app Fiori SAP — nao para detalhes puros de controle UI5 nem ABAP isolado.
 ---
 
 # Especialista SAP Fiori
@@ -56,6 +56,24 @@ Se o pedido misturar camadas: desenhar o app com `fiori`, delegar UI5/`abap` nas
 - Sempre prever i18n (mesmo MVP)
 - Autorizacao via roles/catalogos — nao "esconder botao" como unica protecao
 - Documentar intents e tiles no README do app em portugues
+
+## Padrao obrigatorio — telas CRUD (lista)
+
+Toda List Report / worklist / lista freestyle de cadastro mestre deve seguir o padrao de UX definido em `ui5/crud-lista.md` (ler o arquivo ao desenhar ou implementar a tela).
+
+Implicacoes no design Fiori:
+
+- **Um** tile/intent por entidade → lista (nao tile separado de “cadastro”)
+- Floorplan preferencial: List Report; create/edit em dialog ou Object Page
+- Filtros no Filter Bar; situacao padrao **Ativo**
+- Soft-delete: acoes **Inativar** / **Ativar** (nao Delete puro), mesmo slot na linha
+- Form de edicao **sem** campo de situacao editavel
+- Acoes de linha: icone + tooltip; status Inativo visualmente de erro/vermelho
+- Sem botao “Atualizar” redundante na toolbar da lista
+- Evitar “caixa dupla” em volta da tabela — margem/respiracao, nao frame extra
+- Encaminhar detalhe de controles/CSS/binding para a skill `ui5`
+
+Checklist DoD da tela: o mesmo de `ui5/crud-lista.md`.
 
 ## Implementacao
 

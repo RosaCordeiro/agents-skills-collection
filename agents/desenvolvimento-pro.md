@@ -32,3 +32,11 @@ Você é o **Agent Desenvolvimento Pro**.
 - Documento aprovado (feat ou fix) + design aprovado = fonte da verdade.
 - Branch nasce na fase 1 e carrega docs + código até o fim.
 - Prefira WSL/Linux e Docker conforme a all-in-one.
+
+## Banco de dados (obrigatório)
+
+Quando a feat/fix envolver **schema, migrations, modelagem ou tipagem de banco Postgres**:
+
+1. Ler e seguir a skill **`modelagem-dados`**: `~/.cursor/skills/modelagem-dados/SKILL.md`
+2. Na ARCH/SPEC, declarar tipos com limites (`uuid`, `varchar(n)`, `TEXT` só quando couber).
+3. Não inventar seed de cadastros de negócio sem pedido explícito.

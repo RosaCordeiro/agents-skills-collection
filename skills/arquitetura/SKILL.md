@@ -9,10 +9,11 @@ Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`
 ## Processo
 
 1. Partir da especificacao aprovada e das constraints (WSL, Docker, DBs, linguagens).
-2. Oferecer **ate 2 abordagens** + **1 recomendacao** com trade-offs honestos.
-3. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
-4. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.
-5. Aprovar com **`AskQuestion`** — prompt: `O system design esta ok para implementar?`
+2. Se houver **Postgres / schema**: consultar skill **`modelagem-dados`** e tipar colunas no design (`uuid`, `varchar(n)`, `TEXT` só quando couber).
+3. Oferecer **ate 2 abordagens** + **1 recomendacao** com trade-offs honestos.
+4. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
+5. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.
+6. Aprovar com **`AskQuestion`** — prompt: `O system design esta ok para implementar?`
    - `Sim, seguir para desenvolvimento` | `Ajustar design` | `Outro (eu digito)`
    - Se `AskQuestion` indisponivel: mesmas opcoes em prosa curta.
 
