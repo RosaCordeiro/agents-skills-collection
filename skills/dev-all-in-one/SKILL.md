@@ -24,6 +24,21 @@ Sempre que a decisao tiver **opcoes fixas** (tipo feat/fix, aprovar fase, proxim
 Avance **somente** apos o usuario confirmar cada fase. Tipico no fim:
 `Seguir para a proxima fase` | `Ajustar esta fase` | `Outro (eu digito)`.
 
+## Modelos por fase (custo x independencia)
+
+Objetivo: design forte; review independente e barato; implementacao no model padrao do chat.
+
+| Fase | Executor | Model | Motivo |
+|------|----------|-------|--------|
+| 1 Spec, 3 Dev, 5–8 | orquestrador Pro (`inherit`) | model do chat | velocidade / custo diario |
+| 2 Arquitetura | subagent `arquitetura-pro` | `claude-opus-5-thinking-high` | trade-offs; Opus vale o custo |
+| 4 Code review | subagent `review-pro` (**readonly**) | `cursor-grok-4.5-high-fast` | pool Cursor + model ≠ autor; **nao programa**; fallback Sonnet |
+
+**Obrigatorio:** fases 2 e 4 via tool **Task** (nao rodar a skill inline no mesmo model do dev).
+Passar `model` explicito na Task. Aprovacao da fase (`AskQuestion`) fica no orquestrador apos o retorno do subagent.
+
+Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
+
 ## Fases (ordem obrigatoria)
 
 ```text
@@ -48,21 +63,26 @@ Avance **somente** apos o usuario confirmar cada fase. Tipico no fim:
 
 ### 2. Arquitetura / system design
 
-- Skill `arquitetura`.
+- **Task** → `arquitetura-pro` + model `claude-opus-5-thinking-high` (skill `arquitetura`).
 - Design completo (contexto, componentes, dados, fluxos, infra, riscos, MVP).
-- Aguardar aprovacao antes de codar produto.
+- Orquestrador resume + **`AskQuestion`** de aprovacao. Aguardar antes de codar produto.
 
 ### 3. Desenvolvimento
 
 - Skills especialistas conforme o pedaco: `frontend`, `backend`, `script`, `rag`, `mcp`, `fiori`, `ui5`, `abap`.
+- Executar **no orquestrador** (`inherit`) — nao Opus.
 - Seguir spec + design aprovados. Codigo legivel; sem over-engineering.
 - Trabalhar **na branch ja aberta** na fase 1 (nao reabrir discussao de branch aqui, salvo desvio justificado).
 - Ainda **nao** e a fase de suite ampliada nem de doc final.
 
 ### 4. Code review
 
-- Skill `review` — foco em qualidade, seguranca, aderencia a spec/design.
-- Corrigir achados bloqueantes antes de seguir.
+- **Task** → `review-pro` + model `cursor-grok-4.5-high-fast` (skill `review`, CR1–CR16).
+- `review-pro` e **readonly**: **nao programa**; devolve achados + corpo do REVIEW em texto.
+- Orquestrador **grava** `REVIEW-NNN-resultado.md` e anota o model usado.
+- Fallback de model: `claude-sonnet-5-thinking-high` se Grok indisponivel.
+- Orquestrador resume + **`AskQuestion`**.
+- Se usuario pedir **Corrigir achados** (ou fix em texto): corrigir **no `inherit`**, depois **re-Task** `review-pro`. Nunca mandar o review-pro codar.
 
 ### 5. Teste de regra de negocio
 
@@ -95,7 +115,7 @@ Avance **somente** apos o usuario confirmar cada fase. Tipico no fim:
 |----------|--------|
 | Classificar feat/fix, spec feat, abrir branch | `especificacao` |
 | Spec fix (causa, evidencia, justificativa) | `correcao-erro` |
-| System design, ADRs, MVP, C++ desktop | `arquitetura` |
+| System design, ADRs, MVP, C++ desktop | Task `arquitetura-pro` + skill `arquitetura` |
 | Vue/React UI | `frontend` |
 | API/DB/Docker servicos | `backend` |
 | CLI/shell/automacao | `script` |
@@ -104,7 +124,7 @@ Avance **somente** apos o usuario confirmar cada fase. Tipico no fim:
 | Fiori Launchpad | `fiori` |
 | UI5 | `ui5` |
 | ABAP/CDS/RAP | `abap` |
-| Code review | `review` |
+| Code review | Task `review-pro` + skill `review` |
 | VAL/V / aceite de negocio | `teste-regra-negocio` |
 | Suite automatizada | `teste-automatizado` |
 | README/help/fechamento docs | `documentacao` |
@@ -131,5 +151,5 @@ Ate o usuario definir outro DoD. Usar como **fase 8** (gate final) apos a docume
 - [ ] Compose sobe servicos quando aplicavel (N/A se nao houver)
 - [ ] Sem secrets no codigo
 - [ ] Lint/typecheck ok se o projeto ja tiver
-- [ ] Code review sem bloqueantes abertos
+- [ ] Code review sem bloqueantes abertos (`REVIEW-*-resultado.md` gravado)
 - [ ] Fases consultivas aprovadas pelo usuario (1–8)

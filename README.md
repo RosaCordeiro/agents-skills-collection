@@ -22,12 +22,16 @@ cursor-kit/
 | Arquivo | Papel |
 |---------|--------|
 | `desenvolvimento.md` | Roteador: pergunta Pro vs Simples |
-| `desenvolvimento-pro.md` | Fluxo all-in-one (especificação → … → DoD) |
+| `desenvolvimento-pro.md` | Fluxo all-in-one (especificação → … → DoD); orquestra models por fase |
 | `desenvolvimento-simples.md` | Desenvolvimento rápido, sem fases |
+| `arquitetura-pro.md` | System design (Opus); fase 2 do Pro |
+| `review-pro.md` | Code review readonly (Grok); fase 4 — não corrige código |
 
 ### Skills
 
-`dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review`, `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`
+`dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`
+
+No Pro: arquitetura via `arquitetura-pro` (Opus); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador).
 
 ### Rules
 

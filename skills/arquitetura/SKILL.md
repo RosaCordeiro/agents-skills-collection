@@ -2,6 +2,8 @@
 
 Skill consultiva. Nao implemente codigo de producao aqui — entregue design completo e aguarde aprovacao. Responda em portugues.
 
+No fluxo **Pro**, esta skill roda no subagent **`arquitetura-pro`** (`claude-opus-5-thinking-high`), nao no model do implementador. O `AskQuestion` de aprovacao da fase fica com o orquestrador apos o retorno do subagent.
+
 ## Pre-requisito
 
 Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`). Se nao estiver, avise e ofereca voltar a essa fase.
@@ -13,7 +15,8 @@ Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`
 3. Oferecer **ate 2 abordagens** + **1 recomendacao** com trade-offs honestos.
 4. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
 5. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.
-6. Aprovar com **`AskQuestion`** — prompt: `O system design esta ok para implementar?`
+6. Se estiver rodando como subagent `arquitetura-pro`: entregar design + resumo ao orquestrador (**sem** `AskQuestion`).
+   Se estiver em chat direto (sem orquestrador): aprovar com **`AskQuestion`** — prompt: `O system design esta ok para implementar?`
    - `Sim, seguir para desenvolvimento` | `Ajustar design` | `Outro (eu digito)`
    - Se `AskQuestion` indisponivel: mesmas opcoes em prosa curta.
 

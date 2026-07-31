@@ -10,11 +10,13 @@ description: >-
 
 Fase **depois** do code review e **antes** da suite automatizada ampla.
 Responda em portugues. Foque nas regras da especificacao aprovada (feat ou fix).
+Se existir `REVIEW-*-resultado.md` com bloqueantes abertos, nao iniciar VAL/V — voltar ao `review`.
 
 ## Fontes
 
 - **feat:** cenarios `VAL-xx` e criterios `CA-xx` em `docs/especificacoes/`
 - **fix:** verificacoes `V-xx` em `docs/correcoes/`
+- Code review da branch: `REVIEW-*-resultado.md` (contexto de debitos aceitos)
 
 ## Processo
 
