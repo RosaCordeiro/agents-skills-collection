@@ -1,10 +1,9 @@
 ---
-name: especificacao
 description: >-
   Porta de entrada da fase de especificacao: classifica feat vs fix, abre a
   branch (feat/ ou fix/), e grava o documento no modelo correto. Em stack
-  Node.js pergunta e registra decisao sobre @clamed/logger e light-node-metrics
-  antes de aprovar. Use na fase 1 do Dev All-in-One, quando o usuario pedir
+  Node.js herda @clamed/logger + light-node-metrics se o projeto ja usa; so
+  pergunta no greenfield. Use na fase 1 do Dev All-in-One, quando o usuario pedir
   especificação, RN, BRD/FRD, ou antes de arquitetura — inclusive pedidos
   ambíguos (feat ou bug).
 ---
@@ -42,40 +41,45 @@ A especificacao altera regras de negocio (feat) ou docs de issue/erro (fix) — 
 
 Nao pedira commit ainda a menos que o usuario peça — mas a branch e obrigatoria.
 
-### 3. Gate Node.js — logger e métricas (obrigatorio se stack Node)
+### 3. Gate Node.js — logger e métricas
 
 Se o trabalho for (ou o projeto alvo for) **Node.js / TypeScript no Node** (API Express/Fastify/Nest, worker, CLI Node, monorepo `apps/api` Node, etc.):
 
-1. **Antes** de fechar escopo/RFs de observabilidade e **antes** de pedir aprovacao da spec, usar **`AskQuestion`** (uma pergunta; maximo um `AskQuestion` por mensagem):
+#### 3.1 Projeto que **ja usa** observabilidade Clamed (padrao)
 
-   - Prompt: `Neste Node.js, incluir @clamed/logger e light-node-metrics?`
-   - Opcoes (single-select):
-     - `Sim — logger + light-node-metrics`
-     - `So @clamed/logger`
-     - `So light-node-metrics`
-     - `Nao — nenhum neste MVP`
-     - `Outro (eu digito)`
+Detectar no repo (qualquer um basta): dependencia/`import` de `@clamed/logger` ou `light-node-metrics`; mencao em SPEC/ARCH anterior aprovada; `GET /metrics` ou setup em `observability/`.
 
-2. **Nao avancar** (nao marcar spec completa / nao pedir “seguir para arquitetura”) enquanto a resposta estiver pendente.
-3. Registrar a decisao no documento:
-   - Em **Premissas / dependencias** e/ou **Assumptions** (ex.: A-xx).
-   - Se **Sim** ou so um dos pacotes: incluir no **escopo** (RF/RNF) o que couber (logs estruturados; `GET /metrics` Prometheus via `light-node-metrics`; pacotes no Verdaccio Clamed).
-   - Se **Nao**: colocar explicitamente em **Fora de escopo** e nao assumir logger/metrics na arquitetura seguinte.
-4. Se a stack **nao** for Node (Go, Python, ABAP, UI5 puro sem API Node nova, etc.): este gate e **N/A** — nao perguntar.
+**Nesse caso:**
 
-Se ainda nao estiver claro se e Node: perguntar a stack primeiro; so entao aplicar este gate.
+1. **Nao perguntar** de novo a cada feat/fix.
+2. **Herdar automaticamente:** manter `@clamed/logger` **e** `light-node-metrics` na entrega.
+3. Registrar no doc: *“Observabilidade: herdada do projeto (logger + light-node-metrics).”* em Premissas / Assumptions.
+4. Nao colocar logger/metrics em “Fora de escopo” so porque a feat nao e sobre obs.
+
+#### 3.2 Greenfield Node (ainda **nao** usa)
+
+So se **nao** houver evidencia de uso no projeto:
+
+1. **`AskQuestion`** (uma pergunta; maximo um `AskQuestion` por mensagem):
+   - Prompt: `Neste Node.js novo, incluir @clamed/logger e light-node-metrics?`
+   - Opcoes: `Sim — logger + light-node-metrics` | `So @clamed/logger` | `So light-node-metrics` | `Nao — nenhum neste MVP` | `Outro (eu digito)`
+2. Registrar a decisao; incluir no escopo ou em fora de escopo conforme a resposta.
+3. Nao aprovar a spec sem essa decisao (greenfield apenas).
+
+#### 3.3 Stack nao-Node
+
+Gate **N/A** — nao perguntar.
 
 ### 4. Redigir (somente feat neste skill)
 
 1. Seguir [modelo-feat.md](modelo-feat.md) — todos os blocos (`N/A` + motivo se nao aplicar).
-2. Destacar assumptions explicitamente (incluir decisao do gate Node, se aplicavel).
+2. Destacar assumptions explicitamente (incluir observabilidade herdada ou decisao greenfield).
 3. Validar com [validacao.md](validacao.md); corrigir FAILs antes de pedir aprovacao.
 4. Gravar o arquivo **na branch** (ex.: `docs/especificacoes/SPEC-001.md`).
 5. Apresentar: resumo + path + branch + resultado da validacao.
 6. **`AskQuestion`**: `A especificacao feat esta correta e completa?`
    - `Sim, seguir para arquitetura` | `Ajustar` | `Outro (eu digito)`
 7. Apos aprovacao: `Status: aprovado` no doc. **Proxima fase = arquitetura** (nao codigo).
-   - Se o gate Node se aplica e ainda nao foi decidido: **bloquear** este passo — voltar ao §3.
 
 ## Relacao com correcao de erro
 
@@ -88,4 +92,4 @@ Usar `correcao-erro` + [modelo-fix.md](../correcao-erro/modelo-fix.md).
 - Requisitos atomicos, testaveis, nao ambiguos
 - IDs: `RN-xx`, `RF-xx`, `RNF-xx`, `US-xx`, `CA-xx`, `VAL-xx`
 - Fora de escopo claro; rastreabilidade US → RF/RN → CA
-- Stack Node: decisao explicita sobre `@clamed/logger` / `light-node-metrics` (gate §3) registrada no doc
+- Stack Node: observabilidade **herdada** se o projeto ja usa; so perguntar em greenfield (§3)

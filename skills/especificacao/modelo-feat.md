@@ -49,7 +49,7 @@ Preencha todos os blocos. Se nao se aplicar: `N/A` + motivo em uma linha.
 
 - Premissas: ...
 - Dependencias externas: ...
-- **Se stack Node.js:** registrar decisao do gate de observabilidade (skill): `@clamed/logger` e/ou `light-node-metrics` — Sim / so um / Nao neste MVP. Sem decisao, a spec nao pode ser aprovada.
+- **Se stack Node.js:** observabilidade — se o projeto **ja** usa `@clamed/logger` / `light-node-metrics`, **herdar** (nao perguntar de novo). So perguntar em greenfield Node. Registrar no doc.
 
 ## 5. Glossario
 

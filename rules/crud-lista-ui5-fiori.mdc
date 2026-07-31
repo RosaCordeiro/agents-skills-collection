@@ -11,4 +11,5 @@ Ao criar ou alterar telas de consulta/CRUD, aplicar o padrao em
 
 Nao improvisar: filtros separados, situacao padrao Ativo, acoes so icone+tooltip,
 Ativar/Inativar no mesmo slot, situacao fora do form de editar, lista sem caixa dupla,
-sem botao Atualizar, menu so com a lista.
+sem botao Atualizar, menu so com a lista. Se a linha tiver **mais de 3** acoes
+(ativas ou inativas), usar `MenuButton` overflow (⋮); indisponiveis desabilitadas.

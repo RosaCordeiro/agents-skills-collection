@@ -41,9 +41,16 @@ Referência canônica para apps **UI5 freestyle** e **Fiori** (Elements ou frees
   - Inativar: `sap-icon://stop` (ou equivalente) — “Inativar”
   - Ativar: `sap-icon://play` (ou equivalente) — “Ativar”
 - **Inativar** e **Ativar** ocupam o **mesmo lugar** na linha (um ou outro conforme o status atual).
-- Exclusão lógica: **não** rotular como “Excluir”; usar Ativar/Inativar.
+- Exclusão lógica: **não** rotular como “Excluir”; usar Ativar/Inativar (cadastros mestre Ativo/Inativo).
 - Dialog/form de criar/editar: **sem** campo Situação — situação só pelos botões Ativar/Inativar.
 - Novo registro nasce **Ativo**.
+
+### Menu ⋮ (overflow) — obrigatório quando > 3 ações
+
+- Contar **todas** as ações possíveis da linha (ativas **e** inativas / desabilitadas). Se o total for **maior que 3**, não espalhar ícones: usar **um** botão `MenuButton` com ícone `sap-icon://overflow` (três pontinhos / overflow), tooltip “Ações”.
+- O menu lista **todas** as ações; as indisponíveis no momento aparecem **desabilitadas** (`enabled=false`), **não** ocultas.
+- Exemplo: Visualizar | Histórico | Editar | Excluir → overflow; Editar | Ativar | Inativar (≤3) → ícones diretos ok.
+- Em freestyle UI5: `MenuButton` + `Menu` + `MenuItem` (`itemSelected` → despachar a ação com o binding context da linha).
 
 ## 6. Permissões
 
@@ -67,6 +74,36 @@ Referência canônica para apps **UI5 freestyle** e **Fiori** (Elements ou frees
 - [ ] Lista só com margem; sem caixa dupla
 - [ ] Sem botão Atualizar
 - [ ] Ícones + tooltips; Ativar/Inativar no mesmo slot
+- [ ] Se > 3 ações na linha → MenuButton ⋮; indisponíveis desabilitadas (não ocultas)
 - [ ] Situação fora do form de editar
 - [ ] Inativo em vermelho; Ativo em verde
 - [ ] ACL UI + API alinhadas
+
+## 9. Cor de tipo (quando a entidade/consulta tiver cor)
+
+Aplicar quando o cadastro ou a consulta exibir **cor de tipo** (PBI, task, GMUD, etc.). Fonte canônica no `clamed.dev`: `webapp/model/TipoVisual.js`.
+
+### 9.1 Faixa / gradiente na linha da lista
+
+- Usar **`TipoVisual.paintListItemBorder(listItem, cor)`** (não inventar CSS paralelo).
+- Defaults: faixa inset `0.55rem` + wash `linear-gradient` com alpha `hex+33` até transparente em `45%`.
+- Ligar via `updateFinished` da `Table` (reaplica após re-render / growing).
+- Sem cor → limpar pintura (sem inventar cor padrão).
+- A wash é **clara**: **não** alterar a cor da fonte da célula (permanece o tema / negrito cinza).
+
+### 9.2 Título do diálogo de visualizar / detalhe
+
+- Usar **`TipoVisual.paintDialogTitle(dialog, cor)`** no open (e ao trocar tipo no form, se aplicável).
+- Fundo do header = cor sólida do tipo; texto e botão fechar = contraste.
+- **`contrastText`:** luminância relativa WCAG ≤ **0.42** → fonte **`#FFFFFF`**; acima → **`#111111`**.
+  - Ex.: `#27AE60` / `rgb(39, 174, 96)` → branco (verde médio/forte).
+- Ao limpar a cor (tipo sem cor / Nova sem tipo): limpar **os mesmos seletores** pintados (incl. `.sapMTitle` aninhados) — evitar `color` inline stale.
+- Ícone colorido na célula (se houver) **permanece**; faixa e título são aditivos.
+
+### 9.3 Checklist extra (cor)
+
+- [ ] Lista: `paintListItemBorder` via `updateFinished`; sem CSS paralelo de faixa
+- [ ] Dialog de consulta/detalhe: `paintDialogTitle` + `contrastText` (limiar 0.42)
+- [ ] Sem cor: limpeza simétrica dos estilos inline do título
+- [ ] Fonte da célula da lista **não** forçada pela wash
+- [ ] Form Novo/Editar da entidade-mestre: só pintar título se a SPEC pedir (ex.: visualizar tasks sim; editar PBI pode ficar fora)

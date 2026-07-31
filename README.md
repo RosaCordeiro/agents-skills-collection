@@ -39,7 +39,8 @@ No Pro: arquitetura via `arquitetura-pro` (Opus); review via `review-pro` (Grok,
 |---------|--------|
 | `escolha-agent-desenvolvimento.mdc` | Sempre perguntar Pro vs Simples no início de um desenvolvimento |
 | `execucao-wsl.mdc` | Como rodar comandos no WSL sem travar o chat |
-| `crud-lista-ui5-fiori.mdc` | Padrao de telas CRUD lista (UI5/Fiori) |
+| `crud-lista-ui5-fiori.mdc` | Padrao de telas CRUD lista (UI5/Fiori); overflow ⋮ se > 3 ações |
+| `sem-mudanca-tecnologia.mdc` | Proíbe trocar stack/runtime sem autorização explícita |
 
 ---
 

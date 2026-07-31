@@ -42,12 +42,23 @@ Ao criar/ajustar servicos:
 - Volumes para dados persistentes
 - Variaveis documentadas em `.env.example` (sem valores secretos reais)
 
+## Histórico de campos (auditoria de alteração)
+
+Ao gravar histórico campo a campo (ex.: GMUD):
+
+1. **Normalizar antes de comparar** — nunca comparar string crua de `Date`/`timestamptz` com `yyyy-MM-dd`.
+2. Campos **date** (só dia): canônico de armazenamento/diff = `yyyy-MM-dd`. Aceitar parse de ISO, `Date`, e strings JS.
+3. Se após normalizar `anterior === novo`, **não** inserir linha de histórico.
+4. Na **API de leitura**, campos date do histórico devem ir formatados para UI como **`dd/mm/yyyy`** (ou um campo `*Display` explícito).
+5. Mesma regra para qualquer entidade nova com “histórico por campo”.
+
 ## Checklist
 
 - [ ] Sobe com Compose (quando aplicavel)
 - [ ] Conexao DB configuravel por env
 - [ ] README ou secao de como rodar em portugues
 - [ ] Sem secrets commitados
+- [ ] Histórico de datas normalizado (se a feat tiver auditoria por campo)
 
 ## Ao terminar
 
