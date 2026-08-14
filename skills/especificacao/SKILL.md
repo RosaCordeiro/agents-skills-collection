@@ -55,6 +55,7 @@ Detectar no repo (qualquer um basta): dependencia/`import` de `@clamed/logger` o
 2. **Herdar automaticamente:** manter `@clamed/logger` **e** `light-node-metrics` na entrega.
 3. Registrar no doc: *“Observabilidade: herdada do projeto (logger + light-node-metrics).”* em Premissas / Assumptions.
 4. Nao colocar logger/metrics em “Fora de escopo” so porque a feat nao e sobre obs.
+5. Se a feat **tocar logs** (novos fluxos, correlacao, eventos): citar aderencia a skill `logger` (`event`, `correlation_id`, keywords) na RNF/observabilidade.
 
 #### 3.2 Greenfield Node (ainda **nao** usa)
 

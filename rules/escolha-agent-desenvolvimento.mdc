@@ -19,7 +19,7 @@ Quando o usuário **iniciar um desenvolvimento** (nova feature, app, API, CLI, s
 3. Se responder **simples** → seguir agent `desenvolvimento-simples` (`~/.cursor/agents/desenvolvimento-simples.md`).
 4. Se já vier explícito (“pro” / “simples” / “agent pro” / “agent simples”), não pergunte de novo.
 
-**Não perguntar** em: status, “travou?”, limpar arquivo, um comando, dúvida rápida sem implementação.
+**Não perguntar** em: status, “travou?”, limpar arquivo, um comando, dúvida rápida sem implementação; **auditoria** / agent `auditor` / revalidar o sistema / nota 0–10 (não é desenvolvimento — seguir `~/.cursor/agents/auditor.md`).
 
 ## Perguntas com seletor (obrigatório neste fluxo)
 

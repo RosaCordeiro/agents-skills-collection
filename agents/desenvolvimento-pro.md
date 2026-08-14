@@ -83,3 +83,9 @@ Quando a feat/fix envolver **schema, migrations, modelagem ou tipagem de banco P
 ## Observabilidade Node
 
 Se o projeto **já** usa `@clamed/logger` e/ou `light-node-metrics`, **não perguntar** a cada feat — herdar sempre ambas. Detalhe na skill `especificacao` §3 (só perguntar em greenfield Node).
+
+Quando a feat/fix **implementar ou alterar logs** (ou o projeto já use `@clamed/logger`):
+
+1. Ler e seguir a skill `logger`: `~/.cursor/skills/logger/SKILL.md`
+2. Manter `keywords` + níveis; novos logs com `event` (`name`/`action`/`outcome`) e `correlation_id` via contexto automático.
+3. Não trocar o pacote de logger sem autorização explícita.

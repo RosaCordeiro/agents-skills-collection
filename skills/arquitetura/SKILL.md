@@ -12,6 +12,7 @@ Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`
 
 1. Partir da especificacao aprovada e das constraints (WSL, Docker, DBs, linguagens).
 2. Se houver **Postgres / schema**: consultar skill **`modelagem-dados`** e tipar colunas no design (`uuid`, `varchar(n)`, `TEXT` só quando couber).
+2b. Se houver **logs Node / `@clamed/logger`**: consultar skill **`logger`** — desenhar `event` (name/action/outcome), geracao/propagacao de `correlation_id` e contexto automatico.
 3. Oferecer **ate 2 abordagens** + **1 recomendacao** com trade-offs honestos.
 4. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
 5. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.

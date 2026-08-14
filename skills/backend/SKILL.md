@@ -31,6 +31,7 @@ Responda em portugues. Em tarefas grandes, valide o plano antes de implementar. 
 - Migracoes/versionamento de schema quando houver DB relacional
 - **Postgres:** ler e seguir `modelagem-dados` (`~/.cursor/skills/modelagem-dados/SKILL.md`) — PK/FK `uuid`, `varchar(n)`, `TEXT` só para texto longo
 - Healthcheck e logs estruturados em servicos novos
+- **Logs Node (`@clamed/logger`):** ler e seguir `logger` (`~/.cursor/skills/logger/SKILL.md`) — keywords, niveis, `event`, `correlation_id` automatico
 - Preferir ferramentas Linux (bash, make, compose) a scripts Windows
 - Branch: `feat/` ou `fix/` conforme o caso
 

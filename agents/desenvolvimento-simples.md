@@ -27,6 +27,12 @@ Se o trabalho criar/alterar **tabelas, colunas ou migrations Postgres**, leia e 
 (`~/.cursor/skills/modelagem-dados/SKILL.md`): PK/FK `uuid`, `varchar(n)` com limite, `TEXT` só para texto longo.
 Isso **não** ativa o fluxo Pro — só a tipagem correta.
 
+## Exceção — logs Node (`@clamed/logger`)
+
+Se o trabalho **criar/alterar logs** em projeto que já usa (ou for adotar) `@clamed/logger`, leia e aplique a skill **`logger`**
+(`~/.cursor/skills/logger/SKILL.md`): keywords, níveis, `event`, `correlation_id` automático.
+Isso **não** ativa o fluxo Pro — só o padrão de log.
+
 ## Pode melhorar depois
 
 Esta definição é propositalmente mínima. Evoluções (padrões do time, DoD curto, etc.) serão adicionadas depois.

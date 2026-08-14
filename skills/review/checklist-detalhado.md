@@ -53,6 +53,7 @@ No artefato e no chat, basta o status + nota curta.
 
 - Se o projeto ja usa `@clamed/logger` / metrics: novos fluxos relevantes logam/medem
 - Sem spam de log em loop quente
+- Skill `logger`: novos logs com `keywords` canonicos, nivel adequado, `event` (name/action/outcome); `correlation_id` gerado/propagado e injetado pelo contexto (nao so no msg)
 
 ## CR10 — Erros / resiliencia
 

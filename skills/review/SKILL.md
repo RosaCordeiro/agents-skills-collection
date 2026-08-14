@@ -137,7 +137,7 @@ O agent de review **nao** gasta turno implementando.
 - Auth e exposicao de dados (Mongo e APIs)
 - Ports/volumes Docker expostos demais
 - MCP/RAG: secrets, read-only default, escopo, citacao
-- `@clamed/logger` / light-node-metrics quando o projeto Node ja usa
+- `@clamed/logger` / light-node-metrics quando o projeto Node ja usa (padrao: skill `logger` — keywords, `event`, `correlation_id`)
 
 ## Ao terminar
 

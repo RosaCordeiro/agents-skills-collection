@@ -36,3 +36,4 @@ Se o usuário já disser na primeira mensagem `pro` ou `simples` (ou “agent pr
 ## Não usar quando
 
 Ops / status / “travou?” / limpeza / um comando isolado sem desenvolvimento.
+Auditoria / revalidar sistema / notas 0–10 → agent **`auditor`** (`~/.cursor/agents/auditor.md`), não este roteador.

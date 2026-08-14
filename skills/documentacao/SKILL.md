@@ -42,7 +42,7 @@ Nao pular itens com “minimo necessario” se a entrega tocou aquela area.
 | R3 | Variaveis de ambiente | Vars novas ou com default relevante; apontar `.env.example` se existir; tabela ou lista coerente com o codigo |
 | R4 | UI / operadores | Telas, botoes, fluxos novos (ex. pausar, filtros) — o operador encontra no README |
 | R5 | Comportamento operacional | Regras que mudam suporte (fila, rate limit, erros tipicos, UF, 656, etc.) se a entrega as alterou |
-| R6 | Observabilidade | Se a entrega ou o projeto Node usa logger/`/metrics`: como ver logs, URL de metricas, nomes das metricas de negocio relevantes — **nao** so “tem metrics” |
+| R6 | Observabilidade | Se a entrega ou o projeto Node usa logger/`/metrics`: como ver logs, URL de metricas, nomes das metricas de negocio relevantes — **nao** so “tem metrics”. Se houver logs novos: keywords/`event` documentados e como filtrar por `correlation_id` (skill `logger`) |
 | R7 | Testes | Como rodar suite e VAL/V novos da entrega |
 | R8 | Indice de docs | Links/tabela para SPEC/DESIGN/CORR desta entrega (e nao omitir docs ja existentes que a tabela citava pela metade) |
 | R9 | CHANGELOG | Entrada curta do que entrou, se o repo tiver `CHANGELOG.md` |

@@ -26,10 +26,11 @@ cursor-kit/
 | `desenvolvimento-simples.md` | Desenvolvimento rápido, sem fases |
 | `arquitetura-pro.md` | System design (Opus); fase 2 do Pro |
 | `review-pro.md` | Code review readonly (Grok); fase 4 — não corrige código |
+| `auditor.md` | Auditor 100% (não programa): revalida o sistema, roda a suíte, Validação 1..N, notas 0–10 |
 
 ### Skills
 
-`dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`
+`dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10)
 
 No Pro: arquitetura via `arquitetura-pro` (Opus); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador).
 
@@ -37,7 +38,7 @@ No Pro: arquitetura via `arquitetura-pro` (Opus); review via `review-pro` (Grok,
 
 | Arquivo | Papel |
 |---------|--------|
-| `escolha-agent-desenvolvimento.mdc` | Sempre perguntar Pro vs Simples no início de um desenvolvimento |
+| `escolha-agent-desenvolvimento.mdc` | Sempre perguntar Pro vs Simples no início de um desenvolvimento (não dispara no agent `auditor`) |
 | `execucao-wsl.mdc` | Como rodar comandos no WSL sem travar o chat |
 | `crud-lista-ui5-fiori.mdc` | Padrao de telas CRUD lista (UI5/Fiori); overflow ⋮ se > 3 ações |
 | `sem-mudanca-tecnologia.mdc` | Proíbe trocar stack/runtime sem autorização explícita |
@@ -126,6 +127,7 @@ Abra um chat novo no Cursor.
 2. O agent pergunta: **Pro** ou **Simples**.
 3. **Pro** → orquestra as skills (`dev-all-in-one`, etc.).
 4. **Simples** → implementa direto, sem fases.
+5. Após grande alteração, peça o **auditor** (não é Pro/Simples): ele só valida e dá nota.
 
 ---
 
