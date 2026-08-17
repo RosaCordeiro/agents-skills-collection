@@ -31,7 +31,7 @@ Objetivo: design forte; review independente e barato; implementacao no model pad
 | Fase | Executor | Model | Motivo |
 |------|----------|-------|--------|
 | 1 Spec, 3 Dev, 5–8 | orquestrador Pro (`inherit`) | model do chat | velocidade / custo diario |
-| 2 Arquitetura | subagent `arquitetura-pro` | `claude-opus-5-thinking-high` | trade-offs; Opus vale o custo |
+| 2 Arquitetura | subagent `arquitetura-pro` | `claude-sonnet-5-thinking-high` | design separado do implementador; **nao** Opus por padrao |
 | 4 Code review | subagent `review-pro` (**readonly**) | `cursor-grok-4.5-high-fast` | pool Cursor + model ≠ autor; **nao programa**; fallback Sonnet |
 
 **Obrigatorio:** fases 2 e 4 via tool **Task** (nao rodar a skill inline no mesmo model do dev).
@@ -63,7 +63,8 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 
 ### 2. Arquitetura / system design
 
-- **Task** → `arquitetura-pro` + model `claude-opus-5-thinking-high` (skill `arquitetura`).
+- **Task** → `arquitetura-pro` + model `claude-sonnet-5-thinking-high` (skill `arquitetura`).
+- **Nao** passar Opus. So usar `claude-opus-5-thinking-high` se o usuario pedir Opus neste chat.
 - Design completo (contexto, componentes, dados, fluxos, infra, riscos, MVP).
 - Orquestrador resume + **`AskQuestion`** de aprovacao. Aguardar antes de codar produto.
 

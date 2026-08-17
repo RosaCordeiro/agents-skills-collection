@@ -2,7 +2,7 @@
 
 Skill consultiva. Nao implemente codigo de producao aqui — entregue design completo e aguarde aprovacao. Responda em portugues.
 
-No fluxo **Pro**, esta skill roda no subagent **`arquitetura-pro`** (`claude-opus-5-thinking-high`), nao no model do implementador. O `AskQuestion` de aprovacao da fase fica com o orquestrador apos o retorno do subagent.
+No fluxo **Pro**, esta skill roda no subagent **`arquitetura-pro`** (`claude-sonnet-5-thinking-high`), nao no model do implementador. Opus so se o usuario pedir. O `AskQuestion` de aprovacao da fase fica com o orquestrador apos o retorno do subagent.
 
 ## Pre-requisito
 

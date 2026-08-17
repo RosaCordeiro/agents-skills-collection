@@ -1,0 +1,13 @@
+---
+description: Padrao Sonnet; Opus so com pedido explicito do usuario
+alwaysApply: true
+---
+
+# Modelo: Sonnet por padrao
+
+- **Padrao:** Claude Sonnet (`claude-sonnet-5-thinking-high` ou o Sonnet do seletor do chat).
+- **Proibido** lancar Task/subagent com Opus (`claude-opus-5-thinking-high`, `claude-4-opus`, etc.) por iniciativa propria — inclusive arquitetura, review, auditoria e “modelo mais forte”.
+- **Opus so** se o usuario pedir explicitamente neste chat (ex.: “usa opus”, “pode ser opus nesta fase”).
+- Se a skill/agent ainda citar Opus como padrao, **ignorar** e usar Sonnet.
+- Review continua no modelo barato ja definido (`cursor-grok-4.5-high-fast`); fallback = Sonnet, nunca Opus.
+- Nao sugerir trocar o chat para Opus. Nao perguntar se quer Opus.

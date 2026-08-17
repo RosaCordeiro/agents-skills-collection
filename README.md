@@ -24,7 +24,7 @@ cursor-kit/
 | `desenvolvimento.md` | Roteador: pergunta Pro vs Simples |
 | `desenvolvimento-pro.md` | Fluxo all-in-one (especificação → … → DoD); orquestra models por fase |
 | `desenvolvimento-simples.md` | Desenvolvimento rápido, sem fases |
-| `arquitetura-pro.md` | System design (Opus); fase 2 do Pro |
+| `arquitetura-pro.md` | System design (Sonnet; Opus só se o usuário pedir); fase 2 do Pro |
 | `review-pro.md` | Code review readonly (Grok); fase 4 — não corrige código |
 | `auditor.md` | Auditor 100% (não programa): revalida o sistema, roda a suíte, Validação 1..N, notas 0–10 |
 | `pbg.md` | PowerBuilder 12: altera via MCP (`composer-2.5-fast`); patch importa e compila |
@@ -34,12 +34,13 @@ cursor-kit/
 
 `dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + sybase-objects)
 
-No Pro: arquitetura via `arquitetura-pro` (Opus); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador).
+No Pro: arquitetura via `arquitetura-pro` (Sonnet; Opus só se pedir); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador).
 
 ### Rules
 
 | Arquivo | Papel |
 |---------|--------|
+| `modelo-sonnet.mdc` | Padrão Sonnet; Opus só com pedido explícito |
 | `escolha-agent-desenvolvimento.mdc` | Sempre perguntar Pro vs Simples no início de um desenvolvimento (não dispara no agent `auditor`) |
 | `execucao-wsl.mdc` | Como rodar comandos no WSL sem travar o chat |
 | `crud-lista-ui5-fiori.mdc` | Padrao de telas CRUD lista (UI5/Fiori); overflow ⋮ se > 3 ações |
