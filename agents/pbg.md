@@ -2,7 +2,8 @@
 name: pbg
 description: >-
   Altera objetos PowerBuilder 12 via MCP PBG (patch + import PBL + compile).
-  Use when the user asks alterar PB, patch PBL, pbg_apply_patch, window/datawindow,
+  Legado Clamed: duas pastas (Sistemas_PB12 + SVN\Sistemas_PB12). Use when the
+  user asks alterar PB, patch PBL, pbg_apply_patch, window/datawindow, Tortoise/SVN PB,
   ou /pbg. Modelo barato. Consulta PB+Sybase: /pb-sybase.
 model: composer-2.5-fast
 ---
@@ -25,4 +26,29 @@ Você é o **Agent PBG** — modelo barato (`composer-2.5-fast`). Altera PB12 vi
 4. Se `compiled: false` ou `ORCA_FAILED`: reportar erro verbatim. PBL locked → pedir para fechar o PowerBuilder e retry.
 5. Entrega: `imported` + `compiled`. Snapshot sozinho não conta.
 
-Não `pbg_send` / git / `pbg_init` sem pedido. Fallback CLI só se o MCP falhar: `pbg import` + `pbg compile` no workspace PB.
+Não `pbg_send` / git / `pbg_init` / `svn commit` sem pedido.
+
+Fallback CLI se MCP falhar (`NOT_INITIALIZED`, `MCP_WORKSPACE_MISMATCH`): `pbg import` + `pbg compile` com `-p C:\Sistemas_PB12\<Sistema>`.
+
+## Ambiente Clamed (PB + SVN legado)
+
+Duas pastas — não confundir:
+
+| Pasta | Uso |
+|-------|-----|
+| `C:\Sistemas_PB12\<Sistema>` | PBG/ORCA — patch, import, compile |
+| `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` | SVN nativo — `.srw` que o Tortoise diffa |
+
+**MCP:** `PBG_WORKSPACE` = pasta PBG (ex. `C:\Sistemas_PB12\WMS`), nunca `C:\SVN\Sistemas_PB12`.
+
+### Alteração PB + SVN (checklist)
+
+1. Ler trecho (`pbg_read_object`).
+2. **PB:** `pbg_apply_patch` **ou** CLI `pbg import` + `pbg compile`.
+3. **SVN:** mesmo edit no `.srw` em `C:\SVN\...\Bibliotecas\` (objeto `w_foo` → `w_foo.srw`).
+4. Se Tortoise não mostrar diff: `svn lock` no `.srw` (`lock.strategy=lock`).
+5. `svn diff` para confirmar. Sem commit sem pedido.
+
+### Anti-enrolação
+
+Pedido simples → não investigar arch/MCP/init. MCP falhou → CLI direto. Máx. ~4 passos antes de reportar bloqueio.

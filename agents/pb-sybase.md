@@ -28,5 +28,6 @@ Não inventar schema. Entregar o relatório de `consulta.md`.
 - Mudança de SP/trigger/function/view: editar o `.sql` no `sybase-objects` **mesmo se for 1 linha**. Não commit/push sem pedido. Avisar que o ASE ainda precisa de deploy.
 - Tabela não está nesse repo: schema = MCP; objetos SQL afetados = Git.
 - Patch PB: `pbg_apply_patch` já importa+compila. Compile avulso: `pbg_compile`.
+- Legado Clamed PB+SVN: PBG em `C:\Sistemas_PB12\<Sistema>`; SVN em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` (`.srw`). Ver skill `pbg` § Ambiente Clamed.
 - Teste de mesa de trigger: handoff `/teste-mesa-sybase`.
 - Patch PB barato e objeto já conhecido: pode indicar `/pbg`.
