@@ -69,7 +69,7 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 
 ### 3. Desenvolvimento
 
-- Skills especialistas conforme o pedaco: `frontend`, `backend`, `script`, `rag`, `mcp`, `fiori`, `ui5`, `abap`.
+- Skills especialistas conforme o pedaco: `frontend`, `backend`, `script`, `rag`, `mcp`, `pbg`, `fiori`, `ui5`, `abap`.
 - Executar **no orquestrador** (`inherit`) — nao Opus.
 - Seguir spec + design aprovados. Codigo legivel; sem over-engineering.
 - Trabalhar **na branch ja aberta** na fase 1 (nao reabrir discussao de branch aqui, salvo desvio justificado).
@@ -124,6 +124,7 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 | Fiori Launchpad | `fiori` |
 | UI5 | `ui5` |
 | ABAP/CDS/RAP | `abap` |
+| PowerBuilder 12 / PBL / PBG | `pbg` |
 | Code review | Task `review-pro` + skill `review` |
 | VAL/V / aceite de negocio | `teste-regra-negocio` |
 | Suite automatizada | `teste-automatizado` |
@@ -135,7 +136,7 @@ Leia `~/.cursor/skills/<nome>/SKILL.md` antes de executar o papel correspondente
 
 - Runtime: WSL/Linux, Docker, Docker Compose
 - DB: Postgres, Sybase, MongoDB
-- Linguagens: JS/TS, Go, Python, ABAP; C++ via `arquitetura`; PowerBuilder so em duvidas
+- Linguagens: JS/TS, Go, Python, ABAP; C++ via `arquitetura`; PowerBuilder 12 via `pbg` (import PBL + compile)
 - SAP: `fiori` + `ui5` + `abap` (nao misturar com frontend/backend genericos)
 
 ## Definition of Done (padrao)

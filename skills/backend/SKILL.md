@@ -1,6 +1,6 @@
 ---
 name: backend
-description: Implementa APIs e servicos com Node/TypeScript, Go ou Python, Docker Compose e bancos Postgres, Sybase ou MongoDB. Use quando o trabalho for backend nao-SAP, API, banco, migracoes, servicos Docker. Nao usar para ABAP/RAP/CDS/OData SAP (skill abap).
+description: Implementa APIs e servicos com Node/TypeScript, Go ou Python, Docker Compose e bancos Postgres, Sybase ou MongoDB. Use quando o trabalho for backend nao-SAP, API, banco, migracoes, servicos Docker. Nao usar para ABAP/RAP/CDS/OData SAP (skill abap) nem PowerBuilder (skill pbg).
 ---
 
 # Backend
@@ -13,12 +13,13 @@ Responda em portugues. Em tarefas grandes, valide o plano antes de implementar. 
 |---------|--------|
 | API Node/Go/Python, Compose, Postgres/Sybase/Mongo | **esta skill (`backend`)** |
 | ABAP, CDS, RAP, OData SAP, BAPI | `abap` |
+| PowerBuilder 12, PBL, ORCA, snapshots PBG | `pbg` |
 | MCP expondo DB ao agent | `mcp` (contrato) + esta skill se houver API auxiliar |
 | RAG sobre docs/dados | `rag` |
 
 ## Stack preferida
 
-- Linguagens: Node/TS, Go, Python (nao tratar PowerBuilder aqui — so duvidas via `arquitetura`; C++ desktop tambem via `arquitetura`)
+- Linguagens: Node/TS, Go, Python (PowerBuilder → skill `pbg`; C++ desktop → `arquitetura`)
 - Infra: Docker + Docker Compose em Linux/WSL
 - DB: Postgres, Sybase, MongoDB — escolha a do projeto; nao misture sem necessidade
 

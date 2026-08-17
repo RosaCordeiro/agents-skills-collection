@@ -12,6 +12,7 @@ Responda em portugues. Estilo consultivo. Prefira WSL/Linux e Docker. Nao invent
 - Criar ou manter um MCP server (tools/resources)
 - Expor leitura/escrita controlada a Postgres, Sybase, MongoDB, APIs
 - Configurar Cursor (`mcp.json` / dashboard) e escopo de tools
+- **Nao** usar esta skill para alterar objetos PowerBuilder — isso e `pbg` (MCP `user-pbg`: patch + import PBL + compile)
 - Decidir MCP vs RAG vs API REST pura
 
 ## Decisao rapida: MCP vs RAG vs API

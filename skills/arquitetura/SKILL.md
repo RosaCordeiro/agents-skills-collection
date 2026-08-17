@@ -89,7 +89,7 @@ Se a entrega tiver API e/ou persistencia, as secoes **5, 6, 7 e validacao** deve
 
 ## 10. Riscos e decisoes abertas
 - o que ainda pode mudar o design
-- Duvidas a esclarecer (PowerBuilder se aparecer)
+- Duvidas a esclarecer (PowerBuilder: encaminhar para skill `pbg`)
 
 ## 11. Plano de implementacao
 - ordem sugerida + skills especialistas + encaixe VAL/testes
@@ -144,12 +144,6 @@ Quando o alvo for aplicativo desktop:
 - Encaminhamento tipico apos aprovacao: implementar sob o plano desta skill → `review` (e `backend`/`script` se houver servicos auxiliares).
 - Modelo de dados / “contratos” (IPC, arquivos, API) seguem a mesma **Proibicao**: detalhar ou omitir, nunca resumir genérico.
 
-## Duvidas (por enquanto)
-
-Nao existe skill especialista para estes itens. Se surgirem no pedido, **so perguntar / registrar em decisoes abertas** — nao inventar padrao completo:
-
-- **PowerBuilder** — esclarecer: legado vs novo, versao, DB alvo, se e so manutencao pontual ou redesenho; aguardar decisao do usuario antes de propor stack paralela.
-
 ## Preferencias
 
 - Linux/WSL; **Docker Compose** (`build` + `up`) como caminho oficial quando houver multiplos processos
@@ -158,7 +152,7 @@ Nao existe skill especialista para estes itens. Se surgirem no pedido, **so perg
 - Se houver consulta inteligente a dados/docs: decidir explicitamente RAG (`rag`), MCP (`mcp`), SQL/API ou hibrido — nao misturar sem desenho
 - Se for SAP: encadear `fiori` + `ui5` + `abap` (nao usar `frontend`/`backend` genericos para isso)
 - Se for desktop C++: secao **Apps desktop** acima
-- PowerBuilder: apenas em **Duvidas**, ate haver skill propria
+- Se for PowerBuilder 12: skill `pbg` (MCP `user-pbg`). Toda alteracao: import na PBL original + `pbg_compile`
 - No plano de implementacao, nomear explicitamente quais skills especialistas entram em cada passo
 
 ## Encaminhamento pos-aprovacao
@@ -169,6 +163,7 @@ Ordem tipica na implementacao:
 - Web tipico: `backend` → `frontend` / `ui5` → `script`
 - Dados para agent: `mcp` e/ou `rag`
 - SAP: `fiori` → `abap` → `ui5`
+- PowerBuilder 12: `pbg` (import PBL + compile)
 - Desktop C++: implementacao alinhada ao design desta skill
 
 Nao pular code review nem as fases de teste.
