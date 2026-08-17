@@ -11,8 +11,8 @@ description: >-
 
 Responda em portugues. MCP **`user-pbg`** (`pbg_*`). Nao edite `.sr*`/`.pbl` no disco. ORCA = **Windows**.
 
-- Alterar (barato): **`/pbg`** (`composer-2.5-fast`).
-- So validar: **`/pbg-validacao`**.
+- Alterar PB (barato): **`/pbg`** (`composer-2.5-fast`).
+- Consulta PB + Sybase + sybase-objects: **`/pb-sybase`**.
 - Neste chat: pode operar a skill; evite dumpar source.
 
 ## Custo
@@ -37,5 +37,5 @@ Snapshot sozinho nao conta. `pbg_send` / init / branch so com pedido.
 | Assunto | Onde |
 |---------|------|
 | Alterar PB | `/pbg` ou esta skill |
-| So compile/leitura | `/pbg-validacao` |
+| Consulta PB+Sybase / SP / trigger | `/pb-sybase` |
 | MCP server generico | `mcp` |

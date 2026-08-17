@@ -28,11 +28,11 @@ cursor-kit/
 | `review-pro.md` | Code review readonly (Grok); fase 4 — não corrige código |
 | `auditor.md` | Auditor 100% (não programa): revalida o sistema, roda a suíte, Validação 1..N, notas 0–10 |
 | `pbg.md` | PowerBuilder 12: altera via MCP (`composer-2.5-fast`); patch importa e compila |
-| `pbg-validacao.md` | PowerBuilder 12: só lê/compila (readonly, barato) |
+| `pb-sybase.md` | Consulta detalhada PB + Sybase homolog + repo sybase-objects |
 
 ### Skills
 
-`dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório)
+`dev-all-in-one`, `especificacao`, `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + sybase-objects)
 
 No Pro: arquitetura via `arquitetura-pro` (Opus); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador).
 

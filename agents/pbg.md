@@ -3,7 +3,7 @@ name: pbg
 description: >-
   Altera objetos PowerBuilder 12 via MCP PBG (patch + import PBL + compile).
   Use when the user asks alterar PB, patch PBL, pbg_apply_patch, window/datawindow,
-  ou /pbg. Modelo barato. Não usar para só validar (/pbg-validacao).
+  ou /pbg. Modelo barato. Consulta PB+Sybase: /pb-sybase.
 model: composer-2.5-fast
 ---
 
