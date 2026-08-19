@@ -74,12 +74,19 @@ Público: desenvolvimento PB. Linguagem da área (keyuser) + nomes técnicos de 
 2. O que já existe vs o que esta entrega faz.
 3. Dono de cada dado (quem grava onde, e por quê).
 4. Tela: ancestor, dw_1, dw_2, menu da genérica, botões extras.
-5. Banco: DDL novo (nomes **≤ 30 caracteres**), o que não muda, histórico no padrão já existente (`wms_historico_*` = snapshot + `dh_alteracao` + `id_alteracao` I/A/E, sem coluna ant/depois, se for o caso).
+5. Banco: DDL das tabelas/colunas novas, o que não muda, histórico no padrão já existente (`wms_historico_*` = snapshot + `dh_alteracao` + `id_alteracao` I/A/E, sem coluna ant/depois, se for o caso).
 6. Lógica: retrieve, itemchanged, gravar, filtros (retrieve vs `SetFilter` no header da dw_2).
 7. Critérios de aceite.
 8. Anexos (mocks vigentes).
 
-MCP Sybase não aplica DDL. O SQL na spec é proposta para o DBA/`sybase-objects`.
+### O que **não** escrever na spec (instrução do agent)
+
+O documento é para o desenvolvedor Clamed. **Não** copiar para o MD/DOCX:
+
+- limite de identificador ASE (“nomes ≤ 30 caracteres”) — respeitar **ao nomear**, sem transformar em requisito do chamado;
+- tooling (“MCP Sybase não aplica DDL”, “script vai para o DBA”, “sybase-objects”).
+
+O SQL na spec é o modelo a criar. Deploy/DBA fica no chat ou no runbook, não no chamado.
 
 ---
 
@@ -87,8 +94,8 @@ MCP Sybase não aplica DDL. O SQL na spec é proposta para o DBA/`sybase-objects
 
 Quando a entrega tem tela:
 
-- Visual tipo PB12 (titlebar, genérica, grade).
-- Só o que a spec pede; mock e MD **não divergem**.
+- Visual tipo PB12 (titlebar, genérica, grade) **só para ilustrar** o fluxo. No mock e no MD: **os mocks são meramente ilustrativos; o padrão a seguir é o padrão CLAMED** (genéricas, menu, fontes, DDDW, cores das telas irmãs do sistema).
+- Só o que a spec pede; mock e MD **não divergem** no conteúdo de negócio.
 - Exemplos de produto **genéricos** (não citar medicamento se o WMS trata qualquer produto).
 - Filtro de retrieve na dw_1; filtro local (ex. divergentes) no **header da dw_2**, não na dw_1.
 - Consultar/Gravar: menu da genérica, não botões duplicados, se essa for a regra do sistema.

@@ -29,11 +29,11 @@ Não inventar schema.
 ## Modos
 
 - **Consulta:** relatório de `consulta.md`.
-- **Spec para outro dev:** pipeline de `especificacao.md` — consultar → MD autocontido → mocks se houver tela → DOCX **só depois** do ok. A spec não depende do chat: cada decisão traz o porquê.
+- **Spec para outro dev:** pipeline de `especificacao.md` — consultar → MD autocontido → mocks se houver tela → DOCX **só depois** do ok. A spec não depende do chat: cada decisão traz o porquê. Mocks são **ilustrativos**; o padrão da tela é o **CLAMED**. Não colocar na spec frases de tooling (MCP, “≤ 30 caracteres”, “script vai para o DBA”).
 
 ## Regras
 
-- MCP Sybase **não grava**. DDL/DML de escrita não passam por ele.
+- MCP Sybase **não grava**. DDL/DML de escrita não passam por ele. Isso é regra do agent — **não** repetir no MD do chamado.
 - Mudança de SP/trigger/function/view: editar o `.sql` no `sybase-objects` **mesmo se for 1 linha**. Não commit/push sem pedido. Avisar que o ASE ainda precisa de deploy.
 - Tabela não está nesse repo: schema = MCP; objetos SQL afetados = Git.
 - Patch PB: `pbg_apply_patch` já importa+compila. Compile avulso: `pbg_compile`.
