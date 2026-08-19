@@ -4,7 +4,8 @@ description: >-
   Altera objetos PowerBuilder 12 via MCP PBG (patch + import PBL + compile).
   Legado Clamed: duas pastas (Sistemas_PB12 + SVN\Sistemas_PB12). Use when the
   user asks alterar PB, patch PBL, pbg_apply_patch, window/datawindow, Tortoise/SVN PB,
-  ou /pbg. Modelo barato. Consulta PB+Sybase: /pb-sybase.
+  ou /pbg. Modelo barato. Consulta PB+Sybase: /pb-sybase. Tela/PBL nova: skill
+  pb-criar-objeto (agent /pb-sybase).
 model: composer-2.5-fast
 ---
 
@@ -27,6 +28,8 @@ Você é o **Agent PBG** — modelo barato (`composer-2.5-fast`). Altera PB12 vi
 5. Entrega: `imported` + `compiled`. Snapshot sozinho não conta.
 
 Não `pbg_send` / git / `pbg_init` / `svn commit` sem pedido.
+
+Objeto **novo** (PBL, herdar genérica, ícone + no PBSCC): skill `pb-criar-objeto` — não esta. `/pbg` é patch de objeto já no SCC.
 
 Fallback CLI se MCP falhar (`NOT_INITIALIZED`, `MCP_WORKSPACE_MISMATCH`): `pbg import` + `pbg compile` com `-p C:\Sistemas_PB12\<Sistema>`.
 

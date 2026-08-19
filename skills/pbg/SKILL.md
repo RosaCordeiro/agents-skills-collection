@@ -14,6 +14,7 @@ Responda em portugues. MCP **`user-pbg`** (`pbg_*`). Nao edite `.pbl` no disco. 
 
 - Alterar PB (barato): **`/pbg`** (`composer-2.5-fast`).
 - Consulta PB + Sybase + sybase-objects: **`/pb-sybase`**.
+- Objeto/PBL/tela **nova**: skill **`pb-criar-objeto`** (via `/pb-sybase`).
 - Neste chat: pode operar a skill; evite dumpar source.
 
 ## Custo
@@ -69,6 +70,7 @@ Patch so no PBG → PB ok, SVN vazio. So no `.srw` SVN → Tortoise ok, PB pode 
 
 | Assunto | Onde |
 |---------|------|
-| Alterar PB | `/pbg` ou esta skill |
+| Alterar PB (objeto já existente) | `/pbg` ou esta skill |
+| Criar PBL/janela/DW nova | skill `pb-criar-objeto` (`/pb-sybase`) |
 | Consulta PB+Sybase / spec/chamado/mock/DOCX | `/pb-sybase` |
 | MCP server generico | `mcp` |

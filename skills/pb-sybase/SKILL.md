@@ -5,7 +5,8 @@ description: >-
   (MCP user-sybase-hmg) + sybase-objects. Especifica chamado/tela WMS-PB
   (Markdown, mock HTML, DOCX por último). Use when the user asks PB+Sybase,
   tela vs tabela, spec/chamado SoftDesk, mock PowerBuilder, DOCX de spec,
-  consultar homolog, legado Clamed, ou /pb-sybase. Qualquer alteração de
+  consultar homolog, legado Clamed, ou /pb-sybase. Tela/PBL/DW nova: skill
+  pb-criar-objeto (herdar genérica, ícone + PBSCC). Qualquer alteração de
   objeto de banco também vai para sybase-objects. Preferir agent /pb-sybase.
 ---
 
@@ -16,7 +17,8 @@ Responda em português. PB e Sybase **andam juntos**: tela/DW no PB, tabela/trig
 Agents:
 
 - Consulta / cruzamento / **spec de chamado PB** (MD → mock → DOCX): **`/pb-sybase`**.
-- Só patch barato de PB (já sabe o objeto): **`/pbg`**.
+- **Tela/PBL/DW nova** (herdar genérica, ícone **+** no PBSCC): skill [`pb-criar-objeto`](../pb-criar-objeto/SKILL.md) — neste agent, depois da spec (ou se o usuário pedir implementar).
+- Só patch barato de PB (objeto **já existente**): **`/pbg`**.
 - Teste de mesa de trigger/SP: **`/teste-mesa-sybase`**.
 
 Não existe mais `/pbg-validacao`. Compile/leitura PB entra neste fluxo (`pbg_compile`).
@@ -92,11 +94,12 @@ Se a mudança for **tabela** (coluna nova, tipo): alterar via MCP é proibido. D
 
 ## Alterar PB neste chat
 
-Pode. Mesmas regras do `/pbg`: `pbg_apply_patch` já importa e compila; não chamar `pbg_compile` se `compiled: true`. Snapshot sozinho não conta.
+- **Objeto novo** (PBL, janela herdada, DW, tela WSxxx): skill **`pb-criar-objeto`**. Não `svn add`; o `.srw` não vai para o WC SVN até o usuário dar Add To Source Control no PB (ícone **+**).
+- **Objeto já existente**: mesmas regras do `/pbg`: `pbg_apply_patch` já importa e compila; não chamar `pbg_compile` se `compiled: true`. Snapshot sozinho não conta.
 
-Se o usuário precisar ver a mudança no **Tortoise/SVN**, além do PB: replicar no `.srw` em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` e usar `svn lock` se o checkout SCC não aparecer. Detalhes: skill `pbg` § Ambiente Clamed.
+Se o usuário precisar ver a mudança de objeto **já no SCC** no Tortoise: replicar no `.srw` em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` e usar `svn lock` se o checkout não aparecer. Detalhes: skill `pbg` § Ambiente Clamed.
 
-Se o patch PB **depende** de coluna/SP nova: primeiro o SQL no `sybase-objects` (+ aviso de deploy), depois o PB — ou deixar os dois prontos e listar a ordem de subida.
+Se o patch/tela **depende** de coluna/SP nova: primeiro o SQL no `sybase-objects` (+ aviso de deploy), depois o PB — ou deixar os dois prontos e listar a ordem de subida.
 
 ## Fronteiras
 
@@ -104,6 +107,7 @@ Se o patch PB **depende** de coluna/SP nova: primeiro o SQL no `sybase-objects` 
 |---------|------|
 | Consulta PB+Sybase+SQL versionado | `/pb-sybase` ou esta skill |
 | Spec/chamado/mock/DOCX de tela PB | `/pb-sybase` + [especificacao.md](especificacao.md) |
+| Criar PBL/janela/DW nova (ícone + SCC) | skill `pb-criar-objeto` |
 | Patch PB barato, objeto já conhecido | `/pbg` |
 | Teste de mesa trigger/SP | `/teste-mesa-sybase` |
 | Spec feat/fix de produto Node (Agent Pro) | skill `especificacao` (não esta) |

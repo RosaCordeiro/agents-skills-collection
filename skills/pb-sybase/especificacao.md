@@ -16,7 +16,7 @@ Referência de qualidade: chamado 2405580 (dimensão caixa / endereços flowrack
 4. **DOCX por último**, só depois do usuário dizer que MD/mock estão ok.
 5. **Limpar** o que ficou obsoleto (HTML antigo, mock de fluxo descartado).
 
-Não inverter: não gerar DOCX no rascunho. Não implementar PB nesta fase (isso é `/pbg`), salvo pedido explícito.
+Não inverter: não gerar DOCX no rascunho. Não implementar PB nesta fase, salvo pedido explícito. Tela/PBL/DW **nova** → skill `pb-criar-objeto`. Patch de objeto já existente → `/pbg`.
 
 ---
 

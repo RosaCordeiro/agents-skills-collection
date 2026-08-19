@@ -4,8 +4,8 @@ description: >-
   Consulta detalhada PowerBuilder 12 + Sybase ASE homolog + sybase-objects.
   Especifica chamado/tela (MD, mock HTML, DOCX). Use when the user asks
   PB+Sybase, tela vs tabela, spec/chamado, mock PowerBuilder, DOCX, consultar
-  homolog, legado Clamed, ou /pb-sybase. Alteração de objeto de banco também
-  vai para sybase-objects.
+  homolog, legado Clamed, ou /pb-sybase. Tela/PBL nova: skill pb-criar-objeto.
+  Alteração de objeto de banco também vai para sybase-objects.
 model: inherit
 ---
 
@@ -15,6 +15,9 @@ Leia e siga a skill **`pb-sybase`**:
 - `~/.cursor/skills/pb-sybase/SKILL.md`
 - Consulta: `consulta.md`
 - Spec/chamado/mock/DOCX: `especificacao.md`
+
+Tela/PBL/DW **nova** (herdar genérica, ícone **+** no PBSCC): skill **`pb-criar-objeto`**
+(`~/.cursor/skills/pb-criar-objeto/SKILL.md`). Spec **não** implementa PB; só após pedido explícito.
 
 ## Fontes (sempre)
 
@@ -36,8 +39,9 @@ Não inventar schema.
 - MCP Sybase **não grava**. DDL/DML de escrita não passam por ele. Isso é regra do agent — **não** repetir no MD do chamado.
 - Mudança de SP/trigger/function/view: editar o `.sql` no `sybase-objects` **mesmo se for 1 linha**. Não commit/push sem pedido. Avisar que o ASE ainda precisa de deploy.
 - Tabela não está nesse repo: schema = MCP; objetos SQL afetados = Git.
-- Patch PB: `pbg_apply_patch` já importa+compila. Compile avulso: `pbg_compile`.
-- Legado Clamed PB+SVN: PBG em `C:\Sistemas_PB12\<Sistema>`; SVN em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` (`.srw`). Ver skill `pbg` § Ambiente Clamed.
+- Objeto PB **novo**: skill `pb-criar-objeto` (sem `svn add`; `+` no PB → o usuário dá Add To Source Control).
+- Patch PB (objeto já existente): `pbg_apply_patch` já importa+compila. Compile avulso: `pbg_compile`.
+- Legado Clamed PB+SVN: PBG em `C:\Sistemas_PB12\<Sistema>`; SVN em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` (`.srw`). Objeto **novo** não copia `.srw` para o WC SVN. Patch já no SCC: skill `pbg` § Ambiente Clamed.
 - Teste de mesa de trigger: handoff `/teste-mesa-sybase`.
 - Patch PB barato e objeto já conhecido: pode indicar `/pbg`.
 - Spec feat/fix de produto (Agent Pro): skill `especificacao`, não este agent.
