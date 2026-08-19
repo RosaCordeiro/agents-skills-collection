@@ -24,6 +24,8 @@ Preencha todos os blocos. Se nao se aplicar: `N/A` + motivo em uma linha.
 
 ## 2. Contexto e problema (BRD)
 
+Escrever para quem **nao viu o chat**. Cada fato relevante inclui o porquê (skill `especificacao` § Documento autocontido). Nao usar *“como combinamos”* nem diario de revisoes.
+
 - Situacao atual
 - Dor / oportunidade
 - Por que agora

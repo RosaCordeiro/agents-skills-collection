@@ -75,12 +75,13 @@ Gate **N/A** — nao perguntar.
 
 1. Seguir [modelo-feat.md](modelo-feat.md) — todos os blocos (`N/A` + motivo se nao aplicar).
 2. Destacar assumptions explicitamente (incluir observabilidade herdada ou decisao greenfield).
-3. Validar com [validacao.md](validacao.md); corrigir FAILs antes de pedir aprovacao.
-4. Gravar o arquivo **na branch** (ex.: `docs/especificacoes/SPEC-001.md`).
-5. Apresentar: resumo + path + branch + resultado da validacao.
-6. **`AskQuestion`**: `A especificacao feat esta correta e completa?`
+3. Aplicar **documento autocontido** (§5): cada decisao com o porquê; o chat nao e contexto da spec.
+4. Validar com [validacao.md](validacao.md); corrigir FAILs antes de pedir aprovacao.
+5. Gravar o arquivo **na branch** (ex.: `docs/especificacoes/SPEC-001.md`).
+6. Apresentar: resumo + path + branch + resultado da validacao.
+7. **`AskQuestion`**: `A especificacao feat esta correta e completa?`
    - `Sim, seguir para arquitetura` | `Ajustar` | `Outro (eu digito)`
-7. Apos aprovacao: `Status: aprovado` no doc. **Proxima fase = arquitetura** (nao codigo).
+8. Apos aprovacao: `Status: aprovado` no doc. **Proxima fase = arquitetura** (nao codigo).
 
 ## Relacao com correcao de erro
 
@@ -94,3 +95,28 @@ Usar `correcao-erro` + [modelo-fix.md](../correcao-erro/modelo-fix.md).
 - IDs: `RN-xx`, `RF-xx`, `RNF-xx`, `US-xx`, `CA-xx`, `VAL-xx`
 - Fora de escopo claro; rastreabilidade US → RF/RN → CA
 - Stack Node: observabilidade **herdada** se o projeto ja usa; so perguntar em greenfield (§3)
+- **Documento autocontido** (§5) — o leitor nao viu o chat
+
+## 5. Documento autocontido (obrigatorio)
+
+A spec e o unico contexto que o desenvolvedor vai ter. **O chat nao faz parte da entrega.**
+
+Quem implementa nao leu a conversa. Se uma frase so faz sentido para quem estava no chat, ela nao pode ir para o MD.
+
+### Fazer
+
+- Cada decisao no texto traz o **porquê** (nao so o resultado).
+  - Ruim: *“A quantidade nao fica no endereco.”*
+  - Bom: *“A quantidade nao fica no endereco: o mesmo produto em outro endereco com o mesmo tipo de caixa reaproveita o valor.”*
+- Escrever para um colega que abre so o arquivo.
+- Fora de escopo: so o que essa entrega **nao** faz, com uma linha de motivo (o implementador nao deve inventar aquela parte).
+- Vocabulario do dominio/sistema ja existente. Nao importar apelidos da conversa.
+
+### Nao fazer
+
+- Conclusao sem contexto (*“isso e pesado”*, *“nao usar X”* sem dizer por que).
+- Diario da conversa (*“o que mudou nesta revisao”*, *“antes era A, agora e B”*).
+- Alternativas descartadas listadas como se fossem requisito.
+- Remeter ao chat (*“como combinamos”*, *“conforme discutido”*).
+
+Teste rapido: um desenvolvedor que nao participou consegue implementar **so com o MD**? Se nao, reescrever antes de pedir aprovacao.

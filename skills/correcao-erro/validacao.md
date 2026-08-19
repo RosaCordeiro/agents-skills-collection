@@ -14,7 +14,7 @@ Itens: `PASS` | `FAIL` | `N/A`.
 - [ ] Ha evidencias concretas (nao so relato vago)
 - [ ] Linha do tempo coerente com as evidencias
 - [ ] Afirmacoes inferidas estao marcadas ou sustentadas
-- [ ] Descartes de hipoteses tem motivo ligado a evidencia
+- [ ] Descartes de hipoteses tem motivo ligado a evidencia (o leitor do CORR nao viu o chat)
 
 ## B. Causa raiz
 

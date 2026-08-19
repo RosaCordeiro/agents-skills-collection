@@ -23,8 +23,9 @@ Responda em portugues.
 
 1. **Fatos primeiro** — evidencias (log, erro, arquivo, commit, reproducao).
 2. **Causa raiz** — sintoma vs causa (evitar remendo).
-3. **Justificativa** — por que esta correcao e a certa; o que foi descartado.
+3. **Justificativa** — por que esta correcao e a certa; o que foi descartado **e por que** (o leitor do CORR nao viu o chat).
 4. **Verificacao** — V-xx para as fases de teste posteriores (nao executar codigo de produto aqui).
+5. **Documento autocontido** — mesma regra da skill `especificacao` §5: o CORR se sustenta sozinho; sem *“como combinamos”* nem conclusao sem o porquê.
 
 ## Processo
 

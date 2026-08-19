@@ -37,7 +37,19 @@ Marcar cada item: `PASS` | `FAIL` | `N/A`.
 - [ ] Perguntas abertas criticas listadas (nao escondidas no texto)
 - [ ] Se stack **Node.js**: decisao sobre `@clamed/logger` e/ou `light-node-metrics` registrada (Sim ambos / so um / Nao / Outro). Sem decisao → **FAIL** (nao pedir aprovacao da spec)
 
-## E. Resultado
+## E. Documento autocontido
+
+O desenvolvedor **nao leu o chat**. A spec precisa se sustentar sozinha.
+
+- [ ] Cada decisao relevante traz o **porquê** no texto (nao so o resultado)
+- [ ] Nao ha conclusao orfã (*“isso e pesado”*, *“nao usar X”* sem motivo)
+- [ ] Nao ha diario da conversa (*“o que mudou nesta revisao”*, *“como combinamos”*)
+- [ ] Fora de escopo tem motivo (o implementador sabe o que **nao** fazer nesta entrega)
+- [ ] Vocabulario do dominio; sem apelido que so existiu no chat
+
+Qualquer `FAIL` aqui: reescrever o MD **antes** de pedir aprovacao.
+
+## F. Resultado
 
 ```text
 Validacao: PASS | FAIL
@@ -47,6 +59,6 @@ Acao: corrigido automaticamente | aguarda resposta do usuario (perguntas Q-xx)
 
 Regras:
 
-1. Qualquer `FAIL` em A/B/C deve ser corrigido no documento antes do pedido de aprovacao — salvo se depender de pergunta aberta ao usuario.
+1. Qualquer `FAIL` em A/B/C/E deve ser corrigido no documento antes do pedido de aprovacao — salvo se depender de pergunta aberta ao usuario.
 2. Nao marcar `Status: aprovado` sem confirmacao explicita do usuario.
 3. Mostrar este resultado (resumo) ao usuario junto com a especificacao.

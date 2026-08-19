@@ -70,5 +70,5 @@ Patch so no PBG → PB ok, SVN vazio. So no `.srw` SVN → Tortoise ok, PB pode 
 | Assunto | Onde |
 |---------|------|
 | Alterar PB | `/pbg` ou esta skill |
-| Consulta PB+Sybase / SP / trigger | `/pb-sybase` |
+| Consulta PB+Sybase / spec/chamado/mock/DOCX | `/pb-sybase` |
 | MCP server generico | `mcp` |

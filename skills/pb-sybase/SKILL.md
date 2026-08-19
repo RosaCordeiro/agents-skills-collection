@@ -2,26 +2,33 @@
 name: pb-sybase
 description: >-
   Consulta cruzada PowerBuilder 12 (MCP user-pbg) + Sybase ASE homolog
-  (MCP user-sybase-hmg) + repo sybase-objects (SP, trigger, function, view).
-  Use when the user asks PB+Sybase, tela/datawindow vs tabela, procedure,
-  trigger, function, view, consultar homolog, legado Clamed, ou /pb-sybase.
-  Qualquer alteração de objeto de banco também vai para sybase-objects,
-  mesmo mínima. Preferir agent /pb-sybase para consulta detalhada.
+  (MCP user-sybase-hmg) + sybase-objects. Especifica chamado/tela WMS-PB
+  (Markdown, mock HTML, DOCX por último). Use when the user asks PB+Sybase,
+  tela vs tabela, spec/chamado SoftDesk, mock PowerBuilder, DOCX de spec,
+  consultar homolog, legado Clamed, ou /pb-sybase. Qualquer alteração de
+  objeto de banco também vai para sybase-objects. Preferir agent /pb-sybase.
 ---
 
-# PB + Sybase (consulta centralizada)
+# PB + Sybase (consulta e especificação)
 
 Responda em português. PB e Sybase **andam juntos**: tela/DW no PB, tabela/trigger/SP no ASE, fonte versionada em **sybase-objects**.
 
 Agents:
 
-- Consulta / cruzamento / objeto SQL: **`/pb-sybase`**.
+- Consulta / cruzamento / **spec de chamado PB** (MD → mock → DOCX): **`/pb-sybase`**.
 - Só patch barato de PB (já sabe o objeto): **`/pbg`**.
 - Teste de mesa de trigger/SP: **`/teste-mesa-sybase`**.
 
 Não existe mais `/pbg-validacao`. Compile/leitura PB entra neste fluxo (`pbg_compile`).
 
-Detalhe do relatório: [consulta.md](consulta.md).
+Dois modos (pelo pedido):
+
+| Pedido | Entrega | Detalhe |
+|--------|---------|---------|
+| Como grava / qual coluna / trigger | Relatório | [consulta.md](consulta.md) |
+| Spec, chamado, tela nova, mock, DOCX para outro dev | Pipeline | [especificacao.md](especificacao.md) |
+
+Se o usuário pedir as duas coisas, consultar primeiro; só então redigir o MD.
 
 ## Fontes (obrigatório cruzar)
 
@@ -96,6 +103,8 @@ Se o patch PB **depende** de coluna/SP nova: primeiro o SQL no `sybase-objects` 
 | Assunto | Onde |
 |---------|------|
 | Consulta PB+Sybase+SQL versionado | `/pb-sybase` ou esta skill |
+| Spec/chamado/mock/DOCX de tela PB | `/pb-sybase` + [especificacao.md](especificacao.md) |
 | Patch PB barato, objeto já conhecido | `/pbg` |
 | Teste de mesa trigger/SP | `/teste-mesa-sybase` |
+| Spec feat/fix de produto Node (Agent Pro) | skill `especificacao` (não esta) |
 | MCP genérico | skill `mcp` |
