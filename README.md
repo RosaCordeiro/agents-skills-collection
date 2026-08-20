@@ -35,13 +35,14 @@ cursor-kit/
 
 `dev-all-in-one`, `especificacao` (documento autocontido: a spec não depende do chat), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX)
 
-No Pro: arquitetura via `arquitetura-pro` (Sonnet; Opus só se pedir); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador).
+No Pro: arquitetura via `arquitetura-pro` (Sonnet; Opus só se pedir; **uma vez por entrega**); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador). Pro/Simples **não** são lançados via Task — rodam no chat.
 
 ### Rules
 
 | Arquivo | Papel |
 |---------|--------|
 | `modelo-sonnet.mdc` | Padrão Sonnet; Opus só com pedido explícito |
+| `custo-subagent.mdc` | Não aninhar Pro/Simples via Task; ARCH uma vez por entrega |
 | `escolha-agent-desenvolvimento.mdc` | Sempre perguntar Pro vs Simples no início de um desenvolvimento (não dispara no agent `auditor`) |
 | `execucao-wsl.mdc` | Como rodar comandos no WSL sem travar o chat |
 | `crud-lista-ui5-fiori.mdc` | Padrao de telas CRUD lista (UI5/Fiori); overflow ⋮ se > 3 ações |

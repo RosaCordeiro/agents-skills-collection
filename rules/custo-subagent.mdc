@@ -1,0 +1,33 @@
+---
+description: Nao aninhar Pro/Simples via Task; ARCH uma vez por entrega
+alwaysApply: true
+---
+
+# Custo de subagent (nao aninhar o Pro)
+
+## Proibido via Task
+
+Nunca lancar Task/subagent com:
+
+- `desenvolvimento-pro`
+- `desenvolvimento-simples`
+- `desenvolvimento` (roteador)
+
+Esses papéis rodam **neste chat**: ler `~/.cursor/agents/<nome>.md` e cumprir. Relancar Pro porque “o outro agent travou” duplica Sonnet + ARCH + review.
+
+## Task permitida no fluxo Pro
+
+Somente:
+
+- `arquitetura-pro` — **uma vez por entrega**, depois da SPEC/CORR aprovada
+- `review-pro` — uma vez apos o codigo; de novo so depois de corrigir achados
+
+`explore` / `shell` pontuais ok. Nao usar `generalPurpose` para “continuar o Pro”.
+
+## Arquitetura — nao relancar
+
+Se `ARCH-NNN.md` (ou equivalente) **ja existe** na branch: emendar o arquivo neste chat. Relancar `arquitetura-pro` so se o usuario pedir redo **ou** a Task anterior falhou sem gravar o artefato.
+
+## Opus
+
+Regra `modelo-sonnet.mdc`: Opus so com pedido explicito neste chat.

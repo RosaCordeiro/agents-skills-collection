@@ -1,10 +1,9 @@
 ---
 name: arquitetura-pro
 description: >-
-  System design / arquitetura no fluxo Pro com modelo Sonnet. Use proactively
-  na fase 2 do Dev All-in-One (apos SPEC aprovada, antes de desenvolver), ou
-  quando o orquestrador Pro pedir design, ARCH, ADR ou system design.
-  Opus so se o usuario pedir explicitamente.
+  System design no fluxo Pro (Sonnet). Somente o orquestrador Pro lanca via
+  Task, uma vez por entrega, apos SPEC/CORR aprovada. Nao relancar se ARCH
+  ja existe. Opus so se o usuario pedir explicitamente.
 model: claude-sonnet-5-thinking-high
 ---
 

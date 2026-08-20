@@ -37,6 +37,8 @@ Objetivo: design forte; review independente e barato; implementacao no model pad
 **Obrigatorio:** fases 2 e 4 via tool **Task** (nao rodar a skill inline no mesmo model do dev).
 Passar `model` explicito na Task. Aprovacao da fase (`AskQuestion`) fica no orquestrador apos o retorno do subagent.
 
+**Nunca** Task `desenvolvimento-pro` / `desenvolvimento` / `desenvolvimento-simples` — o Pro e o Simples rodam neste chat.
+
 Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 
 ## Fases (ordem obrigatoria)
@@ -64,6 +66,7 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 ### 2. Arquitetura / system design
 
 - **Task** → `arquitetura-pro` + model `claude-sonnet-5-thinking-high` (skill `arquitetura`).
+- **Uma vez por entrega.** Se `ARCH-NNN.md` ja existe na branch: emendar neste orquestrador. Relancar so se o usuario pedir redo ou a Task falhou sem artefato.
 - **Nao** passar Opus. So usar `claude-opus-5-thinking-high` se o usuario pedir Opus neste chat.
 - Design completo (contexto, componentes, dados, fluxos, infra, riscos, MVP).
 - Orquestrador resume + **`AskQuestion`** de aprovacao. Aguardar antes de codar produto.

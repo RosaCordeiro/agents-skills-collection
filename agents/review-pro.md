@@ -1,10 +1,9 @@
 ---
 name: review-pro
 description: >-
-  Code review no fluxo Pro com modelo barato (Grok / Cursor pool), independente
-  do implementador. SOMENTE analisa e devolve achados — NUNCA corrige codigo.
-  Use proactively na fase 4 do Dev All-in-One (apos desenvolvimento, antes de
-  teste de RN), ou quando o orquestrador Pro pedir code review / REVIEW-resultado.
+  Code review no fluxo Pro (Grok, readonly). SOMENTE analisa — NUNCA corrige.
+  Somente o orquestrador Pro lanca via Task apos o codigo (fase 4); relancar
+  so depois de corrigir achados.
 model: cursor-grok-4.5-high-fast
 readonly: true
 ---

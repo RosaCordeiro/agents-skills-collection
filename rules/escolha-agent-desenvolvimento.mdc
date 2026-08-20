@@ -15,8 +15,8 @@ Quando o usuário **iniciar um desenvolvimento** (nova feature, app, API, CLI, s
      - `Simples` — rápido, sem skills / sem fases
    - `allow_multiple`: false
 
-2. Se responder **pro** → seguir agent `desenvolvimento-pro` (`~/.cursor/agents/desenvolvimento-pro.md`).
-3. Se responder **simples** → seguir agent `desenvolvimento-simples` (`~/.cursor/agents/desenvolvimento-simples.md`).
+2. Se responder **pro** → **neste chat** seguir agent `desenvolvimento-pro` (`~/.cursor/agents/desenvolvimento-pro.md`). **Nunca** Task `desenvolvimento-pro`.
+3. Se responder **simples** → **neste chat** seguir agent `desenvolvimento-simples` (`~/.cursor/agents/desenvolvimento-simples.md`). **Nunca** Task `desenvolvimento-simples`.
 4. Se já vier explícito (“pro” / “simples” / “agent pro” / “agent simples”), não pergunte de novo.
 
 **Não perguntar** em: status, “travou?”, limpar arquivo, um comando, dúvida rápida sem implementação; **auditoria** / agent `auditor` / revalidar o sistema / nota 0–10 (não é desenvolvimento — seguir `~/.cursor/agents/auditor.md`).
