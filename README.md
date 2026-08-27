@@ -30,10 +30,11 @@ cursor-kit/
 | `pbg.md` | PowerBuilder 12: altera via MCP (`composer-2.5-fast`); patch importa e compila |
 | `pb-sybase.md` | Consulta PB + Sybase + sybase-objects; spec de chamado (MD → mock → DOCX) |
 | `liberar-espaco.md` | Diagnostica e libera C: (Windows + WSL Ubuntu + Docker no WSL); compact/recria VHDX |
+| `softdesk.md` | Abre chamado SoftDesk para o próprio usuário (HTML, defaults, crítico + cruzamento PB/Sybase) |
 
 ### Skills
 
-`dev-all-in-one`, `especificacao` (documento autocontido: a spec não depende do chat), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX)
+`dev-all-in-one`, `especificacao` (documento autocontido: a spec não depende do chat), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
 
 No Pro: arquitetura via `arquitetura-pro` (Sonnet; Opus só se pedir; **uma vez por entrega**); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador). Pro/Simples **não** são lançados via Task — rodam no chat.
 
