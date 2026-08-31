@@ -59,7 +59,7 @@ Templates prontos: [templates/](templates/) — copiar e preencher; nao reinvent
 
 ### `rules/` — regras locais (complementam `~/.cursor/rules/`)
 
-- **desenvolvimento.md:** convencoes do repo (naming, pastas, branch, testes, logs, migrations).
+- **desenvolvimento.md:** convencoes do repo (naming, pastas, branch, testes, logs, migrations). Em API/servico **TS/Python**: apontar para skill `clean-architecture` e documentar desvios locais.
 - Regras curtas e acionaveis — nao duplicar skills globais inteiras.
 - Equivalente a “`.cursor/rules` do projeto”, versionado no git.
 
@@ -102,7 +102,7 @@ Toda skill que **cria projeto novo** deve incluir no checklist:
 
 > Greenfield → ler e aplicar `projeto-ai` (`~/.cursor/skills/projeto-ai/SKILL.md`).
 
-Skills cobertas: `backend`, `frontend`, `script`, `mcp`, `rag`, `abap`, `fiori`, `ui5`, `pb-criar-objeto`, orquestradores `dev-all-in-one`, agents Pro/Simples.
+Skills cobertas: `backend`, `frontend`, `script`, `clean-architecture`, `mcp`, `rag`, `abap`, `fiori`, `ui5`, `pb-criar-objeto`, orquestradores `dev-all-in-one`, agents Pro/Simples.
 
 ## Nao fazer
 

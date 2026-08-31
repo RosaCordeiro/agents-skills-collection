@@ -13,6 +13,7 @@ Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`
 1. Partir da especificacao aprovada e das constraints (WSL, Docker, DBs, linguagens).
 2. Se houver **Postgres / schema**: consultar skill **`modelagem-dados`** e tipar colunas no design (`uuid`, `varchar(n)`, `TEXT` só quando couber).
 2b. Se houver **logs Node / `@clamed/logger`**: consultar skill **`logger`** — desenhar `event` (name/action/outcome), geracao/propagacao de `correlation_id` e contexto automatico.
+2c. Se houver **API/servico TypeScript ou Python**: consultar skill **`clean-architecture`** — o ARCH deve nomear use cases, portas e adapters; fluxos (secao 6) passam por use case, nao por controller direto ao DB.
 3. Oferecer **ate 2 abordagens** + **1 recomendacao** com trade-offs honestos.
 4. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
 5. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.
@@ -55,6 +56,7 @@ Se a entrega tiver API e/ou persistencia, as secoes **5, 6, 7 e validacao** deve
 
 ## 4. Componentes e responsabilidades
 - cada servico/modulo e o que NAO faz
+- **API/servico TS ou Python:** camadas conforme skill `clean-architecture` — listar use cases previstos, portas (`I*Repository` / `Protocol`) e adapters (`infraestructure/db`, kafka, http). Referencia: `api-integracao-syb-kafka`
 
 ## 5. Modelo de dados  ← DESTACAR (obrigatorio se houver DB)
 ### 5.1 Entidades e relacionamentos
@@ -150,6 +152,7 @@ Quando o alvo for aplicativo desktop:
 
 - Linux/WSL; **Docker Compose** (`build` + `up`) como caminho oficial quando houver multiplos processos
 - Limites claros entre frontend, backend e scripts
+- Backend TS/Python: Clean Architecture + hexagonal (`clean-architecture`); ARCH documenta use cases e portas
 - Completo o suficiente para implementar sem surpresas; sem over-engineering gratuito
 - Se houver consulta inteligente a dados/docs: decidir explicitamente RAG (`rag`), MCP (`mcp`), SQL/API ou hibrido — nao misturar sem desenho
 - Se for SAP: encadear `fiori` + `ui5` + `abap` (nao usar `frontend`/`backend` genericos para isso)

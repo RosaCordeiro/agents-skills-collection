@@ -29,7 +29,9 @@ Responda e documente em portugues. Espere aprovacao de plano se a mudanca for gr
 - Sem codigo desnecessario; sem micagem excessiva nem complexidade gratuita
 - Preserve design system e padroes existentes do projeto
 - Componentes pequenos, um proposito por arquivo
-- Acesse APIs via camada clara (client/service), sem secrets no client
+- Acesse APIs via camada clara (`services/`, `api/`, hooks) — **adapter de saida** fino: HTTP/DTO aqui, sem regra de negocio duplicada do backend
+- Tipos de request/response alinhados ao contrato da API; mapear DTO → view model na camada de servico, nao espalhado em componentes
+- Para o padrao de camadas do backend (use cases, portas), ver skill `clean-architecture` — o frontend espelha so a borda de consumo
 - Caminhos e scripts de build pensados para Linux/WSL
 - Branch: preferir `feat/` ou `fix/` conforme o caso
 

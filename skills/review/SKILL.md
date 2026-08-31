@@ -51,7 +51,7 @@ Nao marcar `OK` sem ter olhado o trecho relevante do diff.
 | CR8 | Dados / migrations | Schema, FKs, defaults, backfill; migrations idempotentes/seguras; tipagem (UUID, VARCHAR) |
 | CR9 | Observabilidade | Logger/metrics do projeto usados quando ja for padrao; sem `console.log` de ruido em prod path |
 | CR10 | Erros / resiliencia | Falhas tratadas; sem engolir exception; timeouts/retries so se o design pedir |
-| CR11 | Qualidade | Legibilidade; funcoes focadas; sem codigo morto/comentado grande; sem complexidade gratuita |
+| CR11 | Qualidade | Legibilidade; funcoes focadas; sem codigo morto/comentado grande; sem complexidade gratuita. **TS/Python API:** violacao de camadas (`clean-architecture`) — SQL/HTTP em controller ou use case injetando adapter concreto = FALHA |
 | CR12 | Testes na mudanca | Cobertura minima do que mudou (unit/integracao) ou gap consciente justificado |
 | CR13 | Lint / types | Lint e typecheck do projeto ok se existirem (rodar o que o repo ja usa) |
 | CR14 | Docker / ops | Ports/volumes/env expostos demais; Compose coerente com a mudanca |

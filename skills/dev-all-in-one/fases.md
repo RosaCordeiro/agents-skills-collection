@@ -16,6 +16,8 @@ Cada fase termina com **`AskQuestion`**: você aprova antes de avançar.
 | **8** | **Documentação** | README + **revisão dos docs das fases 1, 3 e 4** | Tudo que mudou refletido nos docs | README, SPEC/CORR, REVIEW, índice |
 | **9** | **Encerramento** | Checklist Definition of Done | Entrega fechada | DoD ok |
 
+**API/serviço TS ou Python (fase 3):** skill `clean-architecture` + `backend` — use cases, portas e adapters como no `api-integracao-syb-kafka`.
+
 ## Quem executa cada fase
 
 | Fase | Executor | Model (primário → fallback) |
