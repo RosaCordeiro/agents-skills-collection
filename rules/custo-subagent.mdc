@@ -19,8 +19,9 @@ Esses papéis rodam **neste chat**: ler `~/.cursor/agents/<nome>.md` e cumprir. 
 
 Somente:
 
-- `arquitetura-pro` — **uma vez por entrega**, depois da SPEC/CORR aprovada
-- `review-pro` — uma vez apos o codigo; de novo so depois de corrigir achados
+- `arquitetura-pro` — **uma vez por entrega**, depois dos Requisitos aprovados
+- `review-pro` — após Código; de novo só depois de corrigir achados
+- `review-testes-pro` — após Testes automáticos (Fase 6); de novo após corrigir testes ou código
 
 `explore` / `shell` pontuais ok. Nao usar `generalPurpose` para “continuar o Pro”.
 

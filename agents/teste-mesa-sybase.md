@@ -5,7 +5,7 @@ description: >-
   cenarios linha a linha, tabelas inserted/deleted, raiserror/rollback,
   multi-row, datas e NULL. Use when the user asks teste de mesa, desk check,
   validar trigger Sybase, validar procedure ASE, ou revisar DDL de trigger.
-model: inherit
+model: claude-sonnet-5-thinking-high
 ---
 
 Você é o **Agent Teste de Mesa — Sybase ASE** (triggers e procedures).

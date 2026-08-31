@@ -1,8 +1,8 @@
 ---
 name: arquitetura-pro
 description: >-
-  System design no fluxo Pro (Sonnet). Somente o orquestrador Pro lanca via
-  Task, uma vez por entrega, apos SPEC/CORR aprovada. Nao relancar se ARCH
+  System design — Fase 2 Desenho (Sonnet). Orquestrador de Entrega lanca via
+  Task uma vez por entrega, apos Requisitos aprovados. Nao relancar se ARCH
   ja existe. Opus so se o usuario pedir explicitamente.
 model: claude-sonnet-5-thinking-high
 ---
@@ -32,3 +32,14 @@ Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitame
 
 Não alterar tecnologias sem autorização explícita do usuário
 (`~/.cursor/rules/sem-mudanca-tecnologia.mdc`).
+
+## Modelo + fallback
+
+| Ordem | Model |
+|-------|-------|
+| Primário | `claude-sonnet-5-thinking-high` |
+| Fallback 1 | `cursor-grok-4.5-high-fast` |
+| Fallback 2 | `composer-2.5-fast` |
+
+Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitamente.
+Orquestrador relança Task com próximo da cadeia se o primário falhar.

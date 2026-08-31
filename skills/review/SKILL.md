@@ -3,8 +3,8 @@ name: review
 description: >-
   Code review da mudanca na branch: qualidade, seguranca, aderencia a
   especificacao/design; checklist de pontos obrigatorios e artefato
-  REVIEW-*-resultado.md. Use na fase 4 do Dev All-in-One (apos desenvolvimento,
-  antes dos testes de regra de negocio), ou em pedido explicito de code review/PR.
+  REVIEW-*-resultado.md.   Use na fase 4 da Entrega guiada (apos Código,
+  antes do Aceite de negocio), ou em pedido explicito de code review/PR.
 ---
 
 # Code review
@@ -15,10 +15,10 @@ isso vem nas fases `teste-regra-negocio`, `teste-automatizado` e `documentacao`.
 
 ## Quando aplicar
 
-- Fase 4 do Dev All-in-One (apos desenvolvimento) — via subagent **`review-pro`** (nao inline no model do dev)
+- Fase 4 da Entrega guiada (após Código) — via subagent **`review-pro`**
 - Pedido explicito de review / PR
 
-No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.5-high-fast`; fallback Sonnet). Pedido avulso sem Pro pode seguir esta skill no model atual.
+No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.5-high-fast` → `claude-sonnet-5-thinking-high`; nunca Opus). Correções no orquestrador (Sonnet). Mapa: `dev-all-in-one/modelos.md`. Pedido avulso sem Pro pode seguir esta skill no primário da tabela.
 
 ## Processo
 
@@ -32,7 +32,7 @@ No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.5
 6. Se subagent `review-pro`: devolver resumo + `HANDOFF_CORRECAO` se houver itens a corrigir (**sem** `AskQuestion`).
    Se chat direto: **`AskQuestion`** — prompt: `Code review ok?`
    - `Sim, seguir para teste de regra de negocio` | `Corrigir achados` | `Outro (eu digito)`
-   - Em chat direto, “Corrigir achados” pode ser feito no mesmo chat **depois** do review; no fluxo Pro, so o orquestrador (`inherit`) corrige.
+   - Em chat direto, “Corrigir achados” pode ser feito no mesmo chat **depois** do review; no fluxo Pro, só o orquestrador (`desenvolvimento-pro`, Sonnet) corrige.
 
 ## Pontos obrigatorios a revisar
 
@@ -128,7 +128,7 @@ HANDOFF_CORRECAO
 - [severidade] path — mudanca sugerida
 ```
 
-O orquestrador `desenvolvimento-pro` (`inherit`) aplica o codigo e **reabre** o `review-pro`.
+O orquestrador `desenvolvimento-pro` (Sonnet) aplica o codigo e **reabre** o `review-pro`.
 O agent de review **nao** gasta turno implementando.
 
 ## Foco extra (stack frequente)

@@ -6,7 +6,7 @@ description: >-
   PB+Sybase, tela vs tabela, spec/chamado, mock PowerBuilder, DOCX, consultar
   homolog, legado Clamed, ou /pb-sybase. Tela/PBL nova: skill pb-criar-objeto.
   Alteração de objeto de banco também vai para sybase-objects.
-model: inherit
+model: claude-sonnet-5-thinking-high
 ---
 
 Você é o **Agent PB + Sybase**. Responda em português.
@@ -23,7 +23,7 @@ Tela/PBL/DW **nova** (herdar genérica, ícone **+** no PBSCC): skill **`pb-cria
 
 1. **PB** — MCP `user-pbg` (`pbg_search` ≤ 20; `pbg_read_object` ~80 linhas; `path` obrigatório).
 2. **Homolog viva** — MCP `user-sybase-hmg` (só SELECT: `sybase_describe_table`, `sybase_query_readonly`, `sybase_list_tables`).
-3. **Git** — `C:\Users\995670.CLAMED\Desenvolvimentos\sybase-objects`
+3. **Git** — `C:\Users\995670.CLAMED\Desenvolvimentos\02-KNOWLEDGE\SYBASE\sybase-objects`
    (`Functions/`, `Procedures/`, `Triggers/{Insert,Update,Delete}/`, `View/`).
    Remote: `http://10.0.4.67/clamed/sybase-objects`.
 

@@ -1,35 +1,31 @@
 ---
-description: Em todo inicio de desenvolvimento, perguntar Agent Pro vs Agent Simples com seletor
+description: No inicio de desenvolvimento, perguntar Entrega guiada vs Direto ao ponto
 alwaysApply: true
 ---
 
-# Escolha de agent de desenvolvimento
+# Portal de desenvolvimento
 
-Quando o usuário **iniciar um desenvolvimento** (nova feature, app, API, CLI, script, ferramenta, refatoração com implementação, “vamos desenvolver”, “implementar X”):
+Quando o usuário **iniciar um desenvolvimento**:
 
-1. **Antes** de carregar skills de fluxo (`dev-all-in-one`, `especificacao`, etc.) e antes de codar, pergunte com o tool **`AskQuestion`** (seletor clicável do Cursor), **não** como lista numerada em texto pedindo para digitar `pro`/`simples`.
+1. **`AskQuestion`** antes de skills ou código:
 
-   - Prompt: `Para este desenvolvimento, qual agent você quer?`
-   - Opções (single-select):
-     - `Pro` — all-in-one (especificação → … → docs → Definition of Done)
-     - `Simples` — rápido, sem skills / sem fases
+   - Prompt: `Como você quer desenvolver isto?`
+   - Opções:
+     - `Entrega guiada (9 fases)` — até encerramento com revisão de código **e** de testes **(Recomendado para feat/fix nova)**
+     - `Direto ao ponto` — sem fases; patch ou spike
    - `allow_multiple`: false
 
-2. Se responder **pro** → **neste chat** seguir agent `desenvolvimento-pro` (`~/.cursor/agents/desenvolvimento-pro.md`). **Nunca** Task `desenvolvimento-pro`.
-3. Se responder **simples** → **neste chat** seguir agent `desenvolvimento-simples` (`~/.cursor/agents/desenvolvimento-simples.md`). **Nunca** Task `desenvolvimento-simples`.
-4. Se já vier explícito (“pro” / “simples” / “agent pro” / “agent simples”), não pergunte de novo.
+2. Entrega guiada → `~/.cursor/agents/desenvolvimento-pro.md`. Nunca Task.
+3. Direto ao ponto → `~/.cursor/agents/desenvolvimento-simples.md`. Nunca Task.
 
-**Não perguntar** em: status, “travou?”, limpar arquivo, um comando, dúvida rápida sem implementação; **auditoria** / agent `auditor` / revalidar o sistema / nota 0–10 (não é desenvolvimento — seguir `~/.cursor/agents/auditor.md`).
+**Não perguntar** em: status, comando isolado, auditoria.
 
-## Perguntas com seletor (obrigatório neste fluxo)
+## Fases da Entrega guiada
 
-Em agents/skills de desenvolvimento, sempre que a pergunta tiver **opções fixas** (escolha de agent, aprovação de fase, próximo passo, stack entre alternativas conhecidas):
+`1 Requisitos` → `2 Desenho` → `3 Código` → `4 Revisão` → `5 Aceite` → `6 Testes auto` → `7 Revisão testes` → `8 Documentação` → `9 Encerramento`
 
-1. Usar o tool **`AskQuestion`** — UI de seleção do Cursor.
-2. **Não** escrever listas `1/2/3` ou “responda X ou Y” pedindo texto livre.
-3. No máximo **um** `AskQuestion` por mensagem do assistente.
-4. Labels curtos; prompt curto.
-5. Incluir no máximo uma fuga freeform, preferindo: `Outro (eu digito)`.
-6. Se `AskQuestion` **não estiver disponível** no turno, aí sim perguntar em prosa curta com as mesmas opções.
+Detalhe: `~/.cursor/skills/dev-all-in-one/fases.md`
 
-Perguntas abertas (ex.: “cole o log do erro”) continuam em texto livre — só não misture opções fixas como texto para o usuário digitar.
+## Perguntas com seletor
+
+Opções fixas: **`AskQuestion`**, máx. 1 por mensagem.

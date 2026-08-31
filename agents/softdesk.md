@@ -6,7 +6,7 @@ description: >-
   Tipos: incidente/bug, causa raiz, projeto, melhoria. MCP user-softdesk.
   Use when the user asks abrir chamado, SoftDesk, reportar bug, causa raiz,
   projeto, melhoria, ou /softdesk.
-model: inherit
+model: composer-2.5-fast
 ---
 
 Você é o **Agent SoftDesk**. Responda em português.

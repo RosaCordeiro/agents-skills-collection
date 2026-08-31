@@ -1,166 +1,125 @@
 ---
 name: dev-all-in-one
 description: >-
-  Orquestra o Agent Pro: classificacao feat/fix + branch na especificação,
-  arquitetura, desenvolvimento, code review, teste de RN, teste automatizado e
-  documentacao. Use quando o usuario escolher Pro, pedir all-in-one / orquestrador
-  completo, ou fluxo consultivo completo.
+  Orquestrador de Entrega (9 fases): requisitos, desenho, codigo, revisao,
+  aceite, testes, revisao de testes, documentacao, encerramento. Use com
+  desenvolvimento-pro / entrega guiada / pro / all-in-one.
 ---
 
-# Dev All-in-One
+# Orquestrador de Entrega (9 fases)
 
-Orquestrador pessoal. Responda em portugues. Prefira WSL/Linux e Docker; evite Windows nativo.
+Conduz o desenvolvimento até o **Encerramento** (DoD), com aprovação em cada etapa.
 
-## Perguntas com seletor
+**Mapa visual:** [fases.md](fases.md)
 
-Sempre que a decisao tiver **opcoes fixas** (tipo feat/fix, aprovar fase, proximo passo):
+Responda em português. Prefira WSL/Linux e Docker.
 
-- Usar o tool **`AskQuestion`** (UI clicavel do Cursor).
-- Nao pedir "responda sim/nao" nem listas numeradas para digitar.
-- No maximo um `AskQuestion` por mensagem; labels curtos.
-- Opcional: `Outro (eu digito)`.
-- Se `AskQuestion` nao existir no turno, prosa curta com as mesmas opcoes.
+## As 9 fases (ordem obrigatória)
 
-Avance **somente** apos o usuario confirmar cada fase. Tipico no fim:
-`Seguir para a proxima fase` | `Ajustar esta fase` | `Outro (eu digito)`.
+| # | Nome | Skill / agent | Artefato principal |
+|---|------|---------------|-------------------|
+| 1 | **Requisitos** | `especificacao` / `correcao-erro` | SPEC/CORR + branch |
+| 2 | **Desenho** | Task `arquitetura-pro` | ARCH + ADR |
+| 3 | **Código** | `frontend` / `backend` / … | código |
+| 4 | **Revisão** | Task `review-pro` | REVIEW-* |
+| 5 | **Aceite de negócio** | `teste-regra-negocio` | VAL/V |
+| 6 | **Testes automáticos** | `teste-automatizado` | suite (com evidência) |
+| 7 | **Revisão de testes** | Task `review-testes-pro` | REVIEW-TESTES-* |
+| 8 | **Documentação** | `documentacao` | README + docs F1/F3/F4 |
+| 9 | **Encerramento** | DoD | entrega fechada |
 
-## Modelos por fase (custo x independencia)
+Anuncie: **“Fase N — Nome”** + entrega + aprovação esperada.
 
-Objetivo: design forte; review independente e barato; implementacao no model padrao do chat.
+## Modelos por fase
 
-| Fase | Executor | Model | Motivo |
-|------|----------|-------|--------|
-| 1 Spec, 3 Dev, 5–8 | orquestrador Pro (`inherit`) | model do chat | velocidade / custo diario |
-| 2 Arquitetura | subagent `arquitetura-pro` | `claude-sonnet-5-thinking-high` | design separado do implementador; **nao** Opus por padrao |
-| 4 Code review | subagent `review-pro` (**readonly**) | `cursor-grok-4.5-high-fast` | pool Cursor + model ≠ autor; **nao programa**; fallback Sonnet |
+Referência: [modelos.md](modelos.md)
 
-**Obrigatorio:** fases 2 e 4 via tool **Task** (nao rodar a skill inline no mesmo model do dev).
-Passar `model` explicito na Task. Aprovacao da fase (`AskQuestion`) fica no orquestrador apos o retorno do subagent.
+| Fase | Executor | Primário | Fallback |
+|------|----------|----------|----------|
+| 1, 3, 5, 6, 8, 9 | orquestrador | `claude-sonnet-5-thinking-high` | `cursor-grok-4.5-high-fast` → `composer-2.5-fast` |
+| 2 Desenho | Task `arquitetura-pro` | `claude-sonnet-5-thinking-high` | Grok → Composer; Opus só pedido explícito |
+| 4 Revisão código | Task `review-pro` | `cursor-grok-4.5-high-fast` | `claude-sonnet-5-thinking-high` (nunca Opus) |
+| 7 Revisão testes | Task `review-testes-pro` | `cursor-grok-4.5-high-fast` | `claude-sonnet-5-thinking-high` (nunca Opus) |
 
-**Nunca** Task `desenvolvimento-pro` / `desenvolvimento` / `desenvolvimento-simples` — o Pro e o Simples rodam neste chat.
+Fases 2, 4 e 7 **via Task** com `model:` do primário. Subagents são **readonly**.
 
-Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
+Agents: `arquitetura-pro`, `review-pro`, `review-testes-pro`.
 
-## Fases (ordem obrigatoria)
+**Nunca** Task dos orquestradores (`desenvolvimento-pro`, etc.).
 
-```text
-1. Especificacao (feat|fix + branch + modelo)
-2. Arquitetura
-3. Desenvolvimento
-4. Code review
-5. Teste de regra de negocio
-6. Teste automatizado
-7. Documentacao
-8. Definition of Done (gate final — checklist abaixo)
-```
+---
 
-### 1. Especificacao
+### Fase 1 — Requisitos
 
-- **Sempre** passar pela skill `especificacao` primeiro (ela classifica feat vs fix).
-- Se ambiguo: AskQuestion `Feat` | `Fix`.
-- **Abrir branch na hora** (`feat/<slug>` ou `fix/<slug>`) — docs de RN/issue entram nessa branch.
-- **Greenfield:** criar `.ai/` (`projeto-ai`) com `context/` preenchido antes de aprovar a spec.
-- **feat** → [modelo-feat.md](../especificacao/modelo-feat.md) via `especificacao`
-- **fix** → [modelo-fix.md](../correcao-erro/modelo-fix.md) via `correcao-erro`
-- Documento **aprovado** = fonte da verdade. So entao fase 2.
+`especificacao` / `correcao-erro`; branch; greenfield → `.ai/context/`.
 
-### 2. Arquitetura / system design
+### Fase 2 — Desenho
 
-- **Task** → `arquitetura-pro` + model `claude-sonnet-5-thinking-high` (skill `arquitetura`).
-- Decisoes fechadas do design → `.ai/decisions/ADR-*.md` (`projeto-ai`).
-- **Uma vez por entrega.** Se `ARCH-NNN.md` ja existe na branch: emendar neste orquestrador. Relancar so se o usuario pedir redo ou a Task falhou sem artefato.
-- **Nao** passar Opus. So usar `claude-opus-5-thinking-high` se o usuario pedir Opus neste chat.
-- Design completo (contexto, componentes, dados, fluxos, infra, riscos, MVP).
-- Orquestrador resume + **`AskQuestion`** de aprovacao. Aguardar antes de codar produto.
+Task `arquitetura-pro`; ADRs; uma vez por entrega.
 
-### 3. Desenvolvimento
+### Fase 3 — Código
 
-- Skills especialistas conforme o pedaco: `frontend`, `backend`, `script`, `rag`, `mcp`, `pbg`, `fiori`, `ui5`, `abap`.
-- Executar **no orquestrador** (`inherit`) — nao Opus.
-- Seguir spec + design aprovados. Codigo legivel; sem over-engineering.
-- Trabalhar **na branch ja aberta** na fase 1 (nao reabrir discussao de branch aqui, salvo desvio justificado).
-- **Greenfield:** pasta `.ai/` obrigatoria (`projeto-ai`) — estrutura criada na fase 1; `rules/desenvolvimento.md` preenchido nesta fase.
-- Ainda **nao** e a fase de suite ampliada nem de doc final.
+Skills de implementação; greenfield → `.ai/rules/`.
 
-### 4. Code review
+### Fase 4 — Revisão (código)
 
-- **Task** → `review-pro` + model `cursor-grok-4.5-high-fast` (skill `review`, CR1–CR16).
-- `review-pro` e **readonly**: **nao programa**; devolve achados + corpo do REVIEW em texto.
-- Orquestrador **grava** `REVIEW-NNN-resultado.md` e anota o model usado.
-- Fallback de model: `claude-sonnet-5-thinking-high` se Grok indisponivel.
-- Orquestrador resume + **`AskQuestion`**.
-- Se usuario pedir **Corrigir achados** (ou fix em texto): corrigir **no `inherit`**, depois **re-Task** `review-pro`. Nunca mandar o review-pro codar.
+Task `review-pro`; loop corrigir código → re-review.
 
-### 5. Teste de regra de negocio
+### Fase 5 — Aceite de negócio
 
-- Skill `teste-regra-negocio`.
-- Executar VAL-xx (feat) ou V-xx (fix) / criterios de aceite de negocio.
-- Registrar resultados no doc da branch.
+`teste-regra-negocio` — VAL/V.
 
-### 6. Teste automatizado
+### Fase 6 — Testes automáticos
 
-- Skill `teste-automatizado`.
-- Suite do projeto (unit/integracao/e2e/CI conforme existir) + regressao da mudanca.
+`teste-automatizado` — **rodar suite**; registrar comando + resultado (evidência para Fase 7).
 
-### 7. Documentacao
+AskQuestion: `Testes automáticos ok — seguir para Revisão de testes?`
 
-- Skill `documentacao` (ler o SKILL.md — **revisao obrigatoria do README**, checklist R1–R10).
-- Sincronizar `.ai/docs/indice.md` e `.ai/README.md` com paths reais (`projeto-ai`).
-- Nao aceitar “so atualizei o status do SPEC”: endpoints, env, ops, observabilidade e indice de docs devem refletir a entrega quando aplicavel.
-- README/`--help`, CHANGELOG se existir, status final SPEC/CORR.
+### Fase 7 — Revisão de testes
 
-### 8. Definition of Done (gate final)
+Task `review-testes-pro` + skill `review-testes` (RT1–RT12).
 
-- Percorrer o checklist **Definition of Done** abaixo com o usuario.
-- Marcar `N/A` so com motivo (ex.: SAP on-prem sem Compose).
-- **`AskQuestion`**: `DoD completo — podemos encerrar?`
-  - `Sim, encerrar` | `Falta item — voltar` | `Outro (eu digito)`
-- So encerra a entrega Pro com DoD ok (ou N/A justificados).
+**Foco:** abrangência, execução real, **teste não adaptado ao bug** (RT5 bloqueante).
+
+Orquestrador grava `REVIEW-TESTES-*-resultado.md`.
+
+**Loop** — AskQuestion `Revisão de testes ok?`
+
+- `Sim, seguir para Documentação`
+- `Corrigir testes` → orquestrador ajusta testes → **re-Task** `review-testes-pro` (e rodar suite na Fase 6 se necessário)
+- `Corrigir código` → orquestrador ajusta produto → voltar **Fase 6** (rodar suite) → Fase 7 de novo
+- `Outro (eu digito)`
+
+### Fase 8 — Documentação
+
+Skill `documentacao` — README R1–R10 **e** revisão obrigatória dos docs das fases **1, 3 e 4** (DOC-F1/F3/F4): SPEC/CORR, operação do código, fechamento do REVIEW.
+
+Sincronizar `.ai/docs/indice.md`.
+
+### Fase 9 — Encerramento
+
+Checklist DoD; AskQuestion `DoD completo — encerrar?`
+
+---
 
 ## Routing
 
-| Situacao | Skill |
-|----------|--------|
-| Classificar feat/fix, spec feat, abrir branch | `especificacao` |
-| Spec fix (causa, evidencia, justificativa) | `correcao-erro` |
-| System design, ADRs, MVP, C++ desktop | Task `arquitetura-pro` + skill `arquitetura` |
-| Vue/React UI | `frontend` |
-| API/DB/Docker servicos | `backend` |
-| CLI/shell/automacao | `script` |
-| RAG | `rag` |
-| MCP | `mcp` |
-| Fiori Launchpad | `fiori` |
-| UI5 | `ui5` |
-| ABAP/CDS/RAP | `abap` |
-| PowerBuilder 12 / PBL / PBG | `pbg` |
-| Code review | Task `review-pro` + skill `review` |
-| VAL/V / aceite de negocio | `teste-regra-negocio` |
-| Suite automatizada | `teste-automatizado` |
-| README/help/fechamento docs | `documentacao` |
-| Pasta `.ai` (greenfield / manutencao) | `projeto-ai` |
+| Situação | Skill / Task |
+|----------|----------------|
+| Revisão código | Task `review-pro` + `review` |
+| Revisão testes | Task `review-testes-pro` + `review-testes` |
+| Docs + sync F1/F3/F4 | `documentacao` |
+| Demais | ver tabela de fases |
 
-Leia `~/.cursor/skills/<nome>/SKILL.md` antes de executar o papel correspondente.
+## Definition of Done (Fase 9)
 
-## Stack preferida
-
-- Runtime: WSL/Linux, Docker, Docker Compose
-- DB: Postgres, Sybase, MongoDB
-- Linguagens: JS/TS, Go, Python, ABAP; C++ via `arquitetura`; PowerBuilder 12 via `pbg` (import PBL + compile)
-- SAP: `fiori` + `ui5` + `abap` (nao misturar com frontend/backend genericos)
-
-## Definition of Done (padrao)
-
-Ate o usuario definir outro DoD. Usar como **fase 8** (gate final) apos a documentacao:
-
-- [ ] Especificacao escrita e aprovada (feat → `modelo-feat` / fix → `modelo-fix`; branch `feat/` ou `fix/` criada na fase 1)
-- [ ] Pasta `.ai/` completa em greenfield (`context`, `rules`, `decisions`, `docs`) — skill `projeto-ai`
-- [ ] System design aprovado
-- [ ] Testes de regra de negocio cobrindo os fluxos principais da especificacao (VAL-xx / V-xx)
-- [ ] Testes automatizados mais amplos apos o desenvolvimento (quando fizer sentido no projeto)
-- [ ] Documentacao geral em dia: **README revisado** (checklist R1–R10 da skill `documentacao`: endpoints/env/ops/observabilidade/indice quando a entrega tocar) + status final do SPEC/CORR; CHANGELOG se o repo tiver
-- [ ] Roda em WSL/Linux (ou N/A justificado, ex.: so SAP on-prem)
-- [ ] Compose sobe servicos quando aplicavel (N/A se nao houver)
-- [ ] Sem secrets no codigo
-- [ ] Lint/typecheck ok se o projeto ja tiver
-- [ ] Code review sem bloqueantes abertos (`REVIEW-*-resultado.md` gravado)
-- [ ] Fases consultivas aprovadas pelo usuario (1–8)
+- [ ] Requisitos (SPEC/CORR) + branch
+- [ ] `.ai/` greenfield
+- [ ] Desenho (ARCH)
+- [ ] Revisão código (`REVIEW-*`) sem bloqueantes
+- [ ] Aceite negócio (VAL/V)
+- [ ] Testes automáticos executados
+- [ ] Revisão testes (`REVIEW-TESTES-*`) sem RT5 bloqueante
+- [ ] Documentação: README + **DOC-F1/F3/F4** (spec, código, review alinhados)
+- [ ] WSL/Compose/secrets/lint conforme projeto
+- [ ] **9 fases** aprovadas pelo dev

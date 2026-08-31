@@ -1,84 +1,109 @@
 ---
 name: documentacao
 description: >-
-  Fecha a entrega documentando o que mudou: revisao obrigatoria do README,
-  --help, changelog curto, atualizacao final dos docs de especificacao/correcao.
-  Use na fase 7 do Dev All-in-One ou quando o usuario pedir documentacao,
-  README, help, runbook.
+  Fase 8 da Entrega guiada: README, sync dos docs das fases 1 (SPEC/CORR),
+  3 (codigo/ops) e 4 (REVIEW), changelog e indice. Use apos revisao de testes.
 ---
 
-# Documentacao
+# Documentação (Fase 8)
 
-Fase final do fluxo Pro (apos testes automatizados).
-Responda em portugues. Sem inventar docs que ninguem vai ler — mas **nao** trate o README como “uma linha no CHANGELOG”: revise de ponta a ponta o que a entrega alterou na operacao.
+**Depois** de Revisão de testes (Fase 7). **Antes** do Encerramento (Fase 9).
 
-## Escopo tipico
+Tudo que foi **mexido** na entrega precisa estar refletido nos documentos — não só o README.
 
-- **README** (ou `--help` em CLI) em portugues — revisao completa vs a mudanca
-- Status final no SPEC/CORR (verificado, resultados VAL/V)
-- `CHANGELOG.md` curto se o projeto ja tiver
-- Indice de docs (`docs/especificacoes`, `docs/arquitetura`, `docs/correcoes`) alinhado ao que existe
-- Notas de operacao/runbook so se o projeto ja tiver ou o usuario pedir
+## Escopo
+
+- README / `--help` (checklist R1–R10)
+- **Revisão dos docs das fases 1, 3 e 4** (checklist DOC-F1/F3/F4 abaixo)
+- CHANGELOG se existir
+- `.ai/docs/indice.md`
 - Sem secrets
 
 ## Processo obrigatorio
 
 ### 1. Levantar o delta
 
-1. Ler o README atual (inteiro, nao so o trecho obvio).
-2. Diff da branch / SPEC+DESIGN+CORR aprovados: endpoints, env, UI, Docker, observabilidade, comportamentos de fila/ops, paths de teste.
-3. Listar mentalmente (ou em bullets curtos na resposta) **o que o README ainda nao cobre** da entrega.
+1. Ler README inteiro.
+2. Diff da branch + SPEC/CORR + ARCH + REVIEW + REVIEW-TESTES.
+3. Listar o que ainda não está documentado.
 
-### 2. Revisao obrigatoria do README (checklist)
+### 2. Revisão obrigatória — docs das fases anteriores
 
-Para **cada** item: `OK` (ja estava certo) | `ATUALIZADO` (voce corrigiu agora) | `N/A` (motivo em uma linha).
+**Gate:** não fechar Fase 8 só atualizando README se SPEC, REVIEW ou operação do código estiverem desatualizados.
 
-Nao pular itens com “minimo necessario” se a entrega tocou aquela area.
+#### DOC-F1 — Documentos da Fase 1 (Requisitos)
 
-| # | Area | Conferir no README |
-|---|------|--------------------|
-| R1 | Como subir / dev | Comandos Compose e/ou local ainda funcionam apos a mudanca |
-| R2 | Endpoints / CLI | Rotas, flags ou subcomandos **novos ou alterados** documentados (metodo, path, auth se houver) |
-| R3 | Variaveis de ambiente | Vars novas ou com default relevante; apontar `.env.example` se existir; tabela ou lista coerente com o codigo |
-| R4 | UI / operadores | Telas, botoes, fluxos novos (ex. pausar, filtros) — o operador encontra no README |
-| R5 | Comportamento operacional | Regras que mudam suporte (fila, rate limit, erros tipicos, UF, 656, etc.) se a entrega as alterou |
-| R6 | Observabilidade | Se a entrega ou o projeto Node usa logger/`/metrics`: como ver logs, URL de metricas, nomes das metricas de negocio relevantes — **nao** so “tem metrics”. Se houver logs novos: keywords/`event` documentados e como filtrar por `correlation_id` (skill `logger`) |
-| R7 | Testes | Como rodar suite e VAL/V novos da entrega |
-| R8 | Indice de docs | Links/tabela para SPEC/DESIGN/CORR desta entrega (e nao omitir docs ja existentes que a tabela citava pela metade); **`.ai/docs/indice.md`** alinhado |
-| R9 | CHANGELOG | Entrada curta do que entrou, se o repo tiver `CHANGELOG.md` |
-| R10 | Mentiras / stale | Remover ou corrigir instrucoes obsoletas (paths, contagens de teste, “ainda nao existe”) |
+Artefato: `SPEC-*.md` ou `CORR-*.md`.
 
-**Gate:** se R2–R6 aplicaveis tiverem lacuna e voce so atualizou status do SPEC — **FAIL**. Voltar e editar o README antes do `AskQuestion`.
+| Item | Conferir |
+|------|----------|
+| Status final (ex. verificado, entregue) | |
+| Escopo **entregue** vs planejado — desvios com motivo | |
+| Resultados VAL/V da Fase 5 registrados | |
+| RN/CA que mudaram durante o dev — texto atualizado | |
+| Branch e links para ARCH, REVIEW, REVIEW-TESTES | |
 
-### 3. Atualizar SPEC/CORR
+#### DOC-F3 — Documentação do que o Código faz (Fase 3)
 
-- Status final (ex. verificado), historico de revisao, resultados VAL/V se ainda nao estiverem no doc.
+Tudo alterado no **código** deve aparecer na documentação de operação:
 
-### 3b. Sincronizar `.ai/docs/`
+| Item | Conferir |
+|------|----------|
+| README: como subir, endpoints, env, UI, ops (R1–R6) | |
+| `.env.example` alinhado ao código | |
+| `.ai/rules/desenvolvimento.md` se convencoes mudaram | |
+| Comentários de módulo / OpenAPI / `--help` se o projeto usa | |
 
-- Atualizar `.ai/docs/indice.md` com links reais (SPEC, ARCH, CORR, README, CHANGELOG).
-- Revisar `.ai/README.md` se a estrutura de docs do repo mudou.
-- Skill de referencia: `projeto-ai` (`~/.cursor/skills/projeto-ai/SKILL.md`).
+#### DOC-F4 — Documentos da Fase 4 (Revisão de código)
 
-### 4. Apresentar ao usuario
+Artefato: `REVIEW-*-resultado.md`.
 
-Na mensagem de fechamento da fase, mostrar:
+| Item | Conferir |
+|------|----------|
+| Achados bloqueantes: resolvidos ou débito aceito explícito | |
+| Veredito final no REVIEW (fechado) | |
+| Referência cruzada no SPEC/CORR se houve mudança de escopo por review | |
 
-1. Resumo do que mudou no README (bullets).
-2. Checklist R1–R10 com `OK` / `ATUALIZADO` / `N/A`.
-3. Paths tocados (`README.md`, SPEC, CHANGELOG, …).
+Opcional mas recomendado: citar no SPEC que `REVIEW-TESTES-*` foi aprovado na Fase 7.
 
-### 5. Aprovacao
+### 3. Revisão obrigatória do README (R1–R10)
 
-**`AskQuestion`**: `Documentacao ok?`
+Para cada item: `OK` | `ATUALIZADO` | `N/A` (motivo).
 
-- `Sim, seguir para Definition of Done` | `Ajustar docs` | `Outro (eu digito)`
+| # | Area | Conferir |
+|---|------|----------|
+| R1 | Como subir / dev | |
+| R2 | Endpoints / CLI | |
+| R3 | Variáveis de ambiente | |
+| R4 | UI / operadores | |
+| R5 | Comportamento operacional | |
+| R6 | Observabilidade | |
+| R7 | Testes (suite + VAL/V + como rodar) | |
+| R8 | Indice de docs + `.ai/docs/indice.md` | |
+| R9 | CHANGELOG | |
+| R10 | Sem instruções obsoletas | |
 
-Se o usuario pedir ajuste: priorizar README incompleto antes de DoD.
+**Gate:** R2–R6 aplicáveis sem lacuna; DOC-F1/F3/F4 sem `FALHA` pendente.
 
-## O que nao fazer
+### 4. Sincronizar `.ai/docs/`
 
-- Atualizar so o SPEC e dizer que a documentacao fechou
-- Acrescentar so uma linha generica no README (“ver SPEC-00x”) sem endpoints/env/ops
-- Documentar secrets ou colar tokens
-- Criar runbook longo nao pedido se o README ja cobre o suficiente apos a revisao
+`indice.md` com links reais (SPEC, ARCH, CORR, REVIEW, REVIEW-TESTES, README).
+
+### 5. Apresentar ao dev
+
+1. Resumo das mudanças em README e docs F1/F3/F4.
+2. Tabelas R1–R10 e DOC-F1/F3/F4 com status.
+3. Paths tocados.
+
+### 6. Aprovação
+
+**`AskQuestion`**: `Documentação ok — seguir para Encerramento?`
+
+- `Sim, seguir` | `Ajustar docs` | `Outro (eu digito)`
+
+## O que não fazer
+
+- Atualizar só status do SPEC sem revisar conteúdo vs entrega real
+- Deixar REVIEW com achados “em aberto” sem nota de débito
+- README genérico “ver SPEC” sem endpoints/env/ops
+- Pular DOC-F3 quando o código mudou comportamento visível

@@ -1,13 +1,27 @@
 ---
-description: Padrao Sonnet; Opus so com pedido explicito do usuario
+description: Modelos explicitos por fase/agent; Opus so com pedido explicito
 alwaysApply: true
 ---
 
-# Modelo: Sonnet por padrao
+# Modelos — slugs e fallbacks
 
-- **Padrao:** Claude Sonnet (`claude-sonnet-5-thinking-high` ou o Sonnet do seletor do chat).
-- **Proibido** lancar Task/subagent com Opus (`claude-opus-5-thinking-high`, `claude-4-opus`, etc.) por iniciativa propria — inclusive arquitetura, review, auditoria e “modelo mais forte”.
-- **Opus so** se o usuario pedir explicitamente neste chat (ex.: “usa opus”, “pode ser opus nesta fase”).
-- Se a skill/agent ainda citar Opus como padrao, **ignorar** e usar Sonnet.
-- Review continua no modelo barato ja definido (`cursor-grok-4.5-high-fast`); fallback = Sonnet, nunca Opus.
-- Nao sugerir trocar o chat para Opus. Nao perguntar se quer Opus.
+**Não** instruir `inherit` nem “modelo do chat”. Usar slugs e cadeia de fallback.
+
+Mapa completo: `~/.cursor/skills/dev-all-in-one/modelos.md`
+
+## Entrega guiada (9 fases)
+
+| Fases | Executor | Primário | Fallback |
+|-------|----------|----------|----------|
+| 1, 3, 5, 6, 8, 9 | Orquestrador | `claude-sonnet-5-thinking-high` | Grok → Composer |
+| 2 | `arquitetura-pro` | `claude-sonnet-5-thinking-high` | Grok → Composer |
+| 4 | `review-pro` | `cursor-grok-4.5-high-fast` | Sonnet |
+| 7 | `review-testes-pro` | `cursor-grok-4.5-high-fast` | Sonnet |
+
+## Regras
+
+- **Opus** (`claude-opus-5-thinking-high`) só com pedido explícito do usuário neste chat — nunca por iniciativa (inclui arquitetura e auditoria).
+- **Reviews (4 e 7):** Grok → Sonnet; **nunca** Opus.
+- Primário indisponível: próximo da cadeia; anotar model efetivo no artefato.
+- Task de subagent: passar `model:` do primário; relançar com fallback se falhar.
+- Não sugerir trocar o chat para Opus. Não perguntar se quer Opus.
