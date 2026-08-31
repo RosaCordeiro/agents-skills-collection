@@ -29,15 +29,16 @@ Um chamado = um tipo. Incidente + causa raiz = **dois** chamados (ou incidente a
 
 Consulta pontual PB/Sybase (cor, status, um pedido na homolog): **neste chat**, ver [critico.md](critico.md). Spec/mock/DOCX para outro dev: `/pb-sybase` se o usuário pedir.
 
-## Solicitante e área (não perguntar)
+## Solicitante, área e categoria
 
 Ler [defaults.md](defaults.md). Sempre:
 
 - `usuario` **1276** (solicitante Guilherme da Rosa Cordeiro). **Não** usar 393 aqui — 393 solicitante é a filial 0745.
-- `atendente` **393** (mesmo Guilherme, catálogo de atendentes); ele encaminha depois se precisar.
+- `atendente` **393** (mesmo Guilherme, catálogo de atendentes) — padrão; outro só se o usuário escolher na pergunta de categorização.
 - `area` **34** (TI - Desenvolvimento).
+- `categoria` **241** (TI - Desenvolvimento → Software → Comercial/Estoque) — padrão; outra só se o usuário escolher.
 
-Não perguntar área nem atendente. Não usar matrícula `995670` como login SoftDesk. `tipo_chamado` pela tabela de defaults. `listar_*` só se o default falhar na API.
+Não perguntar solicitante nem área a cada chamado. **Perguntar categorização** (padrão vs outra categoria/atendente) — ver fluxo abaixo. Não usar matrícula `995670` como login SoftDesk. `tipo_chamado` pela tabela de defaults. `listar_*` só se o default falhar na API ou o usuário pedir outra categoria/atendente.
 
 **Descrição em HTML**, nunca Markdown. Modelos em [modelos.md](modelos.md).
 
@@ -46,11 +47,12 @@ Não perguntar área nem atendente. Não usar matrícula `995670` como login Sof
 1. Classificar o tipo (AskQuestion se ambíguo).
 2. Ser crítico: [critico.md](critico.md) + checklist [modelos.md](modelos.md). Perguntar o que falta; cruzar PBG/Sybase se for tela/pedido/NF.
 3. Duplicidade: `pesquisar_chamados_abertos` com `usuario` **1276**. Payload enorme — não despejar no chat; se travar, pular.
-4. Rascunho: **Tipo**, **Título**, **Descrição (HTML)**, payload (`usuario` 1276, `atendente` 393, `area` 34, `servico` 231, `prioridade` 18 salvo o usuário mudar, `nivel_indisponibilidade` 4, `tipo_chamado`).
-5. Esperar ok explícito.
-6. `criar_chamado` com esses campos + HTML. Sem `enviar_email_abertura` salvo pedido.
-7. Se `atendente` vier vazio: `editar_chamado` com 393 (+ serviço/prioridade/impacto se faltarem).
-8. Devolver o **código**. Conferir `objeto.usuario.nome` = Guilherme da Rosa Cordeiro. Se a API voltar `null`, reportar falha.
+4. **Categorização** (se o usuário ainda não disse “padrão”): um `AskQuestion` — **Padrão** (TI-Desenvolvimento / Software / Comercial Estoque, atendente Guilherme) **(Recomendado)** vs **Outra categoria ou outro atendente**. Se “outra”: perguntar qual (nome/caminho da categoria e/ou atendente); resolver com `listar_categorias` / `listar_atendentes` / `buscar_usuario`.
+5. Rascunho: **Tipo**, **Título**, **Descrição (HTML)**, **Categoria** (nome + código), payload (`usuario` 1276, `atendente`, `area` 34, `categoria`, `servico` 231, `prioridade` 18 salvo o usuário mudar, `nivel_indisponibilidade` 4, `tipo_chamado`).
+6. Esperar ok explícito.
+7. `criar_chamado` com esses campos + HTML. Sem `enviar_email_abertura` salvo pedido.
+8. Se `atendente` ou `categoria` vier vazio: `editar_chamado` com os valores do rascunho (+ serviço/prioridade/impacto se faltarem).
+9. Devolver o **código**. Conferir `objeto.usuario.nome` = Guilherme da Rosa Cordeiro. Se a API voltar `null`, reportar falha.
 
 Título: uma linha, verbo + objeto, sem número de chamado, sem “urgente” no título (prioridade é campo).
 

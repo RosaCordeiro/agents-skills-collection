@@ -2,7 +2,7 @@
 
 O usuário manda texto preguiçoso. **Não** transformar isso em chamado na hora. Extraia, **desconfie**, complete fato, só então rascunhe.
 
-Não perguntar solicitante, área, atendente, serviço padrão (defaults).
+Não perguntar solicitante nem área a cada chamado. **Perguntar categorização** (padrão Comercial/Estoque vs outra categoria/atendente) — ver [defaults.md](defaults.md) e fluxo da skill.
 
 ## Atitude
 

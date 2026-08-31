@@ -19,7 +19,7 @@ Leia e siga a skill **`softdesk`**:
 
 Não abrir chamado na primeira mensagem se faltar tela, documento ou esperado vs atual. Consultar PBG/Sybase no próprio chat (não Task `/pb-sybase`). Spec longa só se o usuário pedir `/pb-sybase`.
 
-Solicitante **sempre** Guilherme (`usuario` **1276**, não 393). Atendente **sempre** ele (`atendente` **393**); se o POST vier vazio, `editar_chamado`. Área **34**. Serviço **231** SAP/Sybase. Prioridade **18** salvo impacto de filial/NF — aí perguntar Média vs Alta. Impacto **4**. Não perguntar solicitante/área.
+Solicitante **sempre** Guilherme (`usuario` **1276**, não 393). Atendente padrão **393** (ele); outro só se escolher na pergunta de categorização. Área **34**. Categoria padrão **241** (TI-Desenvolvimento / Software / Comercial/Estoque) — **perguntar** padrão vs outra categoria/atendente antes do rascunho. Serviço **231** SAP/Sybase. Prioridade **18** salvo impacto de filial/NF — aí perguntar Média vs Alta. Impacto **4**. Não perguntar solicitante/área.
 
 **Descrição do chamado é HTML**, não Markdown (`<p>`, `<br>`, `<strong>`, `<ol>`/`<li>`).
 

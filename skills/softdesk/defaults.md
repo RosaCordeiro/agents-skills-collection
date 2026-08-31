@@ -2,7 +2,7 @@
 
 MCP: `https://mcp-servicedesk.clamed.com.br/mcp` (`user-softdesk`).
 
-Não perguntar área, solicitante nem atendente a cada chamado. Só mudar se o usuário pedir.
+Não perguntar área nem solicitante a cada chamado. Perguntar **categorização** (padrão vs outra). Atendente padrão 393; mudar só se o usuário escolher.
 
 **Catálogos diferentes:** `usuario` (solicitante) ≠ `atendente`. O mesmo número **não** serve nos dois campos.
 
@@ -24,7 +24,7 @@ Confirmar com `buscar_usuario` (`login` `guilherme.cordeiro` ou e-mail). **Não*
 |-------|--------|
 | `atendente` | **393** (Guilherme, catálogo de **atendentes**) |
 
-Ele encaminha depois se quiser. Não perguntar.
+Ele encaminha depois se quiser. Padrão; outro atendente só na pergunta de categorização.
 
 ## Área (sempre)
 
@@ -66,6 +66,23 @@ No rascunho do chat, mostrar o HTML que será enviado (ou o texto já com quebra
 
 Mandar no `criar_chamado`. Se `atendente` vier vazio, `editar_chamado` com 393 (+ serviço/prioridade/impacto). Prioridade 18 é o padrão; se o impacto for NF/filial/parada, perguntar Média vs Alta antes de abrir.
 
+## Categoria (padrão — confirmar antes de abrir)
+
+| Campo | Valor |
+|-------|--------|
+| Caminho na UI | **TI - Desenvolvimento → Software → Comercial/Estoque** |
+| `categoria` | **241** |
+
+Sempre mandar `categoria` no `criar_chamado` (e no `editar_chamado` se vier vazio).
+
+**Antes do rascunho final**, um `AskQuestion`: usar o padrão acima ou outra categoria/atendente? Se o usuário já disser “padrão” / “default” / “Comercial Estoque”, não repetir a pergunta.
+
+Subcategorias sob **241** (só se o assunto for óbvio e o usuário confirmar): Carga=243, Compras=152, Faturamento=244, Gerenciador de Notas Fiscais=305, Gerenciamento de Categorias=292, Gestão de Estoque=300, Licitação=245, Retaguarda Operacional=238, WMS=203. Na dúvida, ficar em **241**.
+
+Se escolher **outra categoria**: `listar_categorias` e filtrar pelo texto (área 34 ou caminho `TI - DESENVOLVIMENTO.SOFTWARE`). Não chamar o catálogo inteiro no chat.
+
+Se escolher **outro atendente**: `listar_atendentes` ou `buscar_usuario` pelo nome/login. Manter `usuario` **1276** (solicitante continua Guilherme) salvo pedido explícito de abrir em nome de outro.
+
 ## Não setar sem pedido
 
-`cliente`, `categoria`, `grupo_solucao`, `enviar_email_abertura`.
+`cliente`, `grupo_solucao`, `enviar_email_abertura`.
