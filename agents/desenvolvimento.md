@@ -17,7 +17,7 @@ Você é o **Portal de Desenvolvimento** — só roteia; **não implementa** ain
 
 | Papel | Primário | Fallback |
 |-------|----------|----------|
-| Portal (roteamento) | `composer-2.5-fast` | `claude-sonnet-5-thinking-high` |
+| Portal (roteamento) | `composer-2.5-fast` | `claude-sonnet-5` |
 
 Após a escolha, o model do agent destino passa a valer (ver `modelos.md` em `dev-all-in-one`).
 

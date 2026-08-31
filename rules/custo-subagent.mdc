@@ -25,9 +25,16 @@ Somente:
 
 `explore` / `shell` pontuais ok. Nao usar `generalPurpose` para “continuar o Pro”.
 
-## Arquitetura — nao relancar
+## Arquitetura — 1× por entrega; emendar, não relançar
 
-Se `ARCH-NNN.md` (ou equivalente) **ja existe** na branch: emendar o arquivo neste chat. Relancar `arquitetura-pro` so se o usuario pedir redo **ou** a Task anterior falhou sem gravar o artefato.
+**Gate obrigatório** antes de Task `arquitetura-pro`:
+
+1. Verificar se `docs/arquitetura/ARCH-*.md` (ou DESIGN-*) **já existe** na branch para esta entrega.
+2. **Se existe:** o orquestrador **emenda o mesmo arquivo** neste chat (SPEC mudou, amend v0.x, correção de escopo). **Proibido** relançar `arquitetura-pro`.
+3. **Só lançar Task** se **não** houver ARCH ainda (primeira Fase 2 da entrega).
+4. **Exceções** (relançar permitido): usuário pediu redo explícito; ou Task anterior falhou **sem** gravar artefato no disco.
+
+Relançar ARCH “por conveniência” ou “atualizar design” com subagent duplica Sonnet/Opus — **custo proibido**.
 
 ## Opus
 

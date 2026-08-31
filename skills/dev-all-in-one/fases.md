@@ -20,10 +20,10 @@ Cada fase termina com **`AskQuestion`**: você aprova antes de avançar.
 
 | Fase | Executor | Model (primário → fallback) |
 |------|----------|----------------------------|
-| 1, 3, 5, 6, 8, 9 | Orquestrador | `claude-sonnet-5-thinking-high` → Grok → Composer |
-| 2 | Subagent `arquitetura-pro` | Sonnet → Grok → Composer; **uma vez** por entrega |
-| 4 | Subagent `review-pro` | Grok → Sonnet; readonly — código |
-| 7 | Subagent `review-testes-pro` | Grok → Sonnet; readonly — testes |
+| 1, 3, 5, 6, 8, 9 | Orquestrador | `claude-sonnet-5` → Grok medium → Composer |
+| 2 | Subagent `arquitetura-pro` | Sonnet **thinking-high** → Sonnet padrão; **1× Task** se ARCH não existe |
+| 4 | Subagent `review-pro` | Grok **medium** → Sonnet padrão |
+| 7 | Subagent `review-testes-pro` | Grok **medium** → Sonnet padrão |
 
 Detalhes e regras de fallback: [modelos.md](modelos.md)
 

@@ -36,10 +36,10 @@ Referência: [modelos.md](modelos.md)
 
 | Fase | Executor | Primário | Fallback |
 |------|----------|----------|----------|
-| 1, 3, 5, 6, 8, 9 | orquestrador | `claude-sonnet-5-thinking-high` | `cursor-grok-4.5-high-fast` → `composer-2.5-fast` |
-| 2 Desenho | Task `arquitetura-pro` | `claude-sonnet-5-thinking-high` | Grok → Composer; Opus só pedido explícito |
-| 4 Revisão código | Task `review-pro` | `cursor-grok-4.5-high-fast` | `claude-sonnet-5-thinking-high` (nunca Opus) |
-| 7 Revisão testes | Task `review-testes-pro` | `cursor-grok-4.5-high-fast` | `claude-sonnet-5-thinking-high` (nunca Opus) |
+| 1, 3, 5, 6, 8, 9 | orquestrador | `claude-sonnet-5` | `cursor-grok-4.6-medium` → `composer-2.5-fast` |
+| 2 Desenho | Task `arquitetura-pro` | `claude-sonnet-5-thinking-high` | Sonnet → Composer |
+| 4 Revisão código | Task `review-pro` | `cursor-grok-4.6-medium` | `claude-sonnet-5` |
+| 7 Revisão testes | Task `review-testes-pro` | `cursor-grok-4.6-medium` | `claude-sonnet-5` |
 
 Fases 2, 4 e 7 **via Task** com `model:` do primário. Subagents são **readonly**.
 
@@ -55,7 +55,7 @@ Agents: `arquitetura-pro`, `review-pro`, `review-testes-pro`.
 
 ### Fase 2 — Desenho
 
-Task `arquitetura-pro`; ADRs; uma vez por entrega.
+**Gate:** listar `docs/arquitetura/ARCH-*` da entrega. Se **já existe** → orquestrador **emenda** no chat; **não** Task `arquitetura-pro`. Se **não existe** → Task **uma vez**; ADRs.
 
 ### Fase 3 — Código
 

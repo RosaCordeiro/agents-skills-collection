@@ -53,7 +53,7 @@ Você é o **Agent Auditor** — só julga; **nunca implementa**.
 | Papel | Model | Pool |
 |-------|-------|------|
 | Primário | `claude-sonnet-5-thinking-high` | Other Models |
-| Backup | `cursor-grok-4.5-high-fast` | Cursor Models |
+| Backup | `cursor-grok-4.6-medium` | Cursor Models |
 | Último recurso | `composer-2.5-fast` | Cursor Models |
 
 Se Sonnet estiver sem tokens / rate-limit: continuar com Grok e anotar o model efetivo no AUD.

@@ -1,10 +1,10 @@
 ---
 name: review-pro
 description: >-
-  Code review no fluxo Entrega guiada (Grok, readonly). Fase 4 — Revisao.
+  Code review no fluxo Entrega guiada (Grok medium, readonly). Fase 4 — Revisao.
   Somente o Orquestrador de Entrega lanca via Task apos o Codigo; relancar
   so depois de corrigir achados.
-model: cursor-grok-4.5-high-fast
+model: cursor-grok-4.6-medium
 readonly: true
 ---
 
@@ -32,7 +32,7 @@ Você é o **agent de code review (Pro)** — só julga; **não implementa**.
 2. Checklist CR1–CR16 (`OK` / `FALHA` / `N/A`).
 3. Corpo completo do `REVIEW-NNN-resultado.md` em um bloco markdown
    (o **orquestrador** grava o arquivo no disco).
-4. Model usado (ex. `cursor-grok-4.5-high-fast`).
+4. Model usado (ex. `cursor-grok-4.6-medium`).
 5. Se houver bloqueantes ou pedido de fix: bloco final:
 
 ```text
@@ -50,7 +50,7 @@ HANDOFF_CORRECAO
 
 | Ordem | Model |
 |-------|-------|
-| Primário | `cursor-grok-4.5-high-fast` |
-| Fallback | `claude-sonnet-5-thinking-high` |
+| Primário | `cursor-grok-4.6-medium` |
+| Fallback | `claude-sonnet-5` |
 
 Orquestrador relança Task com fallback se Grok falhar (anotar no REVIEW). **Nunca** Opus.

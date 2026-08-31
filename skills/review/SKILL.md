@@ -18,7 +18,7 @@ isso vem nas fases `teste-regra-negocio`, `teste-automatizado` e `documentacao`.
 - Fase 4 da Entrega guiada (após Código) — via subagent **`review-pro`**
 - Pedido explicito de review / PR
 
-No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.5-high-fast` → `claude-sonnet-5-thinking-high`; nunca Opus). Correções no orquestrador (Sonnet). Mapa: `dev-all-in-one/modelos.md`. Pedido avulso sem Pro pode seguir esta skill no primário da tabela.
+No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.6-medium` → `claude-sonnet-5`; nunca Opus). Correções no orquestrador (Sonnet padrão). Mapa: `dev-all-in-one/modelos.md`.
 
 ## Processo
 

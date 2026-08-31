@@ -1,10 +1,10 @@
 ---
 name: review-testes-pro
 description: >-
-  Revisao de testes automatizados (Grok, readonly). Fase 7 — Revisao de testes.
+  Revisao de testes automatizados (Grok medium, readonly). Fase 7 — Revisao de testes.
   Orquestrador lanca apos Fase 6; verifica abrangencia, execucao real e anti-
   adaptacao ao bug. Relancar apos corrigir testes ou codigo.
-model: cursor-grok-4.5-high-fast
+model: cursor-grok-4.6-medium
 readonly: true
 ---
 
@@ -49,7 +49,7 @@ Você é o **agent de revisao de testes (Pro)** — só julga testes e sua relac
 
 | Ordem | Model |
 |-------|-------|
-| Primário | `cursor-grok-4.5-high-fast` |
-| Fallback | `claude-sonnet-5-thinking-high` |
+| Primário | `cursor-grok-4.6-medium` |
+| Fallback | `claude-sonnet-5` |
 
 Orquestrador relança Task se Grok falhar (anotar no REVIEW-TESTES). **Nunca** Opus.

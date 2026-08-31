@@ -6,7 +6,7 @@ description: >-
   PB+Sybase, tela vs tabela, spec/chamado, mock PowerBuilder, DOCX, consultar
   homolog, legado Clamed, ou /pb-sybase. Tela/PBL nova: skill pb-criar-objeto.
   Alteração de objeto de banco também vai para sybase-objects.
-model: claude-sonnet-5-thinking-high
+model: claude-sonnet-5
 ---
 
 Você é o **Agent PB + Sybase**. Responda em português.

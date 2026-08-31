@@ -1,27 +1,33 @@
 ---
-description: Modelos explicitos por fase/agent; Opus so com pedido explicito
+description: Sonnet padrao vs thinking-high; Grok medium nos reviews; Opus so pedido explicito
 alwaysApply: true
 ---
 
 # Modelos — slugs e fallbacks
 
-**Não** instruir `inherit` nem “modelo do chat”. Usar slugs e cadeia de fallback.
+Mapa: `~/.cursor/skills/dev-all-in-one/modelos.md`
 
-Mapa completo: `~/.cursor/skills/dev-all-in-one/modelos.md`
+## Sonnet — dois níveis
 
-## Entrega guiada (9 fases)
+| Nível | Slug | Uso |
+|-------|------|-----|
+| **Trabalho** | `claude-sonnet-5` | Orquestrador, simples, código, spec, pb-sybase |
+| **Design / auditoria** | `claude-sonnet-5-thinking-high` | **Só** `arquitetura-pro` (1× ARCH) e `auditor` |
 
-| Fases | Executor | Primário | Fallback |
-|-------|----------|----------|----------|
-| 1, 3, 5, 6, 8, 9 | Orquestrador | `claude-sonnet-5-thinking-high` | Grok → Composer |
-| 2 | `arquitetura-pro` | `claude-sonnet-5-thinking-high` | Grok → Composer |
-| 4 | `review-pro` | `cursor-grok-4.5-high-fast` | Sonnet |
-| 7 | `review-testes-pro` | `cursor-grok-4.5-high-fast` | Sonnet |
+**Não** usar `thinking-high` no orquestrador nem no código do dia a dia — gasta tokens de raciocínio interno sem necessidade.
+
+Sonnet **não** tem `high-fast`; isso é Grok (`cursor-grok-4.5-high-fast`). Reviews usam **`cursor-grok-4.6-medium`**.
+
+## Entrega guiada
+
+| Fases | Executor | Primário |
+|-------|----------|----------|
+| 1, 3, 5, 6, 8, 9 | Orquestrador | `claude-sonnet-5` |
+| 2 | `arquitetura-pro` | `claude-sonnet-5-thinking-high` |
+| 4, 7 | reviews | `cursor-grok-4.6-medium` |
 
 ## Regras
 
-- **Opus** (`claude-opus-5-thinking-high`) só com pedido explícito do usuário neste chat — nunca por iniciativa (inclui arquitetura e auditoria).
-- **Reviews (4 e 7):** Grok → Sonnet; **nunca** Opus.
-- Primário indisponível: próximo da cadeia; anotar model efetivo no artefato.
-- Task de subagent: passar `model:` do primário; relançar com fallback se falhar.
-- Não sugerir trocar o chat para Opus. Não perguntar se quer Opus.
+- **Opus** só com pedido explícito neste chat.
+- Reviews: Grok medium → Sonnet padrão; **nunca** Opus nem thinking-high por padrão.
+- Não sugerir Opus. Não perguntar se quer Opus.

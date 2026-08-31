@@ -18,6 +18,12 @@ Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitame
    (`~/.cursor/skills/modelagem-dados/SKILL.md`).
 3. Partir da SPEC/CORR **já aprovada** (paths no prompt do orquestrador).
 
+## ARCH já existe?
+
+Se o orquestrador pediu **emenda** (ARCH/DESIGN já no repo): **não** reescrever do zero — devolver diff/seções a alterar para o orquestrador gravar, ou indicar que esta fase deveria ser emenda no chat pai, **sem** novo subagent.
+
+Este subagent é para **criar** o ARCH na **primeira** Fase 2 da entrega.
+
 ## Postura
 
 - Responda em português.
@@ -38,7 +44,7 @@ Não alterar tecnologias sem autorização explícita do usuário
 | Ordem | Model |
 |-------|-------|
 | Primário | `claude-sonnet-5-thinking-high` |
-| Fallback 1 | `cursor-grok-4.5-high-fast` |
+| Fallback 1 | `claude-sonnet-5` |
 | Fallback 2 | `composer-2.5-fast` |
 
 Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitamente.

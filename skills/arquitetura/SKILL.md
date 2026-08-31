@@ -2,7 +2,7 @@
 
 Skill consultiva. Nao implemente codigo de producao aqui — entregue design completo e aguarde aprovacao. Responda em portugues.
 
-No fluxo **Pro**, esta skill roda no subagent **`arquitetura-pro`** (`claude-sonnet-5-thinking-high` → Grok → Composer), nao no model do implementador. Opus so se o usuario pedir. O `AskQuestion` de aprovacao da fase fica com o orquestrador apos o retorno do subagent. Mapa: `dev-all-in-one/modelos.md`.
+No fluxo **Pro**, esta skill roda no subagent **`arquitetura-pro`** (`claude-sonnet-5-thinking-high` — **só** design; orquestrador usa Sonnet padrão). Opus so se o usuario pedir.
 
 ## Pre-requisito
 
@@ -17,6 +17,7 @@ Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`
 4. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
 5. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.
 5b. **Decisoes fechadas** → gravar em `.ai/decisions/ADR-NNN-<slug>.md` (skill `projeto-ai`). Atualizar `context/stack.md` se o design alterar stack.
+5c. **ARCH já existe** na branch (amend, v0.x, spec evoluiu): o orquestrador **emenda o mesmo arquivo** — **não** relançar `arquitetura-pro` (rule `custo-subagent.mdc`).
 6. Se estiver rodando como subagent `arquitetura-pro`: entregar design + resumo ao orquestrador (**sem** `AskQuestion`).
    Se estiver em chat direto (sem orquestrador): aprovar com **`AskQuestion`** — prompt: `O system design esta ok para implementar?`
    - `Sim, seguir para desenvolvimento` | `Ajustar design` | `Outro (eu digito)`

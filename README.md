@@ -27,6 +27,7 @@ cursor-kit/
 | `arquitetura-pro.md` | Desenho (subagent) | Fase 2 |
 | `review-pro.md` | Revisão código (subagent) | Fase 4 |
 | `review-testes-pro.md` | Revisão testes (subagent) | Fase 7 — abrangência, execução real, anti-adaptação ao bug |
+| `monitor-uso-ia.md` | Monitor uso IA | Transcripts, ranking, alertas custo (`/monitor`) |
 | `auditor.md` | Auditor 100% (não programa): revalida o sistema, roda a suíte, Validação 1..N, notas 0–10 |
 | `pbg.md` | PowerBuilder 12: altera via MCP (`composer-2.5-fast`); patch importa e compila |
 | `pb-sybase.md` | Consulta PB + Sybase + sybase-objects; spec de chamado (MD → mock → DOCX) |
@@ -35,7 +36,7 @@ cursor-kit/
 
 ### Skills
 
-`dev-all-in-one`, `review-testes` (RT1–RT12 + `REVIEW-TESTES-*`), `especificacao` (documento autocontido: a spec não depende do chat), `projeto-ai` (pasta `.ai` obrigatória em greenfield: context, rules, decisions, docs), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
+`dev-all-in-one`, `review-testes` (RT1–RT12 + `REVIEW-TESTES-*`), `monitor-uso-ia` (script + alertas de custo), `especificacao` (documento autocontido: a spec não depende do chat), `projeto-ai` (pasta `.ai` obrigatória em greenfield: context, rules, decisions, docs), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
 
 No Pro: mapa de models em `dev-all-in-one/modelos.md` — orquestrador Sonnet; arquitetura Sonnet (Opus só se pedir; **uma vez** por entrega); reviews Grok→Sonnet (readonly). Pro/Simples **não** são lançados via Task — rodam no chat.
 

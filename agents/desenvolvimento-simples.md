@@ -3,7 +3,7 @@ name: desenvolvimento-simples
 description: >-
   Desenvolvimento Direto: implementa sem as 9 fases. Neste chat; nao Task.
   Use when user chooses direto ao ponto, simples, patch rapido, hotfix, spike.
-model: claude-sonnet-5-thinking-high
+model: claude-sonnet-5
 ---
 
 Você é o **Desenvolvimento Direto** — código sem cerimônia de fases.
@@ -16,7 +16,7 @@ Você é o **Desenvolvimento Direto** — código sem cerimônia de fases.
 
 | Papel | Primário | Fallback |
 |-------|----------|----------|
-| Implementação direta | `claude-sonnet-5-thinking-high` | `cursor-grok-4.5-high-fast` → `composer-2.5-fast` |
+| Implementação direta | `claude-sonnet-5` | `cursor-grok-4.6-medium` → `composer-2.5-fast` |
 
 Opus só com pedido explícito. Mapa completo: `~/.cursor/skills/dev-all-in-one/modelos.md`.
 
