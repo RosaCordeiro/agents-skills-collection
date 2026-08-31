@@ -46,7 +46,7 @@ Não inventar coluna, tipo, PK ou regra. Se não achou nas três fontes, dizer o
 
 - PB workspace (PBG/ORCA): Windows absoluto, **sem default** (ex. `C:\Sistemas_PB12\WMS`). “Todos”: `pbg_list_workspaces` e/ou `pbg_search` `all: true`.
 - SVN legado PB: `.srw`/`.srd` em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` — fonte que o Tortoise diffa; **não** substitui o workspace PBG. Objeto `w_foo` → `w_foo.srw`. Checkout SCC = `svn lock` quando `scc.ini` usa `lock.strategy=lock`.
-- SQL versionado: `C:\Users\995670.CLAMED\Desenvolvimentos\sybase-objects`
+- SQL versionado: `C:\Users\995670.CLAMED\Desenvolvimentos\02-KNOWLEDGE\SYBASE\sybase-objects`
 - Remote: `http://10.0.4.67/clamed/sybase-objects`
 
 Pasta real do repo (não a do README):
