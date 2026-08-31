@@ -55,6 +55,7 @@ Responda em portugues. Estilo consultivo: alinhar objetivo e fontes antes de imp
 
 ## Implementacao
 
+- **Greenfield:** `.ai/` obrigatoria na raiz do pipeline (`projeto-ai`)
 - Codigo legivel; configs e secrets em env / Compose
 - Separar: ingestao | retrieval | prompt/orquestracao
 - Durante o dev: validar cenarios de recuperacao alinhados a especificacao (nao so "o LLM respondeu")

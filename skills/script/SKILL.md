@@ -28,6 +28,7 @@ Responda em portugues. Prefira Linux/WSL; evite PowerShell e cmd Windows. Siga a
 
 ```text
 tool-name/
+  .ai/               # obrigatorio em greenfield (projeto-ai)
   README.md          # como rodar (pt)
   scripts/ ou cmd/   # entrypoints
   .env.example       # se precisar de secrets
@@ -35,6 +36,7 @@ tool-name/
 
 ## Checklist
 
+- [ ] `.ai/` criada em greenfield (`projeto-ai`)
 - [ ] Roda no WSL/Linux
 - [ ] Help/uso documentado em portugues
 - [ ] Sem secrets no codigo

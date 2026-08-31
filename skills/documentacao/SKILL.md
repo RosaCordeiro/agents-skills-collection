@@ -44,7 +44,7 @@ Nao pular itens com “minimo necessario” se a entrega tocou aquela area.
 | R5 | Comportamento operacional | Regras que mudam suporte (fila, rate limit, erros tipicos, UF, 656, etc.) se a entrega as alterou |
 | R6 | Observabilidade | Se a entrega ou o projeto Node usa logger/`/metrics`: como ver logs, URL de metricas, nomes das metricas de negocio relevantes — **nao** so “tem metrics”. Se houver logs novos: keywords/`event` documentados e como filtrar por `correlation_id` (skill `logger`) |
 | R7 | Testes | Como rodar suite e VAL/V novos da entrega |
-| R8 | Indice de docs | Links/tabela para SPEC/DESIGN/CORR desta entrega (e nao omitir docs ja existentes que a tabela citava pela metade) |
+| R8 | Indice de docs | Links/tabela para SPEC/DESIGN/CORR desta entrega (e nao omitir docs ja existentes que a tabela citava pela metade); **`.ai/docs/indice.md`** alinhado |
 | R9 | CHANGELOG | Entrada curta do que entrou, se o repo tiver `CHANGELOG.md` |
 | R10 | Mentiras / stale | Remover ou corrigir instrucoes obsoletas (paths, contagens de teste, “ainda nao existe”) |
 
@@ -53,6 +53,12 @@ Nao pular itens com “minimo necessario” se a entrega tocou aquela area.
 ### 3. Atualizar SPEC/CORR
 
 - Status final (ex. verificado), historico de revisao, resultados VAL/V se ainda nao estiverem no doc.
+
+### 3b. Sincronizar `.ai/docs/`
+
+- Atualizar `.ai/docs/indice.md` com links reais (SPEC, ARCH, CORR, README, CHANGELOG).
+- Revisar `.ai/README.md` se a estrutura de docs do repo mudou.
+- Skill de referencia: `projeto-ai` (`~/.cursor/skills/projeto-ai/SKILL.md`).
 
 ### 4. Apresentar ao usuario
 

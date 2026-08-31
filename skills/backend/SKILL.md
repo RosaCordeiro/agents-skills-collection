@@ -25,6 +25,7 @@ Responda em portugues. Em tarefas grandes, valide o plano antes de implementar. 
 
 ## Regras
 
+- **Greenfield:** criar `.ai/` antes do codigo (`projeto-ai` — `context`, `rules`, `decisions`, `docs`)
 - Implemente a melhor opcao planejada, com codigo legivel (sem complexidade gratuita)
 - Durante o desenvolvimento: cobrir cenarios de **regra de negocio** da especificacao (RN-xx). Suíte ampla fica apos o desenvolvimento.
 - Secrets apenas via env / secrets do Compose — nunca no codigo
@@ -56,6 +57,7 @@ Ao gravar histórico campo a campo (ex.: GMUD):
 
 ## Checklist
 
+- [ ] `.ai/` criada em greenfield (`projeto-ai`)
 - [ ] Sobe com Compose (quando aplicavel)
 - [ ] Conexao DB configuravel por env
 - [ ] README ou secao de como rodar em portugues

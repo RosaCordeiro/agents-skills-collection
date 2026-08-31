@@ -24,6 +24,7 @@ Responda e documente em portugues. Espere aprovacao de plano se a mudanca for gr
 
 ## Regras
 
+- **Greenfield:** criar `.ai/` antes do codigo (`projeto-ai`)
 - Implemente o que foi planejado (melhor opcao aprovada), com codigo legivel para humanos
 - Sem codigo desnecessario; sem micagem excessiva nem complexidade gratuita
 - Preserve design system e padroes existentes do projeto
@@ -34,6 +35,7 @@ Responda e documente em portugues. Espere aprovacao de plano se a mudanca for gr
 
 ## Checklist antes de pedir aprovacao da fase
 
+- [ ] `.ai/` criada em greenfield (`projeto-ai`)
 - [ ] Roda no ambiente Linux/WSL do usuario
 - [ ] Tipos/lint ok se existirem no projeto
 - [ ] Estados de loading/erro cobertos no fluxo tocado

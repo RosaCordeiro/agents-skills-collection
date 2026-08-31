@@ -44,6 +44,11 @@ webapp/
   model/
   i18n/
   css/
+.ai/                  # obrigatorio em greenfield (raiz do repo UI5)
+  context/
+  rules/
+  decisions/
+  docs/
 ```
 
 ## Formato de saida (design UI5)

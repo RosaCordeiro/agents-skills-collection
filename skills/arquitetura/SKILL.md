@@ -16,6 +16,7 @@ Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`
 3. Oferecer **ate 2 abordagens** + **1 recomendacao** com trade-offs honestos.
 4. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
 5. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.
+5b. **Decisoes fechadas** → gravar em `.ai/decisions/ADR-NNN-<slug>.md` (skill `projeto-ai`). Atualizar `context/stack.md` se o design alterar stack.
 6. Se estiver rodando como subagent `arquitetura-pro`: entregar design + resumo ao orquestrador (**sem** `AskQuestion`).
    Se estiver em chat direto (sem orquestrador): aprovar com **`AskQuestion`** — prompt: `O system design esta ok para implementar?`
    - `Sim, seguir para desenvolvimento` | `Ajustar design` | `Outro (eu digito)`

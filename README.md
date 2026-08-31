@@ -34,7 +34,7 @@ cursor-kit/
 
 ### Skills
 
-`dev-all-in-one`, `especificacao` (documento autocontido: a spec não depende do chat), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
+`dev-all-in-one`, `especificacao` (documento autocontido: a spec não depende do chat), `projeto-ai` (pasta `.ai` obrigatória em greenfield: context, rules, decisions, docs), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
 
 No Pro: arquitetura via `arquitetura-pro` (Sonnet; Opus só se pedir; **uma vez por entrega**); review via `review-pro` (Grok, readonly → handoff de correção ao orquestrador). Pro/Simples **não** são lançados via Task — rodam no chat.
 
@@ -48,6 +48,7 @@ No Pro: arquitetura via `arquitetura-pro` (Sonnet; Opus só se pedir; **uma vez 
 | `execucao-wsl.mdc` | Como rodar comandos no WSL sem travar o chat |
 | `crud-lista-ui5-fiori.mdc` | Padrao de telas CRUD lista (UI5/Fiori); overflow ⋮ se > 3 ações |
 | `sem-mudanca-tecnologia.mdc` | Proíbe trocar stack/runtime sem autorização explícita |
+| `projeto-ai.mdc` | Greenfield: pasta `.ai` obrigatória (context, rules, decisions, docs) |
 
 ---
 

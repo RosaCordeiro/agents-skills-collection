@@ -59,6 +59,7 @@ Responda em portugues. Estilo consultivo. Foque no **backend SAP** e nos contrat
 
 ## Implementacao
 
+- **Greenfield:** `.ai/` no pacote/repo do servico (`projeto-ai`); ADRs em `decisions/` para RAP vs SEGW etc.
 - Codigo ABAP legivel (metodos curtos, nomes claros)
 - Transportes / pacotes: seguir convencao do projeto se houver
 - Documentar service binding e como testar (Gateway client / URL) em portugues

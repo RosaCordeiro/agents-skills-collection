@@ -59,6 +59,7 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 - **Sempre** passar pela skill `especificacao` primeiro (ela classifica feat vs fix).
 - Se ambiguo: AskQuestion `Feat` | `Fix`.
 - **Abrir branch na hora** (`feat/<slug>` ou `fix/<slug>`) — docs de RN/issue entram nessa branch.
+- **Greenfield:** criar `.ai/` (`projeto-ai`) com `context/` preenchido antes de aprovar a spec.
 - **feat** → [modelo-feat.md](../especificacao/modelo-feat.md) via `especificacao`
 - **fix** → [modelo-fix.md](../correcao-erro/modelo-fix.md) via `correcao-erro`
 - Documento **aprovado** = fonte da verdade. So entao fase 2.
@@ -66,6 +67,7 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 ### 2. Arquitetura / system design
 
 - **Task** → `arquitetura-pro` + model `claude-sonnet-5-thinking-high` (skill `arquitetura`).
+- Decisoes fechadas do design → `.ai/decisions/ADR-*.md` (`projeto-ai`).
 - **Uma vez por entrega.** Se `ARCH-NNN.md` ja existe na branch: emendar neste orquestrador. Relancar so se o usuario pedir redo ou a Task falhou sem artefato.
 - **Nao** passar Opus. So usar `claude-opus-5-thinking-high` se o usuario pedir Opus neste chat.
 - Design completo (contexto, componentes, dados, fluxos, infra, riscos, MVP).
@@ -77,6 +79,7 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 - Executar **no orquestrador** (`inherit`) — nao Opus.
 - Seguir spec + design aprovados. Codigo legivel; sem over-engineering.
 - Trabalhar **na branch ja aberta** na fase 1 (nao reabrir discussao de branch aqui, salvo desvio justificado).
+- **Greenfield:** pasta `.ai/` obrigatoria (`projeto-ai`) — estrutura criada na fase 1; `rules/desenvolvimento.md` preenchido nesta fase.
 - Ainda **nao** e a fase de suite ampliada nem de doc final.
 
 ### 4. Code review
@@ -102,6 +105,7 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 ### 7. Documentacao
 
 - Skill `documentacao` (ler o SKILL.md — **revisao obrigatoria do README**, checklist R1–R10).
+- Sincronizar `.ai/docs/indice.md` e `.ai/README.md` com paths reais (`projeto-ai`).
 - Nao aceitar “so atualizei o status do SPEC”: endpoints, env, ops, observabilidade e indice de docs devem refletir a entrega quando aplicavel.
 - README/`--help`, CHANGELOG se existir, status final SPEC/CORR.
 
@@ -133,6 +137,7 @@ Agents: `~/.cursor/agents/arquitetura-pro.md`, `~/.cursor/agents/review-pro.md`.
 | VAL/V / aceite de negocio | `teste-regra-negocio` |
 | Suite automatizada | `teste-automatizado` |
 | README/help/fechamento docs | `documentacao` |
+| Pasta `.ai` (greenfield / manutencao) | `projeto-ai` |
 
 Leia `~/.cursor/skills/<nome>/SKILL.md` antes de executar o papel correspondente.
 
@@ -148,6 +153,7 @@ Leia `~/.cursor/skills/<nome>/SKILL.md` antes de executar o papel correspondente
 Ate o usuario definir outro DoD. Usar como **fase 8** (gate final) apos a documentacao:
 
 - [ ] Especificacao escrita e aprovada (feat → `modelo-feat` / fix → `modelo-fix`; branch `feat/` ou `fix/` criada na fase 1)
+- [ ] Pasta `.ai/` completa em greenfield (`context`, `rules`, `decisions`, `docs`) — skill `projeto-ai`
 - [ ] System design aprovado
 - [ ] Testes de regra de negocio cobrindo os fluxos principais da especificacao (VAL-xx / V-xx)
 - [ ] Testes automatizados mais amplos apos o desenvolvimento (quando fizer sentido no projeto)

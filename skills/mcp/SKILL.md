@@ -69,6 +69,7 @@ Quando o usuario quiser "RAG na base": combinar com skill `rag` — MCP para dad
 
 ## Implementacao
 
+- **Greenfield:** `.ai/` obrigatoria na raiz do server (`projeto-ai`)
 - Stack tipica: TypeScript ou Python MCP SDK, Docker se precisar de deps/drivers
 - README em portugues: instalar, env, testar tool, adicionar ao Cursor
 - Branch `feat/` para server novo

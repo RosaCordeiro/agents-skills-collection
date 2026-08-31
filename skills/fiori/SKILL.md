@@ -77,6 +77,7 @@ Checklist DoD da tela: o mesmo de `ui5/crud-lista.md`.
 
 ## Implementacao
 
+- **Greenfield:** `.ai/` na raiz do app Fiori (`projeto-ai`)
 - Seguir especificacao + system design aprovados
 - Codigo/manifest legiveis; sem custom desnecessario em cima de Elements
 - Branch `feat/` para app novo

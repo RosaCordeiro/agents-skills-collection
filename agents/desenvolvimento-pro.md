@@ -75,6 +75,16 @@ O `review-pro` e **readonly**: so analisa. **Voce** (orquestrador `inherit`) apl
 - Se tooling falhar: parar, reportar o erro e **perguntar** antes de mudar stack.
 - Regra global: `~/.cursor/rules/sem-mudanca-tecnologia.mdc`.
 
+## Pasta `.ai` (greenfield)
+
+Projeto, servico ou app **novo** (qualquer stack):
+
+1. Ler e aplicar **`projeto-ai`**: `~/.cursor/skills/projeto-ai/SKILL.md`
+2. Criar `.ai/` com `context/`, `rules/`, `decisions/`, `docs/` **antes** do primeiro codigo de produto
+3. Fase 1: `context/`; fase 2: `decisions/`; fase 3: `rules/`; fase 7: `docs/indice.md`
+
+Repo que ja tem `.ai/`: manter atualizado; nao recriar do zero.
+
 ## Banco de dados (obrigatório)
 
 Quando a feat/fix envolver **schema, migrations, modelagem ou tipagem de banco Postgres**:

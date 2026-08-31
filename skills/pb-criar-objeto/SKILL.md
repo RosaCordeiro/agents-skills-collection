@@ -16,6 +16,14 @@ Consulta/spec de chamado: **`/pb-sybase`**. Se o pedido for spec **e** implement
 
 ORCA **não tem Inherit**. Janela herdada = `.srw` com `from <genérica>` + `import` + `regenerate`.
 
+## Greenfield — pasta `.ai`
+
+Novo **sistema** PB ou PBL/workspace autônomo:
+
+1. Criar `C:\Sistemas_PB12\<Sistema>\.ai\` (ou raiz do repo de docs do sistema) conforme `projeto-ai`
+2. Preencher `context/` (dominio WMS/Fiscal, integrações Sybase) e `rules/desenvolvimento.md` (PBL, naming WSxxx, fluxo PBSCC)
+3. Tela nova em sistema **existente** com `.ai/`: atualizar `context/` ou `decisions/` se a tela introduzir decisão nova — não recriar a árvore
+
 ## Pastas (não misturar)
 
 | Pasta | Papel |

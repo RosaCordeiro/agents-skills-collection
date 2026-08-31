@@ -71,11 +71,22 @@ So se **nao** houver evidencia de uso no projeto:
 
 Gate **N/A** — nao perguntar.
 
-### 4. Redigir (somente feat neste skill)
+### 4. Greenfield — pasta `.ai` (antes do doc feat)
+
+Se for **projeto/servico/app novo** (repo vazio, novo pacote no monorepo, novo MCP/CLI, novo app Fiori/UI5, novo sistema PB):
+
+1. Ler **`projeto-ai`**: `~/.cursor/skills/projeto-ai/SKILL.md`
+2. Criar `.ai/` na raiz correta (templates em `projeto-ai/templates/`)
+3. Preencher rascunho de `context/projeto.md` e `context/stack.md` a partir do que ja se sabe da conversa
+4. Registrar no SPEC (Premissas): *“Contexto de agentes: `.ai/` criado conforme skill `projeto-ai`.”*
+
+Fix em repo existente: pular criacao; so atualizar `.ai/` se a correcao mudar stack, regras ou decisoes.
+
+### 5. Redigir (somente feat neste skill)
 
 1. Seguir [modelo-feat.md](modelo-feat.md) — todos os blocos (`N/A` + motivo se nao aplicar).
 2. Destacar assumptions explicitamente (incluir observabilidade herdada ou decisao greenfield).
-3. Aplicar **documento autocontido** (§5): cada decisao com o porquê; o chat nao e contexto da spec.
+3. Aplicar **documento autocontido** (§6): cada decisao com o porquê; o chat nao e contexto da spec.
 4. Validar com [validacao.md](validacao.md); corrigir FAILs antes de pedir aprovacao.
 5. Gravar o arquivo **na branch** (ex.: `docs/especificacoes/SPEC-001.md`).
 6. Apresentar: resumo + path + branch + resultado da validacao.
@@ -95,9 +106,10 @@ Usar `correcao-erro` + [modelo-fix.md](../correcao-erro/modelo-fix.md).
 - IDs: `RN-xx`, `RF-xx`, `RNF-xx`, `US-xx`, `CA-xx`, `VAL-xx`
 - Fora de escopo claro; rastreabilidade US → RF/RN → CA
 - Stack Node: observabilidade **herdada** se o projeto ja usa; so perguntar em greenfield (§3)
-- **Documento autocontido** (§5) — o leitor nao viu o chat
+- **Documento autocontido** (§6) — o leitor nao viu o chat
+- Greenfield: `.ai/` criado (§4) antes de pedir aprovacao da spec
 
-## 5. Documento autocontido (obrigatorio)
+## 6. Documento autocontido (obrigatorio)
 
 A spec e o unico contexto que o desenvolvedor vai ter. **O chat nao faz parte da entrega.**
 

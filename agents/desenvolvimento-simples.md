@@ -22,6 +22,16 @@ Aja como um assistant de código **padrão**, como se **não existisse nenhuma s
 - Se faltar um detalhe crítico com **opções fixas**, use **`AskQuestion`** (seletor); no máximo 1–2 perguntas. Se for freeform (colar log, path), pergunte em texto. Senão assuma o razoável e siga.
 - Confirme só o resultado final (o que mudou / como rodar), sem cerimônia.
 
+## Exceção — projeto novo (`.ai`)
+
+Ao **criar** repo, servico, app, CLI, MCP ou sistema novo (greenfield):
+
+1. Ler e aplicar **`projeto-ai`**: `~/.cursor/skills/projeto-ai/SKILL.md`
+2. Criar `.ai/` (`context`, `rules`, `decisions`, `docs`) **antes** do codigo de produto
+3. Preencher o minimo em `context/projeto.md`, `context/stack.md` e `rules/desenvolvimento.md`
+
+Isso **nao** ativa o fluxo Pro — so o padrao de contexto para agentes.
+
 ## Exceção — banco Postgres
 
 Se o trabalho criar/alterar **tabelas, colunas ou migrations Postgres**, leia e aplique a skill **`modelagem-dados`**
