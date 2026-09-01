@@ -1,5 +1,12 @@
 ﻿# Defaults SoftDesk (produção)
 
+> **Uso pessoal.** Os IDs abaixo (solicitante, atendente, matrícula) são fixos
+> para o autor original desta skill. Se outro desenvolvedor clonar este
+> repositório para usar o `/softdesk`, precisa **trocar os valores desta
+> página pelos próprios** (nome, login, e-mail, `usuario`, `atendente`) antes
+> de abrir qualquer chamado — do contrário os chamados saem em nome de outra
+> pessoa.
+
 MCP: `https://mcp-servicedesk.clamed.com.br/mcp` (`user-softdesk`).
 
 Não perguntar área nem solicitante a cada chamado. Perguntar **categorização** (padrão vs outra). Atendente padrão 393; mudar só se o usuário escolher.
@@ -86,4 +93,11 @@ Se escolher **outro atendente**: `listar_atendentes` ou `buscar_usuario` pelo no
 ## Não setar sem pedido
 
 `cliente`, `grupo_solucao`, `enviar_email_abertura`.
+
+
+
+
+
+
+
 

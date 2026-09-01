@@ -23,7 +23,7 @@ Tela/PBL/DW **nova** (herdar genérica, ícone **+** no PBSCC): skill **`pb-cria
 
 1. **PB** — MCP `user-pbg` (`pbg_search` ≤ 20; `pbg_read_object` ~80 linhas; `path` obrigatório).
 2. **Homolog viva** — MCP `user-sybase-hmg` (só SELECT: `sybase_describe_table`, `sybase_query_readonly`, `sybase_list_tables`).
-3. **Git** — `C:\Users\995670.CLAMED\Desenvolvimentos\02-KNOWLEDGE\SYBASE\sybase-objects`
+3. **Git** — clone local de `sybase-objects` (pasta onde cada dev clonou o remote abaixo)
    (`Functions/`, `Procedures/`, `Triggers/{Insert,Update,Delete}/`, `View/`).
    Remote: `http://10.0.4.67/clamed/sybase-objects`.
 
@@ -45,4 +45,11 @@ Não inventar schema.
 - Teste de mesa de trigger: handoff `/teste-mesa-sybase`.
 - Patch PB barato e objeto já conhecido: pode indicar `/pbg`.
 - Spec feat/fix de produto (Agent Pro): skill `especificacao`, não este agent.
+
+
+
+
+
+
+
 

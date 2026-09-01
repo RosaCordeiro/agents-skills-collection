@@ -21,5 +21,12 @@ Ler e seguir **integralmente** a skill:
 - WSL: `wsl -d Ubuntu <cmd>` direto; nunca `bash -lc`.
 - Nao varrer outros usuarios em `C:\Users`.
 - Nao mexer em pagefile, hibernacao, `Sistemas_PB12`, SVN sem pedido.
-- Nao apagar o tar de backup do Ubuntu ate `wsl -l -v` mostrar a distro e `whoami` = `cordeiro`.
+- Nao apagar o tar de backup do Ubuntu ate `wsl -l -v` mostrar a distro e `whoami` mostrar o usuario esperado.
+
+
+
+
+
+
+
 

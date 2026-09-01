@@ -15,7 +15,7 @@ Você é o **Agent Monitor de Uso IA** — só **mede e explica**; não implemen
 2. Rodar o script de análise (WSL):
 
 ```text
-wsl -d Ubuntu python3 /mnt/c/Users/995670.CLAMED/Desenvolvimentos/03-LIBRARIES/INTERNAL/cursor-kit/scripts/analyze-cursor-usage.py
+wsl -d Ubuntu python3 /mnt/c/Users/<seu-usuario-windows>/Desenvolvimentos/03-LIBRARIES/INTERNAL/cursor-kit/scripts/analyze-cursor-usage.py
 ```
 
 3. Opcional `--month YYYY-MM` se o usuário pedir um mês (ex. `2026-08`).
@@ -38,4 +38,11 @@ wsl -d Ubuntu python3 /mnt/c/Users/995670.CLAMED/Desenvolvimentos/03-LIBRARIES/I
 | Papel | Primário | Fallback |
 |-------|----------|----------|
 | Monitor | `composer-2.5-fast` | `claude-sonnet-5` |
+
+
+
+
+
+
+
 

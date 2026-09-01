@@ -13,7 +13,7 @@ Responda em português. **Não** tem acesso à fatura Cursor — só logs locais
 
 | Ambiente | Comando |
 |----------|---------|
-| WSL (padrão) | `wsl -d Ubuntu python3 /mnt/c/Users/995670.CLAMED/Desenvolvimentos/03-LIBRARIES/INTERNAL/cursor-kit/scripts/analyze-cursor-usage.py` |
+| WSL (padrão) | `wsl -d Ubuntu python3 /mnt/c/Users/<seu-usuario-windows>/Desenvolvimentos/03-LIBRARIES/INTERNAL/cursor-kit/scripts/analyze-cursor-usage.py` |
 | Mês específico | acrescentar `--month 2026-08` |
 | Outro workspace | `--workspace <nome-pasta-projeto>` |
 
@@ -65,4 +65,11 @@ Conta apenas paths tipo:
 - Fim de mês / “quanto usei?”
 - Investigar chat específico (pedir ID ou tema)
 - Validar se regras de custo estão sendo seguidas
+
+
+
+
+
+
+
 

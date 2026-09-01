@@ -1,7 +1,9 @@
 ﻿---
 name: softdesk
 description: >-
-  Abre chamados SoftDesk para o próprio usuário, com texto consistente.
+  Abre chamados SoftDesk para o próprio usuário, com texto consistente. USO
+  PESSOAL: os IDs de solicitante/atendente (defaults.md) são fixos do autor
+  original — quem clonar o repo precisa trocar pelos próprios antes de usar.
   É crítico: pergunta o que falta e cruza PB/Sybase (tela, pedido, NF).
   Tipos: incidente/bug, causa raiz, projeto, melhoria. MCP user-softdesk.
   Use when the user asks abrir chamado, SoftDesk, reportar bug, causa raiz,
@@ -26,4 +28,11 @@ Solicitante **sempre** Guilherme (`usuario` **1276**, não 393). Atendente padr�
 **Nunca** chame `criar_chamado` sem mostrar o rascunho (título + tipo + HTML) e receber ok.
 
 MCP: `user-softdesk`. GetDynamicTools uma vez; depois CallDynamicTool. Se o server estiver em `error` / `needsAuth`, avisar para checar Settings → MCP (`https://mcp-servicedesk.clamed.com.br/mcp`) e não inventar abertura.
+
+
+
+
+
+
+
 

@@ -2,13 +2,16 @@
 name: softdesk
 description: >-
   Abre chamados no SoftDesk via MCP user-softdesk com texto consistente para o
-  próprio usuário. É crítico: pergunta o que falta, separa fato de hipótese e
-  cruza PB/Sybase quando o assunto é tela/pedido/NF. Tipos: incidente, causa
-  raiz, projeto, melhoria. Use when the user asks abrir chamado, SoftDesk,
-  criar_chamado, reportar bug, incidente, causa raiz, projeto, melhoria, ou /softdesk.
+  próprio usuário. USO PESSOAL: os IDs de solicitante/atendente em defaults.md
+  sao fixos do autor original — quem clonar o repo precisa trocar pelos
+  proprios antes de usar. É crítico: pergunta o que falta, separa fato de
+  hipótese e cruza PB/Sybase quando o assunto é tela/pedido/NF. Tipos:
+  incidente, causa raiz, projeto, melhoria. Use when the user asks abrir
+  chamado, SoftDesk, criar_chamado, reportar bug, incidente, causa raiz,
+  projeto, melhoria, ou /softdesk.
 ---
 
-# SoftDesk — abrir chamado (para mim)
+# SoftDesk — abrir chamado (uso pessoal — ver aviso em defaults.md)
 
 Responda em português. MCP **`user-softdesk`**. Tools reais: `criar_chamado`, `consultar_chamado`, `pesquisar_chamados_abertos`, `listar_*`, `buscar_usuario`, `listar_tipos_chamado`, `listar_clientes`, etc. Não inventar nome de tool.
 
@@ -73,4 +76,11 @@ API: 60 req/min. Não chamar todos os `listar_*` de uma vez sem necessidade.
 | Spec PB + mock + DOCX | `/pb-sybase` |
 | Encerrar / atividade / mudar status | só se o usuário pedir; `registrar_atividade` |
 | Chamado em nome de outro | só com pedido explícito + `buscar_usuario` da outra pessoa |
+
+
+
+
+
+
+
 

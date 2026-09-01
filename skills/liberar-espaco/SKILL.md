@@ -11,16 +11,16 @@ description: >-
 
 Responda em portugues. Medir primeiro; apagar so depois de confirmar. Nao e desenvolvimento — nao perguntar Pro/Simples.
 
-Maquina Clamed (995670.CLAMED):
+Ambiente tipico (WSL2 + Ubuntu no Windows) — confirmar usuario/distro de cada maquina antes de agir:
 
 | Item | Valor |
 |------|--------|
-| Distro | `Ubuntu` (WSL2) |
-| Usuario Linux | `cordeiro` |
-| VHDX | `C:\Users\995670.CLAMED\AppData\Local\wsl\Ubuntu\ext4.vhdx` (achar `*.vhdx` se mudou) |
+| Distro | `Ubuntu` (WSL2) — confirmar com `wsl -l -v` |
+| Usuario Linux | confirmar com `whoami` dentro do WSL |
+| VHDX | `$env:LOCALAPPDATA\wsl\Ubuntu\ext4.vhdx` (achar `*.vhdx` se mudou) |
 | Backup | `U:\wsl-backup-ubuntu\` (alternativa: `M:`) |
 | Docker | **dentro do Ubuntu**, nao Docker Desktop |
-| Projetos Windows | `C:\Users\995670.CLAMED\Desenvolvimentos` (costuma ser pequeno, ~2–3 GB) |
+| Projetos Windows | `$env:USERPROFILE\Desenvolvimentos` (costuma ser pequeno, ~2–3 GB) |
 
 ## Execucao
 
@@ -43,7 +43,7 @@ wsl -l -v
 wsl -d Ubuntu df -h /
 wsl -d Ubuntu docker system df
 wsl -d Ubuntu -u root du -x -h --max-depth=1 /
-wsl -d Ubuntu du -h --max-depth=1 /home/cordeiro
+wsl -d Ubuntu du -h --max-depth=1 /home/<usuario-wsl>
 ```
 
 Windows (FSO / `dir`) nos suspeitos: `AppData\Local\wsl`, `AppData\Local\Temp`, `AppData\Local\npm-cache`, `AppData\Roaming\Cursor`, `AppData\Local\insomnia`, `AppData\Local\Programs`.
@@ -54,7 +54,7 @@ Se `wsl` falhar com **falha catastrofica** / `getpwnam` / `E_UNEXPECTED`: disco 
 
 Ordem tipica:
 
-1. **VHDX do WSL** (dezenas de GB). Por dentro: Docker em `/var/lib/containerd` (snapshotter overlayfs) + `/var/lib/docker` + `/home/cordeiro`.
+1. **VHDX do WSL** (dezenas de GB). Por dentro: Docker em `/var/lib/containerd` (snapshotter overlayfs) + `/var/lib/docker` + `/home/<usuario-wsl>`.
 2. `pagefile.sys` (~29 GB) — nao apagar.
 3. Temp Windows (instaladores `vscode-stable-user-x64*`, `cursor-sandbox-cache`, swap `.vhdx` do WSL em Temp).
 4. Cursor `state.vscdb`, Insomnia versoes antigas, npm-cache.
@@ -82,7 +82,7 @@ wsl -d Ubuntu docker ps -a
 
 Alvos recorrentes (so se o usuario confirmar / pedir):
 
-- `enclavex-backstage*` + pasta `/home/cordeiro/enclavex-backstage`
+- `enclavex-backstage*` + pasta `/home/<usuario-wsl>/enclavex-backstage`
 - copias `xml-translog` **exceto** `xml-translog-app:latest` se ainda houver container
 - Kafka local: `apache/kafka`, `kafbat/kafka-ui` + containers `kafka-dev-*` (recria quando precisar)
 - `load6c-*` / `load6o-*` (teste de carga)
@@ -132,17 +132,24 @@ Avisos `pax format cannot archive sockets` sao ok.
 
 ```text
 wsl --unregister Ubuntu
-wsl --import Ubuntu C:\Users\995670.CLAMED\AppData\Local\wsl\Ubuntu U:\wsl-backup-ubuntu\ubuntu-AAAA-MM-DD.tar --version 2
-wsl --manage Ubuntu --set-default-user cordeiro
+wsl --import Ubuntu $env:LOCALAPPDATA\wsl\Ubuntu U:\wsl-backup-ubuntu\ubuntu-AAAA-MM-DD.tar --version 2
+wsl --manage Ubuntu --set-default-user <usuario-wsl>
 wsl -d Ubuntu -e whoami
 wsl -d Ubuntu df -h /
 ```
 
 Import em PC com **16 GB RAM** pode falhar com memoria insuficiente e **nao registrar** a distro mesmo com exit 0. Conferir `wsl -l -v` **antes** de apagar o tar. Se distro sumiu: o tar ainda vale; repetir o import.
 
-Apagar o `.tar` **somente** quando Ubuntu lista, `whoami` = `cordeiro`, `df -h /` ok.
+Apagar o `.tar` **somente** quando Ubuntu lista, `whoami` mostrar o usuario esperado, `df -h /` ok.
 
 ## 5. Relatorio
 
 Antes/depois: C: livres, tamanho do VHDX, `df -h /`, `docker system df`. Dizer o que ficou de proposito.
+
+
+
+
+
+
+
 
