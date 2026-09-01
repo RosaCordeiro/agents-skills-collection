@@ -1,0 +1,41 @@
+---
+description: Nao aninhar Pro/Simples via Task; ARCH uma vez por entrega
+alwaysApply: true
+---
+
+# Custo de subagent (nao aninhar o Pro)
+
+## Proibido via Task
+
+Nunca lancar Task/subagent com:
+
+- `desenvolvimento-pro`
+- `desenvolvimento-simples`
+- `desenvolvimento` (roteador)
+
+Esses papéis rodam **neste chat**: ler `~/.cursor/agents/<nome>.md` e cumprir. Relancar Pro porque “o outro agent travou” duplica Sonnet + ARCH + review.
+
+## Task permitida no fluxo Pro
+
+Somente:
+
+- `arquitetura-pro` — **uma vez por entrega**, depois dos Requisitos aprovados
+- `review-pro` — após Código; de novo só depois de corrigir achados
+- `review-testes-pro` — após Testes automáticos (Fase 6); de novo após corrigir testes ou código
+
+`explore` / `shell` pontuais ok. Nao usar `generalPurpose` para “continuar o Pro”.
+
+## Arquitetura — 1× por entrega; emendar, não relançar
+
+**Gate obrigatório** antes de Task `arquitetura-pro`:
+
+1. Verificar se `docs/arquitetura/ARCH-*.md` (ou DESIGN-*) **já existe** na branch para esta entrega.
+2. **Se existe:** o orquestrador **emenda o mesmo arquivo** neste chat (SPEC mudou, amend v0.x, correção de escopo). **Proibido** relançar `arquitetura-pro`.
+3. **Só lançar Task** se **não** houver ARCH ainda (primeira Fase 2 da entrega).
+4. **Exceções** (relançar permitido): usuário pediu redo explícito; ou Task anterior falhou **sem** gravar artefato no disco.
+
+Relançar ARCH “por conveniência” ou “atualizar design” com subagent duplica Sonnet/Opus — **custo proibido**.
+
+## Opus
+
+Regra `modelo-sonnet.mdc`: Opus so com pedido explicito neste chat.

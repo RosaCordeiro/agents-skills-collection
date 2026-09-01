@@ -1,0 +1,15 @@
+---
+description: Greenfield obrigatorio — pasta .ai com context, rules, decisions, docs
+alwaysApply: true
+---
+
+# Pasta `.ai` em projetos novos
+
+Ao **criar projeto, servico, app, CLI, MCP server ou sistema novo** (qualquer stack):
+
+1. Ler e aplicar a skill **`projeto-ai`**: `~/.cursor/skills/projeto-ai/SKILL.md`
+2. Criar `.ai/` na raiz do projeto **antes** do primeiro codigo de produto
+3. Subpastas obrigatorias: `context/`, `rules/`, `decisions/`, `docs/`
+4. Usar templates em `~/.cursor/skills/projeto-ai/templates/`
+
+Repo legado com `.ai/` existente: manter atualizado; nao recriar do zero a cada feat.

@@ -1,0 +1,33 @@
+---
+description: Sonnet padrao vs thinking-high; Grok medium nos reviews; Opus so pedido explicito
+alwaysApply: true
+---
+
+# Modelos — slugs e fallbacks
+
+Mapa: `~/.cursor/skills/dev-all-in-one/modelos.md`
+
+## Sonnet — dois níveis
+
+| Nível | Slug | Uso |
+|-------|------|-----|
+| **Trabalho** | `claude-sonnet-5` | Orquestrador, simples, código, spec, pb-sybase |
+| **Design / auditoria** | `claude-sonnet-5-thinking-high` | **Só** `arquitetura-pro` (1× ARCH) e `auditor` |
+
+**Não** usar `thinking-high` no orquestrador nem no código do dia a dia — gasta tokens de raciocínio interno sem necessidade.
+
+Sonnet **não** tem `high-fast`; isso é Grok (`cursor-grok-4.5-high-fast`). Reviews usam **`cursor-grok-4.6-medium`**.
+
+## Entrega guiada
+
+| Fases | Executor | Primário |
+|-------|----------|----------|
+| 1, 3, 5, 6, 8, 9 | Orquestrador | `claude-sonnet-5` |
+| 2 | `arquitetura-pro` | `claude-sonnet-5-thinking-high` |
+| 4, 7 | reviews | `cursor-grok-4.6-medium` |
+
+## Regras
+
+- **Opus** só com pedido explícito neste chat.
+- Reviews: Grok medium → Sonnet padrão; **nunca** Opus nem thinking-high por padrão.
+- Não sugerir Opus. Não perguntar se quer Opus.

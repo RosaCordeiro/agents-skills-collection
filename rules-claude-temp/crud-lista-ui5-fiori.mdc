@@ -1,0 +1,15 @@
+---
+description: Padrao de telas CRUD lista UI5/Fiori (filtros, icones, ativar/inativar)
+globs: "**/webapp/view/**/*.xml,**/webapp/controller/**/*.js,**/webapp/css/**/*.css"
+alwaysApply: false
+---
+
+# CRUD lista UI5 / Fiori
+
+Ao criar ou alterar telas de consulta/CRUD, aplicar o padrao em
+`~/.cursor/skills/ui5/crud-lista.md` (skills `ui5` e `fiori`).
+
+Nao improvisar: filtros separados, situacao padrao Ativo, acoes so icone+tooltip,
+Ativar/Inativar no mesmo slot, situacao fora do form de editar, lista sem caixa dupla,
+sem botao Atualizar, menu so com a lista. Se a linha tiver **mais de 3** acoes
+(ativas ou inativas), usar `MenuButton` overflow (⋮); indisponiveis desabilitadas.
