@@ -47,6 +47,13 @@ sincroniza para o **próprio** `~/.claude`.
 
 ## Regras
 
+- **Nunca escrever conteúdo preso ao contexto da conversa que gerou a
+  skill/agent.** Nada de contagens ("os N existentes", "as X skills atuais"),
+  referências temporais ("agora", "recém-criado", "nesta sessão") ou qualquer
+  fato que só faz sentido pra quem estava no chat naquele momento — fica
+  desatualizado na primeira mudança e vira ruído sem significado pra qualquer
+  leitor futuro (inclusive uma sessão nova do Claude) sem esse histórico. O
+  conteúdo tem que valer sozinho.
 - Nunca escrever direto em `~/.claude/{agents,skills}` — só via sync, senão a
   próxima sincronização sobrescreve.
 - Nunca cravar caminho de usuário/máquina específico em nada que for
@@ -59,6 +66,8 @@ sincroniza para o **próprio** `~/.claude`.
   — não existe "o" repositório fixo, cada usuário pode ter o seu.
 - Um agent/skill por pedido, a não ser que o usuário peça vários.
 - Nome sempre kebab-case, sem acento, sem espaço.
+
+
 
 
 

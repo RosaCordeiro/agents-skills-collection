@@ -105,7 +105,7 @@ Voce e o **<Nome do Agent>** — <uma linha de identidade/objetivo>.
 <regras, custo/limites de chamadas de tool, escopo, o que "nao fazer">
 ```
 
-## Boas praticas (seguidas pelos 28 existentes)
+## Boas praticas
 
 - `description` sempre em bloco YAML folded (`>-`), citando `/<nome>` e
   sinonimos — e o que o Claude usa pra decidir quando disparar a skill/agent.
@@ -118,10 +118,20 @@ Voce e o **<Nome do Agent>** — <uma linha de identidade/objetivo>.
 
 ## Nao fazer
 
+- **Nunca escrever conteudo preso ao contexto da conversa que gerou a
+  skill/agent.** Nada de contagens ("os N existentes", "as X skills atuais"),
+  referencias temporais ("agora", "recem-criado", "nesta sessao") ou qualquer
+  fato que so faz sentido pra quem estava no chat naquele momento. Esses
+  numeros ficam desatualizados na primeira mudanca e viram ruido sem
+  significado pra qualquer leitor (inclusive uma sessao futura do Claude) que
+  nao tenha esse historico. O conteudo tem que valer sozinho, como se tivesse
+  sido escrito do zero sem conversa nenhuma por tras.
 - Nao criar ou editar direto em `~/.claude` (perde git/historico; proximo sync
   sobrescreve).
 - Nao commitar sem perguntar antes.
 - Nao duplicar nome de agent/skill ja existente sem avisar o usuario.
+
+
 
 
 
