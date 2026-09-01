@@ -28,14 +28,22 @@ sincroniza para o **próprio** `~/.claude`.
    `/<nome>` e sinônimos), `model` (só em agent, opcional — omitir herda o
    padrão da sessão). Nunca gravar caminho fixo de usuário/máquina
    (`C:\Users\<alguém>\...`) dentro do conteúdo criado.
-4. Rodar, a partir da raiz deste repositório (onde fica
-   `sync-agents-skills.ps1`): `.\sync-agents-skills.ps1` (sem `-Commit`
-   primeiro). O script resolve sozinho `$env:USERPROFILE\.claude` de quem
-   executa — vale em qualquer pasta daquele usuário, não só na raiz do repo.
-5. Mostrar o que mudou e perguntar se pode commitar. Se sim:
-   `.\sync-agents-skills.ps1 -Commit`.
-6. Não precisa reiniciar o Claude Code — skills/agents recarregam na sessão
-   atual assim que o arquivo existe em `~/.claude`.
+4. Ativar localmente, a partir da raiz deste repositório (onde fica
+   `sync-agents-skills.ps1`), só na direção fonte → pessoal:
+   `.\sync-agents-skills.ps1 -Direction cursor-to-claude`. O script resolve
+   sozinho `$env:USERPROFILE\.claude` de quem executa — vale em qualquer pasta
+   daquele usuário. Não precisa reiniciar o Claude Code.
+5. **Publicar (git) — só se o usuário pedir para subir/commitar, nunca por
+   iniciativa própria:**
+   1. Identificar o repositório antes de tudo (cada pessoa pode ter seu
+      próprio fork — não assumir qual): `git -C agents-skills-collection-import
+      remote get-url origin` + `branch --show-current`. Mostrar ao usuário e
+      confirmar antes de seguir ("vou publicar em `<url>`, branch `<branch>`").
+   2. Commitar só os arquivos desta tarefa (nunca `-A` — o sync reescreve todo
+      mundo e gera ruído de encoding em arquivos que não mudaram de verdade):
+      `.\sync-agents-skills.ps1 -Commit -Paths @('agents/<nome>.md','skills/<nome>/') -Message "feat: adiciona skill/agent <nome>"`.
+   3. Perguntar explicitamente antes do `git push` (afeta repo remoto/
+      compartilhado). Se confirmado: `.\sync-agents-skills.ps1 -Push`.
 
 ## Regras
 
@@ -43,9 +51,15 @@ sincroniza para o **próprio** `~/.claude`.
   próxima sincronização sobrescreve.
 - Nunca cravar caminho de usuário/máquina específico em nada que for
   commitado — isso é o que torna o repositório compartilhável.
-- Nunca commitar sem confirmar com o usuário.
+- Nunca commitar sem confirmar com o usuário, e nunca dar `git push` sem
+  confirmação explícita separada (é ação sobre repositório remoto).
+- Nunca `git add -A` ao publicar uma skill/agent nova — sempre `-Paths` com os
+  caminhos exatos criados/alterados nesta tarefa.
+- Sempre identificar o remote (`git remote get-url origin`) antes de publicar
+  — não existe "o" repositório fixo, cada usuário pode ter o seu.
 - Um agent/skill por pedido, a não ser que o usuário peça vários.
 - Nome sempre kebab-case, sem acento, sem espaço.
+
 
 
 

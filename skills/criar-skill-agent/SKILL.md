@@ -36,19 +36,37 @@ sobrescreve com o que estiver em `agents-skills-collection-import`.
    `...\skills` — nao sobrescrever nome existente sem avisar.
 3. Criar o(s) arquivo(s) seguindo os templates abaixo. Nao usar nenhum caminho
    fixo de usuario/maquina no conteudo (nada de `C:\Users\<alguem>\...` cravado).
-4. Rodar, a partir da raiz deste repositorio (onde fica `sync-agents-skills.ps1`;
-   sem commit primeiro, so pra ver o que muda):
+4. Ativar localmente — a partir da raiz deste repositorio (onde fica
+   `sync-agents-skills.ps1`), so na direcao fonte -> pessoal (evita ida-e-volta
+   desnecessaria que suja o `git status` com ruido de encoding):
    ```powershell
-   .\sync-agents-skills.ps1
+   .\sync-agents-skills.ps1 -Direction cursor-to-claude
    ```
    O script resolve sozinho a pasta pessoal (`$env:USERPROFILE\.claude`) de quem
    o executa — funciona igual para qualquer usuario/maquina que clonar o repo.
-5. Perguntar ao usuario se pode commitar. Se sim:
-   ```powershell
-   .\sync-agents-skills.ps1 -Commit
-   ```
-6. Nao precisa reiniciar o Claude Code — mudancas em skills/agents recarregam
-   na sessao atual assim que os arquivos existem em `~/.claude`.
+   Nao precisa reiniciar o Claude Code: skills/agents recarregam na sessao
+   atual assim que o arquivo existe em `~/.claude`.
+5. **Fase Publicar (git) — so se o usuario pedir para subir/commitar:**
+   1. Identificar o repositorio antes de qualquer coisa (cada pessoa pode ter
+      o proprio fork/repo — nao assumir qual e):
+      ```powershell
+      git -C agents-skills-collection-import remote get-url origin
+      git -C agents-skills-collection-import branch --show-current
+      ```
+      Mostrar o resultado ao usuario ("vou publicar em `<url>`, branch
+      `<branch>` — confirma?") antes de seguir.
+   2. Commitar **so os arquivos criados/alterados nesta tarefa** (nunca `-A` —
+      o sync reescreve todo mundo e cria ruido de encoding em arquivos que nao
+      mudaram de verdade):
+      ```powershell
+      .\sync-agents-skills.ps1 -Commit -Paths @('agents/<nome>.md','skills/<nome>/') -Message "feat: adiciona skill/agent <nome>"
+      ```
+   3. Perguntar explicitamente se pode dar `git push` (acao que afeta o repo
+      remoto/compartilhado — nunca assumir "sim"). Se confirmado:
+      ```powershell
+      .\sync-agents-skills.ps1 -Push
+      ```
+      (ou, com o commit no mesmo passo: `-Commit -Push` junto com `-Paths`).
 
 ## Template — Skill
 
@@ -104,6 +122,7 @@ Voce e o **<Nome do Agent>** — <uma linha de identidade/objetivo>.
   sobrescreve).
 - Nao commitar sem perguntar antes.
 - Nao duplicar nome de agent/skill ja existente sem avisar o usuario.
+
 
 
 
