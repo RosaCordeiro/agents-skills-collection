@@ -1,4 +1,4 @@
-# Modelo — AUD-NNN.md
+﻿# Modelo — AUD-NNN.md
 
 Copiar e preencher. Substituir NNN / campos. Gravado em `docs/auditoria/AUD-NNN.md`.
 
@@ -143,3 +143,4 @@ Criar ou atualizar `docs/auditoria/INDICE.md`:
 ```
 
 Linha mais recente no topo.
+

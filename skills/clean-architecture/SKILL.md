@@ -1,4 +1,4 @@
----
+﻿---
 name: clean-architecture
 description: >-
   Clean Architecture com toque hexagonal (ports/adapters) para APIs e servicos
@@ -145,3 +145,4 @@ Tipos/DTOs de wire podem viver no adapter **desde que** o dominio nao dependa de
 - [ ] Binding no container (TS) ou modulo de DI (Python)
 - [ ] Teste de dominio ou use case com porta mockada
 - [ ] `.ai/rules/desenvolvimento.md` atualizado se convencao local divergir
+

@@ -1,4 +1,4 @@
----
+﻿---
 name: auditor
 description: >-
   Audita o sistema inteiro sem escrever codigo: arquitetura, modelagem, codigo,
@@ -87,7 +87,7 @@ Comando de teste = o que o README/scripts **ja** usam. Nao introduzir framework 
 
 ### 4. Rodar a suite automatizada (obrigatorio tentar)
 
-Executar no **WSL** (`~/.cursor/rules/execucao-wsl.mdc`): programa direto, paths `/mnt/c/...`, sem `bash -lc '...'`.
+Executar no **WSL** (`~/.claude/rules/execucao-wsl.mdc`): programa direto, paths `/mnt/c/...`, sem `bash -lc '...'`.
 
 1. Descobrir o comando (README, `package.json` scripts, Makefile, `scripts/`).
 2. Se a suite precisar de Docker/DB e o ambiente estiver fora: **`AskQuestion`** — `Suite precisa do ambiente. Como seguir?`
@@ -178,3 +178,4 @@ Nao oferecer “quer que eu corrija?”. Pode oferecer: reauditar depois que out
 | Teste de mesa Sybase | `teste-mesa-sybase` |
 
 Nao dispara o seletor Pro vs Simples (nao e desenvolvimento).
+

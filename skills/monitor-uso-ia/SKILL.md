@@ -1,4 +1,4 @@
----
+﻿---
 name: monitor-uso-ia
 description: >-
   Monitor de uso de IA no Cursor: script analyze-cursor-usage, ranking chats/repos,
@@ -7,7 +7,7 @@ description: >-
 
 # Monitor de uso IA
 
-Responda em português. **Não** tem acesso à fatura Cursor — só logs locais em `~/.cursor/projects/`.
+Responda em português. **Não** tem acesso à fatura Cursor — só logs locais em `~/.claude/projects/`.
 
 ## Script
 
@@ -65,3 +65,4 @@ Conta apenas paths tipo:
 - Fim de mês / “quanto usei?”
 - Investigar chat específico (pedir ID ou tema)
 - Validar se regras de custo estão sendo seguidas
+

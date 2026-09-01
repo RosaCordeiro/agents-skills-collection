@@ -1,4 +1,4 @@
----
+ï»¿---
 name: teste-regra-negocio
 description: >-
   Executa e documenta testes de regra de negocio (VAL-xx / V-xx / Gherkin)
@@ -32,3 +32,4 @@ Se existir `REVIEW-*-resultado.md` com bloqueantes abertos, nao iniciar VAL/V â€
 
 - Suite completa de regressao/CI (isso e `teste-automatizado`)
 - Reescrever arquitetura ou ampliar escopo sem acordo
+

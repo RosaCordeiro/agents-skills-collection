@@ -1,4 +1,4 @@
-# Arquitetura (system design)
+﻿# Arquitetura (system design)
 
 Skill consultiva. Nao implemente codigo de producao aqui — entregue design completo e aguarde aprovacao. Responda em portugues.
 
@@ -172,3 +172,4 @@ Ordem tipica na implementacao:
 - Desktop C++: implementacao alinhada ao design desta skill
 
 Nao pular code review nem as fases de teste.
+

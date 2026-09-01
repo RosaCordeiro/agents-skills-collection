@@ -1,4 +1,4 @@
-# Notas 0-10
+﻿# Notas 0-10
 
 Julgamento com evidencia. Nao transformar isto em Sonar (contagem de violations ≠ nota).
 
@@ -110,3 +110,4 @@ Julgar o codigo, nao o organograma de pastas.
 ## Comparacao entre auditorias
 
 O `INDICE.md` guarda a serie. Na auditoria N+1, 3–5 linhas: o que subiu/desceu vs AUD anterior no **mesmo** repo. Nao comparar xml-translog com clamed.dev.
+

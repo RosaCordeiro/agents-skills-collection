@@ -1,4 +1,4 @@
----
+﻿---
 name: pb-sybase
 description: >-
   Consulta cruzada PowerBuilder 12 (MCP user-pbg) + Sybase ASE homolog
@@ -112,3 +112,4 @@ Se o patch/tela **depende** de coluna/SP nova: primeiro o SQL no `sybase-objects
 | Teste de mesa trigger/SP | `/teste-mesa-sybase` |
 | Spec feat/fix de produto Node (Agent Pro) | skill `especificacao` (não esta) |
 | MCP genérico | skill `mcp` |
+

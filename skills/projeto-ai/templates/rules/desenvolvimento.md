@@ -1,4 +1,4 @@
-# Regras de desenvolvimento (local)
+﻿# Regras de desenvolvimento (local)
 
 ## Branch e commits
 
@@ -8,7 +8,7 @@
 
 ### API/servico TypeScript ou Python
 
-Seguir skill global **`clean-architecture`** (`~/.cursor/skills/clean-architecture/SKILL.md`). Referencia: `api-integracao-syb-kafka`.
+Seguir skill global **`clean-architecture`** (`~/.claude/skills/clean-architecture/SKILL.md`). Referencia: `api-integracao-syb-kafka`.
 
 ```text
 src/
@@ -41,3 +41,4 @@ src/
 ## Proibicoes locais
 
 <!-- ex.: nao commitar .env, nao alterar PBL X sem spec -->
+

@@ -1,4 +1,4 @@
----
+﻿---
 name: pbg
 description: >-
   Altera e valida objetos PowerBuilder 12 via MCP PBG (user-pbg). Toda mudança
@@ -74,3 +74,4 @@ Patch so no PBG → PB ok, SVN vazio. So no `.srw` SVN → Tortoise ok, PB pode 
 | Criar PBL/janela/DW nova | skill `pb-criar-objeto` (`/pb-sybase`) |
 | Consulta PB+Sybase / spec/chamado/mock/DOCX | `/pb-sybase` |
 | MCP server generico | `mcp` |
+

@@ -1,4 +1,4 @@
----
+﻿---
 description: >-
   Porta de entrada da fase de especificacao: classifica feat vs fix, abre a
   branch (feat/ ou fix/), e grava o documento no modelo correto. Em stack
@@ -75,7 +75,7 @@ Gate **N/A** — nao perguntar.
 
 Se for **projeto/servico/app novo** (repo vazio, novo pacote no monorepo, novo MCP/CLI, novo app Fiori/UI5, novo sistema PB):
 
-1. Ler **`projeto-ai`**: `~/.cursor/skills/projeto-ai/SKILL.md`
+1. Ler **`projeto-ai`**: `~/.claude/skills/projeto-ai/SKILL.md`
 2. Criar `.ai/` na raiz correta (templates em `projeto-ai/templates/`)
 3. Preencher rascunho de `context/projeto.md` e `context/stack.md` a partir do que ja se sabe da conversa
 4. Registrar no SPEC (Premissas): *“Contexto de agentes: `.ai/` criado conforme skill `projeto-ai`.”*
@@ -132,3 +132,4 @@ Quem implementa nao leu a conversa. Se uma frase so faz sentido para quem estava
 - Remeter ao chat (*“como combinamos”*, *“conforme discutido”*).
 
 Teste rapido: um desenvolvedor que nao participou consegue implementar **so com o MD**? Se nao, reescrever antes de pedir aprovacao.
+

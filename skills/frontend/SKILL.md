@@ -1,4 +1,4 @@
----
+﻿---
 name: frontend
 description: Implementa e refatora UI com Vue, React, TypeScript e ecossistema JS (Node/Bun). Use quando o trabalho for frontend web nao-SAP, componentes, paginas, CSS, SPA. Nao usar para Fiori/UI5 (skills fiori e ui5).
 ---
@@ -47,3 +47,4 @@ Responda e documente em portugues. Espere aprovacao de plano se a mudanca for gr
 
 Resuma o que mudou. Em seguida use **`AskQuestion`** — prompt: `Proximo passo?`
 - `Ir para code review` | `Seguir com backend/integracao` | `Ajustar frontend` | `Outro (eu digito)`
+

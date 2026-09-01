@@ -1,4 +1,4 @@
-# Projeto
+﻿# Projeto
 
 ## O que e
 
@@ -23,3 +23,4 @@
 ## Premissas
 
 <!-- Decisoes de negocio ou ambiente assumidas -->
+

@@ -1,4 +1,4 @@
-# Modelo FIX — especificacao de correcao de erro
+﻿# Modelo FIX — especificacao de correcao de erro
 
 **Tipo:** `fix` apenas. Features usam `especificacao` + [modelo-feat.md](../especificacao/modelo-feat.md).
 
@@ -126,3 +126,4 @@ Sera executado na fase `teste-regra-negocio` (e regressao em `teste-automatizado
 ## 10. Licoes / prevencao (opcional)
 
 O que evita repetir (teste, alerta, validacao, doc).
+

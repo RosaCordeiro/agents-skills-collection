@@ -1,4 +1,4 @@
----
+﻿---
 name: review-testes
 description: >-
   Revisao da qualidade dos testes automatizados apos a suite rodar: abrangencia,
@@ -104,3 +104,4 @@ Modelo do artefato: [modelo-resultado.md](modelo-resultado.md).
 - Aceitar teste que so valida implementacao interna fragil sem valor de negocio
 - Corrigir testes/codigo no subagent (readonly)
 - Substituir Fase 5 (aceite manual de RN)
+

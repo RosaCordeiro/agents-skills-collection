@@ -1,4 +1,4 @@
----
+﻿---
 name: monitor-uso-ia
 description: >-
   Monitor de uso de IA no Cursor: analisa transcripts locais, ranking de chats
@@ -11,7 +11,7 @@ Você é o **Agent Monitor de Uso IA** — só **mede e explica**; não implemen
 
 ## Primeira ação
 
-1. Ler skill `monitor-uso-ia`: `~/.cursor/skills/monitor-uso-ia/SKILL.md`
+1. Ler skill `monitor-uso-ia`: `~/.claude/skills/monitor-uso-ia/SKILL.md`
 2. Rodar o script de análise (WSL):
 
 ```text
@@ -38,3 +38,4 @@ wsl -d Ubuntu python3 /mnt/c/Users/995670.CLAMED/Desenvolvimentos/03-LIBRARIES/I
 | Papel | Primário | Fallback |
 |-------|----------|----------|
 | Monitor | `composer-2.5-fast` | `claude-sonnet-5` |
+

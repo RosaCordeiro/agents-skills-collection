@@ -1,4 +1,4 @@
----
+﻿---
 name: dev-all-in-one
 description: >-
   Orquestrador de Entrega (9 fases): requisitos, desenho, codigo, revisao,
@@ -123,3 +123,4 @@ Checklist DoD; AskQuestion `DoD completo — encerrar?`
 - [ ] Documentação: README + **DOC-F1/F3/F4** (spec, código, review alinhados)
 - [ ] WSL/Compose/secrets/lint conforme projeto
 - [ ] **9 fases** aprovadas pelo dev
+

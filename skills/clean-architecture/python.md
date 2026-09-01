@@ -1,4 +1,4 @@
-# Python — convencoes
+﻿# Python — convencoes
 
 Mesma **intencao** do padrao TS (`api-integracao-syb-kafka`): dominio no centro, portas abstratas, adapters na borda.
 
@@ -79,3 +79,4 @@ class BuscarDadosSybaseUseCase:
 ## Scripts one-off
 
 Scripts com **so** glue (sem RN) podem ficar em `scripts/` sem camadas completas. Se o script crescer ou repetir regra de negocio → promover para `core/application` + portas (skill `script`).
+

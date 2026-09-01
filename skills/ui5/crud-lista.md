@@ -1,4 +1,4 @@
-# Padrão obrigatório — telas CRUD (lista + ações)
+﻿# Padrão obrigatório — telas CRUD (lista + ações)
 
 Referência canônica para apps **UI5 freestyle** e **Fiori** (Elements ou freestyle). Toda tela de consulta/CRUD nova ou refactorada deve seguir isto. Exemplo vivo: `clamed.dev` → tela **Produtos**.
 
@@ -107,3 +107,4 @@ Aplicar quando o cadastro ou a consulta exibir **cor de tipo** (PBI, task, GMUD,
 - [ ] Sem cor: limpeza simétrica dos estilos inline do título
 - [ ] Fonte da célula da lista **não** forçada pela wash
 - [ ] Form Novo/Editar da entidade-mestre: só pintar título se a SPEC pedir (ex.: visualizar tasks sim; editar PBI pode ficar fora)
+

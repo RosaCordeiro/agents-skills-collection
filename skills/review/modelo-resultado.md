@@ -1,4 +1,4 @@
-# Modelo — REVIEW-NNN-resultado.md
+﻿# Modelo — REVIEW-NNN-resultado.md
 
 Copiar e preencher. Substituir NNN / campos.
 
@@ -69,3 +69,4 @@ Copiar e preencher. Substituir NNN / campos.
 
 Teste de regra de negocio (`teste-regra-negocio`) — VAL-xx / V-xx.
 ```
+

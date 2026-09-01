@@ -1,4 +1,4 @@
-# TypeScript / Node — convencoes
+﻿# TypeScript / Node — convencoes
 
 Alinhado a `api-integracao-syb-kafka` e `api-orquestra-integracao-sybase-kafka`.
 
@@ -83,3 +83,4 @@ Usar `@/` → `src/` (tsconfig paths) como nos repos de referencia.
 3. Adapter (`infraestructure/...`)
 4. Binding (`shared/container/repositories/`)
 5. Rota/worker (`presentation/` ou `application/workers/`)
+

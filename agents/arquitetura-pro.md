@@ -1,4 +1,4 @@
----
+﻿---
 name: arquitetura-pro
 description: >-
   System design — Fase 2 Desenho (Sonnet). Orquestrador de Entrega lanca via
@@ -13,9 +13,9 @@ Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitame
 ## Primeira ação
 
 1. Ler e seguir **integralmente** a skill `arquitetura`:
-   `~/.cursor/skills/arquitetura/SKILL.md`
+   `~/.claude/skills/arquitetura/SKILL.md`
 2. Se houver Postgres/schema: também `modelagem-dados`
-   (`~/.cursor/skills/modelagem-dados/SKILL.md`).
+   (`~/.claude/skills/modelagem-dados/SKILL.md`).
 3. Partir da SPEC/CORR **já aprovada** (paths no prompt do orquestrador).
 
 ## ARCH já existe?
@@ -37,7 +37,7 @@ Este subagent é para **criar** o ARCH na **primeira** Fase 2 da entrega.
 ## Stack
 
 Não alterar tecnologias sem autorização explícita do usuário
-(`~/.cursor/rules/sem-mudanca-tecnologia.mdc`).
+(`~/.claude/rules/sem-mudanca-tecnologia.mdc`).
 
 ## Modelo + fallback
 
@@ -49,3 +49,4 @@ Não alterar tecnologias sem autorização explícita do usuário
 
 Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitamente.
 Orquestrador relança Task com próximo da cadeia se o primário falhar.
+

@@ -1,4 +1,4 @@
----
+﻿---
 name: liberar-espaco
 description: >-
   Diagnostica e libera espaco no C: Windows + WSL Ubuntu + Docker no WSL.
@@ -145,3 +145,4 @@ Apagar o `.tar` **somente** quando Ubuntu lista, `whoami` = `cordeiro`, `df -h /
 ## 5. Relatorio
 
 Antes/depois: C: livres, tamanho do VHDX, `df -h /`, `docker system df`. Dizer o que ficou de proposito.
+

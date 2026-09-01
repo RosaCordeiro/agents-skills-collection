@@ -1,4 +1,4 @@
----
+﻿---
 name: rag
 description: Especialista em RAG — indexacao, retrieval, embeddings, chunking e avaliacao sobre documentos ou bases (Postgres, Mongo, arquivos). Use quando o usuario pedir RAG, retrieval-augmented generation, busca semantica, vector store, embeddings, ou consulta inteligente a dados/documentos via recuperacao.
 ---
@@ -66,3 +66,4 @@ Responda em portugues. Estilo consultivo: alinhar objetivo e fontes antes de imp
 - Colocar secrets ou dumps sensiveis no git
 - Usar RAG onde SQL resolveria com precisao maior
 - Prometer "100% correto" sem camada de citacao/fonte
+

@@ -1,4 +1,4 @@
-# REVIEW-TESTES-NNN — Revisao de testes automatizados
+﻿# REVIEW-TESTES-NNN — Revisao de testes automatizados
 
 - **Branch:** …
 - **Base:** …
@@ -47,3 +47,4 @@
 
 | Data | Acao |
 |------|------|
+

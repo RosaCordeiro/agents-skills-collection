@@ -1,4 +1,4 @@
----
+﻿---
 name: teste-automatizado
 description: >-
   Fase 6 da Entrega guiada: executa suite do projeto e registra evidencia
@@ -34,3 +34,4 @@ Responda em português.
 ## Handoff para Fase 7
 
 Incluir na mensagem de fechamento ou no doc da entrega a **evidência de execução** — o subagent `review-testes-pro` exige isso (RT1).
+

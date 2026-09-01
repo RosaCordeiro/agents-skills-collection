@@ -1,4 +1,4 @@
-# Modelos de descrição SoftDesk (HTML)
+﻿# Modelos de descrição SoftDesk (HTML)
 
 O campo `descricao` é **HTML**. O que faltar: uma pergunta objetiva **ou** a linha `A confirmar.` Não deixar seção vazia.
 
@@ -102,3 +102,4 @@ O que não entra.</p>
 <p><strong>Como validar</strong><br>
 Passo simples de aceite.</p>
 ```
+

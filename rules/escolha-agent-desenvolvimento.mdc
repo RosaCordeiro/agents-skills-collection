@@ -1,4 +1,4 @@
----
+﻿---
 description: No inicio de desenvolvimento, perguntar Entrega guiada vs Direto ao ponto
 alwaysApply: true
 ---
@@ -15,8 +15,8 @@ Quando o usuário **iniciar um desenvolvimento**:
      - `Direto ao ponto` — sem fases; patch ou spike
    - `allow_multiple`: false
 
-2. Entrega guiada → `~/.cursor/agents/desenvolvimento-pro.md`. Nunca Task.
-3. Direto ao ponto → `~/.cursor/agents/desenvolvimento-simples.md`. Nunca Task.
+2. Entrega guiada → `~/.claude/agents/desenvolvimento-pro.md`. Nunca Task.
+3. Direto ao ponto → `~/.claude/agents/desenvolvimento-simples.md`. Nunca Task.
 
 **Não perguntar** em: status, comando isolado, auditoria.
 
@@ -24,8 +24,9 @@ Quando o usuário **iniciar um desenvolvimento**:
 
 `1 Requisitos` → `2 Desenho` → `3 Código` → `4 Revisão` → `5 Aceite` → `6 Testes auto` → `7 Revisão testes` → `8 Documentação` → `9 Encerramento`
 
-Detalhe: `~/.cursor/skills/dev-all-in-one/fases.md`
+Detalhe: `~/.claude/skills/dev-all-in-one/fases.md`
 
 ## Perguntas com seletor
 
 Opções fixas: **`AskQuestion`**, máx. 1 por mensagem.
+

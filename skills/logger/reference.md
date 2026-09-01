@@ -1,4 +1,4 @@
-# Logger — referencia
+﻿# Logger — referencia
 
 Complemento da skill `logger`. Ler sob demanda (catalogo, aceite, exemplos).
 
@@ -116,3 +116,4 @@ app_name:"xml-translog" AND correlation_id:"…"
 | Novo `error` generico depois do error canonico | Um error + `falhaJaLogada` |
 | Keyword unica por instancia (`erro_nf_4226…`) | Keyword de classe + campos (`chave`) |
 | Logar token / senha / payload PII completo | Codigo + id de negocio |
+

@@ -1,4 +1,4 @@
-# Modelo FEAT — especificacao de regra de negocio (padrao de mercado)
+﻿# Modelo FEAT — especificacao de regra de negocio (padrao de mercado)
 
 **Tipo:** `feat` apenas. Bugs/fixes usam `correcao-erro` + [modelo-fix.md](../correcao-erro/modelo-fix.md).
 
@@ -152,3 +152,4 @@ Lista aqui; **execucao** fica na skill `teste-regra-negocio`.
 | Versao | Data | Autor | Mudanca |
 |--------|------|-------|---------|
 | 0.1 | | | Rascunho inicial |
+

@@ -1,4 +1,4 @@
----
+﻿---
 name: softdesk
 description: >-
   Abre chamados no SoftDesk via MCP user-softdesk com texto consistente para o
@@ -73,3 +73,4 @@ API: 60 req/min. Não chamar todos os `listar_*` de uma vez sem necessidade.
 | Spec PB + mock + DOCX | `/pb-sybase` |
 | Encerrar / atividade / mudar status | só se o usuário pedir; `registrar_atividade` |
 | Chamado em nome de outro | só com pedido explícito + `buscar_usuario` da outra pessoa |
+

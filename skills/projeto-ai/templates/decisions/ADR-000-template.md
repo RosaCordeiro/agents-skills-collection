@@ -1,4 +1,4 @@
-# ADR-NNN: Titulo curto da decisao
+﻿# ADR-NNN: Titulo curto da decisao
 
 - **Status:** proposto | aceito | substituido por ADR-XXX
 - **Data:** YYYY-MM-DD
@@ -22,3 +22,4 @@
 ## Referencias
 
 <!-- link para ARCH-NNN, SPEC, issue -->
+

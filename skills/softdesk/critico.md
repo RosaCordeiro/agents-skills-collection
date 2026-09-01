@@ -1,4 +1,4 @@
-# SoftDesk — ser crítico (perguntar + PB/Sybase)
+﻿# SoftDesk — ser crítico (perguntar + PB/Sybase)
 
 O usuário manda texto preguiçoso. **Não** transformar isso em chamado na hora. Extraia, **desconfie**, complete fato, só então rascunhe.
 
@@ -31,7 +31,7 @@ Causa raiz: o que já se sabe vs o que investigar. Projeto/melhoria: aceite e fo
 
 Quando o assunto for WMS/Fiscal, tela `WS`/`RO`, pedido, NF, cor de status, estoque, SP/trigger:
 
-1. Ler `~/.cursor/skills/pb-sybase/consulta.md` (formato) e usar as **mesmas fontes** — **não** lançar Task `/pb-sybase` nem escrever SPEC/DOCX.
+1. Ler `~/.claude/skills/pb-sybase/consulta.md` (formato) e usar as **mesmas fontes** — **não** lançar Task `/pb-sybase` nem escrever SPEC/DOCX.
 2. **PB:** MCP `user-pbg-wms` ou `user-pbg-fiscal`. `pbg_search` ≤ 20; `pbg_read_object` ~80 linhas. Achar a window/DW e, se possível, de onde vem a cor/status.
 3. **Homolog:** MCP `user-sybase-hmg`. `sybase_describe_table` / `sybase_query_readonly` (`maxRows` baixo) no documento que o usuário citou. Só SELECT.
 4. **Git:** Grep curto em `sybase-objects` se houver trigger/SP óbvio.
@@ -49,3 +49,4 @@ Spec longa para outro dev continua `/pb-sybase` **depois** do chamado, se o usu�
 ## Abrir só depois
 
 Rascunho (HTML) + payload. Ok explícito. `criar_chamado` → se `atendente` vier vazio, `editar_chamado` com 393. Conferir `usuario.nome` = Guilherme.
+

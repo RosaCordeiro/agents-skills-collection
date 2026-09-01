@@ -1,4 +1,4 @@
-# Modelos por fase e agent
+﻿# Modelos por fase e agent
 
 Referência canônica — **não usar `inherit`**. Sempre slug primário + fallback.
 
@@ -62,3 +62,4 @@ Referência canônica — **não usar `inherit`**. Sempre slug primário + fallb
 | `claude-sonnet-5-thinking-high` | Other Models |
 | `cursor-grok-4.6-medium` | Cursor Models |
 | `composer-2.5-fast` | Cursor Models |
+

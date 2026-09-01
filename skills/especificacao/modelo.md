@@ -1,4 +1,4 @@
-# Modelo de especificacao
+﻿# Modelo de especificacao
 
 > **Descontinuado como entrada unica.** Use o modelo pelo tipo:
 >
@@ -6,3 +6,4 @@
 > - **fix** → [../correcao-erro/modelo-fix.md](../correcao-erro/modelo-fix.md)
 >
 > A skill `especificacao` classifica feat vs fix e abre a branch antes de gravar.
+

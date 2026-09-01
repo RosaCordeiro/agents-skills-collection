@@ -1,4 +1,4 @@
-# Catalogo de validacoes
+﻿# Catalogo de validacoes
 
 Usar os numeros abaixo no AUD (`Validacao 1`, `Validacao 2`, …). Nao pular ID: se nao aplicar, marcar `N/A` com motivo.
 
@@ -237,3 +237,4 @@ Obrigatorio acrescentar se o mapa revelar mecanismos que o catalogo generico nao
 - Multi-tenant / UF / filial
 
 Formato: **Validacao 33 — &lt;nome concreto&gt;** + o que foi checado + evidencia.
+

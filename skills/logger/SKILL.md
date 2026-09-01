@@ -1,4 +1,4 @@
----
+﻿---
 name: logger
 description: >-
   Padrao de logs com @clamed/logger: keywords, niveis, event (name/action/outcome),
@@ -278,3 +278,4 @@ Checklist do agent ao escrever log novo:
 - Remover `keywords` nesta etapa
 - Exigir logger Clamed em Python/Go/SAP/ABAP
 - Dashboards Kibana finais (objetivo posterior; os campos preparam a base)
+

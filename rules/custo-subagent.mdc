@@ -1,4 +1,4 @@
----
+﻿---
 description: Nao aninhar Pro/Simples via Task; ARCH uma vez por entrega
 alwaysApply: true
 ---
@@ -13,7 +13,7 @@ Nunca lancar Task/subagent com:
 - `desenvolvimento-simples`
 - `desenvolvimento` (roteador)
 
-Esses papéis rodam **neste chat**: ler `~/.cursor/agents/<nome>.md` e cumprir. Relancar Pro porque “o outro agent travou” duplica Sonnet + ARCH + review.
+Esses papéis rodam **neste chat**: ler `~/.claude/agents/<nome>.md` e cumprir. Relancar Pro porque “o outro agent travou” duplica Sonnet + ARCH + review.
 
 ## Task permitida no fluxo Pro
 
@@ -39,3 +39,4 @@ Relançar ARCH “por conveniência” ou “atualizar design” com subagent du
 ## Opus
 
 Regra `modelo-sonnet.mdc`: Opus so com pedido explicito neste chat.
+

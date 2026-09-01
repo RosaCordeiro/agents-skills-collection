@@ -1,4 +1,4 @@
-# Mapa das 9 fases — Entrega guiada
+﻿# Mapa das 9 fases — Entrega guiada
 
 Referência rápida para quem usa o **Orquestrador de Entrega** (`desenvolvimento-pro`).
 
@@ -65,3 +65,4 @@ Skill: `documentacao` (checklists R1–R10 + DOC-F1/F3/F4).
 | `pro`, `entrega guiada`, `9 fases` | Fluxo completo |
 | `revisão de testes`, `fase 7` | Revisão de testes |
 | `simples`, `direto` | Sem fases |
+

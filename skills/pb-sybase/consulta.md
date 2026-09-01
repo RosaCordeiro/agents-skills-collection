@@ -1,4 +1,4 @@
-# Relatório de consulta PB + Sybase
+﻿# Relatório de consulta PB + Sybase
 
 Usar este formato na resposta ao usuário (completo, sem pular fonte). Omitir seção só se a fonte não se aplica — e dizer por quê.
 
@@ -69,3 +69,4 @@ Não dumpar trigger de 400 linhas: resumir regras (IF, raiserror, tabelas tocada
 - Ler: `pbg_read_object` com `startLine`/`endLine`.
 - Validar compile: `pbg_compile` no objeto. Erro ORCA verbatim.
 - Mudar: `pbg_apply_patch` (import+compile). Sem `pbg_build` sem pedido.
+

@@ -1,11 +1,11 @@
----
+﻿---
 description: Sonnet padrao vs thinking-high; Grok medium nos reviews; Opus so pedido explicito
 alwaysApply: true
 ---
 
 # Modelos — slugs e fallbacks
 
-Mapa: `~/.cursor/skills/dev-all-in-one/modelos.md`
+Mapa: `~/.claude/skills/dev-all-in-one/modelos.md`
 
 ## Sonnet — dois níveis
 
@@ -31,3 +31,4 @@ Sonnet **não** tem `high-fast`; isso é Grok (`cursor-grok-4.5-high-fast`). Rev
 - **Opus** só com pedido explícito neste chat.
 - Reviews: Grok medium → Sonnet padrão; **nunca** Opus nem thinking-high por padrão.
 - Não sugerir Opus. Não perguntar se quer Opus.
+

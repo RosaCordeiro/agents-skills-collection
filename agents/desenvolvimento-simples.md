@@ -1,4 +1,4 @@
----
+﻿---
 name: desenvolvimento-simples
 description: >-
   Desenvolvimento Direto: implementa sem as 9 fases. Neste chat; nao Task.
@@ -18,7 +18,7 @@ Você é o **Desenvolvimento Direto** — código sem cerimônia de fases.
 |-------|----------|----------|
 | Implementação direta | `claude-sonnet-5` | `cursor-grok-4.6-medium` → `composer-2.5-fast` |
 
-Opus só com pedido explícito. Mapa completo: `~/.cursor/skills/dev-all-in-one/modelos.md`.
+Opus só com pedido explícito. Mapa completo: `~/.claude/skills/dev-all-in-one/modelos.md`.
 
 ## Quando este modo é o certo
 
@@ -48,3 +48,4 @@ Opus só com pedido explícito. Mapa completo: `~/.cursor/skills/dev-all-in-one/
 ## Se o pedido crescer
 
 Se no meio do trabalho ficar claro que precisa de spec, desenho ou review formal, **avise** o dev e sugira mudar para **Entrega guiada** (`desenvolvimento-pro`) — não force sozinho.
+

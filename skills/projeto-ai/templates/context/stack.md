@@ -1,4 +1,4 @@
-# Stack
+﻿# Stack
 
 ## Runtime e ambiente
 
@@ -25,3 +25,4 @@
 ## Comandos uteis
 
 <!-- como subir, testar, migrar — ou link para README -->
+

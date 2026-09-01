@@ -1,4 +1,4 @@
----
+﻿---
 name: backend
 description: >-
   Implementa APIs e servicos com Node/TypeScript, Go ou Python (Clean Architecture
@@ -30,7 +30,7 @@ Responda em portugues. Em tarefas grandes, valide o plano antes de implementar. 
 
 ## Arquitetura (obrigatorio TS/Python)
 
-Antes de codar API ou servico em **TypeScript** ou **Python**, ler e seguir **`clean-architecture`** (`~/.cursor/skills/clean-architecture/SKILL.md`).
+Antes de codar API ou servico em **TypeScript** ou **Python**, ler e seguir **`clean-architecture`** (`~/.claude/skills/clean-architecture/SKILL.md`).
 
 Padrao Clamed (referencia: `api-integracao-syb-kafka`):
 
@@ -52,9 +52,9 @@ Nao colocar SQL, cliente HTTP ou regra de negocio em controllers; use cases inje
 - Secrets apenas via env / secrets do Compose — nunca no codigo
 - Camadas conforme `clean-architecture` (nao “separar quando couber” — padrao desde o inicio em TS/Python)
 - Migracoes/versionamento de schema quando houver DB relacional
-- **Postgres:** ler e seguir `modelagem-dados` (`~/.cursor/skills/modelagem-dados/SKILL.md`) — PK/FK `uuid`, `varchar(n)`, `TEXT` só para texto longo
+- **Postgres:** ler e seguir `modelagem-dados` (`~/.claude/skills/modelagem-dados/SKILL.md`) — PK/FK `uuid`, `varchar(n)`, `TEXT` só para texto longo
 - Healthcheck e logs estruturados em servicos novos
-- **Logs Node (`@clamed/logger`):** ler e seguir `logger` (`~/.cursor/skills/logger/SKILL.md`) — keywords, niveis, `event`, `correlation_id` automatico
+- **Logs Node (`@clamed/logger`):** ler e seguir `logger` (`~/.claude/skills/logger/SKILL.md`) — keywords, niveis, `event`, `correlation_id` automatico
 - Preferir ferramentas Linux (bash, make, compose) a scripts Windows
 - Branch: `feat/` ou `fix/` conforme o caso
 
@@ -91,3 +91,4 @@ Ao gravar histórico campo a campo (ex.: GMUD):
 
 Resuma endpoints/servicos. Em seguida use **`AskQuestion`** — prompt: `Proximo passo?`
 - `Ir para code review` | `Seguir com frontend` | `Ajustar backend` | `Outro (eu digito)`
+

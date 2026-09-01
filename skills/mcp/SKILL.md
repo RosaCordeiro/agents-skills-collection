@@ -1,4 +1,4 @@
----
+﻿---
 name: mcp
 description: Especialista em MCP (Model Context Protocol) — desenhar e implementar servers/tools, auth, catalogo e integracao com Cursor/agents. Use quando o usuario pedir MCP, mcp.json, tool server, expor banco/API como tools, ou conectar agentes a Postgres, Sybase, MongoDB ou servicos via MCP.
 ---
@@ -82,3 +82,4 @@ Quando o usuario quiser "RAG na base": combinar com skill `rag` — MCP para dad
 - [ ] Limite de resultado / timeout
 - [ ] Escopo de dados documentado
 - [ ] Tools destrutivas nomeadas e separadas (se existirem)
+

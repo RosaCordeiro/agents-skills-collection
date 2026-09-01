@@ -1,4 +1,4 @@
----
+﻿---
 name: fiori
 description: Especialista em aplicativos SAP Fiori — design de app, tiles, Launchpad, space/page, navegacao, intents, Fiori Elements vs freestyle, padrao de telas CRUD (lista), e entrega ponta a ponta no ecossistema Fiori. Use quando o usuario pedir Fiori, Launchpad, tile, intent, FLP, Fiori Elements, lista CRUD Fiori, ou app Fiori SAP — nao para detalhes puros de controle UI5 nem ABAP isolado.
 ---
@@ -90,3 +90,4 @@ Checklist DoD da tela: o mesmo de `ui5/crud-lista.md`.
 - [ ] Contrato OData/CDS listado para `abap`
 - [ ] Pontos de UI complexa listados para `ui5`
 - [ ] README de como abrir no Launchpad / ambiente local
+

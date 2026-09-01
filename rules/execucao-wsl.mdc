@@ -1,4 +1,4 @@
----
+﻿---
 description: Como executar comandos no WSL sem travar o chat (evitar bash -lc)
 alwaysApply: true
 ---
@@ -31,3 +31,4 @@ Neste ambiente (Windows + WSL Ubuntu, `docker`/`node`/`python3` vivem no WSL), o
 - Para comandos que dependem de Node/Yarn (nvm), preferir um script `.sh` que faça
   `. "$HOME/.nvm/nvm.sh"; nvm use 22` e então rode o resto — invocado via `wsl -d Ubuntu bash <arquivo>`.
 - `python3` no WSL já tem `pyyaml`; o Python do Windows pode não ter.
+

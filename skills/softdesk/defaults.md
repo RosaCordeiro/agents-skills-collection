@@ -1,4 +1,4 @@
-# Defaults SoftDesk (produção)
+﻿# Defaults SoftDesk (produção)
 
 MCP: `https://mcp-servicedesk.clamed.com.br/mcp` (`user-softdesk`).
 
@@ -86,3 +86,4 @@ Se escolher **outro atendente**: `listar_atendentes` ou `buscar_usuario` pelo no
 ## Não setar sem pedido
 
 `cliente`, `grupo_solucao`, `enviar_email_abertura`.
+

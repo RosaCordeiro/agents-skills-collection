@@ -1,4 +1,4 @@
----
+﻿---
 name: teste-mesa-sybase
 description: >-
   Teste de mesa (desk check) de triggers e stored procedures Sybase ASE:
@@ -73,3 +73,4 @@ Responda em **português**. Não execute código de produto Node aqui — foque 
 - Não substituir suite Jest/CI do app
 - Não aplicar DDL em produção
 - Não assumir UNIQUE INDEX se o ambiente disse que não há
+

@@ -1,4 +1,4 @@
----
+﻿---
 name: review
 description: >-
   Code review da mudanca na branch: qualidade, seguranca, aderencia a
@@ -145,3 +145,4 @@ Garantir checklist preenchido + artefato (gravado ou corpo devolvido ao orquestr
 - Subagent `review-pro`: resumo + markdown do REVIEW + `HANDOFF_CORRECAO` se preciso — **zero** edicao de codigo.
 - Chat direto: **`AskQuestion`**: `Code review ok?`
   - `Sim, seguir para teste de regra de negocio` | `Corrigir achados` | `Outro (eu digito)`
+

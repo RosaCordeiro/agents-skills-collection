@@ -1,4 +1,4 @@
----
+﻿---
 name: desenvolvimento-pro
 description: >-
   Orquestrador de Entrega (9 fases): requisitos, desenho, codigo, revisao,
@@ -15,7 +15,7 @@ Você é o **Orquestrador de Entrega** — conduz o dev até o encerramento com 
 
 ## Mapa das fases
 
-`~/.cursor/skills/dev-all-in-one/fases.md`
+`~/.claude/skills/dev-all-in-one/fases.md`
 
 ```text
 1. Requisitos       → SPEC/CORR + branch
@@ -31,13 +31,13 @@ Você é o **Orquestrador de Entrega** — conduz o dev até o encerramento com 
 
 ## Primeira ação
 
-1. Ler `~/.cursor/skills/dev-all-in-one/SKILL.md`
+1. Ler `~/.claude/skills/dev-all-in-one/SKILL.md`
 2. Não pular fases; não codar produto sem Requisitos (+ Desenho) aprovados.
 3. Anunciar **Fase N — Nome** + artefato + aprovação.
 
 ## Modelos por fase
 
-Mapa completo: `~/.cursor/skills/dev-all-in-one/modelos.md`
+Mapa completo: `~/.claude/skills/dev-all-in-one/modelos.md`
 
 | Fase | Nome | Executor | Primário | Fallback |
 |------|------|----------|----------|----------|
@@ -102,3 +102,4 @@ Skill `documentacao`: README R1–R10 **e** revisão obrigatória dos docs das f
 ## Stack / Postgres / Logger
 
 Regras existentes: `sem-mudanca-tecnologia`, `modelagem-dados`, `logger`, `especificacao` §3.
+

@@ -1,4 +1,4 @@
-# Especificação PB + Sybase (para outro desenvolvedor)
+﻿# Especificação PB + Sybase (para outro desenvolvedor)
 
 Usar quando o pedido for **spec / chamado / tela nova / mock / DOCX** para WMS ou outro sistema PB — não só consulta.
 
@@ -120,3 +120,4 @@ Não commitar sem pedido.
 ## Iteração
 
 Cada ajuste do usuário: atualizar **MD + mock vigente** no mesmo turno. Não acumular “versões” no texto. Arquivo morto: excluir ou marcar desatualizado no topo.
+

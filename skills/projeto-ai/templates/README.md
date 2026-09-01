@@ -1,4 +1,4 @@
-# `.ai` — contexto para agentes
+﻿# `.ai` — contexto para agentes
 
 Esta pasta concentra o que agentes de IA precisam para trabalhar neste projeto de forma consistente.
 
@@ -10,3 +10,4 @@ Esta pasta concentra o que agentes de IA precisam para trabalhar neste projeto d
 | [docs/](docs/) | Indice e links para documentacao humana (SPEC, ARCH, README) |
 
 **Manter atualizado** quando mudar stack, convencoes ou decisoes importantes.
+

@@ -1,4 +1,4 @@
----
+﻿---
 name: correcao-erro
 description: >-
   Especificacao de FIX: entendimento fiel, causa raiz, justificativa e modelo
@@ -57,3 +57,4 @@ Hotfix ainda exige este documento — pode ser curto, mas **nunca** sem causa e 
 - Ampliar escopo para refactor nao relacionado
 - Marcar aprovado sem confirmacao
 - Ir direto para codigo pulando arquitetura (exceto pedido explicito de emergencia pelo usuario — registrar o desvio)
+

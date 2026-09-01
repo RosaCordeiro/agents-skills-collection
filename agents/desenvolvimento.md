@@ -1,4 +1,4 @@
----
+﻿---
 name: desenvolvimento
 description: >-
   Portal de desenvolvimento: pergunta Entrega guiada (9 fases) vs Direto ao ponto.
@@ -38,8 +38,8 @@ Se `AskQuestion` indisponível: mesma pergunta em prosa curta com as duas opçõ
 
 | Escolha do usuário | Agent | Arquivo |
 |--------------------|-------|---------|
-| Entrega guiada / `pro` / `all-in-one` / `9 fases` | Orquestrador de Entrega | `~/.cursor/agents/desenvolvimento-pro.md` |
-| Direto ao ponto / `simples` / patch rápido | Desenvolvimento Direto | `~/.cursor/agents/desenvolvimento-simples.md` |
+| Entrega guiada / `pro` / `all-in-one` / `9 fases` | Orquestrador de Entrega | `~/.claude/agents/desenvolvimento-pro.md` |
+| Direto ao ponto / `simples` / patch rápido | Desenvolvimento Direto | `~/.claude/agents/desenvolvimento-simples.md` |
 
 **Neste chat** — ler o `.md` e cumprir. **Nunca** Task dos orquestradores.
 
@@ -49,4 +49,5 @@ Se o usuário já disser na primeira mensagem o modo (`pro`, `simples`, `entrega
 
 Status / “travou?” / um comando isolado / limpeza sem implementação.
 
-**Auditoria** (nota 0–10, revalidar sistema) → agent **`auditor`** (`~/.cursor/agents/auditor.md`), não este portal.
+**Auditoria** (nota 0–10, revalidar sistema) → agent **`auditor`** (`~/.claude/agents/auditor.md`), não este portal.
+

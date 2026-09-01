@@ -1,4 +1,4 @@
----
+﻿---
 name: projeto-ai
 description: >-
   Padrao obrigatorio da pasta .ai em projetos greenfield: context, rules,
@@ -57,7 +57,7 @@ Templates prontos: [templates/](templates/) — copiar e preencher; nao reinvent
 - **stack.md:** linguagem, runtime, DB, Compose, pacotes-chave, paths importantes, WSL vs Windows.
 - Atualizar quando mudar stack, dominio ou fronteira do sistema.
 
-### `rules/` — regras locais (complementam `~/.cursor/rules/`)
+### `rules/` — regras locais (complementam `~/.claude/rules/`)
 
 - **desenvolvimento.md:** convencoes do repo (naming, pastas, branch, testes, logs, migrations). Em API/servico **TS/Python**: apontar para skill `clean-architecture` e documentar desvios locais.
 - Regras curtas e acionaveis — nao duplicar skills globais inteiras.
@@ -100,7 +100,7 @@ Fluxo **Simples** (sem fases): ao criar projeto novo, executar **toda** a estrut
 
 Toda skill que **cria projeto novo** deve incluir no checklist:
 
-> Greenfield → ler e aplicar `projeto-ai` (`~/.cursor/skills/projeto-ai/SKILL.md`).
+> Greenfield → ler e aplicar `projeto-ai` (`~/.claude/skills/projeto-ai/SKILL.md`).
 
 Skills cobertas: `backend`, `frontend`, `script`, `clean-architecture`, `mcp`, `rag`, `abap`, `fiori`, `ui5`, `pb-criar-objeto`, orquestradores `dev-all-in-one`, agents Pro/Simples.
 
@@ -110,3 +110,4 @@ Skills cobertas: `backend`, `frontend`, `script`, `clean-architecture`, `mcp`, `
 - Usar `.ai/` como dump de chat — conteudo autocontido (mesmo criterio da spec)
 - Ignorar `.ai/` em greenfield “porque e MVP”
 - Duplicar SPEC inteira em `context/` — resumir e linkar via `docs/indice.md`
+

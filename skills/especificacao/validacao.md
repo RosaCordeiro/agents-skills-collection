@@ -1,4 +1,4 @@
-# Checklist de validacao da especificacao
+﻿# Checklist de validacao da especificacao
 
 Executar **depois** de redigir e **antes** de pedir aprovacao ao usuario.  
 Corrigir falhas; so entao apresentar o resultado.
@@ -62,3 +62,4 @@ Regras:
 1. Qualquer `FAIL` em A/B/C/E deve ser corrigido no documento antes do pedido de aprovacao — salvo se depender de pergunta aberta ao usuario.
 2. Nao marcar `Status: aprovado` sem confirmacao explicita do usuario.
 3. Mostrar este resultado (resumo) ao usuario junto com a especificacao.
+

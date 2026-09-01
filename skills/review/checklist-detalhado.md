@@ -1,4 +1,4 @@
-# Checklist detalhado (CR1–CR16)
+﻿# Checklist detalhado (CR1–CR16)
 
 Ler sob demanda quando o item do SKILL.md precisar de criterio mais fino.
 No artefato e no chat, basta o status + nota curta.
@@ -94,3 +94,4 @@ No artefato e no chat, basta o status + nota curta.
 - Views/controllers UI5 → `ui5`
 - CDS/RAP/ABAP → `abap`
 - Nao puxar Vue/React generico para app Fiori sem decisao explicita
+

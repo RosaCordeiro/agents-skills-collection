@@ -1,4 +1,4 @@
-# Checklist de validacao — correcao de erro (FIX)
+﻿# Checklist de validacao — correcao de erro (FIX)
 
 Executar **depois** de redigir e **antes** de pedir aprovacao para arquitetura.  
 Itens: `PASS` | `FAIL` | `N/A`.
@@ -49,3 +49,4 @@ Regras:
 2. Confianca Baixa → coletar mais evidencia ou fix apenas paliativo, declarado como tal.
 3. Nao marcar `Status: verificado` sem executar os V-xx nas fases de teste.
 4. Aprovacao desta fase **nao** autoriza codigo — autoriza seguir para `arquitetura`.
+

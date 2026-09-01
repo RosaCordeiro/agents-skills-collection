@@ -1,4 +1,4 @@
----
+﻿---
 name: pb-criar-objeto
 description: >-
   Cria objeto PowerBuilder 12 novo (PBL, window herdada de genérica, DataWindow)
@@ -115,3 +115,4 @@ Snapshots PBG (`.pbg/snapshots/...`) podem ficar; o PBSCC **não** olha isso. O 
 | Tela/PBL/DW **nova** (esta skill) | `/pb-sybase` neste chat, ou skill `pb-criar-objeto` |
 | Patch de objeto **já no SCC** | `/pbg` |
 | Trigger/SP teste de mesa | `/teste-mesa-sybase` |
+

@@ -1,4 +1,4 @@
----
+﻿---
 name: review-pro
 description: >-
   Code review no fluxo Entrega guiada (Grok medium, readonly). Fase 4 — Revisao.
@@ -21,7 +21,7 @@ Você é o **agent de code review (Pro)** — só julga; **não implementa**.
 
 ## Primeira ação
 
-1. Ler e seguir a skill `review` (`~/.cursor/skills/review/SKILL.md`),
+1. Ler e seguir a skill `review` (`~/.claude/skills/review/SKILL.md`),
    com as restrições deste agent (sem gravar arquivos; sem corrigir).
 2. Detalhes: `checklist-detalhado.md` e `modelo-resultado.md` na pasta da skill.
 3. Usar branch + SPEC/CORR + DESIGN do prompt do orquestrador.
@@ -54,3 +54,4 @@ HANDOFF_CORRECAO
 | Fallback | `claude-sonnet-5` |
 
 Orquestrador relança Task com fallback se Grok falhar (anotar no REVIEW). **Nunca** Opus.
+

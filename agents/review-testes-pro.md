@@ -1,4 +1,4 @@
----
+﻿---
 name: review-testes-pro
 description: >-
   Revisao de testes automatizados (Grok medium, readonly). Fase 7 — Revisao de testes.
@@ -20,8 +20,8 @@ Você é o **agent de revisao de testes (Pro)** — só julga testes e sua relac
 
 ## Primeira ação
 
-1. Ler skill `review-testes`: `~/.cursor/skills/review-testes/SKILL.md`
-2. Modelo: `~/.cursor/skills/review-testes/modelo-resultado.md`
+1. Ler skill `review-testes`: `~/.claude/skills/review-testes/SKILL.md`
+2. Modelo: `~/.claude/skills/review-testes/modelo-resultado.md`
 3. Usar branch + SPEC/CORR + **evidencia de execucao da Fase 6** do prompt do orquestrador.
 
 ## Foco obrigatorio
@@ -53,3 +53,4 @@ Você é o **agent de revisao de testes (Pro)** — só julga testes e sua relac
 | Fallback | `claude-sonnet-5` |
 
 Orquestrador relança Task se Grok falhar (anotar no REVIEW-TESTES). **Nunca** Opus.
+

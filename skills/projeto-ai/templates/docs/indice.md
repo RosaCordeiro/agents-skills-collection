@@ -1,4 +1,4 @@
-# Indice de documentacao
+﻿# Indice de documentacao
 
 | Documento | Caminho | Descricao |
 |-----------|---------|-----------|
@@ -9,3 +9,4 @@
 | CHANGELOG | `CHANGELOG.md` | Historico de releases (se existir) |
 
 <!-- Adicionar links reais conforme o repo -->
+

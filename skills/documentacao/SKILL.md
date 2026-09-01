@@ -1,4 +1,4 @@
----
+﻿---
 name: documentacao
 description: >-
   Fase 8 da Entrega guiada: README, sync dos docs das fases 1 (SPEC/CORR),
@@ -107,3 +107,4 @@ Para cada item: `OK` | `ATUALIZADO` | `N/A` (motivo).
 - Deixar REVIEW com achados “em aberto” sem nota de débito
 - README genérico “ver SPEC” sem endpoints/env/ops
 - Pular DOC-F3 quando o código mudou comportamento visível
+

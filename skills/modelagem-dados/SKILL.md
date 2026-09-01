@@ -1,4 +1,4 @@
----
+﻿---
 name: modelagem-dados
 description: >-
   Modelagem e tipagem de banco (Postgres prioritário): UUID padrão em PKs/FKs,
@@ -49,3 +49,4 @@ Valores de `n` podem ser negociados na SPEC; o importante é **não** deixar “
 
 - Sybase/ASE (usar padrões ABAP/SQL do projeto Sybase).
 - MongoDB (documentos — outra skill se existir).
+
