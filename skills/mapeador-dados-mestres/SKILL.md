@@ -26,18 +26,22 @@ Agent dedicado: **`/mapeador-dados-mestres`**. Não implementar PB/SQL neste flu
 
 ## Entrega obrigatória em arquivo
 
-**Sempre** gravar o mapa completo em disco **antes** de encerrar o turno:
+**Sempre** gravar **dois arquivos** em disco **antes** de encerrar o turno — narrativa em `.md`, detalhe tabular em `.xlsx` (5 abas fixas; ver [modelo-saida.md](modelo-saida.md)):
 
 ```
 99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.md
+99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.xlsx
 ```
 
 - `<tabela>` = nome Sybase em minúsculas (ex. `filial`, `produto`).
 - Path absoluto: `%CLAMED_DEV_ROOT%\99-ARCHIVE\Projetos\Especificações\dados-mestres\` (ver `README.md` do workspace).
+- **Fallback de ambiente**: se `%CLAMED_DEV_ROOT%` não existir nesta máquina (variável vazia/pasta ausente), gravar no projeto **`mapa-dados`** — pasta **irmã** deste repositório, ou seja, no mesmo diretório pai onde `agents-skills-collection-import` foi clonado (`<pasta-onde-você-clona-seus-repos>\mapa-dados\`). Criar o projeto se não existir. Atualizar o índice em `mapa-dados\README.md`. Avisar no chat qual dos dois caminhos foi usado.
+- **Nunca** gravar mapas dentro deste repositório de skills/agents (`agents-skills-collection-import`) — ele é compartilhado via git com o time; dado de tabela/negócio não é conteúdo de skill.
 - Criar a pasta `dados-mestres/` se não existir.
-- No chat: resumo executivo (5–8 bullets) + caminho do arquivo — **não** colar o mapa inteiro de 90+ linhas no chat.
+- O `.xlsx` é gerado com Python/`openpyxl` (skeleton em [modelo-saida.md](modelo-saida.md)) — não pular esse arquivo.
+- No chat: resumo executivo (5–8 bullets) + caminho dos **dois** arquivos — **não** colar tabela de campo no chat nem no `.md`.
 
-Atualização: **sobrescrever** o mesmo `MAPA-<tabela>.md` (incluir data no cabeçalho do arquivo).
+Atualização: **sobrescrever** os mesmos `MAPA-<tabela>.md`/`.xlsx` (incluir data no cabeçalho do `.md`).
 
 ## Fontes (cruzar sempre que couber)
 
@@ -58,8 +62,8 @@ Não inventar coluna, tela nem domínio. Campo sem evidência de gravação PB �
 4. **Domínios** — `values=` no DW; FK → descrever tabela pai; `id_*` → S/N ou tabela de códigos.
 5. **Uso PB** — retrieve/join/filtro; priorizar consumidores principais (NF, WMS, Fiscal, integração).
 6. **Banco** — triggers Git: efeitos em insert/update (histórico, `int_controle`, tabelas filhas).
-7. **Gravar** — `99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.md` ([modelo-saida.md](modelo-saida.md)).
-8. **Chat** — resumo + caminho do arquivo. Exemplo: [exemplo-filial.md](exemplo-filial.md) / `MAPA-filial.md` gravado.
+7. **Gravar** — `.md` (narrativa) + `.xlsx` (5 abas) em `99-ARCHIVE/Projetos/Especificações/dados-mestres/` — ver [modelo-saida.md](modelo-saida.md). Fallback de ambiente: projeto irmão `mapa-dados` (nunca dentro deste repo).
+8. **Chat** — resumo + caminho dos dois arquivos. Exemplo de conteúdo das abas: [exemplo-filial.md](exemplo-filial.md).
 
 ## Regras de qualidade
 

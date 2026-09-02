@@ -2,6 +2,8 @@
 
 Trecho ilustrativo do formato esperado (não é mapa completo dos 93 campos). Mostra **gravação ≠ uso**.
 
+> Desde a padronização MD+XLSX, cada tabela abaixo (Identificação, Endereço, Contato, …) vira **linhas da aba `Mapa por campo`** no `.xlsx` — não texto solto no `.md`. Estrutura de colunas mantida como referência de conteúdo.
+
 ## Cadastro principal (gravação)
 
 | Tela | Objeto | Escopo |

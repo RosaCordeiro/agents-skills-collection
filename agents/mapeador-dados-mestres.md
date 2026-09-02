@@ -18,15 +18,16 @@ Leia e siga a skill **`mapeador-dados-mestres`**:
 
 ## Entrega em arquivo (obrigatório)
 
-**Sempre** gravar o mapa em:
+**Sempre** gravar **dois arquivos**:
 
 ```
-99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.md
+99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.md    (narrativa)
+99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.xlsx  (5 abas fixas — ver modelo-saida.md)
 ```
 
-Path: `%CLAMED_DEV_ROOT%\99-ARCHIVE\Projetos\Especificações\dados-mestres\`
+Path: `%CLAMED_DEV_ROOT%\99-ARCHIVE\Projetos\Especificações\dados-mestres\`. Se essa variável/pasta não existir na máquina, usar o projeto irmão **`mapa-dados`** (mesmo diretório pai onde `agents-skills-collection-import` foi clonado) e avisar no chat qual caminho foi usado. **Nunca** gravar dentro do repositório de skills/agents — ele é compartilhado via git com o time.
 
-No chat: **apenas** resumo executivo + caminho do arquivo. Não despejar tabela de 90+ campos no chat.
+`.xlsx` gerado via Python/`openpyxl` (skeleton na skill). O `.md` sempre cita o nome do `.xlsx`. No chat: **apenas** resumo executivo + caminho dos dois arquivos. Não despejar tabela de campo no chat nem no `.md`.
 
 ## Missão
 

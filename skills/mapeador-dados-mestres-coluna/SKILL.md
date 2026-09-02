@@ -25,6 +25,8 @@ Gravar **sempre** em:
 
 Path absoluto Windows: `%CLAMED_DEV_ROOT%\99-ARCHIVE\Projetos\Especificações\dados-mestres\`
 
+**Fallback de ambiente**: se `%CLAMED_DEV_ROOT%` não existir, gravar no projeto irmão **`mapa-dados`** (mesmo diretório pai onde `agents-skills-collection-import` foi clonado; criar se não existir). **Nunca** gravar dentro do repositório de skills/agents — é compartilhado via git com o time.
+
 No chat: resumo de 5–8 linhas + link/caminho do arquivo.
 
 ## Pipeline

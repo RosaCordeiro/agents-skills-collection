@@ -24,7 +24,7 @@ Leia e siga a skill **`mapeador-dados-mestres-coluna`**:
 99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.<coluna>.md
 ```
 
-Path: `%CLAMED_DEV_ROOT%\99-ARCHIVE\Projetos\Especificações\dados-mestres\`
+Path: `%CLAMED_DEV_ROOT%\99-ARCHIVE\Projetos\Especificações\dados-mestres\`. Se essa variável/pasta não existir na máquina, usar o projeto irmão **`mapa-dados`** (mesmo diretório pai onde `agents-skills-collection-import` foi clonado) e avisar no chat qual caminho foi usado. **Nunca** gravar dentro do repositório de skills/agents.
 
 No chat: resumo de 5–8 linhas + caminho do arquivo.
 

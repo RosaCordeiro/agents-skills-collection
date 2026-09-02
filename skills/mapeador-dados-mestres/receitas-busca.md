@@ -71,4 +71,4 @@ Resumir trigger: tabelas tocadas, `int_controle`, histórico, validações — n
 3. Por coluna sem `update=yes` em nenhuma tela → marcar **sem tela PB**; buscar `UPDATE` solto.
 4. Por coluna (ou grupo): top usos + por quê.
 5. Triggers Git.
-6. Montar saída em [modelo-saida.md](modelo-saida.md).
+6. Montar saída: narrativa no `.md` + as 5 abas no `.xlsx` — ver [modelo-saida.md](modelo-saida.md).
