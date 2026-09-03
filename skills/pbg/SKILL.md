@@ -47,6 +47,18 @@ Duas pastas — **nao confundir**:
 - **MCP:** `PBG_WORKSPACE` = pasta PBG (ex. `C:\Sistemas_PB12\WMS`), **nunca** a raiz `C:\SVN\Sistemas_PB12`.
 - Mapeamento: objeto `w_foo` → `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\w_foo.srw`.
 
+### Snapshot desatualizado (checar antes de analisar ou concluir)
+
+`pbg_search`/`pbg_read_object` leem o snapshot `.sr*` em `.pbg/snapshots` (e `.pbg/temp`) do workspace PBG — **nao** o `.pbl` nem o SVN direto. Esse snapshot so atualiza quando alguem reexporta (`pbg_status`, `pbg_apply_patch`, `pbg import`); uma alteracao feita no PB e ja replicada no `.srw`/`.srd` do SVN pode ficar dias sem aparecer no snapshot.
+
+Antes de dar veredito sobre o estado **atual** de um objeto Clamed (ex.: "o campo esta truncado", "a tela nao foi ajustada", "ainda nao mudou"):
+
+1. `ls -la` no `.srw`/`.srd` do SVN (`C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\`) **e** no snapshot (`.pbg\snapshots\...`) — comparar datas.
+2. Se o SVN for mais recente (ou houver duvida): ler/Grep o `.srw`/`.srd` do SVN direto — e a fonte mais fresca do estado real do objeto.
+3. Para usar o MCP mesmo assim: rodar `pbg_status` (reexporta a PBL via ORCA) antes de `pbg_read_object`/`pbg_search`, para atualizar o snapshot.
+4. Nunca concluir "nao foi alterado" so pelo snapshot sem checar a data — snapshot velho parece objeto velho.
+5. Biblioteca comum (ex. `Comuns\Bibliotecas`) replicada em varios workspaces PBG: cada `.pbg/snapshots/Comuns-Bibliotecas-*` e uma copia independente, que pode desatualizar em ritmos diferentes por sistema. O SVN tem **uma unica** copia em `C:\SVN\Sistemas_PB12\Comuns\Bibliotecas\` — essa e a referencia mais confiavel.
+
 ### Alteracao que precisa PB + SVN (checklist)
 
 Quando o usuario pedir alteracao visivel no PB **e** no Tortoise/SVN:
@@ -74,4 +86,7 @@ Patch so no PBG → PB ok, SVN vazio. So no `.srw` SVN → Tortoise ok, PB pode 
 | Criar PBL/janela/DW nova | skill `pb-criar-objeto` (`/pb-sybase`) |
 | Consulta PB+Sybase / spec/chamado/mock/DOCX | `/pb-sybase` |
 | MCP server generico | `mcp` |
+
+
+
 

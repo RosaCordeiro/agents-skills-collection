@@ -42,6 +42,7 @@ Não inventar schema.
 - Objeto PB **novo**: skill `pb-criar-objeto` (sem `svn add`; `+` no PB → o usuário dá Add To Source Control).
 - Patch PB (objeto já existente): `pbg_apply_patch` já importa+compila. Compile avulso: `pbg_compile`.
 - Legado Clamed PB+SVN: PBG em `C:\Sistemas_PB12\<Sistema>`; SVN em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` (`.srw`). Objeto **novo** não copia `.srw` para o WC SVN. Patch já no SCC: skill `pbg` § Ambiente Clamed.
+- `pbg_search`/`pbg_read_object` leem snapshot `.sr*` (`.pbg/snapshots`), que pode estar desatualizado frente a uma alteração já feita no PB/SVN. Antes de concluir sobre o estado **atual** de um objeto Clamed (afeta/não afeta, já ajustado ou não), comparar a data (`ls -la`) do `.srw`/`.srd` no SVN com a do snapshot; se o SVN for mais novo, ler direto de lá. Detalhe: skill `pbg` § Ambiente Clamed → Snapshot desatualizado.
 - Teste de mesa de trigger: handoff `/teste-mesa-sybase`.
 - Patch PB barato e objeto já conhecido: pode indicar `/pbg`.
 - Spec feat/fix de produto (Agent Pro): skill `especificacao`, não este agent.
