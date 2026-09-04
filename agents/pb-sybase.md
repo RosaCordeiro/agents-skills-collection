@@ -17,7 +17,8 @@ Leia e siga a skill **`pb-sybase`**:
 - Spec/chamado/mock/DOCX: `especificacao.md`
 
 Tela/PBL/DW **nova** (herdar genérica, ícone **+** no PBSCC): skill **`pb-criar-objeto`**
-(`~/.claude/skills/pb-criar-objeto/SKILL.md`). Spec **não** implementa PB; só após pedido explícito.
+(`~/.claude/skills/pb-criar-objeto/SKILL.md`), **fora** deste agent. Este agent **nunca**
+implementa PB — nem mesmo com pedido explícito; só especifica.
 
 ## Fontes (sempre)
 
@@ -39,12 +40,14 @@ Não inventar schema.
 - MCP Sybase **não grava**. DDL/DML de escrita não passam por ele. Isso é regra do agent — **não** repetir no MD do chamado.
 - Mudança de SP/trigger/function/view: editar o `.sql` no `sybase-objects` **mesmo se for 1 linha**. Não commit/push sem pedido. Avisar que o ASE ainda precisa de deploy.
 - Tabela não está nesse repo: schema = MCP; objetos SQL afetados = Git.
-- Objeto PB **novo**: skill `pb-criar-objeto` (sem `svn add`; `+` no PB → o usuário dá Add To Source Control).
-- Patch PB (objeto já existente): `pbg_apply_patch` já importa+compila. Compile avulso: `pbg_compile`.
+- Objeto PB **novo**: indicar skill `pb-criar-objeto`, fora deste agent (sem `svn add`; `+` no PB → o usuário dá Add To Source Control).
+- Patch PB (objeto já existente): indicar `/pbg` (`pbg_apply_patch` já importa+compila), fora deste agent — este agent não chama `pbg_apply_patch`.
 - Legado Clamed PB+SVN: PBG em `C:\Sistemas_PB12\<Sistema>`; SVN em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` (`.srw`). Objeto **novo** não copia `.srw` para o WC SVN. Patch já no SCC: skill `pbg` § Ambiente Clamed.
 - `pbg_search`/`pbg_read_object` leem snapshot `.sr*` (`.pbg/snapshots`), que pode estar desatualizado frente a uma alteração já feita no PB/SVN. Antes de concluir sobre o estado **atual** de um objeto Clamed (afeta/não afeta, já ajustado ou não), comparar a data (`ls -la`) do `.srw`/`.srd` no SVN com a do snapshot; se o SVN for mais novo, ler direto de lá. Detalhe: skill `pbg` § Ambiente Clamed → Snapshot desatualizado.
 - Teste de mesa de trigger: handoff `/teste-mesa-sybase`.
 - Patch PB barato e objeto já conhecido: pode indicar `/pbg`.
+- Pedido grande (descoberta guiada + arquitetura/fragmentação + spec por fragmento): indicar `/pb-desenvolvimento-pro`.
+- Este agent **nunca implementa PB** — nem objeto novo nem patch, mesmo com pedido explícito no chat; sempre indicar `/pbg` ou `pb-criar-objeto` como próximo passo, em outro agent.
 - Spec feat/fix de produto (Agent Pro): skill `especificacao`, não este agent.
 
 

@@ -54,6 +54,7 @@ Referência canônica — **não usar `inherit`**. Sempre slug primário + fallb
 | `review-pro` / `review-testes-pro` | `cursor-grok-4.6-medium` | `claude-sonnet-5` |
 | `auditor` | `claude-sonnet-5-thinking-high` | Grok medium → Composer |
 | `pb-sybase` / `teste-mesa-sybase` | `claude-sonnet-5` | Grok medium |
+| `pb-desenvolvimento-pro` | `claude-sonnet-5` (Fase 2/4 `thinking-high`) | Grok medium |
 | `monitor-uso-ia` / `softdesk` / `pbg` | `composer-2.5-fast` | `claude-sonnet-5` |
 
 ## Pool no Cursor

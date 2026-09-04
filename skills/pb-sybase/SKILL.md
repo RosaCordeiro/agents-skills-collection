@@ -16,8 +16,9 @@ Responda em português. PB e Sybase **andam juntos**: tela/DW no PB, tabela/trig
 
 Agents:
 
-- Consulta / cruzamento / **spec de chamado PB** (MD → mock → DOCX): **`/pb-sybase`**.
-- **Tela/PBL/DW nova** (herdar genérica, ícone **+** no PBSCC): skill [`pb-criar-objeto`](../pb-criar-objeto/SKILL.md) — neste agent, depois da spec (ou se o usuário pedir implementar).
+- Consulta / cruzamento / **spec pequena de chamado PB** (MD → mock → DOCX), sem fases: **`/pb-sybase`**.
+- **Pedido grande** que precisa de descoberta guiada + arquitetura (separar Cadastro de Funcionamento, multi-sistema/banco) + uma spec por fragmento: **`/pb-desenvolvimento-pro`** (skill `pb-dev-all-in-one`). Também não implementa — só especifica e desenha.
+- **Tela/PBL/DW nova** (herdar genérica, ícone **+** no PBSCC): skill [`pb-criar-objeto`](../pb-criar-objeto/SKILL.md) — fora deste agent, decisão separada do usuário depois da spec aprovada.
 - Só patch barato de PB (objeto **já existente**): **`/pbg`**.
 - Teste de mesa de trigger/SP: **`/teste-mesa-sybase`**.
 
@@ -92,23 +93,30 @@ O MCP **não** grava no ASE. A sincronização é o Git:
 
 Se a mudança for **tabela** (coluna nova, tipo): alterar via MCP é proibido. Documentar o DDL proposto e atualizar no repo **todo objeto SQL afetado** (trigger/view/SP). Não fingir que a coluna já existe na homolog até o `sybase_describe_table` mostrar.
 
-## Alterar PB neste chat
+## Este agent não altera PB
 
-- **Objeto novo** (PBL, janela herdada, DW, tela WSxxx): skill **`pb-criar-objeto`**. Não `svn add`; o `.srw` não vai para o WC SVN até o usuário dar Add To Source Control no PB (ícone **+**).
-- **Objeto já existente**: mesmas regras do `/pbg`: `pbg_apply_patch` já importa e compila; não chamar `pbg_compile` se `compiled: true`. Snapshot sozinho não conta.
+`pb-sybase` (e `pb-desenvolvimento-pro`) **não implementam código PB**, por
+enquanto — nem objeto novo, nem patch de objeto existente, mesmo se o
+usuário pedir explicitamente no meio do chat. Ao final da spec aprovada,
+indicar (sem executar):
 
-Se o usuário precisar ver a mudança de objeto **já no SCC** no Tortoise: replicar no `.srw` em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` e usar `svn lock` se o checkout não aparecer. Detalhes: skill `pbg` § Ambiente Clamed.
+- **Objeto novo** (PBL, janela herdada, DW, tela WSxxx) → skill
+  **`pb-criar-objeto`**, em outro agent/chat.
+- **Objeto já existente** (patch) → **`/pbg`**, em outro agent/chat.
 
-Se o patch/tela **depende** de coluna/SP nova: primeiro o SQL no `sybase-objects` (+ aviso de deploy), depois o PB — ou deixar os dois prontos e listar a ordem de subida.
+Se o patch/tela **depende** de coluna/SP nova: documentar na spec o SQL
+proposto no `sybase-objects` (+ aviso de deploy) e a ordem de subida — a
+edição em si fica para quem rodar `/pbg`/`pb-criar-objeto` depois.
 
 ## Fronteiras
 
 | Assunto | Onde |
 |---------|------|
 | Consulta PB+Sybase+SQL versionado | `/pb-sybase` ou esta skill |
-| Spec/chamado/mock/DOCX de tela PB | `/pb-sybase` + [especificacao.md](especificacao.md) |
-| Criar PBL/janela/DW nova (ícone + SCC) | skill `pb-criar-objeto` |
-| Patch PB barato, objeto já conhecido | `/pbg` |
+| Spec pequena/chamado/mock/DOCX de tela PB, sem fases | `/pb-sybase` + [especificacao.md](especificacao.md) |
+| Pedido grande: descoberta + arquitetura (fragmentação) + spec por fragmento | `/pb-desenvolvimento-pro` (skill `pb-dev-all-in-one`) |
+| Criar PBL/janela/DW nova (ícone + SCC) | skill `pb-criar-objeto` — **fora** deste agent |
+| Patch PB barato, objeto já conhecido | `/pbg` — **fora** deste agent |
 | Teste de mesa trigger/SP | `/teste-mesa-sybase` |
 | Spec feat/fix de produto Node (Agent Pro) | skill `especificacao` (não esta) |
 | MCP genérico | skill `mcp` |

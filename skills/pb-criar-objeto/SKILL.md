@@ -12,7 +12,7 @@ description: >-
 
 Responda em português. Skill de **criação**. Patch de objeto que já existe: `/pbg`.
 
-Consulta/spec de chamado: **`/pb-sybase`**. Se o pedido for spec **e** implementar, consultar/spec primeiro; só então esta skill.
+Consulta/spec de chamado: **`/pb-sybase`** ou **`/pb-desenvolvimento-pro`** (pedido grande). Nenhum dos dois implementa — se o pedido for spec **e** implementar, fechar a spec (e a aprovação) primeiro, num desses agents; **esta skill roda depois, em chat/agent separado**, nunca dentro do `/pb-sybase` ou `/pb-desenvolvimento-pro`.
 
 ORCA **não tem Inherit**. Janela herdada = `.srw` com `from <genérica>` + `import` + `regenerate`.
 
@@ -111,8 +111,8 @@ Snapshots PBG (`.pbg/snapshots/...`) podem ficar; o PBSCC **não** olha isso. O 
 
 | Pedido | Skill / agent |
 |--------|----------------|
-| Spec/chamado/mock/consulta PB+Sybase | `/pb-sybase` |
-| Tela/PBL/DW **nova** (esta skill) | `/pb-sybase` neste chat, ou skill `pb-criar-objeto` |
+| Spec/chamado/mock/consulta PB+Sybase | `/pb-sybase` ou `/pb-desenvolvimento-pro` |
+| Tela/PBL/DW **nova**, spec já aprovada | esta skill, em agent/chat separado (não dentro de `/pb-sybase`/`/pb-desenvolvimento-pro`) |
 | Patch de objeto **já no SCC** | `/pbg` |
 | Trigger/SP teste de mesa | `/teste-mesa-sybase` |
 

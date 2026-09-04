@@ -83,8 +83,9 @@ Patch so no PBG → PB ok, SVN vazio. So no `.srw` SVN → Tortoise ok, PB pode 
 | Assunto | Onde |
 |---------|------|
 | Alterar PB (objeto já existente) | `/pbg` ou esta skill |
-| Criar PBL/janela/DW nova | skill `pb-criar-objeto` (`/pb-sybase`) |
-| Consulta PB+Sybase / spec/chamado/mock/DOCX | `/pb-sybase` |
+| Criar PBL/janela/DW nova | skill `pb-criar-objeto` (fora do `/pb-sybase`) |
+| Consulta PB+Sybase / spec pequena/chamado/mock/DOCX | `/pb-sybase` |
+| Pedido grande: descoberta + arquitetura (fragmentação) + spec por fragmento | `/pb-desenvolvimento-pro` (não implementa) |
 | MCP server generico | `mcp` |
 
 
