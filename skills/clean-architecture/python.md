@@ -80,3 +80,10 @@ class BuscarDadosSybaseUseCase:
 
 Scripts com **so** glue (sem RN) podem ficar em `scripts/` sem camadas completas. Se o script crescer ou repetir regra de negocio → promover para `core/application` + portas (skill `script`).
 
+
+
+
+
+
+
+

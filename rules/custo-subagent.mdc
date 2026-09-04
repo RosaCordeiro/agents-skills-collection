@@ -19,9 +19,9 @@ Esses papéis rodam **neste chat**: ler `~/.claude/agents/<nome>.md` e cumprir. 
 
 Somente:
 
-- `arquitetura-pro` — **uma vez por entrega**, depois dos Requisitos aprovados
+- `arquitetura-pro` — **uma vez por entrega**, depois de Descoberta + Especificação aprovadas
 - `review-pro` — após Código; de novo só depois de corrigir achados
-- `review-testes-pro` — após Testes automáticos (Fase 6); de novo após corrigir testes ou código
+- `review-testes-pro` — após Testes automáticos (Fase 7); de novo após corrigir testes ou código
 
 `explore` / `shell` pontuais ok. Nao usar `generalPurpose` para “continuar o Pro”.
 
@@ -31,7 +31,7 @@ Somente:
 
 1. Verificar se `docs/arquitetura/ARCH-*.md` (ou DESIGN-*) **já existe** na branch para esta entrega.
 2. **Se existe:** o orquestrador **emenda o mesmo arquivo** neste chat (SPEC mudou, amend v0.x, correção de escopo). **Proibido** relançar `arquitetura-pro`.
-3. **Só lançar Task** se **não** houver ARCH ainda (primeira Fase 2 da entrega).
+3. **Só lançar Task** se **não** houver ARCH ainda (primeira Fase 3 da entrega).
 4. **Exceções** (relançar permitido): usuário pediu redo explícito; ou Task anterior falhou **sem** gravar artefato no disco.
 
 Relançar ARCH “por conveniência” ou “atualizar design” com subagent duplica Sonnet/Opus — **custo proibido**.
@@ -39,4 +39,11 @@ Relançar ARCH “por conveniência” ou “atualizar design” com subagent du
 ## Opus
 
 Regra `modelo-sonnet.mdc`: Opus so com pedido explicito neste chat.
+
+
+
+
+
+
+
 

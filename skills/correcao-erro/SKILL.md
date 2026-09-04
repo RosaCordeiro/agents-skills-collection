@@ -1,10 +1,11 @@
 ﻿---
 name: correcao-erro
 description: >-
-  Especificacao de FIX: entendimento fiel, causa raiz, justificativa e modelo
-  proprio (modelo-fix). Use apos classificar como fix na fase de especificacao,
-  ou quando o usuario reportar bug, erro, falha, regressao, hotfix, incidente,
-  traceback, ou pedir investigacao+fix documentada.
+  Especificacao de FIX (Fase 2, apos Descoberta aprovada): entendimento fiel,
+  causa raiz, justificativa e modelo proprio (modelo-fix). Use apos
+  classificar como fix na fase de Descoberta/Especificacao, ou quando o
+  usuario reportar bug, erro, falha, regressao, hotfix, incidente, traceback,
+  ou pedir investigacao+fix documentada.
 ---
 
 # Correcao de erro (especificacao FIX)
@@ -13,11 +14,13 @@ Especialista em documentar **fix** com entendimento fiel e justificativa.
 Nao chute. Nao implemente codigo de produto nesta fase.
 Responda em portugues.
 
-## Pre-requisitos (orquestrador / especificacao)
+## Pre-requisitos (orquestrador / descoberta)
 
-1. Tipo classificado como **fix** (AskQuestion se ambiguo).
-2. Branch **`fix/<slug>`** ja criada (ou criar agora, antes de gravar o doc).
-3. Usar obrigatoriamente [modelo-fix.md](modelo-fix.md) — nao o modelo feat.
+1. Fase 1 (**Descoberta**, skill `descoberta`) aprovada — usar o Resumo da
+   Descoberta como base do sintoma/contexto inicial.
+2. Tipo classificado como **fix** (AskQuestion se ainda ambiguo).
+3. Branch **`fix/<slug>`** ja criada (ou criar agora, antes de gravar o doc).
+4. Usar obrigatoriamente [modelo-fix.md](modelo-fix.md) — nao o modelo feat.
 
 ## Principio
 
@@ -57,4 +60,11 @@ Hotfix ainda exige este documento — pode ser curto, mas **nunca** sem causa e 
 - Ampliar escopo para refactor nao relacionado
 - Marcar aprovado sem confirmacao
 - Ir direto para codigo pulando arquitetura (exceto pedido explicito de emergencia pelo usuario — registrar o desvio)
+
+
+
+
+
+
+
 

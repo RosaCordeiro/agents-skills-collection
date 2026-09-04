@@ -7,3 +7,10 @@
 >
 > A skill `especificacao` classifica feat vs fix e abre a branch antes de gravar.
 
+
+
+
+
+
+
+

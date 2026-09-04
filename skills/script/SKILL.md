@@ -57,3 +57,10 @@ Promover de `scripts/` para `core/application` quando o script repetir regra de 
 Mostre comando de uso. Em seguida use **`AskQuestion`** — prompt: `Proximo passo?`
 - `Ir para code review` | `Ajustar script` | `Outro (eu digito)`
 
+
+
+
+
+
+
+

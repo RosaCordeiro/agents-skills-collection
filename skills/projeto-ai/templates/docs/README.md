@@ -4,3 +4,10 @@ Mapa para achar documentacao humana e artefatos de entrega. Nao duplicar SPEC/AR
 
 - [indice.md](indice.md) — links principais
 
+
+
+
+
+
+
+

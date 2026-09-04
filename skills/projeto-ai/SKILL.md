@@ -111,3 +111,10 @@ Skills cobertas: `backend`, `frontend`, `script`, `clean-architecture`, `mcp`, `
 - Ignorar `.ai/` em greenfield “porque e MVP”
 - Duplicar SPEC inteira em `context/` — resumir e linkar via `docs/indice.md`
 
+
+
+
+
+
+
+

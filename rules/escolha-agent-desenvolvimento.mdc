@@ -11,7 +11,7 @@ Quando o usuário **iniciar um desenvolvimento**:
 
    - Prompt: `Como você quer desenvolver isto?`
    - Opções:
-     - `Entrega guiada (9 fases)` — até encerramento com revisão de código **e** de testes **(Recomendado para feat/fix nova)**
+     - `Entrega guiada (10 fases)` — até encerramento com revisão de código **e** de testes **(Recomendado para feat/fix nova)**
      - `Direto ao ponto` — sem fases; patch ou spike
    - `allow_multiple`: false
 
@@ -22,11 +22,18 @@ Quando o usuário **iniciar um desenvolvimento**:
 
 ## Fases da Entrega guiada
 
-`1 Requisitos` → `2 Desenho` → `3 Código` → `4 Revisão` → `5 Aceite` → `6 Testes auto` → `7 Revisão testes` → `8 Documentação` → `9 Encerramento`
+`1 Descoberta` → `2 Especificação` → `3 Desenho` → `4 Código` → `5 Revisão` → `6 Aceite` → `7 Testes auto` → `8 Revisão testes` → `9 Documentação` → `10 Encerramento`
 
 Detalhe: `~/.claude/skills/dev-all-in-one/fases.md`
 
 ## Perguntas com seletor
 
 Opções fixas: **`AskQuestion`**, máx. 1 por mensagem.
+
+
+
+
+
+
+
 

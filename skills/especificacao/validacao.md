@@ -14,6 +14,7 @@ Marcar cada item: `PASS` | `FAIL` | `N/A`.
 - [ ] Pelo menos uma RN **ou** justificativa de N/A
 - [ ] Pelo menos um RF **ou** justificativa de N/A
 - [ ] Pelo menos uma user story com criterios Given/When/Then (ou N/A justificado em pedido puramente normativo)
+- [ ] Pontos de investigacao tecnica preenchidos ou `N/A` justificado (secao para o analista)
 
 ## B. Qualidade dos requisitos (IEEE / boa pratica)
 
@@ -62,4 +63,11 @@ Regras:
 1. Qualquer `FAIL` em A/B/C/E deve ser corrigido no documento antes do pedido de aprovacao — salvo se depender de pergunta aberta ao usuario.
 2. Nao marcar `Status: aprovado` sem confirmacao explicita do usuario.
 3. Mostrar este resultado (resumo) ao usuario junto com a especificacao.
+
+
+
+
+
+
+
 

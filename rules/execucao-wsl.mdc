@@ -32,3 +32,10 @@ Neste ambiente (Windows + WSL Ubuntu, `docker`/`node`/`python3` vivem no WSL), o
   `. "$HOME/.nvm/nvm.sh"; nvm use 22` e então rode o resto — invocado via `wsl -d Ubuntu bash <arquivo>`.
 - `python3` no WSL já tem `pyyaml`; o Python do Windows pode não ter.
 
+
+
+
+
+
+
+

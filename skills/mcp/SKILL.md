@@ -83,3 +83,10 @@ Quando o usuario quiser "RAG na base": combinar com skill `rag` — MCP para dad
 - [ ] Escopo de dados documentado
 - [ ] Tools destrutivas nomeadas e separadas (se existirem)
 
+
+
+
+
+
+
+

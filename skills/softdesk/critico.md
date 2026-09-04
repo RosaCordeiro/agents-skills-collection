@@ -50,3 +50,10 @@ Spec longa para outro dev continua `/pb-sybase` **depois** do chamado, se o usu�
 
 Rascunho (HTML) + payload. Ok explícito. `criar_chamado` → se `atendente` vier vazio, `editar_chamado` com 393. Conferir `usuario.nome` = Guilherme.
 
+
+
+
+
+
+
+

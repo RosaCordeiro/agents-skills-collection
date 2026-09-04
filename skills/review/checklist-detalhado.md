@@ -95,3 +95,10 @@ No artefato e no chat, basta o status + nota curta.
 - CDS/RAP/ABAP → `abap`
 - Nao puxar Vue/React generico para app Fiori sem decisao explicita
 
+
+
+
+
+
+
+

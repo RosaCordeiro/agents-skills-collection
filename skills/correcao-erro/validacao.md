@@ -50,3 +50,10 @@ Regras:
 3. Nao marcar `Status: verificado` sem executar os V-xx nas fases de teste.
 4. Aprovacao desta fase **nao** autoriza codigo — autoriza seguir para `arquitetura`.
 
+
+
+
+
+
+
+

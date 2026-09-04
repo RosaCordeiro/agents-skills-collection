@@ -111,3 +111,10 @@ Julgar o codigo, nao o organograma de pastas.
 
 O `INDICE.md` guarda a serie. Na auditoria N+1, 3–5 linhas: o que subiu/desceu vs AUD anterior no **mesmo** repo. Nao comparar xml-translog com clamed.dev.
 
+
+
+
+
+
+
+

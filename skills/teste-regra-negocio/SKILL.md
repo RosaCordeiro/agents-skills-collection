@@ -2,7 +2,7 @@
 name: teste-regra-negocio
 description: >-
   Executa e documenta testes de regra de negocio (VAL-xx / V-xx / Gherkin)
-  apos o code review. Use na fase 5 do Dev All-in-One ou quando o usuario pedir
+  apos o code review. Use na fase 6 do Dev All-in-One ou quando o usuario pedir
   validacao de RN, criterios de aceite de negocio, ou GWT manual/focado.
 ---
 
@@ -32,4 +32,11 @@ Se existir `REVIEW-*-resultado.md` com bloqueantes abertos, nao iniciar VAL/V â€
 
 - Suite completa de regressao/CI (isso e `teste-automatizado`)
 - Reescrever arquitetura ou ampliar escopo sem acordo
+
+
+
+
+
+
+
 

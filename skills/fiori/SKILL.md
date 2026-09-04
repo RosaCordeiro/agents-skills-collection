@@ -91,3 +91,10 @@ Checklist DoD da tela: o mesmo de `ui5/crud-lista.md`.
 - [ ] Pontos de UI complexa listados para `ui5`
 - [ ] README de como abrir no Launchpad / ambiente local
 
+
+
+
+
+
+
+

@@ -84,3 +84,10 @@ Usar `@/` → `src/` (tsconfig paths) como nos repos de referencia.
 4. Binding (`shared/container/repositories/`)
 5. Rota/worker (`presentation/` ou `application/workers/`)
 
+
+
+
+
+
+
+

@@ -72,3 +72,4 @@ sincroniza para o **próprio** `~/.claude`.
 
 
 
+

@@ -238,3 +238,10 @@ Obrigatorio acrescentar se o mapa revelar mecanismos que o catalogo generico nao
 
 Formato: **Validacao 33 — &lt;nome concreto&gt;** + o que foi checado + evidencia.
 
+
+
+
+
+
+
+

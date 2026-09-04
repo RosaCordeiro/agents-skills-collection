@@ -1,17 +1,25 @@
 ﻿---
 description: >-
-  Porta de entrada da fase de especificacao: classifica feat vs fix, abre a
-  branch (feat/ ou fix/), e grava o documento no modelo correto. Em stack
-  Node.js herda @clamed/logger + light-node-metrics se o projeto ja usa; so
-  pergunta no greenfield. Use na fase 1 do Dev All-in-One, quando o usuario pedir
-  especificação, RN, BRD/FRD, ou antes de arquitetura — inclusive pedidos
-  ambíguos (feat ou bug).
+  Especificacao funcional: classifica feat vs fix, abre a branch (feat/ ou
+  fix/), e grava o documento no modelo correto a partir do entendimento ja
+  aprovado na Descoberta. Em stack Node.js herda @clamed/logger +
+  light-node-metrics se o projeto ja usa; so pergunta no greenfield. Use na
+  fase 2 do Dev All-in-One (apos Descoberta aprovada), quando o usuario pedir
+  especificação, RN, BRD/FRD, ou antes de arquitetura.
 ---
 
 # Especificacao (entrada feat | fix)
 
 Especialista em **classificar** o pedido e gravar requisitos por escrito.
 Nao implemente codigo de produto aqui. Responda em portugues.
+
+## Pre-requisito
+
+Fase 1 (**Descoberta**, skill `descoberta`) aprovada — usar o **Resumo da
+Descoberta** já validado pelo usuário como base do Contexto (§2). Se ainda
+não houve Descoberta nesta conversa (pedido chegou direto aqui), rodar a
+skill `descoberta` primeiro — não redigir a spec em cima de um pedido ainda
+não confirmado com o usuário.
 
 ## Processo obrigatorio (ordem)
 
@@ -132,4 +140,11 @@ Quem implementa nao leu a conversa. Se uma frase so faz sentido para quem estava
 - Remeter ao chat (*“como combinamos”*, *“conforme discutido”*).
 
 Teste rapido: um desenvolvedor que nao participou consegue implementar **so com o MD**? Se nao, reescrever antes de pedir aprovacao.
+
+
+
+
+
+
+
 

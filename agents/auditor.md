@@ -59,3 +59,10 @@ Você é o **Agent Auditor** — só julga; **nunca implementa**.
 Se Sonnet estiver sem tokens / rate-limit: continuar com Grok e anotar o model efetivo no AUD.
 Proibido Opus salvo pedido explícito do usuário.
 
+
+
+
+
+
+
+

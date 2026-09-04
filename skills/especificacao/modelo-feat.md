@@ -33,6 +33,9 @@ Escrever para quem **nao viu o chat**. Cada fato relevante inclui o porquê (ski
 
 ## 3. Objetivos e metrica de sucesso
 
+Se a Descoberta (Fase 1) levantou ROI/beneficio esperado, trazer aqui como
+objetivo mensuravel; se ficou `N/A`, não inventar numero.
+
 | Objetivo | Como medir (negocio) |
 |----------|----------------------|
 | ... | ... |
@@ -127,13 +130,27 @@ Entidades, atributos criticos, relacionamentos (nivel de negocio — sem DDL obr
 |---------|---------|---------------------|-------------------------|
 | ... | In / Out / Bi | ... | ... |
 
-## 14. Rastreabilidade (minima)
+## 14. Pontos de investigacao tecnica (para o analista)
+
+Nao e o desenho da solucao (isso e a fase de Arquitetura) — e o mapa do que
+precisa ser **investigado no codigo/banco antes de desenhar**. Linguagem de
+negocio nas secoes acima; aqui pode nomear sistema/modulo/tabela.
+
+| Area | O que investigar | Onde provavelmente esta |
+|------|-------------------|--------------------------|
+| ... | ... | sistema/modulo/repo/tabela suspeito |
+
+Preencher com o que a Descoberta + esta especificacao ja sugerem (ex.:
+"confirmar como a tela X grava a tabela Y hoje", "checar se o servico Z ja
+expoe esse dado"). Sem pista concreta: `N/A` — nao inventar caminho.
+
+## 15. Rastreabilidade (minima)
 
 | User story | RFs | RNs | Criterios de aceite |
 |------------|-----|-----|---------------------|
 | US-01 | RF-01 | RN-01 | CA-01 |
 
-## 15. Cenarios de validacao de regra de negocio (fase dedicada pos-review)
+## 16. Cenarios de validacao de regra de negocio (fase dedicada pos-review)
 
 Lista aqui; **execucao** fica na skill `teste-regra-negocio`.
 
@@ -141,15 +158,22 @@ Lista aqui; **execucao** fica na skill `teste-regra-negocio`.
 |----|---------|---------|--------------------|-------|
 | VAL-01 | | | | RN-01 |
 
-## 16. Assumptions e perguntas abertas
+## 17. Assumptions e perguntas abertas
 
 | ID | Tipo (assumption / pergunta) | Texto | Impacto se errado |
 |----|------------------------------|-------|-------------------|
 | Q-01 | pergunta | ... | Alto / Medio / Baixo |
 
-## 17. Historico de revisao
+## 18. Historico de revisao
 
 | Versao | Data | Autor | Mudanca |
 |--------|------|-------|---------|
 | 0.1 | | | Rascunho inicial |
+
+
+
+
+
+
+
 

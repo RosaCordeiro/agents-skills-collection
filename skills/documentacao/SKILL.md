@@ -1,20 +1,20 @@
-﻿---
+---
 name: documentacao
 description: >-
-  Fase 8 da Entrega guiada: README, sync dos docs das fases 1 (SPEC/CORR),
-  3 (codigo/ops) e 4 (REVIEW), changelog e indice. Use apos revisao de testes.
+  Fase 9 da Entrega guiada: README, sync dos docs das fases 2 (SPEC/CORR),
+  4 (codigo/ops) e 5 (REVIEW), changelog e indice. Use apos revisao de testes.
 ---
 
-# Documentação (Fase 8)
+# Documentação (Fase 9)
 
-**Depois** de Revisão de testes (Fase 7). **Antes** do Encerramento (Fase 9).
+**Depois** de Revisão de testes (Fase 8). **Antes** do Encerramento (Fase 10).
 
 Tudo que foi **mexido** na entrega precisa estar refletido nos documentos — não só o README.
 
 ## Escopo
 
 - README / `--help` (checklist R1–R10)
-- **Revisão dos docs das fases 1, 3 e 4** (checklist DOC-F1/F3/F4 abaixo)
+- **Revisão dos docs das fases 2, 4 e 5** (checklist DOC-F2/F4/F5 abaixo)
 - CHANGELOG se existir
 - `.ai/docs/indice.md`
 - Sem secrets
@@ -29,9 +29,9 @@ Tudo que foi **mexido** na entrega precisa estar refletido nos documentos — n�
 
 ### 2. Revisão obrigatória — docs das fases anteriores
 
-**Gate:** não fechar Fase 8 só atualizando README se SPEC, REVIEW ou operação do código estiverem desatualizados.
+**Gate:** não fechar Fase 9 só atualizando README se SPEC, REVIEW ou operação do código estiverem desatualizados.
 
-#### DOC-F1 — Documentos da Fase 1 (Requisitos)
+#### DOC-F2 — Documentos da Fase 2 (Especificação funcional)
 
 Artefato: `SPEC-*.md` ou `CORR-*.md`.
 
@@ -39,11 +39,11 @@ Artefato: `SPEC-*.md` ou `CORR-*.md`.
 |------|----------|
 | Status final (ex. verificado, entregue) | |
 | Escopo **entregue** vs planejado — desvios com motivo | |
-| Resultados VAL/V da Fase 5 registrados | |
+| Resultados VAL/V da Fase 6 registrados | |
 | RN/CA que mudaram durante o dev — texto atualizado | |
 | Branch e links para ARCH, REVIEW, REVIEW-TESTES | |
 
-#### DOC-F3 — Documentação do que o Código faz (Fase 3)
+#### DOC-F4 — Documentação do que o Código faz (Fase 4)
 
 Tudo alterado no **código** deve aparecer na documentação de operação:
 
@@ -54,7 +54,7 @@ Tudo alterado no **código** deve aparecer na documentação de operação:
 | `.ai/rules/desenvolvimento.md` se convencoes mudaram | |
 | Comentários de módulo / OpenAPI / `--help` se o projeto usa | |
 
-#### DOC-F4 — Documentos da Fase 4 (Revisão de código)
+#### DOC-F5 — Documentos da Fase 5 (Revisão de código)
 
 Artefato: `REVIEW-*-resultado.md`.
 
@@ -64,7 +64,7 @@ Artefato: `REVIEW-*-resultado.md`.
 | Veredito final no REVIEW (fechado) | |
 | Referência cruzada no SPEC/CORR se houve mudança de escopo por review | |
 
-Opcional mas recomendado: citar no SPEC que `REVIEW-TESTES-*` foi aprovado na Fase 7.
+Opcional mas recomendado: citar no SPEC que `REVIEW-TESTES-*` foi aprovado na Fase 8.
 
 ### 3. Revisão obrigatória do README (R1–R10)
 
@@ -83,7 +83,7 @@ Para cada item: `OK` | `ATUALIZADO` | `N/A` (motivo).
 | R9 | CHANGELOG | |
 | R10 | Sem instruções obsoletas | |
 
-**Gate:** R2–R6 aplicáveis sem lacuna; DOC-F1/F3/F4 sem `FALHA` pendente.
+**Gate:** R2–R6 aplicáveis sem lacuna; DOC-F2/F4/F5 sem `FALHA` pendente.
 
 ### 4. Sincronizar `.ai/docs/`
 
@@ -91,8 +91,8 @@ Para cada item: `OK` | `ATUALIZADO` | `N/A` (motivo).
 
 ### 5. Apresentar ao dev
 
-1. Resumo das mudanças em README e docs F1/F3/F4.
-2. Tabelas R1–R10 e DOC-F1/F3/F4 com status.
+1. Resumo das mudanças em README e docs F2/F4/F5.
+2. Tabelas R1–R10 e DOC-F2/F4/F5 com status.
 3. Paths tocados.
 
 ### 6. Aprovação
@@ -104,7 +104,6 @@ Para cada item: `OK` | `ATUALIZADO` | `N/A` (motivo).
 ## O que não fazer
 
 - Atualizar só status do SPEC sem revisar conteúdo vs entrega real
-- Deixar REVIEW com achados “em aberto” sem nota de débito
-- README genérico “ver SPEC” sem endpoints/env/ops
-- Pular DOC-F3 quando o código mudou comportamento visível
-
+- Deixar REVIEW com achados "em aberto" sem nota de débito
+- README genérico "ver SPEC" sem endpoints/env/ops
+- Pular DOC-F4 quando o código mudou comportamento visível

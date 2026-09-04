@@ -108,3 +108,10 @@ Aplicar quando o cadastro ou a consulta exibir **cor de tipo** (PBI, task, GMUD,
 - [ ] Fonte da célula da lista **não** forçada pela wash
 - [ ] Form Novo/Editar da entidade-mestre: só pintar título se a SPEC pedir (ex.: visualizar tasks sim; editar PBI pode ficar fora)
 
+
+
+
+
+
+
+

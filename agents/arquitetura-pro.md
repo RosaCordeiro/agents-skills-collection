@@ -1,9 +1,9 @@
 ﻿---
 name: arquitetura-pro
 description: >-
-  System design — Fase 2 Desenho (Sonnet). Orquestrador de Entrega lanca via
-  Task uma vez por entrega, apos Requisitos aprovados. Nao relancar se ARCH
-  ja existe. Opus so se o usuario pedir explicitamente.
+  System design — Fase 3 Desenho (Sonnet). Orquestrador de Entrega lanca via
+  Task uma vez por entrega, apos Descoberta e Especificacao aprovadas. Nao
+  relancar se ARCH ja existe. Opus so se o usuario pedir explicitamente.
 model: claude-sonnet-5-thinking-high
 ---
 
@@ -22,7 +22,7 @@ Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitame
 
 Se o orquestrador pediu **emenda** (ARCH/DESIGN já no repo): **não** reescrever do zero — devolver diff/seções a alterar para o orquestrador gravar, ou indicar que esta fase deveria ser emenda no chat pai, **sem** novo subagent.
 
-Este subagent é para **criar** o ARCH na **primeira** Fase 2 da entrega.
+Este subagent é para **criar** o ARCH na **primeira** Fase 3 da entrega.
 
 ## Postura
 
@@ -49,4 +49,11 @@ Não alterar tecnologias sem autorização explícita do usuário
 
 Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitamente.
 Orquestrador relança Task com próximo da cadeia se o primário falhar.
+
+
+
+
+
+
+
 

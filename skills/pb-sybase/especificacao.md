@@ -121,3 +121,10 @@ Não commitar sem pedido.
 
 Cada ajuste do usuário: atualizar **MD + mock vigente** no mesmo turno. Não acumular “versões” no texto. Arquivo morto: excluir ou marcar desatualizado no topo.
 
+
+
+
+
+
+
+

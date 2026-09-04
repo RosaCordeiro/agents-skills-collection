@@ -127,3 +127,10 @@ Sera executado na fase `teste-regra-negocio` (e regressao em `teste-automatizado
 
 O que evita repetir (teste, alerta, validacao, doc).
 
+
+
+
+
+
+
+

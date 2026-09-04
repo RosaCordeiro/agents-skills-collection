@@ -50,3 +50,10 @@ Valores de `n` podem ser negociados na SPEC; o importante é **não** deixar “
 - Sybase/ASE (usar padrões ABAP/SQL do projeto Sybase).
 - MongoDB (documentos — outra skill se existir).
 
+
+
+
+
+
+
+

@@ -116,3 +116,10 @@ Snapshots PBG (`.pbg/snapshots/...`) podem ficar; o PBSCC **não** olha isso. O 
 | Patch de objeto **já no SCC** | `/pbg` |
 | Trigger/SP teste de mesa | `/teste-mesa-sybase` |
 
+
+
+
+
+
+
+

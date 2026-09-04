@@ -12,9 +12,9 @@ Mapa: `~/.claude/skills/dev-all-in-one/modelos.md`
 | Nível | Slug | Uso |
 |-------|------|-----|
 | **Trabalho** | `claude-sonnet-5` | Orquestrador, simples, código, spec, pb-sybase |
-| **Design / auditoria** | `claude-sonnet-5-thinking-high` | **Só** `arquitetura-pro` (1× ARCH) e `auditor` |
+| **Design / auditoria** | `claude-sonnet-5-thinking-high` | `arquitetura-pro` (1× ARCH), `auditor` e **Descoberta** (Fase 1 — exceção pedida pelo usuário, para investigar melhor o pedido) |
 
-**Não** usar `thinking-high` no orquestrador nem no código do dia a dia — gasta tokens de raciocínio interno sem necessidade.
+**Não** usar `thinking-high` no orquestrador nem no código do dia a dia (fases 2, 4, 6, 7, 9, 10) — gasta tokens de raciocínio interno sem necessidade. Fase 1 (Descoberta) é a exceção registrada acima.
 
 Sonnet **não** tem `high-fast`; isso é Grok (`cursor-grok-4.5-high-fast`). Reviews usam **`cursor-grok-4.6-medium`**.
 
@@ -22,13 +22,21 @@ Sonnet **não** tem `high-fast`; isso é Grok (`cursor-grok-4.5-high-fast`). Rev
 
 | Fases | Executor | Primário |
 |-------|----------|----------|
-| 1, 3, 5, 6, 8, 9 | Orquestrador | `claude-sonnet-5` |
-| 2 | `arquitetura-pro` | `claude-sonnet-5-thinking-high` |
-| 4, 7 | reviews | `cursor-grok-4.6-medium` |
+| 1 | Orquestrador (Descoberta) | `claude-sonnet-5-thinking-high` |
+| 2, 4, 6, 7, 9, 10 | Orquestrador | `claude-sonnet-5` |
+| 3 | `arquitetura-pro` | `claude-sonnet-5-thinking-high` |
+| 5, 8 | reviews | `cursor-grok-4.6-medium` |
 
 ## Regras
 
 - **Opus** só com pedido explícito neste chat.
 - Reviews: Grok medium → Sonnet padrão; **nunca** Opus nem thinking-high por padrão.
 - Não sugerir Opus. Não perguntar se quer Opus.
+
+
+
+
+
+
+
 

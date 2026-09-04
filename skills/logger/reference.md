@@ -117,3 +117,10 @@ app_name:"xml-translog" AND correlation_id:"…"
 | Keyword unica por instancia (`erro_nf_4226…`) | Keyword de classe + campos (`chave`) |
 | Logar token / senha / payload PII completo | Codigo + id de negocio |
 
+
+
+
+
+
+
+

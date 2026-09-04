@@ -74,3 +74,10 @@ Responda em **português**. Não execute código de produto Node aqui — foque 
 - Não aplicar DDL em produção
 - Não assumir UNIQUE INDEX se o ambiente disse que não há
 
+
+
+
+
+
+
+

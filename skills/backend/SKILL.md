@@ -92,3 +92,10 @@ Ao gravar histórico campo a campo (ex.: GMUD):
 Resuma endpoints/servicos. Em seguida use **`AskQuestion`** — prompt: `Proximo passo?`
 - `Ir para code review` | `Seguir com frontend` | `Ajustar backend` | `Outro (eu digito)`
 
+
+
+
+
+
+
+

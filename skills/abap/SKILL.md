@@ -73,3 +73,10 @@ Responda em portugues. Estilo consultivo. Foque no **backend SAP** e nos contrat
 - [ ] Sem SELECT/logica perigosa introduzida sem nota
 - [ ] Como testar o servico documentado para `ui5`/`fiori`
 
+
+
+
+
+
+
+

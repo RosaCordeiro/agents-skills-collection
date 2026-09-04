@@ -5,7 +5,7 @@
 - **SPEC/CORR:** …
 - **Data:** YYYY-MM-DD
 - **Model:** …
-- **Evidencia Fase 6:** comando + resultado (colar resumo)
+- **Evidencia Fase 7:** comando + resultado (colar resumo)
 
 ## Veredito
 
@@ -47,4 +47,11 @@
 
 | Data | Acao |
 |------|------|
+
+
+
+
+
+
+
 

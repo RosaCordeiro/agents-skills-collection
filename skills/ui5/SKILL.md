@@ -103,3 +103,10 @@ Ao criar ou refatorar **qualquer** tela de consulta/CRUD (lista + cadastrar/edit
 - [ ] Erros OData tratados nos fluxos tocados
 - [ ] Sem dependencia circular view↔controller desnecessaria
 
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 ﻿---
 name: desenvolvimento-simples
 description: >-
-  Desenvolvimento Direto: implementa sem as 9 fases. Neste chat; nao Task.
+  Desenvolvimento Direto: implementa sem as 10 fases. Neste chat; nao Task.
   Use when user chooses direto ao ponto, simples, patch rapido, hotfix, spike.
 model: claude-sonnet-5
 ---
@@ -22,7 +22,7 @@ Opus só com pedido explícito. Mapa completo: `~/.claude/skills/dev-all-in-one/
 
 ## Quando este modo é o certo
 
-| Use **Direto** | Prefira **Entrega guiada** (9 fases) |
+| Use **Direto** | Prefira **Entrega guiada** (10 fases) |
 |----------------|--------------------------------------|
 | Hotfix, ajuste pontual, typo, config | Feature nova com regra de negócio |
 | Spike / prova rápida | Precisa de ARCH ou review formal |
@@ -48,4 +48,11 @@ Opus só com pedido explícito. Mapa completo: `~/.claude/skills/dev-all-in-one/
 ## Se o pedido crescer
 
 Se no meio do trabalho ficar claro que precisa de spec, desenho ou review formal, **avise** o dev e sugira mudar para **Entrega guiada** (`desenvolvimento-pro`) — não force sozinho.
+
+
+
+
+
+
+
 

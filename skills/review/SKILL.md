@@ -3,7 +3,7 @@ name: review
 description: >-
   Code review da mudanca na branch: qualidade, seguranca, aderencia a
   especificacao/design; checklist de pontos obrigatorios e artefato
-  REVIEW-*-resultado.md.   Use na fase 4 da Entrega guiada (apos Código,
+  REVIEW-*-resultado.md.   Use na fase 5 da Entrega guiada (apos Código,
   antes do Aceite de negocio), ou em pedido explicito de code review/PR.
 ---
 
@@ -15,7 +15,7 @@ isso vem nas fases `teste-regra-negocio`, `teste-automatizado` e `documentacao`.
 
 ## Quando aplicar
 
-- Fase 4 da Entrega guiada (após Código) — via subagent **`review-pro`**
+- Fase 5 da Entrega guiada (após Código) — via subagent **`review-pro`**
 - Pedido explicito de review / PR
 
 No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.6-medium` → `claude-sonnet-5`; nunca Opus). Correções no orquestrador (Sonnet padrão). Mapa: `dev-all-in-one/modelos.md`.
@@ -145,4 +145,11 @@ Garantir checklist preenchido + artefato (gravado ou corpo devolvido ao orquestr
 - Subagent `review-pro`: resumo + markdown do REVIEW + `HANDOFF_CORRECAO` se preciso — **zero** edicao de codigo.
 - Chat direto: **`AskQuestion`**: `Code review ok?`
   - `Sim, seguir para teste de regra de negocio` | `Corrigir achados` | `Outro (eu digito)`
+
+
+
+
+
+
+
 

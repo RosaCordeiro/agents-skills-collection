@@ -14,3 +14,10 @@ Ativar/Inativar no mesmo slot, situacao fora do form de editar, lista sem caixa 
 sem botao Atualizar, menu so com a lista. Se a linha tiver **mais de 3** acoes
 (ativas ou inativas), usar `MenuButton` overflow (⋮); indisponiveis desabilitadas.
 
+
+
+
+
+
+
+

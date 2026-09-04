@@ -1,14 +1,14 @@
-﻿---
+---
 name: review-testes
 description: >-
   Revisao da qualidade dos testes automatizados apos a suite rodar: abrangencia,
-  execucao real, anti-padrao de teste adaptado ao bug. Fase 7 da Entrega guiada.
+  execucao real, anti-padrao de teste adaptado ao bug. Fase 8 da Entrega guiada.
   Use via subagent review-testes-pro apos teste-automatizado.
 ---
 
 # Revisao de testes automatizados
 
-Fase **7** da Entrega guiada — **depois** de `teste-automatizado` (Fase 6) e **antes** de `documentacao` (Fase 8).
+Fase **8** da Entrega guiada — **depois** de `teste-automatizado` (Fase 7) e **antes** de `documentacao` (Fase 9).
 
 Objetivo: garantir que os testes **protegem** o produto — nao que **escondem** defeitos.
 
@@ -16,19 +16,19 @@ No fluxo Pro: subagent **`review-testes-pro`** (`cursor-grok-4.6-medium` → Son
 
 ## Quando aplicar
 
-- Fase 7 do orquestrador, apos suite executada na Fase 6
+- Fase 8 do orquestrador, apos suite executada na Fase 7
 - Pedido explicito de revisar qualidade dos testes da branch
 
 ## Entradas obrigatorias
 
 1. SPEC/CORR + ARCH aprovados
 2. Diff da branch (codigo **e** testes)
-3. **Evidencia de execucao** da Fase 6: comando rodado, exit code, resumo pass/fail (nao inventar)
+3. **Evidencia de execucao** da Fase 7: comando rodado, exit code, resumo pass/fail (nao inventar)
 4. Lista de testes novos/alterados nesta entrega
 
 ## Processo
 
-1. Confirmar que a suite **rodou de verdade** na Fase 6 (log, CI, output).
+1. Confirmar que a suite **rodou de verdade** na Fase 7 (log, CI, output).
 2. Mapear testes novos/alterados vs delta de produto e VAL/V da spec.
 3. Percorrer checklist **RT1–RT12** (marcar `OK` / `FALHA` / `N/A`).
 4. Listar achados com severidade + correcao sugerida (**nao aplicada** no subagent).
@@ -39,7 +39,7 @@ No fluxo Pro: subagent **`review-testes-pro`** (`cursor-grok-4.6-medium` → Son
 
 | # | Area | O que conferir |
 |---|------|----------------|
-| RT1 | Execucao real | Suite rodada nesta entrega; evidencia (comando + resultado); nao aceitar “deve passar” sem output |
+| RT1 | Execucao real | Suite rodada nesta entrega; evidencia (comando + resultado); nao aceitar "deve passar" sem output |
 | RT2 | Escopo vs spec | Testes cobrem RF/RN/CA/VAL principais da mudanca; gap consciente justificado |
 | RT3 | Abrangencia | Alem do happy path: erros, validacao, bordas relevantes ao negocio |
 | RT4 | Anti-mascara | Teste nao passa ignorando assert (`todo`, `skip` indevido, `only`, suite vazia) |
@@ -54,13 +54,13 @@ No fluxo Pro: subagent **`review-testes-pro`** (`cursor-grok-4.6-medium` → Son
 
 **Gate bloqueante:** RT1 `FALHA` (suite nao rodou) ou RT5 `FALHA` (teste adaptado ao erro) → **nao** seguir para Documentacao ate corrigir ou usuario aceitar debito explicito.
 
-## Sinais de “teste adaptado ao erro” (RT5)
+## Sinais de "teste adaptado ao erro" (RT5)
 
 Marcar `FALHA` se encontrar:
 
 - Assert alterado de valor correto para valor que o bug produz
 - Remocao de caso que falhava apos a implementacao errada
-- Snapshot atualizado “no escuro” sem validar semantica
+- Snapshot atualizado "no escuro" sem validar semantica
 - `expect` trocado por comentario ou assert sempre verdadeiro
 - Teste passa porque mock retorna o que o codigo errado espera, sem exercitar integracao prometida na spec
 
@@ -70,7 +70,7 @@ Marcar `FALHA` se encontrar:
 ## Veredito
 - Pronto para documentacao / Corrigir testes / Corrigir codigo / Bloqueado
 
-## Evidencia de execucao (Fase 6)
+## Evidencia de execucao (Fase 7)
 - Comando: …
 - Resultado: …
 
@@ -93,15 +93,14 @@ Modelo do artefato: [modelo-resultado.md](modelo-resultado.md).
 2. Orquestrador grava arquivo
 3. `AskQuestion`: `Revisao de testes ok?`
    - `Sim, seguir para Documentacao`
-   - `Corrigir testes` → orquestrador ajusta testes → re-Task ou volta Fase 6
-   - `Corrigir codigo` → orquestrador ajusta produto → Fase 6 de novo
+   - `Corrigir testes` → orquestrador ajusta testes → re-Task ou volta Fase 7
+   - `Corrigir codigo` → orquestrador ajusta produto → Fase 7 de novo
    - `Outro (eu digito)`
-4. So avancar para Fase 8 com veredito ok ou debitos aceitos
+4. So avancar para Fase 9 com veredito ok ou debitos aceitos
 
 ## O que nao fazer
 
 - Aprovar sem evidencia de execucao (RT1)
 - Aceitar teste que so valida implementacao interna fragil sem valor de negocio
 - Corrigir testes/codigo no subagent (readonly)
-- Substituir Fase 5 (aceite manual de RN)
-
+- Substituir Fase 6 (aceite manual de RN)

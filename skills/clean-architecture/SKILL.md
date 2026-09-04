@@ -146,3 +146,10 @@ Tipos/DTOs de wire podem viver no adapter **desde que** o dominio nao dependa de
 - [ ] Teste de dominio ou use case com porta mockada
 - [ ] `.ai/rules/desenvolvimento.md` atualizado se convencao local divergir
 
+
+
+
+
+
+
+

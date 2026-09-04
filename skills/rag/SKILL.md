@@ -67,3 +67,10 @@ Responda em portugues. Estilo consultivo: alinhar objetivo e fontes antes de imp
 - Usar RAG onde SQL resolveria com precisao maior
 - Prometer "100% correto" sem camada de citacao/fonte
 
+
+
+
+
+
+
+

@@ -4,9 +4,11 @@ Skill consultiva. Nao implemente codigo de producao aqui — entregue design com
 
 No fluxo **Pro**, esta skill roda no subagent **`arquitetura-pro`** (`claude-sonnet-5-thinking-high` — **só** design; orquestrador usa Sonnet padrão). Opus so se o usuario pedir.
 
+Fase **3** do Dev All-in-One (apos Descoberta e Especificacao aprovadas).
+
 ## Pre-requisito
 
-Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`). Se nao estiver, avise e ofereca voltar a essa fase.
+Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`, Fase 2 — que ja parte de uma Descoberta aprovada). Se nao estiver, avise e ofereca voltar a essa fase.
 
 ## Processo
 
@@ -172,4 +174,11 @@ Ordem tipica na implementacao:
 - Desktop C++: implementacao alinhada ao design desta skill
 
 Nao pular code review nem as fases de teste.
+
+
+
+
+
+
+
 

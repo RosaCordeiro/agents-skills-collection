@@ -279,3 +279,10 @@ Checklist do agent ao escrever log novo:
 - Exigir logger Clamed em Python/Go/SAP/ABAP
 - Dashboards Kibana finais (objetivo posterior; os campos preparam a base)
 
+
+
+
+
+
+
+

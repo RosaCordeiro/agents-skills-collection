@@ -56,3 +56,10 @@ Duas pastas — não confundir:
 
 Pedido simples → não investigar arch/MCP/init. MCP falhou → CLI direto. Máx. ~4 passos antes de reportar bloqueio.
 
+
+
+
+
+
+
+

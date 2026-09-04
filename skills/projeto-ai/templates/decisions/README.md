@@ -4,3 +4,10 @@ Registro de decisoes arquiteturais **fechadas**. Um arquivo por decisao: `ADR-NN
 
 Numeracao sequencial a partir de `001`. Decisoes do system design (`ARCH-NNN.md`) devem aparecer aqui em resumo acionavel.
 
+
+
+
+
+
+
+

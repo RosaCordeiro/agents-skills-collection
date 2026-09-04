@@ -11,3 +11,10 @@ Esta pasta concentra o que agentes de IA precisam para trabalhar neste projeto d
 
 **Manter atualizado** quando mudar stack, convencoes ou decisoes importantes.
 
+
+
+
+
+
+
+

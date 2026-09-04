@@ -48,3 +48,10 @@ Responda e documente em portugues. Espere aprovacao de plano se a mudanca for gr
 Resuma o que mudou. Em seguida use **`AskQuestion`** — prompt: `Proximo passo?`
 - `Ir para code review` | `Seguir com backend/integracao` | `Ajustar frontend` | `Outro (eu digito)`
 
+
+
+
+
+
+
+

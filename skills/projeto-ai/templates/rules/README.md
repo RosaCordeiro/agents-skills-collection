@@ -4,3 +4,10 @@ Regras **deste repositorio** para agentes e desenvolvedores. Complementam as rul
 
 - [desenvolvimento.md](desenvolvimento.md) — convencoes de codigo, branch, testes, logs
 
+
+
+
+
+
+
+

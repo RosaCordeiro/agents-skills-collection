@@ -179,3 +179,10 @@ Nao oferecer “quer que eu corrija?”. Pode oferecer: reauditar depois que out
 
 Nao dispara o seletor Pro vs Simples (nao e desenvolvimento).
 
+
+
+
+
+
+
+
