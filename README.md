@@ -22,21 +22,22 @@ cursor-kit/
 | Arquivo | Nome para o dev | Papel |
 |---------|-----------------|--------|
 | `desenvolvimento.md` | **Portal de Desenvolvimento** | Pergunta: Entrega guiada vs Direto ao ponto |
-| `desenvolvimento-pro.md` | **Orquestrador de Entrega** | 9 fases — mapa em `dev-all-in-one/fases.md` |
+| `desenvolvimento-pro.md` | **Orquestrador de Entrega** | 10 fases — mapa em `dev-all-in-one/fases.md` |
 | `desenvolvimento-simples.md` | **Desenvolvimento Direto** | Sem fases |
-| `arquitetura-pro.md` | Desenho (subagent) | Fase 2 |
-| `review-pro.md` | Revisão código (subagent) | Fase 4 |
-| `review-testes-pro.md` | Revisão testes (subagent) | Fase 7 — abrangência, execução real, anti-adaptação ao bug |
+| `arquitetura-pro.md` | Desenho (subagent) | Fase 3 |
+| `review-pro.md` | Revisão código (subagent) | Fase 5 |
+| `review-testes-pro.md` | Revisão testes (subagent) | Fase 8 — abrangência, execução real, anti-adaptação ao bug |
 | `monitor-uso-ia.md` | Monitor uso IA | Transcripts, ranking, alertas custo (`/monitor`) |
 | `auditor.md` | Auditor 100% (não programa): revalida o sistema, roda a suíte, Validação 1..N, notas 0–10 |
 | `pbg.md` | PowerBuilder 12: altera via MCP (`composer-2.5-fast`); patch importa e compila |
-| `pb-sybase.md` | Consulta PB + Sybase + sybase-objects; spec de chamado (MD → mock → DOCX) |
+| `pb-sybase.md` | Consulta PB + Sybase + sybase-objects; spec pequena de chamado (MD → mock → DOCX), sem fases; **não implementa** |
+| `pb-desenvolvimento-pro.md` | Orquestrador de Entrega PB (8 fases) — sincronismo, descoberta, especificação, arquitetura (fragmentação), system design por fragmento, revisão, testes sugeridos, encerramento; **não implementa** |
 | `liberar-espaco.md` | Diagnostica e libera C: (Windows + WSL Ubuntu + Docker no WSL); compact/recria VHDX |
 | `softdesk.md` | Abre chamado SoftDesk para o próprio usuário (HTML, defaults, crítico + cruzamento PB/Sybase) |
 
 ### Skills
 
-`dev-all-in-one`, `review-testes` (RT1–RT12 + `REVIEW-TESTES-*`), `monitor-uso-ia` (script + alertas de custo), `especificacao` (documento autocontido: a spec não depende do chat), `projeto-ai` (pasta `.ai` obrigatória em greenfield: context, rules, decisions, docs), `clean-architecture` (Clean + hexagonal — ref. `api-integracao-syb-kafka`; TS/Python), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
+`dev-all-in-one`, `descoberta` (Fase 1: perguntas até fechar o entendimento do pedido, antes de qualquer spec), `review-testes` (RT1–RT12 + `REVIEW-TESTES-*`), `monitor-uso-ia` (script + alertas de custo), `especificacao` (documento autocontido: a spec não depende do chat), `projeto-ai` (pasta `.ai` obrigatória em greenfield: context, rules, decisions, docs), `clean-architecture` (Clean + hexagonal — ref. `api-integracao-syb-kafka`; TS/Python), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX, sem fases, não implementa), `pb-dev-all-in-one` (8 fases PB: sincronismo, descoberta, especificação, arquitetura/fragmentação, system design por fragmento, revisão, testes sugeridos, encerramento — não implementa), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
 
 No Pro: mapa de models em `dev-all-in-one/modelos.md` — orquestrador Sonnet; arquitetura Sonnet (Opus só se pedir; **uma vez** por entrega); reviews Grok→Sonnet (readonly). Pro/Simples **não** são lançados via Task — rodam no chat.
 
@@ -134,7 +135,7 @@ Abra um chat novo no Cursor.
 
 1. Você pede um desenvolvimento.
 2. O agent pergunta: **Pro** ou **Simples**.
-3. **Pro** / **Entrega guiada** → orquestra as 9 fases (`dev-all-in-one/fases.md`).
+3. **Pro** / **Entrega guiada** → orquestra as 10 fases (`dev-all-in-one/fases.md`).
 4. **Simples** / **Direto ao ponto** → implementa sem fases.
 5. Após grande alteração, peça o **auditor** (não é Pro/Simples): ele só valida e dá nota.
 
