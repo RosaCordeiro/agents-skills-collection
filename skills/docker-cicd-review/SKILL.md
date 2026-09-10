@@ -9,11 +9,14 @@ description: >-
   lógica de deploy versionada no .gitlab-ci.yml do próprio repo em vez de
   scripts externos fora de controle de versão; validação que falha o
   pipeline (não só avisa no log) quando um pré-requisito de deploy está
-  ausente; e um estágio de testes automatizados rodando dentro da imagem já
-  buildada, entre o build e o deploy real. Use quando o usuário pedir revisar
-  ou validar Docker, revisar CI/CD, checklist de deploy, "container sobe mas
-  não responde", "env vazia dentro do container", ou ao configurar Docker/CI
-  de um projeto novo. Não usar para escrever o Dockerfile/aplicação em si
+  ausente; um estágio de testes automatizados rodando dentro da imagem já
+  buildada, entre o build e o deploy real; e aspas supérfluas num arquivo de
+  variáveis usado com `--env-file` (não são removidas, viram parte literal
+  do valor). Use quando o usuário pedir revisar ou validar Docker, revisar
+  CI/CD, checklist de deploy, "container sobe mas não responde", "env vazia
+  dentro do container", "mesma imagem funciona em homologação e não em
+  produção", ou ao configurar Docker/CI de um projeto novo. Não usar para
+  escrever o Dockerfile/aplicação em si
   (skill backend) nem para a estrutura de pasta `.ai` de projeto greenfield
   (skill projeto-ai) — esta skill foca só na cadeia build → variáveis →
   deploy → validação do CI/CD.
@@ -136,6 +139,77 @@ projetos novos (definir o estágio desde o início) quanto para revisão de
 projetos existentes que builda e faz deploy sem nenhum gate de teste no
 meio.
 
+## 6. Aspas em variável de ambiente via `--env-file` (não são removidas)
+
+`docker run --env-file <arquivo>` trata tudo depois do `=` como valor
+literal — **não remove aspas**, ao contrário de `dotenv`, de um `export` de
+shell, ou de `docker-compose` com `env_file:` (que também não remove, mesmo
+problema). Se o arquivo de variáveis de deploy tiver:
+
+```
+DRIVERNAME="net.sourceforge.jtds.jdbc.Driver"
+```
+
+o processo recebe a string **com as aspas dentro do valor**
+(`"net.sourceforge.jtds.jdbc.Driver"`, 35 caracteres, não 33) — não o valor
+que aparenta ter no arquivo. Isso já causou em produção um
+`ClassNotFoundException` no driver JDBC do Sybase (o nome da classe, com
+aspas literais, não corresponde a nenhuma classe real) que persistiu por um
+dia inteiro de investigação de causa raiz em código/Docker/JVM antes de se
+confirmar que era só isso — homologação funcionava porque a variável
+equivalente lá não tinha aspas.
+
+**Como confirmar:** comparar o valor efetivo dentro do container, não o
+texto do arquivo de variáveis:
+
+```bash
+docker exec <container> node -e 'console.log(JSON.stringify(process.env.VAR))'
+```
+
+Se aparecer aspas *dentro* da string impressa (seja no `JSON.stringify`, ou
+contando o tamanho com `${#val}` em shell), a variável está quebrada por
+aspas supérfluas no arquivo de origem.
+
+**Ao revisar:** se dois ambientes (HMG/PRD) usam arquivos de variáveis
+separados (ex.: `HMGVARIAVEIS` / `PRDVARIAVEIS` como CI/CD variables do
+GitLab) para o mesmo `docker run --env-file`, comparar os dois arquivo por
+arquivo, **atentando ao estilo de aspas de cada linha** — é comum um dos
+dois ter sido escrito/copiado com aspas e o outro não, já que nada no
+pipeline normaliza isso.
+
+## 7. HMG funciona, PRD não, mesmo Dockerfile — o que pode divergir (fora do valor das envs)
+
+Quando o mesmo Dockerfile/imagem se comporta diferente em HMG e PRD, a
+causa costuma estar em uma destas divergências — cheque nesta ordem (mais
+comum/barato de verificar primeiro):
+
+1. **Formatação do arquivo de variáveis** (item 6 acima) — aspas, espaços,
+   quebra de linha dentro de um valor. É a causa mais provável e a mais
+   rápida de descartar; comece por aqui.
+2. **Limites de recursos do container** (`--cpus`, `--memory` no `docker run`
+   de cada ambiente) — projetos com bridge nativo Java/JVM (`node-java`,
+   `deasync`) ou qualquer código com race condition latente podem se
+   comportar de forma diferente sob mais núcleos/paralelismo disponível.
+   Não presuma que isso *é* a causa sem evidência — é fácil gastar um dia
+   inteiro perseguindo essa hipótese (aconteceu) quando a causa real era o
+   item 1.
+3. **Mount de volume específico de um ambiente** (ex.: mount de log do
+   Fluent Bit só em PRD) — verifique se algum `-v` existe num `docker run`
+   e não no outro.
+4. **Valor de uma variável que muda contagem/concorrência** (ex.:
+   `MAX_WORKERS` diferente entre HMG e PRD) — pode mascarar ou expor uma
+   race condition sem ser a causa raiz dela.
+5. **Drift entre Dockerfiles de projetos "irmãos"** — se um projeto similar
+   no mesmo repositório de padrões já funciona, comparar os dois
+   Dockerfiles linha a linha (`diff`) antes de assumir que a diferença de
+   comportamento está no código da aplicação.
+
+Regra prática: **teste o item 1 (formatação das envs) antes de qualquer
+teoria de ambiente/container/paralelismo** — é barato de verificar
+(`docker exec ... printenv`/`JSON.stringify(process.env...)`) e, pela
+experiência registrada aqui, é a causa mais comum de "mesma imagem, mesmo
+código, comportamento diferente por ambiente".
+
 ## Fronteiras
 
 | Se o pedido for... | Usar |
@@ -148,4 +222,7 @@ meio.
 Esta skill cobre especificamente a cadeia build → variáveis → deploy →
 validação do pipeline — não a lógica de negócio da aplicação nem a revisão
 de código da feature.
+
+
+
 
