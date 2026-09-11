@@ -22,12 +22,16 @@ Não inverter: não gerar DOCX no rascunho. **Não implementar PB nesta fase** �
 
 ## Pasta e arquivos
 
+Caminho **absoluto e fixo**, sempre — nunca gravar no diretório de trabalho corrente nem em qualquer outro local, mesmo que o pedido do usuário (ou de um agent que te invocou) diga "salve no diretório de trabalho" ou não mencione pasta:
+
 ```
-Projetos/Especificações/Chamado <n>/
+C:\Users\995670.CLAMED\Desenvolvimentos\Projetos\Especificações\Chamado <n>\
   SPEC-<n>.md                 # fonte da verdade
   mock-*.html                 # só os vigentes
   SPEC-<n>.docx               # só após ok do usuário
 ```
+
+Se a entrega tiver mais de um item/objeto separado, um arquivo por item dentro da mesma pasta do chamado (ex. `SPEC-<n>-item1-<slug>.md`, `SPEC-<n>-item2-<slug>.md>`), nunca soltos fora dela.
 
 Se o número do chamado existir: tentar SoftDesk (`user-softdesk`) para contexto; se não achar, seguir com o que o usuário descreveu e o legado PB/Sybase.
 
@@ -120,6 +124,11 @@ Não commitar sem pedido.
 ## Iteração
 
 Cada ajuste do usuário: atualizar **MD + mock vigente** no mesmo turno. Não acumular “versões” no texto. Arquivo morto: excluir ou marcar desatualizado no topo.
+
+
+
+
+
 
 
 
