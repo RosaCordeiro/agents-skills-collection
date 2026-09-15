@@ -1,4 +1,4 @@
----
+﻿---
 name: pb-dev-all-in-one
 description: >-
   Orquestrador de Entrega PB (8 fases): sincronismo, descoberta,
@@ -28,10 +28,10 @@ Responda em português.
 | 2 | **Descoberta** | skill `descoberta` — entender exatamente o pedido | Resumo da Descoberta aprovado |
 | 3 | **Especificação do usuário** | Consulta PB+Sybase+sybase-objects, redige spec em linguagem de negócio, mocks se houver tela | `SPEC-<n>.md` + `mock-*.html` |
 | 4 | **Arquitetura (fragmentação)** | Decide as fronteiras: Cadastro / Consulta / Funcionamento / Integração; sistemas e bancos envolvidos | `ARCH-<n>.md` (mapa de fragmentos) |
-| 5 | **System design por fragmento** | Uma spec técnica detalhada por fragmento (telas, banco, lógica) | `SPEC-<n>-<fragmento>.md` (um por fragmento) |
-| 6 | **Revisão das specs vs Descoberta** | Confere cada spec de fragmento contra o Resumo da Descoberta e o `SPEC-<n>.md` original — nada ficou de fora, nada foi inventado | `REVIEW-<n>-resultado.md` |
-| 7 | **Sugestões de teste** | Cenários de teste sugeridos por fragmento — **não executa** | Seção "Sugestões de teste" em cada spec de fragmento |
-| 8 | **Encerramento** | Checklist DoD; specs aprovadas; fecha sem gerar código | DoD ok |
+| 5 | **System design por fragmento** | Detalhamento técnico de cada fragmento (telas, banco, lógica), tudo dentro de **um único** documento final | `SPEC-<n>-TECNICA.md` (1 arquivo, 1 seção por fragmento) |
+| 6 | **Revisão das specs vs Descoberta** | Confere cada seção de fragmento, dentro do `SPEC-<n>-TECNICA.md`, contra o Resumo da Descoberta e o `SPEC-<n>.md` original — nada ficou de fora, nada foi inventado | `REVIEW-<n>-resultado.md` |
+| 7 | **Sugestões de teste** | Cenários de teste sugeridos por fragmento — **não executa** | Seção "Sugestões de teste" dentro da seção de cada fragmento, no mesmo `SPEC-<n>-TECNICA.md` |
+| 8 | **Encerramento** | Checklist DoD; spec técnica aprovada; fecha sem gerar código | DoD ok |
 
 Anuncie **"Fase N — Nome"** + artefato + aprovação esperada. Cada fase pode
 gerar correção antes de avançar (ver loops abaixo).
@@ -142,22 +142,54 @@ ou banco Sybase adicional tocado é candidato a fragmento próprio.
 
 ### Fase 5 — System design por fragmento
 
-Para **cada** fragmento da Fase 4, produzir uma spec técnica própria:
-`SPEC-<n>-<fragmento-slug>.md`, cobrindo o "Conteúdo mínimo do MD" da skill
-`pb-sybase` (`especificacao.md`): tela (ancestor, dw_1/dw_2, menu), banco
-(DDL de tabelas/colunas, triggers/SPs afetados), lógica (retrieve,
-itemchanged, gravar, filtros), critérios de aceite.
+Produzir **um único arquivo** `SPEC-<n>-TECNICA.md` (mesma pasta do chamado),
+com **uma seção `## Fragmento: <nome>`** por fragmento da Fase 4. É proibido
+criar um arquivo `.md` separado por fragmento — o objetivo desta fase é
+justamente evitar fragmentos de texto soltos e difíceis de ler; tudo fica
+dentro do mesmo documento, em seções.
 
-- Um fragmento por vez; não misturar o conteúdo de dois fragmentos no mesmo
-  arquivo.
-- Mocks do fragmento (se houver tela) ficam junto da spec do fragmento, não
-  na spec-mãe (`SPEC-<n>.md`).
+Estrutura do `SPEC-<n>-TECNICA.md` — **tópicos obrigatórios por fragmento**,
+nesta ordem:
+
+```markdown
+# SPEC Técnica — Chamado <n>
+
+Sumário: lista dos fragmentos, na ordem de dependência (ex.: Cadastro antes
+de Funcionamento que depende dele).
+
+## Fragmento: <nome> (<tipo: Cadastro/Consulta/Funcionamento/Integração>)
+
+1. **Objetivo** — o que este fragmento precisa fazer.
+2. **Motivo / o que causou** — por que este fragmento existe: o problema,
+   pedido ou causa raiz que o originou (herdado da Descoberta e do
+   `SPEC-<n>.md`, reescrito no contexto técnico deste fragmento — não
+   copiar e colar sem adaptar). Nunca deixar um fragmento sem essa seção,
+   mesmo que pareça óbvio.
+3. **O que já existe vs o que esta entrega muda**.
+4. **Tela** — ancestor, dw_1/dw_2, menu, botões extras (se houver tela).
+5. **Banco** — DDL de tabelas/colunas novas, o que não muda, histórico no
+   padrão já existente (`wms_historico_*`, se for o caso).
+6. **Lógica** — retrieve, itemchanged, gravar, filtros.
+7. **Sugestões de teste** (preenchida na Fase 7).
+8. **Critérios de aceite**.
+9. **Mocks** (se houver tela) — subseção aqui, não em arquivo à parte.
+
+## Fragmento: <próximo> ...
+```
+
+Cada decisão técnica do fragmento carrega o porquê no próprio texto (mesmo
+padrão "documento autocontido" da skill `pb-sybase` § `especificacao.md`) —
+não só o item 1, mas qualquer escolha não óbvia ao longo do fragmento.
+
+- Escrever um fragmento por vez, mas sempre como seção nova dentro do mesmo
+  arquivo — nunca em `.md` separado.
 - **`AskQuestion`** por fragmento (ou em lote, se todos ficaram prontos
-  juntos): `Specs de fragmento ok — seguir para Revisão?`
+  juntos): `Seção do fragmento ok — seguir para o próximo / para Revisão?`
 
 ### Fase 6 — Revisão das specs vs Descoberta
 
-Conferir, para cada `SPEC-<n>-<fragmento>.md`:
+Conferir, para cada seção `## Fragmento: <nome>` dentro do
+`SPEC-<n>-TECNICA.md`:
 
 - Está coberto pelo Resumo da Descoberta (Fase 2) e pelo `SPEC-<n>.md`
   (Fase 3) — nada foi inventado, nada ficou de fora.
@@ -173,8 +205,9 @@ Registrar em `REVIEW-<n>-resultado.md`: por fragmento, `OK` / `FALHA`
 ### Fase 7 — Sugestões de teste
 
 Por enquanto, **só sugerir** — não executar nada (nem teste de mesa, nem
-suite). Para cada fragmento, acrescentar uma seção "Sugestões de teste"
-na própria `SPEC-<n>-<fragmento>.md`:
+suite). Para cada fragmento, preencher a subseção "Sugestões de teste"
+dentro da respectiva seção `## Fragmento: <nome>`, no mesmo
+`SPEC-<n>-TECNICA.md`:
 
 | ID | Cenário | Entrada | Resultado esperado |
 |----|---------|---------|---------------------|
@@ -187,7 +220,8 @@ sob pedido — esta fase só deixa o roteiro sugerido, não a executa.
 
 ### Fase 8 — Encerramento
 
-Checklist DoD; marcar cada `SPEC-<n>-<fragmento>.md` como `Status: aprovado`.
+Checklist DoD; marcar o cabeçalho do `SPEC-<n>-TECNICA.md` como
+`Status: aprovado` (todas as seções de fragmento aprovadas).
 DOCX (skill `pb-sybase` § DOCX) só aqui, e só se o usuário pedir.
 
 **`AskQuestion`**: `DoD completo — encerrar?`
@@ -202,7 +236,7 @@ tomada pelo usuário fora deste fluxo.
 - [ ] Descoberta — Resumo aprovado
 - [ ] `SPEC-<n>.md` aprovado (+ mocks se houver tela)
 - [ ] `ARCH-<n>.md` — fragmentação decidida e aprovada
-- [ ] Uma `SPEC-<n>-<fragmento>.md` por fragmento, aprovada
+- [ ] `SPEC-<n>-TECNICA.md` único, com uma seção por fragmento, aprovado
 - [ ] `REVIEW-<n>-resultado.md` sem `FALHA` pendente
 - [ ] Sugestões de teste registradas por fragmento
 - [ ] Nenhum código PB alterado neste fluxo
@@ -215,8 +249,8 @@ tomada pelo usuário fora deste fluxo.
 | 2 Descoberta | `Ajustar entendimento` → repetir perguntas até novo Resumo aprovado |
 | 3 Especificação | `Ajustar` → reescreve `SPEC-<n>.md`/mocks e pede aprovação de novo |
 | 4 Arquitetura | `Ajustar divisão` → reagrupa/recorta fragmentos e pede aprovação de novo |
-| 5 System design | Corrigir a spec do fragmento específico e reaprovar só ele |
-| 6 Revisão | `FALHA` → volta para a Fase 5 do fragmento afetado |
+| 5 System design | Corrigir a seção do fragmento específico dentro do `SPEC-<n>-TECNICA.md` e reaprovar só ela |
+| 6 Revisão | `FALHA` → volta para a Fase 5, corrige a seção do fragmento afetado |
 | 7 Testes | Ajustar cenários sugeridos |
 
 ## Fronteiras (não confundir com outros agents PB)
@@ -229,3 +263,8 @@ tomada pelo usuário fora deste fluxo.
 | Patch de objeto PB já existente | `/pbg` |
 | Objeto/PBL/tela nova (depois da spec aprovada) | skill `pb-criar-objeto`, fora deste fluxo |
 | Teste de mesa de trigger/SP | `/teste-mesa-sybase` |
+
+
+
+
+
