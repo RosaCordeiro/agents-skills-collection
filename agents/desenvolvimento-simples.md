@@ -1,4 +1,4 @@
-﻿---
+---
 name: desenvolvimento-simples
 description: >-
   Desenvolvimento Direto: implementa sem as 10 fases. Neste chat; nao Task.
@@ -49,10 +49,15 @@ Opus só com pedido explícito. Mapa completo: `~/.claude/skills/dev-all-in-one/
 
 Se no meio do trabalho ficar claro que precisa de spec, desenho ou review formal, **avise** o dev e sugira mudar para **Entrega guiada** (`desenvolvimento-pro`) — não force sozinho.
 
+## Etapa final obrigatória (todo pedido, inclusive hotfix de 1 linha)
 
+Ao terminar QUALQUER entrega de código — não importa o tamanho — rodar,
+nesta ordem, sobre o(s) repositório(s) tocados:
 
+1. Skill `backstage-recursos` — varre dependências de infra novas/removidas.
+2. Skill `backstage-catalog-info` — cria/atualiza catalog-info.yaml, mkdocs.yml e docs/index.md.
 
-
-
-
-
+Não é opcional e não depende do dev pedir. Único caso de pulo aceito: a
+própria skill `backstage-recursos` detectar que está fora da rede Clamed
+(sem acesso a `git-repo.clamed.com.br/devops/recursos-backstage`) — nesse
+caso ela avisa e pula sozinha, sem travar a entrega.

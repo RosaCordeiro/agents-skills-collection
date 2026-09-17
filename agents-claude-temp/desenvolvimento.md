@@ -1,7 +1,7 @@
-﻿---
+---
 name: desenvolvimento
 description: >-
-  Portal de desenvolvimento: pergunta Entrega guiada (9 fases) vs Direto ao ponto.
+  Portal de desenvolvimento: pergunta Entrega guiada (10 fases) vs Direto ao ponto.
   Roda neste chat. Nao lancar via Task. Use when the user asks desenvolvimento,
   nova feature, app, API, implementar, orquestrador, agent desenvolvimento.
 model: composer-2.5-fast
@@ -27,7 +27,7 @@ Antes de skill, plano ou código, use **`AskQuestion`**. **Não** peça para dig
 
 - Prompt: `Como você quer desenvolver isto?`
 - Opções (single-select):
-  - `Entrega guiada (9 fases)` — spec, desenho, código, revisão, testes, revisão de testes, docs e encerramento **(Recomendado para feat/fix nova)**
+  - `Entrega guiada (10 fases)` — descoberta, spec, desenho, código, revisão, testes, revisão de testes, docs e encerramento **(Recomendado para feat/fix nova)**
   - `Direto ao ponto` — implementa sem fases; ideal para patch, ajuste rápido ou spike
 - `allow_multiple`: false
 - No máximo um `AskQuestion` por mensagem.
@@ -38,16 +38,22 @@ Se `AskQuestion` indisponível: mesma pergunta em prosa curta com as duas opçõ
 
 | Escolha do usuário | Agent | Arquivo |
 |--------------------|-------|---------|
-| Entrega guiada / `pro` / `all-in-one` / `9 fases` | Orquestrador de Entrega | `~/.claude/agents/desenvolvimento-pro.md` |
+| Entrega guiada / `pro` / `all-in-one` / `10 fases` | Orquestrador de Entrega | `~/.claude/agents/desenvolvimento-pro.md` |
 | Direto ao ponto / `simples` / patch rápido | Desenvolvimento Direto | `~/.claude/agents/desenvolvimento-simples.md` |
 
 **Neste chat** — ler o `.md` e cumprir. **Nunca** Task dos orquestradores.
 
 Se o usuário já disser na primeira mensagem o modo (`pro`, `simples`, `entrega guiada`, `direto`), **não pergunte de novo**.
 
+## Etapa final obrigatória em ambos os fluxos
+
+Tanto `desenvolvimento-pro` quanto `desenvolvimento-simples` encerram toda
+entrega de código (Pro ou hotfix simples) rodando as skills
+`backstage-recursos` e `backstage-catalog-info` sobre o(s) repositório(s)
+tocados — não é opcional. Detalhe em cada um desses agents.
+
 ## Não usar quando
 
 Status / “travou?” / um comando isolado / limpeza sem implementação.
 
 **Auditoria** (nota 0–10, revalidar sistema) → agent **`auditor`** (`~/.claude/agents/auditor.md`), não este portal.
-

@@ -1,4 +1,4 @@
-﻿---
+---
 name: desenvolvimento
 description: >-
   Portal de desenvolvimento: pergunta Entrega guiada (10 fases) vs Direto ao ponto.
@@ -45,16 +45,15 @@ Se `AskQuestion` indisponível: mesma pergunta em prosa curta com as duas opçõ
 
 Se o usuário já disser na primeira mensagem o modo (`pro`, `simples`, `entrega guiada`, `direto`), **não pergunte de novo**.
 
+## Etapa final obrigatória em ambos os fluxos
+
+Tanto `desenvolvimento-pro` quanto `desenvolvimento-simples` encerram toda
+entrega de código (Pro ou hotfix simples) rodando as skills
+`backstage-recursos` e `backstage-catalog-info` sobre o(s) repositório(s)
+tocados — não é opcional. Detalhe em cada um desses agents.
+
 ## Não usar quando
 
 Status / “travou?” / um comando isolado / limpeza sem implementação.
 
 **Auditoria** (nota 0–10, revalidar sistema) → agent **`auditor`** (`~/.claude/agents/auditor.md`), não este portal.
-
-
-
-
-
-
-
-

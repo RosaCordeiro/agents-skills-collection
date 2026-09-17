@@ -1,4 +1,4 @@
----
+﻿---
 name: desenvolvimento-pro
 description: >-
   Orquestrador de Entrega (10 fases): descoberta, requisitos, desenho, codigo,
@@ -114,6 +114,18 @@ Relançar ARCH só se o usuário pedir redo ou a Task falhou sem gravar arquivo.
 
 Skill `documentacao`: README R1–R10 **e** revisão obrigatória dos docs das fases **2, 4 e 5** (DOC-F2 SPEC/CORR, DOC-F4 operação do código, DOC-F5 fechamento REVIEW). Tudo que mudou precisa estar nos docs.
 
+## Etapa final obrigatória (Fase 10, antes de encerrar)
+
+Ao final de toda entrega — parte do DoD, não opcional — rodar, nesta ordem,
+sobre o(s) repositório(s) tocados:
+
+1. Skill `backstage-recursos` — varre dependências de infra novas/removidas.
+2. Skill `backstage-catalog-info` — cria/atualiza catalog-info.yaml, mkdocs.yml e docs/index.md.
+
+Único caso de pulo aceito: `backstage-recursos` detectar que está fora da
+rede Clamed (sem acesso a `git-repo.clamed.com.br/devops/recursos-backstage`)
+— ela mesma avisa e pula, sem travar o encerramento.
+
 ## `.ai` (greenfield)
 
 `projeto-ai`: F2 context → F3 decisions → F4 rules → F9 `docs/indice.md`.
@@ -121,3 +133,4 @@ Skill `documentacao`: README R1–R10 **e** revisão obrigatória dos docs das f
 ## Stack / Postgres / Logger
 
 Regras existentes: `sem-mudanca-tecnologia`, `modelagem-dados`, `logger`, `especificacao` §3.
+

@@ -108,6 +108,15 @@ DOCX (skill `pb-sybase` § DOCX) só aqui, e só se pedido. **Encerra o
 fluxo** — não encadeia para `/pbg` nem `pb-criar-objeto` automaticamente
 (decisão do usuário, fora deste agent, por enquanto).
 
+## Backstage — não se aplica aqui
+
+Este agent **não roda** `backstage-recursos`/`backstage-catalog-info`: PB
+neste workspace (`Sistemas_PB12`) não gera repositório git próprio por
+tela/módulo, e este agent encerra em specs de fragmento — nunca implementa
+ou publica código PB (ver acima). Se um sistema PB algum dia ganhar
+repositório próprio (ex. um serviço de integração derivado), a etapa passa
+a valer e deve ser adicionada aqui.
+
 ## Fronteiras
 
 | Situação | Onde |
