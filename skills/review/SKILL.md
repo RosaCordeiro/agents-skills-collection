@@ -54,7 +54,7 @@ Nao marcar `OK` sem ter olhado o trecho relevante do diff.
 | CR11 | Qualidade | Legibilidade; funcoes focadas; sem codigo morto/comentado grande; sem complexidade gratuita. **TS/Python API:** violacao de camadas (`clean-architecture`) — SQL/HTTP em controller ou use case injetando adapter concreto = FALHA |
 | CR12 | Testes na mudanca | Cobertura minima do que mudou (unit/integracao) ou gap consciente justificado |
 | CR13 | Lint / types | Lint e typecheck do projeto ok se existirem (rodar o que o repo ja usa) |
-| CR14 | Docker / ops | Ports/volumes/env expostos demais; Compose coerente com a mudanca |
+| CR14 | Docker / ops | Ports/volumes/env expostos demais; Compose coerente com a mudanca; se o diff tocou `.gitlab-ci.yml`/`Dockerfile`/`docker-compose*`/scripts de deploy num repo que roda em runner Linux, checar `file <arquivo>` ou `git show HEAD:<arquivo> \| ... conta \r\n` para CRLF (ver skill `docker-cicd-review` §8) — CRLF nesses arquivos ja quebrou deploy em producao com erros sem relacao aparente com a causa real |
 | CR15 | Paths / runtime | Scripts Linux sem path Windows; WSL/Compose respeitados; sem forcar troca de stack |
 | CR16 | SAP (se aplicavel) | Fronteiras `fiori` / `ui5` / `abap` respeitadas; sem misturar com frontend/backend genericos |
 
@@ -145,6 +145,13 @@ Garantir checklist preenchido + artefato (gravado ou corpo devolvido ao orquestr
 - Subagent `review-pro`: resumo + markdown do REVIEW + `HANDOFF_CORRECAO` se preciso — **zero** edicao de codigo.
 - Chat direto: **`AskQuestion`**: `Code review ok?`
   - `Sim, seguir para teste de regra de negocio` | `Corrigir achados` | `Outro (eu digito)`
+
+
+
+
+
+
+
 
 
 

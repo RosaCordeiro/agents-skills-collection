@@ -65,6 +65,7 @@ Ao criar/ajustar servicos:
 - Rede interna entre app e DB
 - Volumes para dados persistentes
 - Variaveis documentadas em `.env.example` (sem valores secretos reais)
+- **Se o repo faz deploy num runner Linux e ainda nao tem `.gitattributes`:** criar um com `* text=auto eol=lf` no mesmo commit que introduz/altera `.gitlab-ci.yml`, `Dockerfile` ou `docker-compose*.yml`. CRLF commitado nesses arquivos ja quebrou deploy em producao com erros sem relacao aparente com a causa real (`division by zero`, `invalid proto`) — ver skill `docker-cicd-review` §8 para diagnostico/correcao se ja tiver acontecido.
 
 ## Histórico de campos (auditoria de alteração)
 
@@ -91,6 +92,13 @@ Ao gravar histórico campo a campo (ex.: GMUD):
 
 Resuma endpoints/servicos. Em seguida use **`AskQuestion`** — prompt: `Proximo passo?`
 - `Ir para code review` | `Seguir com frontend` | `Ajustar backend` | `Outro (eu digito)`
+
+
+
+
+
+
+
 
 
 

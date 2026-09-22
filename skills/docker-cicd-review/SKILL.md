@@ -10,16 +10,20 @@ description: >-
   scripts externos fora de controle de versão; validação que falha o
   pipeline (não só avisa no log) quando um pré-requisito de deploy está
   ausente; um estágio de testes automatizados rodando dentro da imagem já
-  buildada, entre o build e o deploy real; e aspas supérfluas num arquivo de
+  buildada, entre o build e o deploy real; aspas supérfluas num arquivo de
   variáveis usado com `--env-file` (não são removidas, viram parte literal
-  do valor). Use quando o usuário pedir revisar ou validar Docker, revisar
-  CI/CD, checklist de deploy, "container sobe mas não responde", "env vazia
-  dentro do container", "mesma imagem funciona em homologação e não em
-  produção", ou ao configurar Docker/CI de um projeto novo. Não usar para
-  escrever o Dockerfile/aplicação em si
-  (skill backend) nem para a estrutura de pasta `.ai` de projeto greenfield
-  (skill projeto-ai) — esta skill foca só na cadeia build → variáveis →
-  deploy → validação do CI/CD.
+  do valor); e CRLF commitado em .gitlab-ci.yml/Dockerfile/scripts (quebra o
+  runner Linux com erros bizarros tipo "division by zero"/"invalid proto"
+  em variável interpolada em shell). Use quando o usuário pedir revisar ou
+  validar Docker, revisar CI/CD, checklist de deploy, "container sobe mas
+  não responde", "env vazia dentro do container", "mesma imagem funciona em
+  homologação e não em produção", "erro estranho no pipeline que não faz
+  sentido", ou ao configurar Docker/CI de um projeto novo (**criar
+  `.gitattributes` `* text=auto eol=lf` de cara, antes de qualquer arquivo
+  de deploy**). Não usar para escrever o Dockerfile/aplicação em si (skill
+  backend) nem para a estrutura de pasta `.ai` de projeto greenfield (skill
+  projeto-ai) — esta skill foca só na cadeia build → variáveis → deploy →
+  validação do CI/CD.
 ---
 
 # Revisão Docker + CI/CD
@@ -210,6 +214,55 @@ teoria de ambiente/container/paralelismo** — é barato de verificar
 experiência registrada aqui, é a causa mais comum de "mesma imagem, mesmo
 código, comportamento diferente por ambiente".
 
+## 8. CRLF commitado quebra o runner Linux (checar em TODA revisão, e antes de criar arquivos novos)
+
+Se o repositório builda/faz deploy num runner Linux (shell executor,
+Docker) e alguém commita a partir de um ambiente Windows sem normalização
+de final de linha, `.gitlab-ci.yml`, `Dockerfile`, `docker-compose*.yml` e
+scripts podem acabar com **CRLF** em vez de LF. O YAML ainda parseia, mas
+o `\r` sobrevive dentro de valores interpolados em shell (`"$PORTA"` vira
+efetivamente `"3012\r"`), produzindo erros que não parecem ter relação
+nenhuma com a causa real:
+
+- `division by zero` numa conta aritmética com uma variável que "deveria"
+  ser só um número.
+- `docker: invalid proto: <pedaço qualquer>` — o `\r` quebra o parsing dos
+  argumentos do `docker run`.
+- Qualquer coisa que pareça "esse valor não devia ter isso no meio" numa
+  variável que veio de um arquivo `.yml`/`.sh`.
+
+**Diagnóstico rápido** (não adivinhar pela mensagem de erro — confirmar):
+
+```bash
+file .gitlab-ci.yml Dockerfile docker-compose.yml   # aponta "with CRLF line terminators" se afetado
+# ou, para o conteúdo já commitado (não só o working tree):
+git show HEAD:.gitlab-ci.yml | python3 -c "import sys; d=sys.stdin.buffer.read(); print('CRLF=',d.count(b'\r\n'),'LF=',d.count(b'\n')-d.count(b'\r\n'))"
+```
+
+**Prevenção (fazer isso ANTES de criar/editar `.gitlab-ci.yml`, Dockerfile,
+docker-compose ou qualquer script de deploy num repo novo ou que ainda não
+tenha):** garantir que existe um `.gitattributes` na raiz com:
+
+```
+* text=auto eol=lf
+```
+
+Se o repo já existir sem isso e você for o primeiro a mexer em arquivos de
+deploy, adicione o `.gitattributes` no mesmo PR/commit da sua mudança — é
+uma linha, previne a classe inteira de bug para todo mundo depois.
+
+**Correção se já aconteceu** (arquivos já commitados com CRLF): adicionar
+o `.gitattributes` acima e rodar `git add --renormalize .`, então **validar
+que o diff resultante é puramente de final de linha antes de commitar**:
+
+```bash
+git diff --cached --ignore-space-at-eol | wc -l   # deve dar 0 (ou só o .gitattributes novo)
+```
+
+Se esse comando não der 0/vazio (fora o `.gitattributes` em si), a
+renormalização também pegou uma mudança de conteúdo real — investigar
+antes de commitar, não assumir que é só line-ending.
+
 ## Fronteiras
 
 | Se o pedido for... | Usar |
@@ -222,6 +275,9 @@ código, comportamento diferente por ambiente".
 Esta skill cobre especificamente a cadeia build → variáveis → deploy →
 validação do pipeline — não a lógica de negócio da aplicação nem a revisão
 de código da feature.
+
+
+
 
 
 
