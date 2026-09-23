@@ -49,14 +49,18 @@ Duas pastas — **nao confundir**:
 
 ### Snapshot desatualizado (checar antes de analisar ou concluir)
 
-`pbg_search`/`pbg_read_object` leem o snapshot `.sr*` em `.pbg/snapshots` (e `.pbg/temp`) do workspace PBG — **nao** o `.pbl` nem o SVN direto. Esse snapshot so atualiza quando alguem reexporta (`pbg_status`, `pbg_apply_patch`, `pbg import`); uma alteracao feita no PB e ja replicada no `.srw`/`.srd` do SVN pode ficar dias sem aparecer no snapshot.
+`pbg_search`/`pbg_read_object` leem **so** o snapshot `.sr*` em `.pbg/snapshots` do workspace PBG — **nao** o `.pbl`, **nao** o SVN, e **nao** `.pbg/temp`. Esse snapshot so e regravado por `pbg_send` (export + snapshot + commit). Rodar `pbg_status` **nao** atualiza `.pbg/snapshots` — ele so exporta a PBL via ORCA para uma pasta separada (`.pbg/<exportFolder>`, tipicamente `.pbg/temp`, valor lido de `.pbg/config.json`, campo `exportFolder` — nao presumir o caminho fixo). Ou seja: depois de `pbg_status`, `pbg_read_object` continua devolvendo o conteudo **antigo** ate alguem rodar `pbg_send`.
 
-Antes de dar veredito sobre o estado **atual** de um objeto Clamed (ex.: "o campo esta truncado", "a tela nao foi ajustada", "ainda nao mudou"):
+Antes de dar veredito sobre o estado **atual** de um objeto Clamed (ex.: "o campo esta truncado", "a tela nao foi ajustada", "ainda nao mudou", "verifica meu ajuste"):
 
-1. `ls -la` no `.srw`/`.srd` do SVN (`C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\`) **e** no snapshot (`.pbg\snapshots\...`) — comparar datas.
-2. Se o SVN for mais recente (ou houver duvida): ler/Grep o `.srw`/`.srd` do SVN direto — e a fonte mais fresca do estado real do objeto.
-3. Para usar o MCP mesmo assim: rodar `pbg_status` (reexporta a PBL via ORCA) antes de `pbg_read_object`/`pbg_search`, para atualizar o snapshot.
-4. Nunca concluir "nao foi alterado" so pelo snapshot sem checar a data — snapshot velho parece objeto velho.
+1. `ls -la` no `.srw`/`.srd` do SVN (`C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\`) **e** no snapshot (`.pbg\snapshots\...`) — comparar datas. Cuidado: um `svn lock`/checkout recente **nao** significa conteudo novo — conferir `svn status`/`svn info` (`Schedule: normal` = sem alteracao local ainda; so o lock foi feito).
+2. Se o SVN for mais recente que o snapshot **e** o conteudo relevante realmente mudou (nao só timestamp): ler/Grep o `.srw`/`.srd` do SVN direto — e a fonte mais fresca do estado real do objeto ali.
+3. Se a alteracao ainda nao chegou nem ao SVN (só na `.pbl`, ex. `.pbl` com mtime mais novo que o `.srw`/snapshot): rodar `pbg_status` (isso ja exporta a PBL via ORCA) e depois **ler o export fresco direto do filesystem** — nao esperar o MCP mostrar, ele não alcança essa pasta:
+   - Achar o `exportFolder` em `<workspace>\.pbg\config.json` (ex. `.pbg/temp`).
+   - `Read`/`Grep` em `<workspace>\<exportFolder>\<snapshotSubfolder>\<objeto>.<ext>` (mesma estrutura de subpasta do `.pbg/snapshots`, ex. `Bibliotecas-ws021\dw_foo.srd`).
+   - Opcional: `diff` esse arquivo contra o `.pbg/snapshots` correspondente para isolar so o que mudou.
+   - Isso **nao** precisa de commit/push — é so leitura de arquivo. So peça para o usuario rodar `pbg_send` (ou exportar manualmente no PB) se essa pasta de export nao existir/nao tiver o objeto.
+4. Nunca concluir "nao foi alterado" so pelo snapshot sem checar a data — snapshot velho parece objeto velho. E nunca pular direto para pedir commit/export manual ao usuario sem antes checar se o export ja esta em `.pbg/<exportFolder>` — na pratica, um `pbg_status` anterior (seu ou de outra sessao) pode ja ter deixado o dado ali.
 5. Biblioteca comum (ex. `Comuns\Bibliotecas`) replicada em varios workspaces PBG: cada `.pbg/snapshots/Comuns-Bibliotecas-*` e uma copia independente, que pode desatualizar em ritmos diferentes por sistema. O SVN tem **uma unica** copia em `C:\SVN\Sistemas_PB12\Comuns\Bibliotecas\` — essa e a referencia mais confiavel.
 
 ### Alteracao que precisa PB + SVN (checklist)
@@ -87,6 +91,13 @@ Patch so no PBG → PB ok, SVN vazio. So no `.srw` SVN → Tortoise ok, PB pode 
 | Consulta PB+Sybase / spec pequena/chamado/mock/DOCX | `/pb-sybase` |
 | Pedido grande: descoberta + arquitetura (fragmentação) + spec por fragmento | `/pb-desenvolvimento-pro` (não implementa) |
 | MCP server generico | `mcp` |
+
+
+
+
+
+
+
 
 
 
