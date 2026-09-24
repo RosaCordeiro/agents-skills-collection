@@ -51,6 +51,14 @@ Duas pastas — **nao confundir**:
 
 `pbg_search`/`pbg_read_object` leem **so** o snapshot `.sr*` em `.pbg/snapshots` do workspace PBG — **nao** o `.pbl`, **nao** o SVN, e **nao** `.pbg/temp`. Esse snapshot so e regravado por `pbg_send` (export + snapshot + commit). Rodar `pbg_status` **nao** atualiza `.pbg/snapshots` — ele so exporta a PBL via ORCA para uma pasta separada (`.pbg/<exportFolder>`, tipicamente `.pbg/temp`, valor lido de `.pbg/config.json`, campo `exportFolder` — nao presumir o caminho fixo). Ou seja: depois de `pbg_status`, `pbg_read_object` continua devolvendo o conteudo **antigo** ate alguem rodar `pbg_send`.
 
+**Padrao para "avalia"/"revisa"/"verifica meu ajuste" em objeto Clamed: nao perguntar como proceder, so fazer.** O usuario nao quer commitar nem exportar manual so pra uma revisao. Fluxo automatico, sem pedir permissao:
+
+1. `pbg_status` no workspace (reexporta a `.pbl` via ORCA — nao precisa que o usuario tenha feito nada antes).
+2. Ler o export fresco em `.pbg\<exportFolder>\<snapshotSubfolder>\<objeto>.<ext>` (achar `exportFolder` em `.pbg\config.json`).
+3. Comparar (`diff`) esse export contra o `.srd`/`.srw` **atual** do SVN (`C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\<objeto>.<ext>`) — essa e a base de comparacao padrao, nao o `.pbg/snapshots` (que fica desatualizado por dias).
+4. Reportar: o que esta na `.pbl` (fonte real de trabalho) vs o que esta no SVN (o que outros devs/CI enxergam) — nomeando exatamente as diferencas. Se SVN e `.pbl` baterem, dizer isso tambem (nao so reportar quando ha diferenca).
+5. So sugerir commit/`pbg_send`/export manual se o usuario perguntar como fazer o SVN acompanhar — nunca como pre-requisito pra revisar.
+
 Antes de dar veredito sobre o estado **atual** de um objeto Clamed (ex.: "o campo esta truncado", "a tela nao foi ajustada", "ainda nao mudou", "verifica meu ajuste"):
 
 1. `ls -la` no `.srw`/`.srd` do SVN (`C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\`) **e** no snapshot (`.pbg\snapshots\...`) — comparar datas. Cuidado: um `svn lock`/checkout recente **nao** significa conteudo novo — conferir `svn status`/`svn info` (`Schedule: normal` = sem alteracao local ainda; so o lock foi feito).
