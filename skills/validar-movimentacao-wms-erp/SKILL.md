@@ -5,8 +5,9 @@ description: >-
   (movimento_estoque) no Sybase ASE, para um produto + CD + periodo, e
   classifica cada evento como OK, sem contrapartida no ERP, sem
   contrapartida no WMS, ou quantidade divergente. Gera relatorio em
-  markdown. Somente leitura, so Sybase de homologacao (MCP
-  `mcp__sybase-hmg`). Use when the user asks validar movimentacao WMS x
+  markdown. Somente leitura. Roda em homologacao (MCP `mcp__sybase-hmg`)
+  por padrao; roda em producao (MCP `mcp__sybase-prd`) so se o usuario
+  pedir explicitamente. Use when the user asks validar movimentacao WMS x
   ERP, casar wms_movimento_estoque com movimento_estoque, achar movimento
   sem contrapartida, ou /validar-movimentacao-wms-erp. Nao usar para
   comparar saldo/posicao ao longo do tempo (isso e outra investigacao, de
@@ -28,7 +29,23 @@ classifica cada evento.
   nao bateu"). Se o pedido for sobre posicao ao longo do tempo, nao adapte
   esta skill — avise que e outro tipo de consulta.
 - **Nao** determina causa raiz — so classifica e reporta.
-- **Somente leitura, somente homologacao.** Nunca rode contra producao.
+- **Somente leitura, sempre.** Homologacao (MCP `mcp__sybase-hmg`) e o
+  ambiente padrao. Producao (MCP `mcp__sybase-prd`) so entra se o usuario
+  pedir explicitamente — ver "Ambiente" abaixo.
+
+## Ambiente (homologacao x producao)
+
+| | Homologacao (padrao) | Producao (sob pedido) |
+|---|---|---|
+| MCP | `mcp__sybase-hmg` | `mcp__sybase-prd` |
+| Quando usar | Sempre, a nao ser que o usuario peca producao | So se o usuario pedir explicitamente ("roda em producao", "confere no banco de producao") |
+| Antes de rodar | Nada alem dos parametros obrigatorios abaixo | Confirmar com o usuario a consulta exata (produto, CD, periodo) antes da primeira execucao do pedido — producao e um banco vivo usado pela operacao real da Clamed |
+| Query | Identica (mesma versao MCP do §2.1) | Identica — so troca o prefixo do MCP na chamada da tool |
+
+Nao repita a confirmacao a cada consulta dentro da mesma investigacao ja
+autorizada para producao — confirme uma vez por pedido de mudanca de
+ambiente, nao por `SELECT`. O filtro obrigatorio por `cd_produto` (abaixo)
+vale igual nos dois ambientes; nao relaxe esse cuidado em producao.
 
 ## Parametros obrigatorios
 
@@ -46,16 +63,53 @@ direto da mensagem do usuario sem essa checagem minima.
 
 ## Passo 1 — Resolver CD para filial(is)
 
-Regra fixa (nao ha cadastro no banco para isso hoje):
+**Essa resolucao tem uma regra por lado — nao e a mesma coisa no ERP e no
+WMS — e no WMS, CD 534 e um caso especial, os demais CDs nao.**
 
-- **CD = 534** → filiais `534` e `1` juntas (534 = revenda normal, 1 =
-  mercadorias em transito/segregado — unica excecao conhecida).
-- **Qualquer outro CD** → a propria filial de mesmo numero.
+- **Lado ERP (`movimento_estoque.cd_filial_movimento`):** regra fixa (nao
+  ha cadastro no banco para isso hoje) —
+  - **CD = 534** → filiais `534` e `1` juntas (534 = revenda normal, 1 =
+    mercadorias em transito/segregado — unica excecao conhecida). Esse
+    filtro direto por `cd_filial_movimento` **e confiavel no ERP**
+    (confirmado com dado real: filtrar sem filial nenhuma e depois com
+    `in (534, 1)` dá a mesma contagem dominada por 534).
+  - **Qualquer outro CD** → a propria filial de mesmo numero.
+- **Lado WMS (`wms_movimento_estoque`): regra diferente para CD 534.**
+  - **Qualquer CD diferente de 534** → filtrar `wme.cd_filial = <CD>`
+    direto (igual ao ERP) **continua correto** — confirmado com os casos
+    de referencia 740472/CD 353 e 636/CD 294. `wms_bairro` so tem 18 linhas
+    no total, cobrindo apenas os armazens fisicos de WMS 534 e 294; um
+    evento WMS "destinado" a outro CD (ex. 353) fisicamente acontece
+    dentro do armazem de 534 e resolve para `wms_bairro.cd_filial = 534`
+    via endereco — usar esse join pra outros CDs pioraria o filtro, nao
+    melhoraria (some o evento inteiro, porque a chave real que identifica
+    o CD "dono"/destino desses casos e mesmo o `cd_filial` cru).
+  - **CD = 534 e o unico caso comprovadamente quebrado pelo filtro cru.**
+    Achado real (produto 741851, CD 534, jan-mar/2026): filtrar
+    `wme.cd_filial in (534, 1)` direto fazia a skill enxergar so ~15
+    linhas/mes de WMS contra milhares no ERP — uma divergencia gigante que
+    nao existia de verdade (o volume real era da mesma ordem de grandeza
+    do ERP, 5-7 mil linhas/mes). Motivo: `wme.cd_filial` e o **destino**
+    do movimento e raramente esta preenchido pros eventos que ainda estao
+    dentro do proprio armazem central — o que e a maioria dos eventos
+    quando o CD sob investigacao e o proprio 534. Corrija **so quando
+    `CD = 534`**, trocando o filtro por
+    `wms_movimento_estoque.cd_endereco_localizacao` →
+    `wms_endereco.cd_bairro` → `wms_bairro.cd_filial = 534`.
+    - **Cuidado com o segregado:** `wms_bairro.cd_filial` **nunca tem o
+      valor `1`** — revenda e segregado sao o **mesmo** `cd_filial=534`,
+      diferenciados so por `wms_bairro.id_utiliza_saldo` (`'S'` = revenda,
+      `'N'` = segregado). Nunca procure `wb.cd_filial = 1`.
+    - **Fallback** quando o endereco/bairro nao resolve pra nenhuma
+      filial (`wb.cd_filial is null` — endereco sem `wms_endereco`, ou
+      bairro fora das 18 linhas de `wms_bairro`): use como ultimo recurso
+      `wme.cd_filial in (534, 1)`. Nunca deixe a linha sumir do grupo so
+      por isso (mesmo principio do Passo 3).
 
 O criterio de "cruza zona revenda/segregado" do Passo 4 abaixo **so vale
-quando 534 esta entre as filiais resolvidas** — `wms_bairro.id_utiliza_saldo`
-so tem esse significado de zona para o CD 534; para outros CDs nao ha
-evidencia de que esse cruzamento signifique a mesma coisa.
+quando o CD e 534** — `wms_bairro.id_utiliza_saldo` so tem esse significado
+de zona para o CD 534; para outros CDs nao ha evidencia de que esse
+cruzamento signifique a mesma coisa.
 
 ## Passo 2 — Rodar a consulta
 
@@ -64,11 +118,14 @@ o dialeto Sybase ASE do ambiente) — e o formato de referencia para quem for
 rodar direto num cliente Sybase (isql, DBArtisan) fora do MCP. Preencha
 `@cd_produto`, `@cd_cd`, `@dt_ini`, `@dt_fim` antes de rodar.
 
-**Se estiver executando via MCP `mcp__sybase-hmg__sybase_query_readonly`:**
-essa ferramenta aceita so uma unica instrucao `SELECT` por chamada e rejeita
-`SELECT INTO`/tabela temporaria. Use a **versao MCP** na secao seguinte
-(§2.1) — ja escrita como consultas unicas equivalentes, sem `#tabela`, e
-testada com dados reais de homologacao.
+**Se estiver executando via MCP (`mcp__sybase-hmg__sybase_query_readonly`
+em homologacao — padrao — ou `mcp__sybase-prd__sybase_query_readonly` em
+producao, so se pedido explicitamente):** essa ferramenta aceita so uma
+unica instrucao `SELECT` por chamada e rejeita `SELECT INTO`/tabela
+temporaria. Use a **versao MCP** na secao seguinte (§2.1) — ja escrita
+como consultas unicas equivalentes, sem `#tabela`, e testada com dados
+reais de homologacao. A query e identica nos dois ambientes; so o prefixo
+do MCP na chamada da tool muda.
 
 ```sql
 -- ============================================================
@@ -132,11 +189,19 @@ select
 	wme.cd_chave_movimento
 into #wms_lote
 from wms_movimento_estoque wme
+left join wms_endereco we on we.cd_endereco = wme.cd_endereco_localizacao
+left join wms_bairro wb on wb.cd_bairro = we.cd_bairro
 where wme.cd_produto = @cd_produto
 and wme.dh_movimento >= @dt_ini
 and wme.dh_movimento <= @dt_fim
-and wme.cd_filial in (select cd_filial from #filiais)
 and wme.cd_tipo_movimento in (24, 25)
+and (
+	(@cd_cd = 534 and (
+		wb.cd_filial = 534
+		or (wb.cd_filial is null and wme.cd_filial in (select cd_filial from #filiais))
+	))
+	or (@cd_cd <> 534 and wme.cd_filial in (select cd_filial from #filiais))
+)
 
 select
 	cd_produto,
@@ -163,6 +228,14 @@ group by cd_produto, dh_movimento, qt_movimento
 -- assim fica com toca_zona_revenda=toca_zona_segregado=0 (nao decide zona),
 -- mas continua contando na soma; e sinalizada em sem_endereco_mapeado para
 -- aparecer no relatorio como "Atencao".
+-- FILTRO DE CD (Passo 1): SO para CD 534, usa wb.cd_filial = 534 (filial
+-- dona do endereco fisico) em vez de wme.cd_filial (destino do movimento,
+-- nem sempre preenchido, sem indice — achado real: produto 741851/CD 534
+-- tinha milhares de linhas WMS por mes que o filtro raso escondia por
+-- completo). Para qualquer OUTRO CD, wme.cd_filial direto continua sendo
+-- o filtro correto (confirmado com os casos 740472/CD 353 e 636/CD 294) —
+-- wms_bairro so cobre os armazens fisicos de WMS 534 e 294, entao usar
+-- esse join para outros CDs faria o evento sumir, nao corrigir nada.
 -- ------------------------------------------------------------
 select
 	wme.cd_chave_movimento,
@@ -189,8 +262,14 @@ left join wms_bairro wb on wb.cd_bairro = we.cd_bairro
 where wme.cd_produto = @cd_produto
 and wme.dh_movimento >= @dt_ini
 and wme.dh_movimento <= @dt_fim
-and wme.cd_filial in (select cd_filial from #filiais)
 and wme.cd_tipo_movimento not in (24, 25)
+and (
+	(@cd_cd = 534 and (
+		wb.cd_filial = 534
+		or (wb.cd_filial is null and wme.cd_filial in (select cd_filial from #filiais))
+	))
+	or (@cd_cd <> 534 and wme.cd_filial in (select cd_filial from #filiais))
+)
 group by wme.cd_chave_movimento, wme.cd_produto
 
 -- ------------------------------------------------------------
@@ -401,14 +480,22 @@ select * from #wms_lote_resumo where qt_entradas <> qt_saidas order by dh_movime
 --    envolvidos"). Rodar para cada linha de #resultado que NAO for 'OK',
 --    substituindo <nr_nf>/<especie>/<serie>/<dh_bucket> pelos valores da
 --    linha:
-select * from wms_movimento_estoque
-where cd_produto = @cd_produto
-and cd_filial in (select cd_filial from #filiais)
-and cd_tipo_movimento not in (24, 25)
-and isnull(nr_nf, 0) = <nr_nf>
-and isnull(de_especie, '') = <especie>
-and isnull(de_serie, '') = <serie>
-and convert(char(8), dh_movimento, 112) = <dh_bucket>
+select wme.* from wms_movimento_estoque wme
+left join wms_endereco we on we.cd_endereco = wme.cd_endereco_localizacao
+left join wms_bairro wb on wb.cd_bairro = we.cd_bairro
+where wme.cd_produto = @cd_produto
+and wme.cd_tipo_movimento not in (24, 25)
+and (
+	(@cd_cd = 534 and (
+		wb.cd_filial = 534
+		or (wb.cd_filial is null and wme.cd_filial in (select cd_filial from #filiais))
+	))
+	or (@cd_cd <> 534 and wme.cd_filial in (select cd_filial from #filiais))
+)
+and isnull(wme.nr_nf, 0) = <nr_nf>
+and isnull(wme.de_especie, '') = <especie>
+and isnull(wme.de_serie, '') = <serie>
+and convert(char(8), wme.dh_movimento, 112) = <dh_bucket>
 
 select * from movimento_estoque
 where cd_produto = @cd_produto
@@ -419,17 +506,33 @@ and isnull(de_serie, '') = <serie>
 and convert(char(8), dh_movimento, 112) = <dh_bucket>
 ```
 
-### §2.1 — Versao para executar via MCP `mcp__sybase-hmg` (sem `#tabela`)
+### §2.1 — Versao para executar via MCP (sem `#tabela`)
+
+Rodar via `mcp__sybase-hmg` (homologacao, padrao) ou `mcp__sybase-prd`
+(producao, so sob pedido explicito do usuario e apos confirmar a consulta
+— ver secao "Ambiente" acima). A query abaixo e a mesma nos dois casos.
 
 A ferramenta MCP so aceita **uma unica instrucao `SELECT`** por chamada
 (rejeita `SELECT INTO` e multiplas instrucoes). Os passos 1 e 2 do script
-canonico nao precisam de SQL: resolva o CD para a lista de filiais **antes**
-de montar a query (substituicao textual: `534, 1` quando `CD = 534`, senao
-`<CD>`), e rode a consulta de correcao de lote (Passo 2) como um `SELECT`
-simples e independente. Os passos 3 a 6 (extracao, colapso, confirmacao de
-transferencia, filtro de relevancia, bucket e classificacao) cabem em **uma
-unica consulta composta** (varios `SELECT` ligados por `UNION`, que ainda
-conta como uma unica instrucao), usando subqueries no lugar de `#tabela`.
+canonico nao precisam de SQL: resolva o CD **antes** de montar a query
+(ver Passo 1 acima — regra e diferente por lado e, no WMS, diferente para
+CD 534 vs qualquer outro CD):
+
+- `<FILIAIS>`: lista textual pro lado ERP e pro fallback do WMS (`534, 1`
+  quando `CD = 534`, senao so `<CD>`).
+- `<FILTRO_CD_WMS>`: o filtro de CD do lado WMS —
+  - **se `CD = 534`:** `(wb.cd_filial = 534 or (wb.cd_filial is null and wme.cd_filial in (534, 1)))`
+  - **se `CD` for qualquer outro numero:** `wme.cd_filial in (<FILIAIS>)`
+    (raw, sem join — `wms_bairro` so cobre os armazens fisicos de WMS 534
+    e 294; usar o join pra outros CDs faria o evento sumir, nao corrigir).
+
+Rode a consulta de correcao de lote (Passo 2) como um `SELECT` simples e
+independente, com o mesmo `<FILTRO_CD_WMS>` (join `wms_endereco`/
+`wms_bairro` so entra quando `CD = 534`). Os passos 3 a 6 (extracao,
+colapso, confirmacao de transferencia, filtro de relevancia, bucket e
+classificacao) cabem em **uma unica consulta composta** (varios `SELECT`
+ligados por `UNION`, que ainda conta como uma unica instrucao), usando
+subqueries no lugar de `#tabela`.
 
 A consulta abaixo esta **completa** (sem placeholder), inclui a
 consolidacao de transferencia multi-dia (R-06) e foi **testada com dados
@@ -464,12 +567,16 @@ agrupada pela coluna ja materializada — nunca repetir a expressao com
 `exists` direto num `group by`.
 
 ```sql
--- Substituir @cd_produto, <dt_ini>, <dt_fim>, <FILIAIS> (ex.: "534, 1" ou
--- "294") e <CRUZA_ZONA> (a condicao "and exists (...)" so entra quando 534
--- estiver na lista de filiais; senao, remover esse trecho do WHERE, nas
--- 3 ocorrencias). A confirmacao de transferencia via item_nf_transferencia
--- usa NOT EXISTS/EXISTS correlacionado (nao JOIN) para nao arriscar
--- duplicar linha se houver mais de um item para a mesma NF.
+-- Substituir @cd_produto, <dt_ini>, <dt_fim>, <FILIAIS> (lista textual,
+-- ex.: "534, 1" quando CD=534, senao so "294" — usada no lado ERP e como
+-- fallback do WMS), <FILTRO_CD_WMS> (ver secao "Ambiente"/instrucoes
+-- acima: se CD=534, usa join wms_endereco/wms_bairro; qualquer outro CD,
+-- usa wme.cd_filial in (<FILIAIS>) direto) e <CRUZA_ZONA> (a condicao
+-- "and exists (...)" so entra quando o CD e 534; senao, remover esse
+-- trecho do WHERE, nas 3 ocorrencias). A confirmacao de transferencia via
+-- item_nf_transferencia usa NOT EXISTS/EXISTS correlacionado (nao JOIN)
+-- para nao arriscar duplicar linha se houver mais de um item para a
+-- mesma NF.
 
 select id_classificacao, nr_nf, de_especie, de_serie, dh_bucket,
        qt_liquida_wms, qt_linhas_wms, qt_liquida_erp, qt_linhas_erp,
@@ -522,8 +629,8 @@ from (
 				left join wms_bairro wb on wb.cd_bairro = we2.cd_bairro
 				where wme.cd_produto = @cd_produto
 				and wme.dh_movimento >= '<dt_ini>' and wme.dh_movimento <= '<dt_fim>'
-				and wme.cd_filial in (<FILIAIS>)
 				and wme.cd_tipo_movimento not in (24,25)
+				and <FILTRO_CD_WMS>
 				group by wme.cd_chave_movimento
 			) evt
 			where (toca_zona_revenda = 1 and toca_zona_segregado = 1 <CRUZA_ZONA>)
@@ -608,8 +715,8 @@ from (
 			left join wms_bairro wb on wb.cd_bairro = we2.cd_bairro
 			where wme.cd_produto = @cd_produto
 			and wme.dh_movimento >= '<dt_ini>' and wme.dh_movimento <= '<dt_fim>'
-			and wme.cd_filial in (<FILIAIS>)
 			and wme.cd_tipo_movimento not in (24,25)
+			and <FILTRO_CD_WMS>
 			group by wme.cd_chave_movimento
 		) evt
 		where (toca_zona_revenda = 1 and toca_zona_segregado = 1 <CRUZA_ZONA>)
@@ -707,8 +814,8 @@ where not exists (
 				inner join wms_tipo_movimento_estoque wtme on wtme.cd_tipo_movimento = wme.cd_tipo_movimento
 				where wme.cd_produto = @cd_produto
 				and wme.dh_movimento >= '<dt_ini>' and wme.dh_movimento <= '<dt_fim>'
-				and wme.cd_filial in (<FILIAIS>)
 				and wme.cd_tipo_movimento not in (24,25)
+				and <FILTRO_CD_WMS>
 				group by wme.cd_chave_movimento
 			) evt
 			where (toca_zona_revenda = 1 and toca_zona_segregado = 1 <CRUZA_ZONA>)
@@ -752,6 +859,14 @@ de transferencia multi-dia (R-06) inclusos.
   comuns; tipos raros (familia 46–56, transferencia entre CDs) podem se
   comportar de forma inesperada — tratar qualquer resultado estranho
   desses tipos como sinal para investigar, nao como bug garantido da skill.
+- **`wms_bairro` e uma tabela pequena e especifica (18 linhas no total),
+  nao um mapa geral de filial por endereco:** so cobre os armazens fisicos
+  de WMS 534 e 294. Um evento WMS "destinado" a outro CD (ex. 353) fica
+  fisicamente dentro do armazem de 534 e resolve `wb.cd_filial = 534` via
+  endereco — por isso `<FILTRO_CD_WMS>` so troca pra essa logica quando o
+  `CD` sob investigacao e 534; qualquer outro CD continua usando
+  `wme.cd_filial` direto (RN-07). Ver caso de referencia 741851/CD 534 na
+  tabela acima para o achado real que motivou essa distincao.
 
 ## Passo 3 — Gerar o relatorio
 
@@ -766,13 +881,17 @@ Para achar a raiz do projeto: usar `%CLAMED_DEV_ROOT%` /
 (`%CLAMED_DEV_ROOT%\01-PROJECTS\ACTIVE\auditor-saldo-wms\relatorios\`). Se a
 variavel nao existir nesta maquina, perguntar ao usuario o caminho do
 projeto `auditor-saldo-wms` antes de gravar — nunca supor um caminho fixo de
-usuario/maquina. `<slug>` sugerido: `<cd_produto>-cd<CD>-<dt_ini>-<dt_fim>`.
+usuario/maquina. `<slug>` sugerido: `<cd_produto>-cd<CD>-<dt_ini>-<dt_fim>`,
+com sufixo `-prd` quando a execucao foi em producao (ex.:
+`750723-cd534-20250701-20250702-prd.md`) para nao confundir com um
+relatorio de homologacao do mesmo produto/CD/periodo.
 
 Formato do relatorio:
 
 ```markdown
 # Validacao de movimentacao WMS x ERP — produto <cd_produto>, CD <CD>
 
+- Ambiente: <Homologacao | Producao>
 - Periodo: <dh_ini> a <dh_fim>
 - Filial(is) resolvida(s): <lista> (RN-07)
 - Executado em: <timestamp>
@@ -837,11 +956,19 @@ ajuste — todos observados em homologacao:
 | Correcao/troca de lote | 29478, 665533, 665541, 693916, 695769 | (a que o produto usar) | Pares tipo 24/25 — devem aparecer so na secao informativa, nunca como divergencia de quantidade |
 | Transferencia entre CDs cancelada (familia de tipos 46-56) | 636 | 294 | Periodo 2026-04-01 a 2026-07-31 — NF 6, tipos 49 (SAIDA TRANSF CD) + 51 (CANCELAMENTO SAIDA TRANSF CD): WMS liquido 0 (ciclo cancelado corretamente), ERP liquido -200 na mesma filial/NF — caso real de "quantidade divergente" nesta familia de tipos, ainda sem causa raiz explicada. Mesmo periodo/CD tambem tem 3 casos `OK` (NFs 2164868, 2165039, 2164647). Confirma tambem que CD 294 (individual, sem split) resolve corretamente via RN-07. |
 | CD individual (sem split 534/1) | 636 ou 740472 (ver casos acima, CDs 294 e 353) | 294 ou 353 | RN-07: CD diferente de 534 usa a propria filial, sem aplicar a logica de "cruza zona revenda/segregado" (essa so vale para 534) |
+| Filtro de CD no WMS (`<FILTRO_CD_WMS>`), caso CD=534 | 741851 | 534 | 01-05/07/2026 (`wme.dh_movimento`) — com `wme.cd_filial in (534, 1)` direto (bug), a skill via 200 linhas (limite da consulta) todas `SEM_CONTRAPARTIDA_WMS`, sugerindo falsamente que o WMS quase nao movimenta esse produto. Corrigido para `wb.cd_filial = 534` (via `wms_endereco`/`wms_bairro`), o resultado vira 1 `QUANTIDADE_DIVERGENTE`, 0 `SEM_CONTRAPARTIDA_ERP` e 301 `SEM_CONTRAPARTIDA_WMS` — ainda um numero alto, mas agora um achado real de negocio (a investigar por causa raiz depois), nao um artefato do filtro. Reexecutar tambem 740472/CD 353 (transferencia) apos qualquer ajuste neste filtro — usa o outro branch (CD<>534) e nao pode regredir. |
 
 ## Restricoes (nao negociaveis)
 
-- Nunca rodar contra producao — so `mcp__sybase-hmg` (homologacao).
-- Nunca fazer `SELECT` sem `cd_produto` no filtro.
+- Homologacao (`mcp__sybase-hmg`) e o padrao. So rodar contra producao
+  (`mcp__sybase-prd`) se o usuario pedir explicitamente, e so depois de
+  confirmar com ele a consulta (produto, CD, periodo) que sera executada.
+- Nunca escrever em nenhuma tabela, em nenhum ambiente — a skill e so
+  leitura (`SELECT`).
+- Nunca fazer `SELECT` sem `cd_produto` no filtro, em nenhum ambiente.
 - Nunca gravar relatorio parcial se uma consulta falhar.
 - Nunca colar parametro do usuario direto na query sem checar que
   `cd_produto`/`CD` sao inteiros e `dh_ini`/`dh_fim` sao datas validas.
+
+
+
