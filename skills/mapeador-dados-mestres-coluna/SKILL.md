@@ -20,10 +20,10 @@ Pré-requisito: existe `MAPA-<tabela>.md` em dados-mestres (skill `mapeador-dado
 Gravar **sempre** em:
 
 ```
-99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.<coluna>.md
+Projetos/Especificações/dados-mestres/MAPA-<tabela>.<coluna>.md
 ```
 
-Path absoluto Windows: `%CLAMED_DEV_ROOT%\99-ARCHIVE\Projetos\Especificações\dados-mestres\`
+Path absoluto Windows: `%CLAMED_DEV_ROOT%\Projetos\Especificações\dados-mestres\`
 
 **Fallback de ambiente**: se `%CLAMED_DEV_ROOT%` não existir, gravar no projeto irmão **`mapa-dados`** (mesmo diretório pai onde `agents-skills-collection-import` foi clonado; criar se não existir). **Nunca** gravar dentro do repositório de skills/agents — é compartilhado via git com o time.
 
@@ -64,3 +64,10 @@ No chat: resumo de 5–8 linhas + link/caminho do arquivo.
 | Falta mapa da tabela inteira | `mapeador-dados-mestres` |
 | Implementar mudança | `/pb` ou `/pbg` |
 | Alterar trigger/SP | `sybase-objects` + deploy DBA |
+
+
+
+
+
+
+

@@ -29,12 +29,12 @@ Agent dedicado: **`/mapeador-dados-mestres`**. Não implementar PB/SQL neste flu
 **Sempre** gravar **dois arquivos** em disco **antes** de encerrar o turno — narrativa em `.md`, detalhe tabular em `.xlsx` (5 abas fixas; ver [modelo-saida.md](modelo-saida.md)):
 
 ```
-99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.md
-99-ARCHIVE/Projetos/Especificações/dados-mestres/MAPA-<tabela>.xlsx
+Projetos/Especificações/dados-mestres/MAPA-<tabela>.md
+Projetos/Especificações/dados-mestres/MAPA-<tabela>.xlsx
 ```
 
 - `<tabela>` = nome Sybase em minúsculas (ex. `filial`, `produto`).
-- Path absoluto: `%CLAMED_DEV_ROOT%\99-ARCHIVE\Projetos\Especificações\dados-mestres\` (ver `README.md` do workspace).
+- Path absoluto: `%CLAMED_DEV_ROOT%\Projetos\Especificações\dados-mestres\` (ver `README.md` do workspace).
 - **Fallback de ambiente**: se `%CLAMED_DEV_ROOT%` não existir nesta máquina (variável vazia/pasta ausente), gravar no projeto **`mapa-dados`** — pasta **irmã** deste repositório, ou seja, no mesmo diretório pai onde `agents-skills-collection-import` foi clonado (`<pasta-onde-você-clona-seus-repos>\mapa-dados\`). Criar o projeto se não existir. Atualizar o índice em `mapa-dados\README.md`. Avisar no chat qual dos dois caminhos foi usado.
 - **Nunca** gravar mapas dentro deste repositório de skills/agents (`agents-skills-collection-import`) — ele é compartilhado via git com o time; dado de tabela/negócio não é conteúdo de skill.
 - Criar a pasta `dados-mestres/` se não existir.
@@ -62,7 +62,7 @@ Não inventar coluna, tela nem domínio. Campo sem evidência de gravação PB �
 4. **Domínios** — `values=` no DW; FK → descrever tabela pai; `id_*` → S/N ou tabela de códigos.
 5. **Uso PB** — retrieve/join/filtro; priorizar consumidores principais (NF, WMS, Fiscal, integração).
 6. **Banco** — triggers Git: efeitos em insert/update (histórico, `int_controle`, tabelas filhas).
-7. **Gravar** — `.md` (narrativa) + `.xlsx` (5 abas) em `99-ARCHIVE/Projetos/Especificações/dados-mestres/` — ver [modelo-saida.md](modelo-saida.md). Fallback de ambiente: projeto irmão `mapa-dados` (nunca dentro deste repo).
+7. **Gravar** — `.md` (narrativa) + `.xlsx` (5 abas) em `Projetos/Especificações/dados-mestres/` — ver [modelo-saida.md](modelo-saida.md). Fallback de ambiente: projeto irmão `mapa-dados` (nunca dentro deste repo).
 8. **Chat** — resumo + caminho dos dois arquivos. Exemplo de conteúdo das abas: [exemplo-filial.md](exemplo-filial.md).
 
 ## Regras de qualidade
@@ -90,3 +90,10 @@ Não inventar coluna, tela nem domínio. Campo sem evidência de gravação PB �
 | Implementar PB | `/pb` ou `/pbg` |
 | Alterar trigger/SP | editar `sybase-objects` + aviso deploy DBA |
 | Teste de mesa SQL | `/teste-mesa-sybase` |
+
+
+
+
+
+
+
