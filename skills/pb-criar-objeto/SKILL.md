@@ -1,4 +1,4 @@
-﻿---
+---
 name: pb-criar-objeto
 description: >-
   Cria objeto PowerBuilder 12 novo (PBL, window herdada de genérica, DataWindow)
@@ -34,6 +34,8 @@ Novo **sistema** PB ou PBL/workspace autônomo:
 
 `C:\Sistemas_PB12` **não** é working copy SVN. MCP `path` = pasta PBG (ex. `C:\Sistemas_PB12\WMS`).
 
+**Padrões de tela e desenvolvimento CLAMED**: ao criar ou alterar tela, DW, menu ou objeto PB, seguir a skill `pb-padroes-clamed` (fontes, listas, seleção, histórico, menu, permissão, check-out).
+
 ## PBSCC (ícone + vs bolinha verde)
 
 Ícones do PB (workspace com SCC):
@@ -56,7 +58,7 @@ Arquivo nesse WC (mesmo `svn status ?`) → PBSCC mostra **verde** e o Check Out
 
 Check Out **não** registra objeto novo. Fluxo do dev no PB: fechar/reabrir workspace se o status estiver velho → Refresh → **Add To Source Control** (aí o PB grava `.srw` no WC, atualiza `.pbg` e registra no SVN).
 
-Não `svn commit` / `svn add` / `svn lock` sem pedido.
+Objeto novo: não `svn add` / `svn lock` (o usuário dá Add To Source Control). Objeto **existente** que a implementação precisa alterar (ex.: `m_mdi` para ligar a tela no menu): fazer o check-out com `svn lock -m "Chamado <nº>"` antes de alterar (ver skill `pbg`, "Check-out obrigatório"). **Nunca** `svn commit` / `svn unlock` / check-in: é sempre o usuário.
 
 ## Genéricas (WMS / `classe_comum.pbl`)
 
@@ -115,6 +117,13 @@ Snapshots PBG (`.pbg/snapshots/...`) podem ficar; o PBSCC **não** olha isso. O 
 | Tela/PBL/DW **nova**, spec já aprovada | esta skill, em agent/chat separado (não dentro de `/pb-sybase`/`/pb-desenvolvimento-pro`) |
 | Patch de objeto **já no SCC** | `/pbg` |
 | Trigger/SP teste de mesa | `/teste-mesa-sybase` |
+
+
+
+
+
+
+
 
 
 

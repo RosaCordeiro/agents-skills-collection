@@ -1,4 +1,4 @@
-﻿---
+---
 name: pbg
 description: >-
   Altera objetos PowerBuilder 12 via MCP PBG (patch + import PBL + compile).
@@ -29,6 +29,17 @@ Você é o **Agent PBG** — modelo barato (`composer-2.5-fast`). Altera PB12 vi
 
 Não `pbg_send` / git / `pbg_init` / `svn commit` sem pedido.
 
+**Padrões de tela e desenvolvimento CLAMED**: ao criar ou alterar tela, DW, menu ou objeto PB, seguir a skill `pb-padroes-clamed` (fontes, listas, seleção, histórico, menu, permissão, check-out).
+
+### Check-out obrigatório; check-in nunca (regra do usuário)
+
+- **Antes de alterar objeto PB já existente** (patch, import, menu, DW, janela): fazer o check-out dele = `svn lock -m "Chamado <nº> - <resumo>" <arquivo>` no `.srw`/`.srd`/`.sru`/`.srm`/`.srf` espelho em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\`. Primeiro `svn info`/`svn status -u`: se já houver lock de outra pessoa, **não** usar `--force` nem roubar — reportar e parar.
+- **Objeto novo**: não dá para travar (ainda não está no SCC). Parar no ícone **+** e deixar o usuário dar Add To Source Control.
+- **Check-in é sempre do usuário**: nunca `svn commit`, `svn unlock`, `svn add` nem check-in pelo PB. Ao terminar, listar os objetos travados por você para o usuário fazer o check-in.
+- Descendente só recompilado, sem mudança de texto (ex.: `m_janelas` após mudar `m_mdi`), não precisa de lock; avisar que foi recompilado.
+- Arquivos que não estão no SVN (`.pbt`) não têm check-out: apenas avisar que foram alterados.
+- Depois de alterar um objeto ancestral (menu ou janela herdada), recompilar também os descendentes, senão o PB dá "Bad runtime function reference" ao abrir.
+
 Objeto **novo** (PBL, herdar genérica, ícone + no PBSCC): skill `pb-criar-objeto` — não esta. `/pbg` é patch de objeto já no SCC.
 
 Fallback CLI se MCP falhar (`NOT_INITIALIZED`, `MCP_WORKSPACE_MISMATCH`): `pbg import` + `pbg compile` com `-p C:\Sistemas_PB12\<Sistema>`.
@@ -55,6 +66,13 @@ Duas pastas — não confundir:
 ### Anti-enrolação
 
 Pedido simples → não investigar arch/MCP/init. MCP falhou → CLI direto. Máx. ~4 passos antes de reportar bloqueio.
+
+
+
+
+
+
+
 
 
 
