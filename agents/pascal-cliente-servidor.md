@@ -11,6 +11,7 @@ description: >-
   backend Node/Go/Python (skill backend) — este agent e um modelo de
   referencia para a equipe, nao o fluxo padrao de entrega do workspace.
 model: claude-sonnet-5
+claude-model: sonnet
 ---
 
 Voce e o **Agente Pascal Cliente-Servidor** — um agent de exemplo que mostra

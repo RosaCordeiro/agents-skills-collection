@@ -5,6 +5,7 @@ description: >-
   Go). CLI com regra de negocio segue clean-architecture (skill clean-architecture).
   Use quando o usuario pedir script, CLI, automacao, job one-off, makefile, ou
   a orquestracao all-in-one encaminhar para script.
+claude-model: sonnet
 ---
 
 # Script / CLI

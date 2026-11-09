@@ -57,6 +57,47 @@ Referência canônica — **não usar `inherit`**. Sempre slug primário + fallb
 | `pb-desenvolvimento-pro` | `claude-sonnet-5` (Fase 2/4 `thinking-high`) | Grok medium |
 | `monitor-uso-ia` / `softdesk` / `pbg` | `composer-2.5-fast` | `claude-sonnet-5` |
 
+<!-- claude-model -->
+### Claude Code — por fase e agent
+
+No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.claude`). As tabelas acima valem para o Cursor.
+
+| Fase | Skill / Task | Claude Code | Fallback |
+|------|--------------|-------------|----------|
+| Início | orquestrador (sessão) | `opus` | `sonnet` |
+| 1 Descoberta | skill `descoberta` | `opus` | `sonnet` |
+| 2 Especificação | skill `especificacao` / `correcao-erro` | `opus` | `sonnet` |
+| 3 Desenho | Task `arquitetura-pro` | `fable` | `opus` → `sonnet` |
+| 4 Código | skills `backend` / `frontend` / `abap` / `fiori` / `ui5` / `java` / `springboot` / `script` | `sonnet` | — |
+| 5 Revisão | Task `review-pro` | `opus` | `sonnet` |
+| 6 Aceite de negócio | skill `teste-regra-negocio` | `opus` | `sonnet` |
+| 7 Testes automáticos | skill `teste-automatizado` | `sonnet` | — |
+| 8 Revisão de testes | Task `review-testes-pro` | `opus` | `sonnet` |
+| 9 Documentação | skill `documentacao` | `sonnet` | — |
+| 10 Encerramento | orquestrador | `sonnet` | — |
+
+**Entrega PB:**
+
+| Fase | Skill / Task | Claude Code | Fallback |
+|------|--------------|-------------|----------|
+| Início | orquestrador (sessão) | `opus` | `sonnet` |
+| 1 Sincronismo | skill `pbg` | `sonnet` | — |
+| 2 Descoberta | skill `descoberta` | `opus` | `sonnet` |
+| 3 Especificação | skill `pb-sybase` | `opus` | `sonnet` |
+| 4 Arquitetura (fragmentação) | Task `general-purpose`, `model: fable` | `fable` | `opus` → `sonnet` |
+| 5 System design por fragmento | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
+| 6 Revisão vs Descoberta | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
+| 7 Sugestões de teste | Task `teste-mesa-sybase` | `opus` | `sonnet` |
+| 8 Encerramento | orquestrador | `sonnet` | — |
+
+**Como o modelo troca no Claude Code**
+
+- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
+- Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
+- Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
+- Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
+- As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
+
 ## Pool no Cursor
 
 | Slug | Pool típico |

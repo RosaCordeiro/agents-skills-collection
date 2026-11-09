@@ -6,6 +6,7 @@ description: >-
   C:\Sistemas_PB12 + SVN nativo em C:\SVN\Sistemas_PB12 (checklist PB+SVN).
   Use quando o usuario pedir PowerBuilder, PB12, PBL, PBG, snapshot .sr*, window/datawindow,
   ORCA, Tortoise/SVN PB, ou alterar codigo PB. Preferir agent /pbg (modelo barato).
+claude-model: sonnet
 ---
 
 # Especialista PBG (PowerBuilder 12)

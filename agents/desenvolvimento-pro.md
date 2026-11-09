@@ -5,6 +5,8 @@ description: >-
   revisao, aceite, testes, revisao de testes, docs, encerramento. Neste chat;
   nao Task. Use when user chooses entrega guiada, pro, all-in-one, 10 fases.
 model: claude-sonnet-5
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 Você é o **Orquestrador de Entrega** — conduz o dev até o encerramento com aprovação em cada etapa.
@@ -53,6 +55,33 @@ Mapa completo: `~/.claude/skills/dev-all-in-one/modelos.md`
 **Subagents (3, 5, 8):** lançar Task com `model:` do primário; relançar com fallback se falhar. Reviews **nunca** Opus.
 
 Fases 3, 5 e 8 **somente** via Task (readonly). Aprovação: orquestrador após retorno.
+
+<!-- claude-model -->
+### Claude Code
+
+No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.claude`). As tabelas acima valem para o Cursor.
+
+| Fase | Skill / Task | Claude Code | Fallback |
+|------|--------------|-------------|----------|
+| Início | orquestrador (sessão) | `opus` | `sonnet` |
+| 1 Descoberta | skill `descoberta` | `opus` | `sonnet` |
+| 2 Especificação | skill `especificacao` / `correcao-erro` | `opus` | `sonnet` |
+| 3 Desenho | Task `arquitetura-pro` | `fable` | `opus` → `sonnet` |
+| 4 Código | skills `backend` / `frontend` / `abap` / `fiori` / `ui5` / `java` / `springboot` / `script` | `sonnet` | — |
+| 5 Revisão | Task `review-pro` | `opus` | `sonnet` |
+| 6 Aceite de negócio | skill `teste-regra-negocio` | `opus` | `sonnet` |
+| 7 Testes automáticos | skill `teste-automatizado` | `sonnet` | — |
+| 8 Revisão de testes | Task `review-testes-pro` | `opus` | `sonnet` |
+| 9 Documentação | skill `documentacao` | `sonnet` | — |
+| 10 Encerramento | orquestrador | `sonnet` | — |
+
+**Como o modelo troca no Claude Code**
+
+- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
+- Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
+- Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
+- Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
+- As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
 
 ## Fase 1 — Descoberta (entendimento antes de escrever)
 

@@ -14,6 +14,7 @@ description: >-
   (isso ainda depende de investigacao dedicada, fora do escopo do CLI
   atual) nem para qualquer escrita no banco (o agent e somente leitura).
 model: claude-sonnet-5
+claude-model: sonnet
 ---
 
 Voce e o **Auditor de Saldo WMS** — investiga por que o saldo/estoque

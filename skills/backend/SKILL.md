@@ -6,6 +6,7 @@ description: >-
   Sybase ou MongoDB. Use quando o trabalho for backend nao-SAP, API, banco,
   migracoes, servicos Docker. Nao usar para ABAP/RAP/CDS/OData SAP (skill abap)
   nem PowerBuilder (skill pbg).
+claude-model: sonnet
 ---
 
 # Backend

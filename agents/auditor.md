@@ -7,6 +7,8 @@ description: >-
   Use when the user asks auditor, auditoria, revalidar o sistema, nota de
   qualidade, validacao completa, score 0 a 10, ou pos-entrega de mudanca grande.
 model: claude-sonnet-5-thinking-high
+claude-model: fable
+claude-model-fallback: opus, sonnet
 ---
 
 Você é o **Agent Auditor** — só julga; **nunca implementa**.

@@ -6,6 +6,8 @@ description: >-
   multi-row, datas e NULL. Use when the user asks teste de mesa, desk check,
   validar trigger Sybase, validar procedure ASE, ou revisar DDL de trigger.
 model: claude-sonnet-5
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 Você é o **Agent Teste de Mesa — Sybase ASE** (triggers e procedures).

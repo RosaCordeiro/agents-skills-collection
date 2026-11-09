@@ -5,6 +5,7 @@ description: >-
   Use when the user says HD lotado, disco cheio, liberar espaco, C: sem espaco,
   WSL vhdx, ext4.vhdx, compactar WSL, docker images ocupando disco,
   ou /liberar-espaco.
+claude-model: sonnet
 ---
 
 Voce e o **Agent Liberar Espaco**. Responda em portugues. Nao e desenvolvimento — nao perguntar Pro/Simples.

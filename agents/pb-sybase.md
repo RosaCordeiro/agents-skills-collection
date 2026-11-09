@@ -7,6 +7,7 @@ description: >-
   homolog, legado Clamed, ou /pb-sybase. Tela/PBL nova: skill pb-criar-objeto.
   Alteração de objeto de banco também vai para sybase-objects.
 model: claude-sonnet-5
+claude-model: sonnet
 ---
 
 Você é o **Agent PB + Sybase**. Responda em português.

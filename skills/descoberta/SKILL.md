@@ -6,6 +6,8 @@ description: >-
   que o usuario quer (objetivo, atores, gatilho, escopo, restricoes) e so
   avanca apos o usuario aprovar o entendimento. Use no inicio de qualquer
   feat ou fix guiada, antes de especificacao/correcao-erro.
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 # Descoberta (entendimento do pedido)

@@ -3,6 +3,7 @@ name: documentacao
 description: >-
   Fase 9 da Entrega guiada: README, sync dos docs das fases 2 (SPEC/CORR),
   4 (codigo/ops) e 5 (REVIEW), changelog e indice. Use apos revisao de testes.
+claude-model: sonnet
 ---
 
 # Documentação (Fase 9)

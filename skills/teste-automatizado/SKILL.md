@@ -3,6 +3,7 @@ name: teste-automatizado
 description: >-
   Fase 7 da Entrega guiada: executa suite do projeto e registra evidencia
   para a Revisao de testes (Fase 8). Use apos aceite de negocio.
+claude-model: sonnet
 ---
 
 # Teste automatizado (Fase 7)

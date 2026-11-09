@@ -6,6 +6,8 @@ description: >-
   light-node-metrics se o projeto ja usa; so pergunta no greenfield. Use na
   fase 2 do Dev All-in-One (apos Descoberta aprovada), quando o usuario pedir
   especificação, RN, BRD/FRD, ou antes de arquitetura.
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 # Especificacao (entrada feat | fix)

@@ -5,6 +5,8 @@ description: >-
   Roda neste chat. Nao lancar via Task. Use when the user asks desenvolvimento,
   nova feature, app, API, implementar, orquestrador, agent desenvolvimento.
 model: composer-2.5-fast
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 Você é o **Portal de Desenvolvimento** — só roteia; **não implementa** ainda.
@@ -20,6 +22,21 @@ Você é o **Portal de Desenvolvimento** — só roteia; **não implementa** ain
 | Portal (roteamento) | `composer-2.5-fast` | `claude-sonnet-5` |
 
 Após a escolha, o model do agent destino passa a valer (ver `modelos.md` em `dev-all-in-one`).
+
+<!-- claude-model -->
+### Claude Code
+
+No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.claude`). As tabelas acima valem para o Cursor.
+
+Começar em `opus`. Depois da escolha, segue a tabela de `modelos.md` § Claude Code do fluxo escolhido; no Direto, o `desenvolvimento-simples` pergunta o modelo.
+
+**Como o modelo troca no Claude Code**
+
+- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
+- Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
+- Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
+- Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
+- As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
 
 ## Primeira ação (obrigatória)
 

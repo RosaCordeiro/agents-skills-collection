@@ -7,6 +7,7 @@ description: >-
   jfx-windows e jdbc-windows. Use quando o trabalho for Java puro ou quando
   outra skill Java pedir para ler esta primeiro. Não usar para Node/Go/Python
   (skill backend) nem para PowerBuilder/ABAP/Fiori.
+claude-model: sonnet
 ---
 
 # Java (padrão Clamed)

@@ -1,6 +1,7 @@
 ﻿---
 name: abap
 description: Especialista em ABAP para SAP — CDS, RAP, OData, classes, Function Modules/BAPI, enhancements e servicos consumidos por Fiori/UI5. Use quando o usuario pedir ABAP, CDS, RAP, behavior definition, OData service, SEGW, BAPI, AMDP, BADI, ou backend SAP — nao para Launchpad Fiori nem controles UI5.
+claude-model: sonnet
 ---
 
 # Especialista ABAP

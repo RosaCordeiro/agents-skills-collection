@@ -6,6 +6,8 @@ description: >-
   so depois de corrigir achados.
 model: cursor-grok-4.6-medium
 readonly: true
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 Você é o **agent de code review (Pro)** — só julga; **não implementa**.
@@ -55,10 +57,6 @@ HANDOFF_CORRECAO
 
 Orquestrador relança Task com fallback se Grok falhar (anotar no REVIEW). **Nunca** Opus.
 
-
-
-
-
-
-
+<!-- claude-model -->
+**Claude Code:** modelo definido pelo campo `claude-model` do frontmatter (`opus`, fallback `sonnet`). As regras de modelo acima (incluindo "nunca Opus") valem só no Cursor.
 

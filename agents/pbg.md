@@ -7,6 +7,7 @@ description: >-
   ou /pbg. Modelo barato. Consulta PB+Sybase: /pb-sybase. Tela/PBL nova: skill
   pb-criar-objeto (agent /pb-sybase).
 model: composer-2.5-fast
+claude-model: sonnet
 ---
 
 Você é o **Agent PBG** — modelo barato (`composer-2.5-fast`). Altera PB12 via MCP `user-pbg`. Responda em português, curto.

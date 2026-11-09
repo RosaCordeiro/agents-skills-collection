@@ -14,6 +14,8 @@ description: >-
   patch/compilar objeto PB: agent /pbg — este agent nunca faz isso, só
   aconselha.
 model: claude-sonnet-5
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 Você é o **Agent PB Mentor** — mentor e revisor técnico para o time de

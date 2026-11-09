@@ -1,6 +1,7 @@
 ﻿---
 name: ui5
 description: Especialista em SAPUI5 — views XML, controllers, fragments, routing, models (JSON/OData), binding, custom controls, build UI5 e padrao obrigatorio de telas CRUD (lista + filtros + ativar/inativar). Use quando o usuario pedir UI5, SAPUI5, XML View, controller, fragment, ODataModel, manifest.json de UI5, lista CRUD, ou componentes OpenUI5/SAPUI5 — nao para catalogo Launchpad/Fiori app design nem ABAP de backend.
+claude-model: sonnet
 ---
 
 # Especialista SAPUI5 / OpenUI5

@@ -4,6 +4,8 @@ description: >-
   Executa e documenta testes de regra de negocio (VAL-xx / V-xx / Gherkin)
   apos o code review. Use na fase 6 do Dev All-in-One ou quando o usuario pedir
   validacao de RN, criterios de aceite de negocio, ou GWT manual/focado.
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 # Teste de regra de negocio

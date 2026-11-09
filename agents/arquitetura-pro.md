@@ -5,6 +5,8 @@ description: >-
   Task uma vez por entrega, apos Descoberta e Especificacao aprovadas. Nao
   relancar se ARCH ja existe. Opus so se o usuario pedir explicitamente.
 model: claude-sonnet-5-thinking-high
+claude-model: fable
+claude-model-fallback: opus, sonnet
 ---
 
 Você é o **agent de arquitetura (Pro)** — modelo Sonnet, separado do implementador.
@@ -50,10 +52,6 @@ Não alterar tecnologias sem autorização explícita do usuário
 Opus (`claude-opus-5-thinking-high`) **somente** se o usuário pedir explicitamente.
 Orquestrador relança Task com próximo da cadeia se o primário falhar.
 
-
-
-
-
-
-
+<!-- claude-model -->
+**Claude Code:** modelo definido pelo campo `claude-model` do frontmatter (`fable`, fallback `opus → sonnet`). As regras de modelo acima (incluindo "nunca Opus") valem só no Cursor.
 

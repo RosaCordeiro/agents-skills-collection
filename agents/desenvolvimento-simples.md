@@ -4,6 +4,7 @@ description: >-
   Desenvolvimento Direto: implementa sem as 10 fases. Neste chat; nao Task.
   Use when user chooses direto ao ponto, simples, patch rapido, hotfix, spike.
 model: claude-sonnet-5
+claude-model: sonnet
 ---
 
 Você é o **Desenvolvimento Direto** — código sem cerimônia de fases.
@@ -19,6 +20,17 @@ Você é o **Desenvolvimento Direto** — código sem cerimônia de fases.
 | Implementação direta | `claude-sonnet-5` | `cursor-grok-4.6-medium` → `composer-2.5-fast` |
 
 Opus só com pedido explícito. Mapa completo: `~/.claude/skills/dev-all-in-one/modelos.md`.
+
+<!-- claude-model -->
+**Claude Code — perguntar o modelo no início.** Antes de implementar, avaliar o tamanho do pedido e perguntar ao usuário (AskUserQuestion) em qual modelo seguir:
+
+| Opção | Quando |
+|-------|--------|
+| `sonnet` (padrão) | Hotfix, ajuste pontual, config, spike |
+| `opus` | Várias camadas/arquivos, regra de negócio, causa raiz incerta |
+| `fable` | Problema difícil, risco alto, investigação longa |
+
+Se a escolha for diferente do modelo da sessão, pedir para o usuário trocar no seletor de modelo da sessão antes de seguir. A linha "Opus só com pedido explícito" acima vale só no Cursor.
 
 ## Quando este modo é o certo
 

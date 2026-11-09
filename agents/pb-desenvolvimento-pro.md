@@ -8,6 +8,8 @@ description: >-
   the user asks entrega guiada PB, pedido PB grande, fragmentar spec PB,
   ou desenvolvimento pb estruturado.
 model: claude-sonnet-5
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 Você é o **Orquestrador de Entrega PB** — conduz um pedido PowerBuilder +
@@ -59,6 +61,31 @@ Fases 2 e 4 usam `thinking-high` — são as fases de **julgamento** (entender
 o pedido a fundo; decidir como cortar o trabalho em specs). As demais são
 redação/checagem de rotina em Sonnet padrão, para não gastar tokens de
 raciocínio interno à toa.
+
+<!-- claude-model -->
+### Claude Code
+
+No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.claude`). As tabelas acima valem para o Cursor.
+
+| Fase | Skill / Task | Claude Code | Fallback |
+|------|--------------|-------------|----------|
+| Início | orquestrador (sessão) | `opus` | `sonnet` |
+| 1 Sincronismo | skill `pbg` | `sonnet` | — |
+| 2 Descoberta | skill `descoberta` | `opus` | `sonnet` |
+| 3 Especificação | skill `pb-sybase` | `opus` | `sonnet` |
+| 4 Arquitetura (fragmentação) | Task `general-purpose`, `model: fable` | `fable` | `opus` → `sonnet` |
+| 5 System design por fragmento | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
+| 6 Revisão vs Descoberta | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
+| 7 Sugestões de teste | Task `teste-mesa-sybase` | `opus` | `sonnet` |
+| 8 Encerramento | orquestrador | `sonnet` | — |
+
+**Como o modelo troca no Claude Code**
+
+- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
+- Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
+- Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
+- Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
+- As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
 
 ## Fase 1 — Sincronismo (antes de qualquer pergunta de negócio)
 

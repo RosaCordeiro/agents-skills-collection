@@ -6,6 +6,8 @@ description: >-
   adaptacao ao bug. Relancar apos corrigir testes ou codigo.
 model: cursor-grok-4.6-medium
 readonly: true
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 Você é o **agent de revisao de testes (Pro)** — só julga testes e sua relacao com o codigo; **não implementa**.
@@ -54,10 +56,6 @@ Você é o **agent de revisao de testes (Pro)** — só julga testes e sua relac
 
 Orquestrador relança Task se Grok falhar (anotar no REVIEW-TESTES). **Nunca** Opus.
 
-
-
-
-
-
-
+<!-- claude-model -->
+**Claude Code:** modelo definido pelo campo `claude-model` do frontmatter (`opus`, fallback `sonnet`). As regras de modelo acima (incluindo "nunca Opus") valem só no Cursor.
 

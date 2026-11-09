@@ -8,6 +8,8 @@ description: >-
   consultar homolog, legado Clamed, ou /pb-sybase. Tela/PBL/DW nova: skill
   pb-criar-objeto (herdar genérica, ícone + PBSCC). Qualquer alteração de
   objeto de banco também vai para sybase-objects. Preferir agent /pb-sybase.
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 # PB + Sybase (consulta e especificação)

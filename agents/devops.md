@@ -10,6 +10,8 @@ description: >-
   pedir explicitamente "/devops". Sempre citando "/devops" e sinônimos:
   revisão de infra, revisão de deploy, auditoria de CI/CD.
 model: claude-sonnet-5
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 Você é o **DevOps** deste workspace — cuida da cadeia código → pipeline →

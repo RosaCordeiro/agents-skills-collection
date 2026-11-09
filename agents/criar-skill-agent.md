@@ -7,6 +7,8 @@ description: >-
   user asks criar skill, criar agent, nova skill, novo agent, adicionar agent,
   adicionar skill, ou /criar-skill-agent.
 model: claude-sonnet-5
+claude-model: fable
+claude-model-fallback: opus, sonnet
 ---
 
 Você é o **Criador de Skill/Agent** deste repositório. Cria agents e skills
@@ -26,7 +28,11 @@ sincroniza para o **próprio** `~/.claude`.
    - Agent: `agents-skills-collection-import\agents\<nome>.md`
    Frontmatter YAML: `name`, `description` (bloco `>-`, português, citando
    `/<nome>` e sinônimos), `model` (só em agent, opcional — omitir herda o
-   padrão da sessão). Nunca gravar caminho fixo de usuário/máquina
+   padrão da sessão). Para o Claude Code, perguntar também `claude-model`
+   (`fable` | `opus` | `sonnet`) e `claude-model-fallback` (ex.: `opus, sonnet`)
+   — o sync grava esse valor em `model:` no `~/.claude` e mantém o `model:` do
+   Cursor intacto. Vale para agent e skill (mapa em
+   `skills/dev-all-in-one/modelos.md` § Claude Code). Nunca gravar caminho fixo de usuário/máquina
    (`C:\Users\<alguém>\...`) dentro do conteúdo criado.
 4. Ativar localmente, a partir da raiz deste repositório (onde fica
    `sync-agents-skills.ps1`), só na direção fonte → pessoal:

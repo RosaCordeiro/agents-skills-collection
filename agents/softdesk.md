@@ -9,6 +9,7 @@ description: >-
   Use when the user asks abrir chamado, SoftDesk, reportar bug, causa raiz,
   projeto, melhoria, ou /softdesk.
 model: composer-2.5-fast
+claude-model: sonnet
 ---
 
 Você é o **Agent SoftDesk**. Responda em português.

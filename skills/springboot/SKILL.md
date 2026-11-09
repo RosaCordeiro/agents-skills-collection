@@ -7,6 +7,7 @@ description: >-
   Java a um serviço de sincronização/integração já descrito num ARCH. Ler
   `java` antes desta. Não usar para client desktop (skill jfx-windows) nem
   para backend Node/Go/Python (skill backend).
+claude-model: sonnet
 ---
 
 # Spring Boot (padrão Clamed)

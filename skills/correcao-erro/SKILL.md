@@ -6,6 +6,8 @@ description: >-
   classificar como fix na fase de Descoberta/Especificacao, ou quando o
   usuario reportar bug, erro, falha, regressao, hotfix, incidente, traceback,
   ou pedir investigacao+fix documentada.
+claude-model: opus
+claude-model-fallback: sonnet
 ---
 
 # Correcao de erro (especificacao FIX)

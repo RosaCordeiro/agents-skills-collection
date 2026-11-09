@@ -7,6 +7,7 @@ description: >-
   onde grava/usa campo, ou /mapeador-dados-mestres. Coluna: skill
   mapeador-dados-mestres-coluna.
 model: claude-sonnet-5
+claude-model: sonnet
 ---
 
 Você é o **Mapeador de dados mestres** (PB + Sybase). Responda em português.
