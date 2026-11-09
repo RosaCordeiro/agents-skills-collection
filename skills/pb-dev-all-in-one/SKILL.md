@@ -30,7 +30,7 @@ Responda em português.
 | 4 | **Arquitetura (fragmentação)** | Decide as fronteiras: Cadastro / Consulta / Funcionamento / Integração; sistemas e bancos envolvidos | `ARCH-<n>.md` (mapa de fragmentos) |
 | 5 | **System design por fragmento** | Detalhamento técnico de cada fragmento (telas, banco, lógica), tudo dentro de **um único** documento final | `SPEC-<n>-TECNICA.md` (1 arquivo, 1 seção por fragmento) |
 | 6 | **Revisão das specs vs Descoberta** | Confere cada seção de fragmento, dentro do `SPEC-<n>-TECNICA.md`, contra o Resumo da Descoberta e o `SPEC-<n>.md` original — nada ficou de fora, nada foi inventado | `REVIEW-<n>-resultado.md` |
-| 7 | **Sugestões de teste** | Cenários de teste sugeridos por fragmento — **não executa** | Seção "Sugestões de teste" dentro da seção de cada fragmento, no mesmo `SPEC-<n>-TECNICA.md` |
+| 7 | **Sugestões de teste** | Cenários de teste sugeridos por fragmento — **não executa** | Seção final "Sugestões de teste" do `SPEC-<n>-TECNICA.md`, uma subseção por fragmento |
 | 8 | **Encerramento** | Checklist DoD; spec técnica aprovada; fecha sem gerar código | DoD ok |
 
 Anuncie **"Fase N — Nome"** + artefato + aprovação esperada. Cada fase pode
@@ -54,34 +54,90 @@ Fases 2 e 4 usam `thinking-high` por serem as duas fases de **julgamento**
 redação/checagem de rotina em Sonnet padrão. Thinking-high explícito para
 outra fase só se o usuário pedir.
 
+<!-- claude-model -->
+### Claude Code
+
+No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.claude`). A tabela acima vale para o Cursor.
+
+| Fase | Executor | Claude Code | Fallback |
+|------|----------|-------------|----------|
+| Início | orquestrador (sessão) | `opus` | `sonnet` |
+| 1 Sincronismo | skill `pbg` (só checagem) | `sonnet` | — |
+| 2 Descoberta | skill `descoberta` | `opus` | `sonnet` |
+| 3 Especificação | skill `pb-sybase` | `opus` | `sonnet` |
+| 4 Arquitetura (fragmentação) | Task `general-purpose`, `model: fable` | `fable` | `opus` → `sonnet` |
+| 5 System design por fragmento | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
+| 6 Revisão vs Descoberta | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
+| 7 Sugestões de teste | orquestrador; Task `teste-mesa-sybase` só para fragmento com trigger/SP | `opus` | `sonnet` |
+| 8 Encerramento | orquestrador | `sonnet` | — |
+
+**Como o modelo troca no Claude Code**
+
+- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
+- Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
+- Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
+- Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
+- As regras "Thinking-high só se o usuário pedir" deste documento valem só no **Cursor**.
+
+**Regras das Tasks (fases 4, 5 e 6)**
+
+- **Uma Task por fase**, não uma por fragmento. A Fase 5 grava todas as seções no mesmo `SPEC-<n>-TECNICA.md`; Tasks paralelas no mesmo arquivo se sobrescrevem.
+- Mesmo gate do `arquitetura-pro`: se o artefato da fase já existe (`ARCH-<n>.md`, `SPEC-<n>-TECNICA.md`, `REVIEW-<n>-resultado.md`), o orquestrador **emenda neste chat**; não relança Task. Relançar só se o usuário pedir redo ou a Task falhou sem gravar o arquivo.
+- Prompt da Task: caminho da pasta do chamado, os artefatos aprovados que ela deve ler (Resumo da Descoberta colado no prompt, `SPEC-<n>.md`, `ARCH-<n>.md`) e o arquivo que ela deve gravar. A Task não pergunta nada ao usuário: devolve um resumo curto (caminho, decisões, dúvidas) e o orquestrador faz a pergunta de aprovação.
+- A Task nunca altera PB, banco ou SVN.
+
+**Ferramentas no Claude Code**
+
+- `AskQuestion` deste documento = ferramenta `AskUserQuestion`.
+- MCP `user-pbg` = um servidor por sistema: `mcp__pbg-carga__*`, `mcp__pbg-fiscal__*`, `mcp__pbg-retaguarda__*`, `mcp__pbg-wms__*`. Usar o do sistema da Descoberta.
+- MCP `user-sybase-hmg` = `mcp__sybase-hmg__*`.
+- Ao gravar ou atualizar um artefato da pasta do chamado, enviar o arquivo ao usuário (`SendUserFile`) em vez de só citar o caminho.
+
+## Retomada
+
+Antes da Fase 1, olhar a pasta do chamado. Se já houver artefatos deste fluxo
+(`SPEC-<n>.md`, `ARCH-<n>.md`, `SPEC-<n>-TECNICA.md`, `REVIEW-<n>-resultado.md`),
+dizer em que fase o chamado parou e perguntar se retoma dali ou recomeça.
+Retomar não pula a aprovação da fase em que parou.
+
 ---
 
 ### Fase 1 — Sincronismo
 
 Antes de qualquer pergunta de negócio, garantir que as três fontes de
-verdade não estão divergentes:
+verdade não estão divergentes.
 
-1. **Snapshot PBG vs SVN**: comparar a data do `.srw`/`.srd` em
-   `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` com a do snapshot em
-   `.pbg\snapshots\...` do workspace PBG (skill `pbg` § Ambiente Clamed →
-   Snapshot desatualizado). Preferir `pbg_status` (MCP `user-pbg`) para
-   verificar/atualizar o snapshot — não editar `.sr*` a mão.
+0. **Escopo da checagem.** Se o pedido não diz o sistema PB (e as telas/
+   objetos já conhecidos), perguntar só isso agora — o resto da Descoberta
+   fica para a Fase 2. Sem sistema não dá para checar nada.
+1. **Snapshot PBG vs SVN vs PBL**: comparar a data do `.srw`/`.srd` em
+   `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` e da `.pbl` com a do
+   snapshot em `.pbg\snapshots\...` do workspace PBG (skill `pbg` § Ambiente
+   Clamed → Snapshot desatualizado). `pbg_svn_status` mostra o estado do SVN.
+   Atenção: `pbg_status` **não** atualiza o snapshot — só reexporta a PBL
+   via ORCA para `.pbg/<exportFolder>` (pode rodar, não altera nada do
+   usuário). Quem regrava o snapshot é o `pbg_send`, que também **commita**
+   no workspace PBG — esse só com OK do usuário. Snapshot velho: ler o
+   export fresco direto do disco, como manda a skill `pbg`.
 2. **`sybase-objects` (git)**: no clone local, checar se há divergência
    entre o que está versionado e o remoto (`git status`, `git log` local vs
    `origin`), sem fazer `pull`/`fetch` sozinho.
-3. **Não rodar nada por conta própria.** Se algo estiver desatualizado,
-   relatar exatamente o quê (arquivo, data local vs data mais nova) e
-   **`AskQuestion`**:
+3. **Não atualizar nada por conta própria** (`svn update`, `git pull`/
+   `fetch`, `pbg_send`). Se algo estiver desatualizado, relatar exatamente o
+   quê (arquivo, data local vs data mais nova) e **`AskQuestion`**:
    - Prompt: `Encontrei [X] desatualizado. Como seguir?`
-   - Opções: `Atualizar agora (pbg_status / svn update / git pull)` |
+   - Opções: `Usar export fresco da PBL (pbg_status)` |
+     `Atualizar (svn update / git pull / pbg_send)` |
      `Seguir mesmo assim (registrar risco)` | `Outro (eu digito)`
 4. Se tudo coerente: seguir direto para a Fase 2, sem alarde.
 5. Registrar a decisão (atualizado / seguiu com risco) no cabeçalho do
    `SPEC-<n>.md` quando ele for criado na Fase 3.
+6. Objeto que só aparecer depois (Fase 3 em diante) passa pela mesma
+   checagem de data antes de ser usado na spec.
 
 **Sempre preferir as ferramentas do MCP `user-pbg`** (`pbg_status`,
-`pbg_search`, `pbg_read_object`) a comandos de arquivo direto — é o que
-mantém o snapshot e o estado do workspace consistentes.
+`pbg_svn_status`, `pbg_search`, `pbg_read_object`) a comandos de arquivo
+direto; não editar `.sr*` a mão.
 
 ### Fase 2 — Descoberta
 
@@ -101,8 +157,8 @@ DOCX** — DOCX só na Fase 8, se pedido.
 
 1. Consultar PB (`user-pbg`) + Sybase homolog (`user-sybase-hmg`) +
    `sybase-objects` a partir do Resumo da Descoberta aprovado.
-2. Redigir `SPEC-<n>.md` em `Projetos/Especificações/Chamado <n>/` —
-   documento autocontido, linguagem de negócio (skill `especificacao` §6
+2. Redigir `SPEC-<n>.md` em `Projetos/Especificações/Chamado <n>/` (sem
+   número de chamado: `Projetos/Especificações/<Tema>/`) — documento autocontido, linguagem de negócio (skill `especificacao` §6
    como referência de padrão, mesmo fora do Node).
 3. Mocks HTML se houver tela — meramente ilustrativos, padrão CLAMED.
 4. Se for **melhoria ou mudança** (não incidente): este é o ponto de
@@ -152,32 +208,6 @@ Estrutura do `SPEC-<n>-TECNICA.md` — **tópicos obrigatórios por fragmento**,
 nesta ordem:
 
 ```markdown
-
-<!-- claude-model -->
-### Claude Code
-
-No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.claude`). As tabelas acima valem para o Cursor.
-
-| Fase | Skill / Task | Claude Code | Fallback |
-|------|--------------|-------------|----------|
-| Início | orquestrador (sessão) | `opus` | `sonnet` |
-| 1 Sincronismo | skill `pbg` | `sonnet` | — |
-| 2 Descoberta | skill `descoberta` | `opus` | `sonnet` |
-| 3 Especificação | skill `pb-sybase` | `opus` | `sonnet` |
-| 4 Arquitetura (fragmentação) | Task `general-purpose`, `model: fable` | `fable` | `opus` → `sonnet` |
-| 5 System design por fragmento | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
-| 6 Revisão vs Descoberta | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
-| 7 Sugestões de teste | Task `teste-mesa-sybase` | `opus` | `sonnet` |
-| 8 Encerramento | orquestrador | `sonnet` | — |
-
-**Como o modelo troca no Claude Code**
-
-- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
-- Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
-- Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
-- Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
-- As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
-
 # SPEC Técnica — Chamado <n>
 
 Sumário: lista dos fragmentos, na ordem de dependência (ex.: Cadastro antes
@@ -195,12 +225,26 @@ de Funcionamento que depende dele).
 4. **Tela** — ancestor, dw_1/dw_2, menu, botões extras (se houver tela).
 5. **Banco** — DDL de tabelas/colunas novas, o que não muda, histórico no
    padrão já existente (`wms_historico_*`, se for o caso).
-6. **Lógica** — retrieve, itemchanged, gravar, filtros.
-7. **Sugestões de teste** (preenchida na Fase 7).
+6. **Lógica** — retrieve, itemchanged, gravar, filtros. Se o usuário pedir
+   "prepare o patch", o código PB/SQL proposto entra aqui, dentro da spec —
+   nunca aplicado.
+7. **Sugestões de teste** — só a linha "ver § Sugestões de teste → F<n>"
+   (a tabela fica na seção final, preenchida na Fase 7).
 8. **Critérios de aceite**.
-9. **Mocks** (se houver tela) — subseção aqui, não em arquivo à parte.
+9. **Mocks** (se houver tela) — referência aos `mock-*.html` da Fase 3 e o
+   que muda neles neste fragmento; não criar outro arquivo de spec.
 
 ## Fragmento: <próximo> ...
+
+## Sugestões de teste (agrupadas por fragmento)
+
+### F1 — <nome do fragmento>
+
+| ID | Cenário | Entrada | Resultado esperado |
+|----|---------|---------|---------------------|
+| VAL-01 | ... | ... | ... |
+
+### F2 — <próximo> ...
 ```
 
 Cada decisão técnica do fragmento carrega o porquê no próprio texto (mesmo
@@ -231,16 +275,15 @@ Registrar em `REVIEW-<n>-resultado.md`: por fragmento, `OK` / `FALHA`
 ### Fase 7 — Sugestões de teste
 
 Por enquanto, **só sugerir** — não executar nada (nem teste de mesa, nem
-suite). Para cada fragmento, preencher a subseção "Sugestões de teste"
-dentro da respectiva seção `## Fragmento: <nome>`, no mesmo
-`SPEC-<n>-TECNICA.md`:
+suite). Preencher a seção final `## Sugestões de teste (agrupadas por
+fragmento)` do `SPEC-<n>-TECNICA.md`, com uma subseção `### F<n>` por
+fragmento (tabela ID / Cenário / Entrada / Resultado esperado). No tópico 7
+de cada fragmento fica só a referência para a subseção dele.
 
-| ID | Cenário | Entrada | Resultado esperado |
-|----|---------|---------|---------------------|
-| VAL-01 | ... | ... | ... |
-
-Teste de mesa de trigger/SP continua sendo a skill `teste-mesa-sybase`,
-sob pedido — esta fase só deixa o roteiro sugerido, não a executa.
+Fragmento com trigger/SP: os cenários podem vir do `teste-mesa-sybase`
+pedindo **só o roteiro** (cenários linha a linha: inserted/deleted,
+multi-row, NULL, datas, raiserror/rollback), sem executar o teste de mesa.
+Teste de mesa executado continua sendo sob pedido, fora desta fase.
 
 **`AskQuestion`**: `Sugestões de teste ok — seguir para Encerramento?`
 
@@ -264,7 +307,7 @@ tomada pelo usuário fora deste fluxo.
 - [ ] `ARCH-<n>.md` — fragmentação decidida e aprovada
 - [ ] `SPEC-<n>-TECNICA.md` único, com uma seção por fragmento, aprovado
 - [ ] `REVIEW-<n>-resultado.md` sem `FALHA` pendente
-- [ ] Sugestões de teste registradas por fragmento
+- [ ] Sugestões de teste na seção final, uma subseção por fragmento
 - [ ] Nenhum código PB alterado neste fluxo
 - [ ] **8 fases** aprovadas pelo usuário
 
@@ -289,8 +332,3 @@ tomada pelo usuário fora deste fluxo.
 | Patch de objeto PB já existente | `/pbg` |
 | Objeto/PBL/tela nova (depois da spec aprovada) | skill `pb-criar-objeto`, fora deste fluxo |
 | Teste de mesa de trigger/SP | `/teste-mesa-sybase` |
-
-
-
-
-

@@ -29,7 +29,7 @@ Cada fase termina com **`AskQuestion`**: você aprova antes de avançar.
 | 5 | Subagent `review-pro` | Grok **medium** → Sonnet padrão |
 | 8 | Subagent `review-testes-pro` | Grok **medium** → Sonnet padrão |
 
-Detalhes e regras de fallback: [modelos.md](modelos.md)
+Tabela acima = Cursor. Claude Code e regras de fallback: [modelos.md](modelos.md) (§ Claude Code).
 
 ## Loops de correção
 

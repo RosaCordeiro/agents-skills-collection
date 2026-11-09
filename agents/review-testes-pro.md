@@ -1,7 +1,7 @@
 ﻿---
 name: review-testes-pro
 description: >-
-  Revisao de testes automatizados (Grok medium, readonly). Fase 8 — Revisao de testes.
+  Revisao de testes automatizados (readonly). Fase 8 — Revisao de testes.
   Orquestrador lanca apos Fase 7; verifica abrangencia, execucao real e anti-
   adaptacao ao bug. Relancar apos corrigir testes ou codigo.
 model: cursor-grok-4.6-medium
@@ -58,4 +58,3 @@ Orquestrador relança Task se Grok falhar (anotar no REVIEW-TESTES). **Nunca** O
 
 <!-- claude-model -->
 **Claude Code:** modelo definido pelo campo `claude-model` do frontmatter (`opus`, fallback `sonnet`). As regras de modelo acima (incluindo "nunca Opus") valem só no Cursor.
-

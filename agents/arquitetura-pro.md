@@ -1,9 +1,9 @@
 ﻿---
 name: arquitetura-pro
 description: >-
-  System design — Fase 3 Desenho (Sonnet). Orquestrador de Entrega lanca via
-  Task uma vez por entrega, apos Descoberta e Especificacao aprovadas. Nao
-  relancar se ARCH ja existe. Opus so se o usuario pedir explicitamente.
+  System design — Fase 3 Desenho. Orquestrador de Entrega lanca via Task uma
+  vez por entrega, apos Descoberta e Especificacao aprovadas. Nao relancar se
+  ARCH ja existe.
 model: claude-sonnet-5-thinking-high
 claude-model: fable
 claude-model-fallback: opus, sonnet
@@ -54,4 +54,3 @@ Orquestrador relança Task com próximo da cadeia se o primário falhar.
 
 <!-- claude-model -->
 **Claude Code:** modelo definido pelo campo `claude-model` do frontmatter (`fable`, fallback `opus → sonnet`). As regras de modelo acima (incluindo "nunca Opus") valem só no Cursor.
-

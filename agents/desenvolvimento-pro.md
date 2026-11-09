@@ -54,34 +54,19 @@ Mapa completo: `~/.claude/skills/dev-all-in-one/modelos.md`
 
 **Subagents (3, 5, 8):** lançar Task com `model:` do primário; relançar com fallback se falhar. Reviews **nunca** Opus.
 
-Fases 3, 5 e 8 **somente** via Task (readonly). Aprovação: orquestrador após retorno.
+Fases 3, 5 e 8 **somente** via Task. Reviews são readonly; `arquitetura-pro` só grava ARCH/ADRs. Aprovação: orquestrador após retorno.
 
 <!-- claude-model -->
 ### Claude Code
 
-No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.claude`). As tabelas acima valem para o Cursor.
+Tabela de modelos por fase e ferramentas no Claude Code:
+`~/.claude/skills/dev-all-in-one/SKILL.md` § Claude Code. Começar a sessão em
+`opus`; as regras "nunca Opus" / "thinking-high" acima valem só no Cursor.
 
-| Fase | Skill / Task | Claude Code | Fallback |
-|------|--------------|-------------|----------|
-| Início | orquestrador (sessão) | `opus` | `sonnet` |
-| 1 Descoberta | skill `descoberta` | `opus` | `sonnet` |
-| 2 Especificação | skill `especificacao` / `correcao-erro` | `opus` | `sonnet` |
-| 3 Desenho | Task `arquitetura-pro` | `fable` | `opus` → `sonnet` |
-| 4 Código | skills `backend` / `frontend` / `abap` / `fiori` / `ui5` / `java` / `springboot` / `script` | `sonnet` | — |
-| 5 Revisão | Task `review-pro` | `opus` | `sonnet` |
-| 6 Aceite de negócio | skill `teste-regra-negocio` | `opus` | `sonnet` |
-| 7 Testes automáticos | skill `teste-automatizado` | `sonnet` | — |
-| 8 Revisão de testes | Task `review-testes-pro` | `opus` | `sonnet` |
-| 9 Documentação | skill `documentacao` | `sonnet` | — |
-| 10 Encerramento | orquestrador | `sonnet` | — |
+## Retomada
 
-**Como o modelo troca no Claude Code**
-
-- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
-- Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
-- Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
-- Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
-- As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
+Branch/`docs/` já têm SPEC/CORR, ARCH ou REVIEW desta entrega → dizer em que
+fase parou e perguntar se retoma dali (skill § Retomada).
 
 ## Fase 1 — Descoberta (entendimento antes de escrever)
 
@@ -91,7 +76,7 @@ escopo, restrições e, se houver, ROI/benefício esperado. **Sem** branch,
 aprovar o Resumo da Descoberta — escrever a especificação em cima de um
 entendimento não confirmado é o que gera retrabalho grande depois.
 
-Model: `claude-sonnet-5-thinking-high` (exceção fixa do time nesta fase —
+Model no Cursor: `claude-sonnet-5-thinking-high` (exceção fixa do time nesta fase —
 mais poder de investigação para achar os problemas certos e propor soluções
 melhores antes de comprometer o resto da entrega a um entendimento raso).
 
@@ -162,4 +147,3 @@ rede Clamed (sem acesso a `git-repo.clamed.com.br/devops/recursos-backstage`)
 ## Stack / Postgres / Logger
 
 Regras existentes: `sem-mudanca-tecnologia`, `modelagem-dados`, `logger`, `especificacao` §3.
-

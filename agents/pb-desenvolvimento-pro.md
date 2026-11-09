@@ -31,9 +31,9 @@ specs + sugestões de teste.
 2. Descoberta         → Resumo aprovado                    [skill descoberta]
 3. Especificação      → SPEC-<n>.md + mocks               [skill pb-sybase]
 4. Arquitetura        → ARCH-<n>.md (fragmentos: Cadastro/Consulta/Funcionamento/Integração)
-5. System design      → SPEC-<n>-<fragmento>.md (um por fragmento)
+5. System design      → SPEC-<n>-TECNICA.md (1 arquivo, 1 seção por fragmento)
 6. Revisão            → REVIEW-<n>-resultado.md (vs Descoberta + SPEC-<n>)
-7. Sugestões de teste → seção de teste em cada spec de fragmento (não executa)
+7. Sugestões de teste → seção final do SPEC-<n>-TECNICA.md, 1 subseção por fragmento (não executa)
 8. Encerramento       → DoD; encerra sem gerar código
 ```
 
@@ -65,39 +65,35 @@ raciocínio interno à toa.
 <!-- claude-model -->
 ### Claude Code
 
-No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.claude`). As tabelas acima valem para o Cursor.
+Tabela de modelos, regras das Tasks (fases 4, 5 e 6) e nomes das ferramentas
+no Claude Code: `~/.claude/skills/pb-dev-all-in-one/SKILL.md` § Claude Code.
+Começar a sessão em `opus`.
 
-| Fase | Skill / Task | Claude Code | Fallback |
-|------|--------------|-------------|----------|
-| Início | orquestrador (sessão) | `opus` | `sonnet` |
-| 1 Sincronismo | skill `pbg` | `sonnet` | — |
-| 2 Descoberta | skill `descoberta` | `opus` | `sonnet` |
-| 3 Especificação | skill `pb-sybase` | `opus` | `sonnet` |
-| 4 Arquitetura (fragmentação) | Task `general-purpose`, `model: fable` | `fable` | `opus` → `sonnet` |
-| 5 System design por fragmento | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
-| 6 Revisão vs Descoberta | Task `general-purpose`, `model: opus` | `opus` | `sonnet` |
-| 7 Sugestões de teste | Task `teste-mesa-sybase` | `opus` | `sonnet` |
-| 8 Encerramento | orquestrador | `sonnet` | — |
+## Retomada
 
-**Como o modelo troca no Claude Code**
-
-- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
-- Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
-- Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
-- Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
-- As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
+Pasta do chamado já tem `SPEC-<n>.md`/`ARCH-<n>.md`/`SPEC-<n>-TECNICA.md`/
+`REVIEW-<n>-resultado.md` → dizer em que fase parou e perguntar se retoma
+dali (skill § Retomada).
 
 ## Fase 1 — Sincronismo (antes de qualquer pergunta de negócio)
 
-Checar coerência entre snapshot PBG (`.pbg/snapshots`), SVN (`.srw`/`.srd`
-em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\`) e o clone local de
-`sybase-objects` (git). **Não rodar `pbg_status`, `svn update` ou
-`git pull`/`fetch` por conta própria** — preferir sempre as ferramentas MCP
-`user-pbg` para checar (não editar `.sr*` a mão), relatar o que estiver
-desatualizado e perguntar:
+Sem o sistema PB não há o que checar: se o pedido não diz, perguntar só o
+sistema (e telas/objetos já conhecidos) e deixar o resto para a Descoberta.
+
+Checar coerência entre PBL, snapshot PBG (`.pbg/snapshots`), SVN
+(`.srw`/`.srd` em `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\`) e o clone
+local de `sybase-objects` (git), com as ferramentas MCP `user-pbg`
+(`pbg_svn_status`, `pbg_read_object`; não editar `.sr*` a mão).
+
+- `pbg_status` pode rodar: só reexporta a PBL para `.pbg/<exportFolder>`,
+  **não** atualiza o snapshot.
+- `pbg_send` (regrava o snapshot e commita no workspace PBG), `svn update` e
+  `git pull`/`fetch` **só com OK do usuário**.
+
+Relatar o que estiver desatualizado e perguntar:
 
 `Encontrei [X] desatualizado. Como seguir?`
-- `Atualizar agora (pbg_status / svn update / git pull)` | `Seguir mesmo assim (registrar risco)` | `Outro (eu digito)`
+- `Usar export fresco da PBL (pbg_status)` | `Atualizar (svn update / git pull / pbg_send)` | `Seguir mesmo assim (registrar risco)` | `Outro (eu digito)`
 
 ## Fase 4 — Gate de fragmentação
 
@@ -130,7 +126,7 @@ prosseguir para a Fase 5 sem essa decisão registrada e aprovada.
 
 ## Encerramento (Fase 8)
 
-DoD da skill; marca cada `SPEC-<n>-<fragmento>.md` como `Status: aprovado`.
+DoD da skill; marca o `SPEC-<n>-TECNICA.md` como `Status: aprovado`.
 DOCX (skill `pb-sybase` § DOCX) só aqui, e só se pedido. **Encerra o
 fluxo** — não encadeia para `/pbg` nem `pb-criar-objeto` automaticamente
 (decisão do usuário, fora deste agent, por enquanto).

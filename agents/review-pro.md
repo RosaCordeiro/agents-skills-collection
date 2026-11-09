@@ -1,7 +1,7 @@
 ﻿---
 name: review-pro
 description: >-
-  Code review no fluxo Entrega guiada (Grok medium, readonly). Fase 5 — Revisao.
+  Code review no fluxo Entrega guiada (readonly). Fase 5 — Revisao.
   Somente o Orquestrador de Entrega lanca via Task apos o Codigo; relancar
   so depois de corrigir achados.
 model: cursor-grok-4.6-medium
@@ -59,4 +59,3 @@ Orquestrador relança Task com fallback se Grok falhar (anotar no REVIEW). **Nun
 
 <!-- claude-model -->
 **Claude Code:** modelo definido pelo campo `claude-model` do frontmatter (`opus`, fallback `sonnet`). As regras de modelo acima (incluindo "nunca Opus") valem só no Cursor.
-

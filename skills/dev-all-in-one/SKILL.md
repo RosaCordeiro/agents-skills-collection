@@ -47,78 +47,11 @@ Referência: [modelos.md](modelos.md)
 
 Fase 1 (Descoberta) usa **thinking-high** por pedido explícito do time — para investigar melhor o pedido e chegar a soluções melhores antes de redigir a spec. Isso é exceção fixa (não precisa reconfirmar por entrega); as demais fases do orquestrador seguem em Sonnet padrão.
 
-Fases 3, 5 e 8 **via Task** com `model:` do primário. Subagents são **readonly**.
+Fases 3, 5 e 8 **via Task** com `model:` do primário. `review-pro` e `review-testes-pro` são **readonly**; `arquitetura-pro` só grava o ARCH e os ADRs, nunca código.
 
 Agents: `arquitetura-pro`, `review-pro`, `review-testes-pro`.
 
 **Nunca** Task dos orquestradores (`desenvolvimento-pro`, etc.).
-
----
-
-### Fase 1 — Descoberta
-
-Skill `descoberta`: perguntas objetivas até fechar o entendimento do pedido
-(objetivo, atores, gatilho, escopo, restrições). **Sem** branch, **sem**
-documento de spec ainda — só o Resumo da Descoberta aprovado pelo usuário.
-
-AskQuestion: `Este é exatamente o entendimento do que você quer?`
-
-### Fase 2 — Especificação funcional
-
-`especificacao` / `correcao-erro`, a partir do Resumo da Descoberta aprovado;
-branch; greenfield → `.ai/context/`. A especificação é escrita em linguagem
-que o usuário entenda e inclui os **pontos de investigação técnica** que o
-analista precisa checar no código/banco antes do desenho (§14 do
-`modelo-feat.md`).
-
-### Fase 3 — Desenho
-
-**Gate:** listar `docs/arquitetura/ARCH-*` da entrega. Se **já existe** → orquestrador **emenda** no chat; **não** Task `arquitetura-pro`. Se **não existe** → Task **uma vez**; ADRs.
-
-### Fase 4 — Código
-
-Skills de implementação; greenfield → `.ai/rules/`.
-
-### Fase 5 — Revisão (código)
-
-Task `review-pro`; loop corrigir código → re-review.
-
-### Fase 6 — Aceite de negócio
-
-`teste-regra-negocio` — VAL/V.
-
-### Fase 7 — Testes automáticos
-
-`teste-automatizado` — **rodar suite**; registrar comando + resultado (evidência para Fase 8).
-
-AskQuestion: `Testes automáticos ok — seguir para Revisão de testes?`
-
-### Fase 8 — Revisão de testes
-
-Task `review-testes-pro` + skill `review-testes` (RT1–RT12).
-
-**Foco:** abrangência, execução real, **teste não adaptado ao bug** (RT5 bloqueante).
-
-Orquestrador grava `REVIEW-TESTES-*-resultado.md`.
-
-**Loop** — AskQuestion `Revisão de testes ok?`
-
-- `Sim, seguir para Documentação`
-- `Corrigir testes` → orquestrador ajusta testes → **re-Task** `review-testes-pro` (e rodar suite na Fase 7 se necessário)
-- `Corrigir código` → orquestrador ajusta produto → voltar **Fase 7** (rodar suite) → Fase 8 de novo
-- `Outro (eu digito)`
-
-### Fase 9 — Documentação
-
-Skill `documentacao` — README R1–R10 **e** revisão obrigatória dos docs das fases **2, 4 e 5** (DOC-F2/F4/F5): SPEC/CORR, operação do código, fechamento do REVIEW.
-
-Sincronizar `.ai/docs/indice.md`.
-
-### Fase 10 — Encerramento
-
-Checklist DoD; AskQuestion `DoD completo — encerrar?`
-
----
 
 <!-- claude-model -->
 ### Claude Code
@@ -147,6 +80,105 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 - Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
 - As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
 
+**Ferramentas no Claude Code**
+
+- `AskQuestion` deste documento = ferramenta `AskUserQuestion`.
+- Ao gravar ou atualizar SPEC/CORR, ARCH, REVIEW ou outro artefato da entrega, enviar o arquivo ao usuário (`SendUserFile`) em vez de só citar o caminho.
+
+## Retomada
+
+Antes da Fase 1, olhar a branch e `docs/` do repo. Se já houver artefatos
+desta entrega (SPEC/CORR, ARCH, REVIEW-*, REVIEW-TESTES-*), dizer em que
+fase a entrega parou e perguntar se retoma dali ou recomeça. Retomar não
+pula a aprovação da fase em que parou.
+
+---
+
+### Fase 1 — Descoberta
+
+Skill `descoberta`: perguntas objetivas até fechar o entendimento do pedido
+(objetivo, atores, gatilho, escopo, restrições). **Sem** branch, **sem**
+documento de spec ainda — só o Resumo da Descoberta aprovado pelo usuário.
+
+AskQuestion: `Este é exatamente o entendimento do que você quer?`
+
+### Fase 2 — Especificação funcional
+
+`especificacao` / `correcao-erro`, a partir do Resumo da Descoberta aprovado;
+branch; greenfield → `.ai/context/`. A especificação é escrita em linguagem
+que o usuário entenda e inclui os **pontos de investigação técnica** que o
+analista precisa checar no código/banco antes do desenho (§14 do
+`modelo-feat.md`).
+
+AskQuestion: `Especificação ok — seguir para Desenho?`
+
+### Fase 3 — Desenho
+
+**Gate:** listar `docs/arquitetura/ARCH-*` da entrega. Se **já existe** → orquestrador **emenda** no chat; **não** Task `arquitetura-pro`. Se **não existe** → Task **uma vez**; ADRs.
+
+AskQuestion: `Desenho ok — seguir para Código?`
+
+### Fase 4 — Código
+
+Skills de implementação; greenfield → `.ai/rules/`.
+
+AskQuestion: `Código pronto — seguir para Revisão?`
+
+### Fase 5 — Revisão (código)
+
+Task `review-pro`; loop corrigir código → re-review.
+
+AskQuestion: `Revisão ok — seguir para Aceite de negócio?` (+ `Corrigir achados`)
+
+### Fase 6 — Aceite de negócio
+
+`teste-regra-negocio` — VAL/V.
+
+AskQuestion: `Aceite ok — seguir para Testes automáticos?`
+
+### Fase 7 — Testes automáticos
+
+`teste-automatizado` — **rodar suite**; registrar comando + resultado (evidência para Fase 8).
+
+AskQuestion: `Testes automáticos ok — seguir para Revisão de testes?`
+
+### Fase 8 — Revisão de testes
+
+Task `review-testes-pro` + skill `review-testes` (RT1–RT12).
+
+**Foco:** abrangência, execução real, **teste não adaptado ao bug** (RT5 bloqueante).
+
+Orquestrador grava `REVIEW-TESTES-*-resultado.md`.
+
+**Loop** — AskQuestion `Revisão de testes ok?`
+
+- `Sim, seguir para Documentação`
+- `Corrigir testes` → orquestrador ajusta testes → **re-Task** `review-testes-pro` (e rodar suite na Fase 7 se necessário)
+- `Corrigir código` → orquestrador ajusta produto → voltar **Fase 7** (rodar suite) → Fase 8 de novo
+- `Outro (eu digito)`
+
+### Fase 9 — Documentação
+
+Skill `documentacao` — README R1–R10 **e** revisão obrigatória dos docs das fases **2, 4 e 5** (DOC-F2/F4/F5): SPEC/CORR, operação do código, fechamento do REVIEW.
+
+Sincronizar `.ai/docs/indice.md`.
+
+AskQuestion: `Documentação ok — seguir para Encerramento?`
+
+### Fase 10 — Encerramento
+
+Antes do checklist, nos repositórios tocados, nesta ordem:
+
+1. Skill `backstage-recursos` — dependências de infra novas/removidas.
+2. Skill `backstage-catalog-info` — catalog-info.yaml, mkdocs.yml, docs/index.md.
+
+Único pulo aceito: `backstage-recursos` detectar que está fora da rede Clamed
+(ela mesma avisa e pula).
+
+Checklist DoD; AskQuestion `DoD completo — encerrar?`
+
+---
+
 ## Routing
 
 | Situação | Skill / Task |
@@ -168,5 +200,6 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 - [ ] Testes automáticos executados
 - [ ] Revisão testes (`REVIEW-TESTES-*`) sem RT5 bloqueante
 - [ ] Documentação: README + **DOC-F2/F4/F5** (spec, código, review alinhados)
+- [ ] Backstage: `backstage-recursos` + `backstage-catalog-info` (ou pulo registrado por falta de rede)
 - [ ] WSL/Compose/secrets/lint conforme projeto
 - [ ] **10 fases** aprovadas pelo dev
