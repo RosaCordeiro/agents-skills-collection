@@ -50,6 +50,7 @@ executa, olhando os agents e skills disponiveis na sessao:
 | Necessidade | Quem |
 |-------------|------|
 | Achar objetos, usos, arquivos | `Explore` |
+| Entender codigo de API, servico ou front (Node, Go, Python, Java, SAP) | `general-purpose` com brief que cite a skill da stack (`backend`, `frontend`, `script`) |
 | Entender logica PB, historico de alteracao (svn log/blame), revisar diff | `pb-mentor` |
 | Cruzar tela PB com tabela, consultar homologacao, sybase-objects | `pb-sybase` |
 | Onde um campo ou tabela mestre e gravado e usado | `mapeador-dados-mestres`, `mapeador-dados-mestres-coluna` |

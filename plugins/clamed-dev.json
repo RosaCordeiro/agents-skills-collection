@@ -1,9 +1,10 @@
 {
   "name": "clamed-dev",
-  "version": "0.1.0",
-  "description": "Fluxo de desenvolvimento da CLAMED: portal que escolhe entre entrega guiada em 10 fases e desenvolvimento direto, com descoberta, especificacao, arquitetura, revisao de codigo e de testes, documentacao, auditoria e os padroes do time.",
+  "version": "0.1.1",
+  "description": "Fluxo de desenvolvimento da CLAMED: portal que escolhe entre entrega guiada em 10 fases e desenvolvimento direto, com analise orquestrada, descoberta, especificacao, arquitetura, revisao de codigo e de testes, documentacao, auditoria e os padroes do time.",
   "keepSkillModel": true,
   "skills": [
+    "analista",
     "dev-all-in-one",
     "descoberta",
     "especificacao",
