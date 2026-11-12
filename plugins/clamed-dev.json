@@ -1,0 +1,56 @@
+{
+  "name": "clamed-dev",
+  "version": "0.1.0",
+  "description": "Fluxo de desenvolvimento da CLAMED: portal que escolhe entre entrega guiada em 10 fases e desenvolvimento direto, com descoberta, especificacao, arquitetura, revisao de codigo e de testes, documentacao, auditoria e os padroes do time.",
+  "keepSkillModel": true,
+  "skills": [
+    "dev-all-in-one",
+    "descoberta",
+    "especificacao",
+    "correcao-erro",
+    "arquitetura",
+    "review",
+    "teste-regra-negocio",
+    "teste-automatizado",
+    "review-testes",
+    "documentacao",
+    "auditor",
+    "projeto-ai",
+    "modelagem-dados",
+    "logger",
+    "clean-architecture",
+    "backend",
+    "frontend",
+    "script",
+    "backstage-recursos",
+    "backstage-catalog-info"
+  ],
+  "agents": [
+    "arquitetura-pro",
+    "review-pro",
+    "review-testes-pro",
+    "auditor"
+  ],
+  "agentsAsSkills": [
+    "desenvolvimento",
+    "desenvolvimento-simples"
+  ],
+  "chatAgents": [
+    { "agent": "desenvolvimento-pro", "skill": "dev-all-in-one", "file": "orquestrador.md" }
+  ],
+  "rules": {
+    "into": "dev-all-in-one",
+    "names": ["custo-subagent", "sem-mudanca-tecnologia", "execucao-wsl"]
+  },
+  "replacements": [
+    { "from": "ler `~/.claude/agents/<nome>.md` e cumprir", "to": "carregar a skill correspondente e cumprir" },
+    { "from": "Regra `modelo-sonnet.mdc`: Opus so com pedido explicito neste chat.", "to": "Modelos por fase: `~/.claude/skills/dev-all-in-one/modelos.md`." }
+  ],
+  "descriptions": {
+    "dev-all-in-one": "Orquestrador de Entrega (10 fases): descoberta, especificacao, desenho, codigo, revisao, aceite, testes, revisao de testes, docs, encerramento. Roda neste chat; nao lancar como subagent. Use quando o usuario escolher entrega guiada, pro, all-in-one ou 10 fases."
+  },
+  "prerequisites": [
+    "Ambiente Windows + WSL Ubuntu: docker, node e python rodam no WSL.",
+    "Acesso ao GitLab interno (rede CLAMED ou VPN) para as skills de Backstage."
+  ]
+}

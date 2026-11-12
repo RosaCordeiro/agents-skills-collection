@@ -1,6 +1,6 @@
 {
   "name": "clamed-pb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "PowerBuilder 12 + Sybase ASE na CLAMED: consulta e especificacao de chamado, patch via PBG, padroes de tela, mapeamento de dados mestres, teste de mesa de trigger e procedure, e analise orquestrada com subagents.",
   "keepSkillModel": false,
   "skills": [
