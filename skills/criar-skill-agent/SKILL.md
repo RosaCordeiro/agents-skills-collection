@@ -36,6 +36,13 @@ sobrescreve com o que estiver em `agents-skills-collection-import`.
    `...\skills` — nao sobrescrever nome existente sem avisar.
 3. Criar o(s) arquivo(s) seguindo os templates abaixo. Nao usar nenhum caminho
    fixo de usuario/maquina no conteudo (nada de `C:\Users\<alguem>\...` cravado).
+   Para o Claude Code, perguntar tambem `claude-model` (`fable` | `opus` |
+   `sonnet`) e `claude-model-fallback` (ex.: `opus, sonnet`) — o sync grava
+   esse valor em `model:` no `~/.claude` e mantem o `model:` do Cursor
+   intacto. Vale para agent e skill (mapa em `skills/dev-all-in-one/modelos.md`
+   § Claude Code).
+   Criar agent so quando ele precisa de contexto isolado, modelo proprio ou
+   ferramentas restritas; fluxo que conversa com o usuario fica so como skill.
 4. Ativar localmente — a partir da raiz deste repositorio (onde fica
    `sync-agents-skills.ps1`), so na direcao fonte -> pessoal (evita ida-e-volta
    desnecessaria que suja o `git status` com ruido de encoding):

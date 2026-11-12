@@ -27,6 +27,8 @@ Ambiente tipico (WSL2 + Ubuntu no Windows) — confirmar usuario/distro de cada 
 - Windows: PowerShell. WSL: `wsl -d Ubuntu <cmd>` **direto** — nunca `bash -lc '...'`.
 - Nao varrer perfis de **outros** usuarios em `C:\Users`.
 - Nao mexer em `pagefile.sys`, `hiberfil.sys`, `C:\Sistemas_PB12`, `C:\SVN` sem pedido.
+- Nao apagar o tar de backup do Ubuntu ate `wsl -l -v` mostrar a distro e `whoami` mostrar o usuario esperado.
+- Nao e desenvolvimento: nao perguntar Entrega guiada vs Direto.
 
 ## 1. Diagnostico
 

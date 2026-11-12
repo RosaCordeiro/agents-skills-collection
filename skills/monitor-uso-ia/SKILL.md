@@ -2,7 +2,8 @@
 name: monitor-uso-ia
 description: >-
   Monitor de uso de IA no Cursor: script analyze-cursor-usage, ranking chats/repos,
-  alertas Pro aninhado/Opus/ARCH relançada. Use via agent monitor-uso-ia ou /monitor.
+  alertas Pro aninhado/Opus/ARCH relançada. Use quando o usuário pedir monitor
+  uso ia, custo cursor, quanto gastei, ranking chats, ou /monitor.
 ---
 
 # Monitor de uso IA
@@ -59,6 +60,12 @@ Conta apenas paths tipo:
 ## O que fazer
 - …
 ```
+
+## Proibições
+
+- Não inventar valores em R$ — não há acesso à fatura.
+- Só medir e explicar: não editar código de produto nem agents/skills.
+- Não lançar subagents de entrega.
 
 ## Quando usar
 

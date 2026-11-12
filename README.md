@@ -27,13 +27,10 @@ cursor-kit/
 | `arquitetura-pro.md` | Desenho (subagent) | Fase 3 |
 | `review-pro.md` | Revisão código (subagent) | Fase 5 |
 | `review-testes-pro.md` | Revisão testes (subagent) | Fase 8 — abrangência, execução real, anti-adaptação ao bug |
-| `monitor-uso-ia.md` | Monitor uso IA | Transcripts, ranking, alertas custo (`/monitor`) |
 | `auditor.md` | Auditor 100% (não programa): revalida o sistema, roda a suíte, Validação 1..N, notas 0–10 |
 | `pbg.md` | PowerBuilder 12: altera via MCP (`composer-2.5-fast`); patch importa e compila |
 | `pb-sybase.md` | Consulta PB + Sybase + sybase-objects; spec pequena de chamado (MD → mock → DOCX), sem fases; **não implementa** |
 | `pb-desenvolvimento-pro.md` | Orquestrador de Entrega PB (8 fases) — sincronismo, descoberta, especificação, arquitetura (fragmentação), system design por fragmento, revisão, testes sugeridos, encerramento; **não implementa** |
-| `liberar-espaco.md` | Diagnostica e libera C: (Windows + WSL Ubuntu + Docker no WSL); compact/recria VHDX |
-| `softdesk.md` | Abre chamado SoftDesk para o próprio usuário (HTML, defaults, crítico + cruzamento PB/Sybase) |
 
 ### Skills
 

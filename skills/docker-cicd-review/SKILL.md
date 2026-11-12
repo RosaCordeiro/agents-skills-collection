@@ -1,29 +1,16 @@
 ﻿---
 name: docker-cicd-review
 description: >-
-  Checklist para revisar ou validar a configuração Docker + CI/CD de um
-  projeto (greenfield ou existente): consistência de porta entre .env,
-  Dockerfile, docker-compose e variáveis do pipeline; confirmação de que o
-  comando que sobe o container injeta de fato as variáveis de ambiente
-  (--env-file/env_file, não só o arquivo existir no host); preferência por
-  lógica de deploy versionada no .gitlab-ci.yml do próprio repo em vez de
-  scripts externos fora de controle de versão; validação que falha o
-  pipeline (não só avisa no log) quando um pré-requisito de deploy está
-  ausente; um estágio de testes automatizados rodando dentro da imagem já
-  buildada, entre o build e o deploy real; aspas supérfluas num arquivo de
-  variáveis usado com `--env-file` (não são removidas, viram parte literal
-  do valor); e CRLF commitado em .gitlab-ci.yml/Dockerfile/scripts (quebra o
-  runner Linux com erros bizarros tipo "division by zero"/"invalid proto"
-  em variável interpolada em shell). Use quando o usuário pedir revisar ou
-  validar Docker, revisar CI/CD, checklist de deploy, "container sobe mas
-  não responde", "env vazia dentro do container", "mesma imagem funciona em
-  homologação e não em produção", "erro estranho no pipeline que não faz
-  sentido", ou ao configurar Docker/CI de um projeto novo (**criar
-  `.gitattributes` `* text=auto eol=lf` de cara, antes de qualquer arquivo
-  de deploy**). Não usar para escrever o Dockerfile/aplicação em si (skill
-  backend) nem para a estrutura de pasta `.ai` de projeto greenfield (skill
-  projeto-ai) — esta skill foca só na cadeia build → variáveis → deploy →
-  validação do CI/CD.
+  Checklist para revisar ou validar Docker + CI/CD de um projeto (novo ou
+  existente): porta consistente entre .env, Dockerfile, compose e pipeline;
+  variáveis realmente injetadas no container; deploy versionado no repo;
+  pipeline que falha em vez de só avisar; testes entre build e deploy; aspas
+  em `--env-file`; CRLF em arquivos de deploy. Use quando o usuário pedir
+  revisar Docker ou CI/CD, checklist de deploy, "container sobe mas não
+  responde", "env vazia no container", "funciona em homologação e não em
+  produção", erro estranho no pipeline, ou ao configurar Docker/CI de
+  projeto novo. Não usar para escrever Dockerfile ou aplicação (skill
+  backend) nem para a pasta `.ai` (skill projeto-ai).
 ---
 
 # Revisão Docker + CI/CD

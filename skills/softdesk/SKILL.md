@@ -17,6 +17,8 @@ Responda em português. MCP **`user-softdesk`**. Tools reais: `criar_chamado`, `
 
 O usuário está com preguiça de escrever. Extraia o que ele já disse, **seja crítico** ([critico.md](critico.md)): pergunte o que muda o diagnóstico, cruze PB/Sybase se houver tela/pedido, monte o HTML e abra **depois do ok**. IDs em [defaults.md](defaults.md).
 
+Não abrir chamado na primeira mensagem se faltar tela, documento ou esperado vs atual. Consultar PBG/Sybase neste chat, sem lançar subagent; spec longa só se o usuário pedir `/pb-sybase`.
+
 ## Tipos (obrigatório)
 
 | Tipo interno | Quando |

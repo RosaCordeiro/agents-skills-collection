@@ -1,4 +1,15 @@
-﻿# Arquitetura (system design)
+﻿---
+name: arquitetura
+description: >-
+  System design (Fase 3 do Dev All-in-One): ate duas abordagens com
+  recomendacao, componentes, fluxos, dados, contratos e ADRs, sem implementar
+  codigo. Use quando o usuario pedir arquitetura, system design, desenho de
+  solucao, ARCH, ou apos a especificacao aprovada. No fluxo Pro roda no
+  subagent arquitetura-pro, uma vez por entrega. Nao usar para levantar
+  requisitos (skills descoberta e especificacao).
+---
+
+# Arquitetura (system design)
 
 Skill consultiva. Nao implemente codigo de producao aqui — entregue design completo e aguarde aprovacao. Responda em portugues.
 
