@@ -86,6 +86,23 @@ qualidade, risco e aderência a padrões do PB do time — no mesmo espírito da
 skill `review` genérica, mas especializado em PowerBuilder/Sybase. Não
 aplique a correção sugerida; aponte o que mudar e onde.
 
+### 1a. Qual versão do código ler (antes de concluir qualquer coisa)
+
+O código existe em três lugares, e eles divergem com frequência:
+
+| Lugar | O que é | Atualidade |
+|---|---|---|
+| `.pbl` em `C:\Sistemas_PB12\<Sistema>` | onde o dev trabalha (alterações locais, objetos novos) | **mais atual** |
+| `.sr*` no SVN WC `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` | o que foi feito check-in | só o que subiu |
+| snapshot `.pbg\snapshots` | o que `pbg_read_object`/`pbg_search` leem | pode ter **semanas** de atraso |
+
+1. `pbg_read_object` e `pbg_search` leem **só o snapshot**. Antes de afirmar algo sobre o estado atual, compare as datas do snapshot, do `.pbl` e do `.sr*` do SVN.
+2. Para ler a `.pbl` atual: rode `pbg_status` no workspace. Ele **só exporta** a PBL via ORCA para `.pbg\<exportFolder>` (veja `exportFolder` em `.pbg\config.json`, em geral `.pbg\temp`) e não altera a PBL. Depois leia com `Read`/`Grep` em `<workspace>\<exportFolder>\<subpasta>\<objeto>.<ext>`. Se um export recente já existir ali, use-o e informe a data.
+3. Compare esse export com o `.sr*` do SVN para separar o que é só local do que já subiu. Diferença só entre `$$HEX1$$…` e `$$HEX2$$…` é codificação de acento, não mudança: normalize antes do diff (troque cada `$$HEX…$$ENDHEX$$` por um marcador e ignore espaços).
+4. Não faça `grep` no `.pbl`: o fonte é UTF-16 e os objetos novos fora do SCC não aparecem no SVN nem no snapshot. Use o export.
+5. Se o export **não** tiver uma alteração que o dev ou a documentação dizem existir, não conclua que ela nunca existiu. Avise que a PBL pode ter sido sobrescrita (um "Get Latest/Sincronizar" do SCC traz do SVN os objetos sem check-out) e procure exports antigos (`.pbg\temp` de outros workspaces, `%TEMP%`, backups na pasta do chamado).
+6. No retorno, diga **qual versão leu**: export da PBL de <data>, SVN rev <n> ou snapshot de <data>.
+
 ### 2. Sybase homolog (MCP `sybase-hmg`, somente SELECT)
 
 Para entender tabelas/colunas que o código PB usa: `sybase_list_tables`,
@@ -121,8 +138,8 @@ leitura**:
    `svn add`, ou qualquer comando de escrita — só `log`, `blame`, `diff`,
    `status`, `cat`.
 5. Se o snapshot `.sr*` lido pelo MCP PBG estiver desatualizado frente ao
-   SVN (comparar data do arquivo), avise e prefira ler direto do SVN para
-   responder sobre o estado atual.
+   SVN (comparar data do arquivo), avise e prefira ler direto do SVN; para
+   o estado da `.pbl` (alteração ainda sem check-in), siga a seção 1a.
 
 ## Como conduzir a conversa
 
