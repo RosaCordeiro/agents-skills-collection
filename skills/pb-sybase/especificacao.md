@@ -25,7 +25,7 @@ Não inverter: não gerar DOCX no rascunho. **Não implementar PB nesta fase** �
 Caminho **absoluto e fixo**, sempre — nunca gravar no diretório de trabalho corrente nem em qualquer outro local, mesmo que o pedido do usuário (ou de um agent que te invocou) diga "salve no diretório de trabalho" ou não mencione pasta:
 
 ```
-C:\Users\995670.CLAMED\Desenvolvimentos\Projetos\Especificações\Chamado <n>\
+<raiz do workspace>\Projetos\Especificações\Chamado <n>\
   SPEC-<n>.md                 # fonte da verdade
   mock-*.html                 # só os vigentes
   SPEC-<n>.docx               # só após ok do usuário

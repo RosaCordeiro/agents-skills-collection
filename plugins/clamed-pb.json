@@ -1,0 +1,36 @@
+{
+  "name": "clamed-pb",
+  "version": "0.1.0",
+  "description": "PowerBuilder 12 + Sybase ASE na CLAMED: consulta e especificacao de chamado, patch via PBG, padroes de tela, mapeamento de dados mestres, teste de mesa de trigger e procedure, e analise orquestrada com subagents.",
+  "keepSkillModel": false,
+  "skills": [
+    "analista",
+    "descoberta",
+    "pb-sybase",
+    "pbg",
+    "pb-criar-objeto",
+    "pb-padroes-clamed",
+    "pb-dev-all-in-one",
+    "mapeador-dados-mestres",
+    "mapeador-dados-mestres-coluna"
+  ],
+  "agents": [
+    "pb-mentor",
+    "pb-sybase",
+    "pbg",
+    "teste-mesa-sybase",
+    "mapeador-dados-mestres",
+    "mapeador-dados-mestres-coluna"
+  ],
+  "chatAgents": [
+    { "agent": "pb-desenvolvimento-pro", "skill": "pb-dev-all-in-one", "file": "orquestrador.md" }
+  ],
+  "descriptions": {
+    "pb-dev-all-in-one": "Orquestrador de Entrega PB (8 fases): sincronismo, descoberta, especificacao, arquitetura (fragmentacao), system design por fragmento, revisao das specs vs descoberta, sugestoes de teste, encerramento. So especifica e desenha; nao implementa PB. Roda neste chat; nao lancar como subagent. Use quando o usuario pedir entrega guiada PB, pedido PB grande, fragmentar spec PB, ou desenvolvimento PB estruturado."
+  },
+  "prerequisites": [
+    "MCP PBG configurado no Claude Code (um servidor por sistema PB) e MCP Sybase de homologacao, somente leitura. Nos textos eles aparecem como `user-pbg` e `user-sybase-hmg`.",
+    "PowerBuilder 12 em `C:\\Sistemas_PB12` e working copy SVN em `C:\\SVN\\Sistemas_PB12`.",
+    "Clone local do repositorio `sybase-objects`."
+  ]
+}
