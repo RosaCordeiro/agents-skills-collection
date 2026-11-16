@@ -97,6 +97,7 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 - Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
 - Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
 - As regras "nunca Opus" / "Opus só com pedido explícito" deste documento valem só no **Cursor**.
+- Custo no Claude Code (uma entrega por sessão, código em `sonnet` por fragmento, correções em lote, re-review só do diff): ver "Regras de custo no Claude Code" no `SKILL.md`.
 
 ## Pool no Cursor
 

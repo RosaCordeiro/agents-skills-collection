@@ -73,7 +73,7 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 
 **Como o modelo troca no Claude Code**
 
-- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
+- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`, salvo no modo mãe e filhas (abaixo), em que vale o modelo que o usuário escolheu.
 - Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
 - Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
 - Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
@@ -92,6 +92,26 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 - MCP `user-pbg` = um servidor por sistema: `mcp__pbg-carga__*`, `mcp__pbg-fiscal__*`, `mcp__pbg-retaguarda__*`, `mcp__pbg-wms__*`. Usar o do sistema da Descoberta.
 - MCP `user-sybase-hmg` = `mcp__sybase-hmg__*`.
 - Ao gravar ou atualizar um artefato da pasta do chamado, enviar o arquivo ao usuário (`SendUserFile`) em vez de só citar o caminho.
+
+**Sessão mãe e sessões filhas (app desktop)**
+
+Caminho padrão quando existe a ferramenta `start_session` (app desktop). O usuário pediu, por esta skill, que as fases rodem em sessões próprias: o diálogo de cada fase fica num contexto pequeno e a sessão mãe não cresce. Sem a ferramenta (terminal, Cursor) ou se ela recusar, seguir o fluxo normal com Task.
+
+- **Mãe = este chat, orquestra.** Fica no modelo que o usuário escolheu para a sessão: não trocar nem sugerir troca. Conduz as fases 1, 2 e 8, abre a filha de cada fase, repassa a ela o que ela precisa e acompanha pelo aviso de retorno. Não lê objetos PB nem tabelas em volume; se a Descoberta exigir, vai por Task que devolve conclusão curta com objeto e linha.
+- **Estado em arquivo.** `ESTADO-<n>.md` na pasta do chamado: fase atual, sistema PB, resultado do Sincronismo, Resumo da Descoberta aprovado, decisões (uma linha cada, com data) e pendências. A mãe cria ao aprovar a Fase 2 e atualiza a cada decisão e a cada retorno de filha.
+- **Filhas por fase.** Especificação (3) · Arquitetura (4) · System design (5) · Revisão e sugestões de teste (6 e 7). Cada filha usa o modelo da fase na tabela acima (`model` do `start_session`) e faz ela mesma o trabalho da fase, sem lançar a Task `general-purpose`.
+- **Briefing da filha** (contexto novo, ela não vê este chat): fase e objetivo; pasta do chamado e caminho do `ESTADO-<n>.md`; artefatos aprovados que deve ler; decisões da mãe que afetam a fase; sistema PB e servidor MCP a usar; o arquivo que deve gravar. A filha conversa com o usuário sobre a fase, faz a pergunta de aprovação dela, grava o resultado no `ESTADO-<n>.md` e termina com um aviso curto (feito, pendências, aprovado ou não). Nunca altera PB, banco ou SVN.
+- **Rodadas.** Ajuste pedido depois de a fase fechar: filha nova para a rodada, com a lista dos ajustes no briefing. Filha encerrada não é reaproveitada.
+- **Uma filha por vez.** Todas gravam na mesma pasta do chamado; não rodar em paralelo.
+- **Avanço.** A mãe só abre a próxima fase com a anterior aprovada no `ESTADO-<n>.md`, e confere o arquivo que a filha gravou antes de dar por feito.
+
+**Regras de custo no Claude Code**
+
+Cada chamada relê o contexto inteiro, então sessão longa custa mais a cada passo.
+
+- **Um chamado por sessão.** Fechou a Fase 8 ou o usuário trouxe outro chamado: pedir sessão nova. Não emendar o próximo chamado neste chat.
+- **Sessão longa.** Nas trocas 3→4 e 5→6, e quando o usuário avisar que vai parar, checar o tamanho da sessão (ferramenta `get_usage` do app desktop, se houver; senão, já houve compactação ou muitas rodadas de ajuste). Acima de ~200k tokens, sugerir em uma linha `/compact` ou sessão nova — a Retomada acha a fase pelos artefatos da pasta do chamado.
+- **Ajustes em lote.** Juntar os ajustes de uma rodada e emendar o artefato de uma vez, neste chat. Depois de corrigir uma `FALHA` da Fase 6, reconferir só a seção corrigida, sem relançar a Task.
 
 ## Retomada
 

@@ -74,7 +74,7 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 
 **Como o modelo troca no Claude Code**
 
-- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`.
+- O orquestrador roda neste chat: vale o modelo da sessão. Começar em `opus`, salvo no modo mãe e filhas (abaixo), em que vale o modelo que o usuário escolheu.
 - Fase com skill: a skill tem `model:` no frontmatter; ao invocá-la, o turno roda nesse modelo.
 - Fase via Task: o subagent já tem `model:` no frontmatter; para `general-purpose`, passar `model` no Task.
 - Fallback: se o modelo falhar ou não estiver disponível, relançar com o próximo da cadeia e anotar o modelo efetivo no artefato.
@@ -84,6 +84,28 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 
 - `AskQuestion` deste documento = ferramenta `AskUserQuestion`.
 - Ao gravar ou atualizar SPEC/CORR, ARCH, REVIEW ou outro artefato da entrega, enviar o arquivo ao usuário (`SendUserFile`) em vez de só citar o caminho.
+
+**Sessão mãe e sessões filhas (app desktop)**
+
+Caminho padrão quando existe a ferramenta `start_session` (app desktop). O usuário pediu, por esta skill, que as fases rodem em sessões próprias: o diálogo de cada fase fica num contexto pequeno e a sessão mãe não cresce. Sem a ferramenta (terminal, Cursor) ou se ela recusar, seguir o fluxo normal com Task.
+
+- **Mãe = este chat, orquestra.** Fica no modelo que o usuário escolheu para a sessão: não trocar nem sugerir troca. Conduz as fases 1, 2 e 10, abre a filha de cada fase, repassa a ela o que ela precisa e acompanha pelo aviso de retorno. Não lê código em volume nem implementa; investigação pesada das fases 1 e 2 vai por Task que devolve conclusão curta com arquivo e linha.
+- **Estado em arquivo.** `ESTADO-<n>.md` na pasta da SPEC: fase atual, decisões (uma linha cada, com data), pendências, branch e repositórios. A mãe cria na Fase 2 e atualiza a cada decisão e a cada retorno de filha.
+- **Filhas por fase.** Desenho (3) · Código (4, uma por repositório) · Revisão (5) · Testes (6, 7 e 8) · Documentação (9). Cada filha usa o modelo da fase na tabela acima (`model` do `start_session`) e lança ela mesma o agent da fase (`arquitetura-pro`, `review-pro`, `review-testes-pro`).
+- **Briefing da filha** (contexto novo, ela não vê este chat): fase e objetivo; caminhos do `ESTADO-<n>.md`, da SPEC e do ARCH; decisões da mãe que afetam a fase; repositório, branch e arquivos que pode tocar; o que gravar. A filha conversa com o usuário sobre a fase, faz a pergunta de aprovação dela, grava o resultado no `ESTADO-<n>.md` e termina com um aviso curto (feito, pendências, aprovado ou não).
+- **Rodadas.** Correção de achados ou ajustes pedidos depois: filha nova de Código para a rodada, com a lista dos ajustes no briefing. Filha encerrada não é reaproveitada para outra fase nem para outra rodada.
+- **Concorrência.** Duas filhas nunca escrevem no mesmo repositório ao mesmo tempo. Repositórios diferentes (API e portal) podem rodar em paralelo.
+- **Avanço.** A mãe só abre a próxima fase com a anterior aprovada no `ESTADO-<n>.md`. Nunca dar por feito sem conferir o que a filha gravou.
+
+**Regras de custo no Claude Code**
+
+Cada chamada relê o contexto inteiro, então sessão ou Task longa custa mais a cada passo (medição de 15/11/2026: 65% do gasto do dia foi releitura de contexto).
+
+- **Uma entrega por sessão.** Fechou a Fase 10 ou o usuário trouxe outra entrega: gravar o ponto em disco e pedir sessão nova. Não emendar a próxima entrega neste chat.
+- **Sessão longa.** Nas trocas 3→4 e 5→6, e quando o usuário avisar que vai parar, checar o tamanho da sessão (ferramenta `get_usage` do app desktop, se houver; senão, já houve compactação ou muitas rodadas de correção). Acima de ~200k tokens, sugerir em uma linha `/compact` ou sessão nova — a Retomada acha a fase pelos artefatos.
+- **Código em `sonnet`, por fragmento.** Ao delegar a Fase 4 por Task `general-purpose`, passar `model: sonnet` (nunca `opus` nem `fable` para escrever código) e cortar o trabalho: um repositório e uma fatia do ARCH por Task. No prompt: caminhos da SPEC e do ARCH, arquivos a tocar e resumo curto na volta (arquivos alterados, pendências). Na medição, a Task com o dobro do trabalho custou mais de três vezes.
+- **Correções em lote.** Juntar os achados do review ou os ajustes pedidos numa rodada só: neste chat se forem poucos arquivos, ou uma Task `sonnet` por repositório. Nunca uma Task por ajuste — cada Task já começa com ~68k tokens fixos e relê o repositório.
+- **Re-review só do diff.** `review-pro` e `review-testes-pro` leem a entrega inteira uma vez. Na re-revisão, o prompt limita o escopo aos achados corrigidos e ao diff desde o último review. Correção trivial de achado não bloqueante: o orquestrador confere neste chat e registra no REVIEW, sem re-Task.
 
 ## Retomada
 
@@ -120,13 +142,13 @@ AskQuestion: `Desenho ok — seguir para Código?`
 
 ### Fase 4 — Código
 
-Skills de implementação; greenfield → `.ai/rules/`.
+Skills de implementação; greenfield → `.ai/rules/`. Delegando por Task: ver Regras de custo no Claude Code.
 
 AskQuestion: `Código pronto — seguir para Revisão?`
 
 ### Fase 5 — Revisão (código)
 
-Task `review-pro`; loop corrigir código → re-review.
+Task `review-pro`; loop corrigir código → re-review (correções em lote e re-review só do diff — ver Regras de custo no Claude Code).
 
 AskQuestion: `Revisão ok — seguir para Aceite de negócio?` (+ `Corrigir achados`)
 
