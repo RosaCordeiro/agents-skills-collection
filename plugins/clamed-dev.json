@@ -1,6 +1,6 @@
 {
   "name": "clamed-dev",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Fluxo de desenvolvimento da CLAMED: portal que escolhe entre entrega guiada em 10 fases e desenvolvimento direto, com analise orquestrada, descoberta, especificacao, arquitetura, revisao de codigo e de testes, documentacao, auditoria e os padroes do time.",
   "keepSkillModel": true,
   "skills": [
@@ -24,7 +24,8 @@
     "frontend",
     "script",
     "backstage-recursos",
-    "backstage-catalog-info"
+    "backstage-catalog-info",
+    "agil"
   ],
   "agents": [
     "arquitetura-pro",
@@ -52,6 +53,7 @@
   },
   "prerequisites": [
     "Ambiente Windows + WSL Ubuntu: docker, node e python rodam no WSL.",
-    "Acesso ao GitLab interno (rede CLAMED ou VPN) para as skills de Backstage."
+    "Acesso ao GitLab interno (rede CLAMED ou VPN) para as skills de Backstage.",
+    "MCP `agil` (Ágil CLAMED) autorizado pelo `/mcp`, para a skill agil."
   ]
 }

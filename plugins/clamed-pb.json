@@ -1,6 +1,6 @@
 {
   "name": "clamed-pb",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "PowerBuilder 12 + Sybase ASE na CLAMED: consulta e especificacao de chamado, patch via PBG, padroes de tela, mapeamento de dados mestres, teste de mesa de trigger e procedure, e analise orquestrada com subagents.",
   "keepSkillModel": false,
   "skills": [
@@ -12,7 +12,8 @@
     "pb-padroes-clamed",
     "pb-dev-all-in-one",
     "mapeador-dados-mestres",
-    "mapeador-dados-mestres-coluna"
+    "mapeador-dados-mestres-coluna",
+    "agil"
   ],
   "agents": [
     "pb-mentor",
@@ -31,6 +32,7 @@
   "prerequisites": [
     "MCP PBG configurado no Claude Code (um servidor por sistema PB) e MCP Sybase de homologacao, somente leitura. Nos textos eles aparecem como `user-pbg` e `user-sybase-hmg`.",
     "PowerBuilder 12 em `C:\\Sistemas_PB12` e working copy SVN em `C:\\SVN\\Sistemas_PB12`.",
-    "Clone local do repositorio `sybase-objects`."
+    "Clone local do repositorio `sybase-objects`.",
+    "MCP `agil` (Ágil CLAMED) autorizado pelo `/mcp`, para a skill agil."
   ]
 }
