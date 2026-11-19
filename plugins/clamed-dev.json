@@ -1,6 +1,6 @@
 {
   "name": "clamed-dev",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Fluxo de desenvolvimento da CLAMED: porta de entrada que leva a analise orquestrada, entrega guiada (10 fases, aprovacao fase a fase), entrega autonoma (uma aprovacao, com infografico do plano) ou ajuste pontual, com descoberta, especificacao, arquitetura, revisao de codigo e de testes, documentacao, auditoria e os padroes do time.",
   "keepSkillModel": true,
   "skills": [
@@ -29,9 +29,9 @@
     "agil"
   ],
   "agents": [
-    "arquitetura-pro",
-    "review-pro",
-    "review-testes-pro",
+    "arquiteto",
+    "revisor-codigo",
+    "revisor-testes",
     "auditor",
     "implementador"
   ],

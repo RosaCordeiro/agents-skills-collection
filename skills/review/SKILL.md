@@ -15,10 +15,10 @@ isso vem nas fases `teste-regra-negocio`, `teste-automatizado` e `documentacao`.
 
 ## Quando aplicar
 
-- Fase 5 da Entrega guiada (após Código) — via subagent **`review-pro`**
+- Fase 5 da Entrega guiada (após Código) — via subagent **`revisor-codigo`**
 - Pedido explicito de review / PR
 
-No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.6-medium` → `claude-sonnet-5`; nunca Opus). Correções no orquestrador (Sonnet padrão). Mapa: `entrega-guiada/modelos.md`.
+No fluxo Pro o orquestrador **deve** lançar Task `revisor-codigo` (`cursor-grok-4.6-medium` → `claude-sonnet-5`; nunca Opus). Correções no orquestrador (Sonnet padrão). Mapa: `entrega-guiada/modelos.md`.
 
 ## Processo
 
@@ -26,10 +26,10 @@ No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.6
 2. Percorrer **todos** os pontos CR1–CR16 abaixo (marcar `OK` / `FALHA` / `N/A` com motivo).
 3. Listar achados com severidade (formato abaixo) + sugestao de correcao (**nao aplicada**).
 4. Artefato `REVIEW-*-resultado.md`:
-   - Subagent `review-pro` (`readonly`): devolver o **corpo completo** do markdown ao orquestrador (ele grava).
+   - Subagent `revisor-codigo` (`readonly`): devolver o **corpo completo** do markdown ao orquestrador (ele grava).
    - Chat direto (sem Pro): gravar o arquivo voce mesmo.
-5. **Nunca** corrigir codigo na fase de review do `review-pro`. Correcoes = orquestrador / agent de implementacao.
-6. Se subagent `review-pro`: devolver resumo + `HANDOFF_CORRECAO` se houver itens a corrigir (**sem** `AskQuestion`).
+5. **Nunca** corrigir codigo na fase de review do `revisor-codigo`. Correcoes = orquestrador / agent de implementacao.
+6. Se subagent `revisor-codigo`: devolver resumo + `HANDOFF_CORRECAO` se houver itens a corrigir (**sem** `AskQuestion`).
    Se chat direto: **`AskQuestion`** — prompt: `Code review ok?`
    - `Sim, seguir para teste de regra de negocio` | `Corrigir achados` | `Outro (eu digito)`
    - Em chat direto, “Corrigir achados” pode ser feito no mesmo chat **depois** do review; no fluxo Pro, só o orquestrador (`orquestrador-entrega-guiada`, Sonnet) corrige.
@@ -94,7 +94,7 @@ Severidades: **bloqueante** | **importante** | **nit**
 O resultado do review **deve** existir em arquivo antes do `AskQuestion` de aprovacao
 (espelha `VAL-*-resultado` / `TEST-*-resultado`).
 
-- Fluxo Pro: `review-pro` entrega o markdown; **orquestrador grava** o arquivo.
+- Fluxo Pro: `revisor-codigo` entrega o markdown; **orquestrador grava** o arquivo.
 - Fora do Pro: quem revisa grava o arquivo.
 
 ### Onde gravar
@@ -121,14 +121,14 @@ Nao substituir o artefato por “so comentei no chat”. Se re-rodar o review ap
 
 ## Handoff de correcao (fluxo Pro)
 
-Quando houver achados a corrigir (ou o usuario pedir fix), o `review-pro` devolve:
+Quando houver achados a corrigir (ou o usuario pedir fix), o `revisor-codigo` devolve:
 
 ```text
 HANDOFF_CORRECAO
 - [severidade] path — mudanca sugerida
 ```
 
-O orquestrador `orquestrador-entrega-guiada` (Sonnet) aplica o codigo e **reabre** o `review-pro`.
+O orquestrador `orquestrador-entrega-guiada` (Sonnet) aplica o codigo e **reabre** o `revisor-codigo`.
 O agent de review **nao** gasta turno implementando.
 
 ## Foco extra (stack frequente)
@@ -142,7 +142,7 @@ O agent de review **nao** gasta turno implementando.
 ## Ao terminar
 
 Garantir checklist preenchido + artefato (gravado ou corpo devolvido ao orquestrador).
-- Subagent `review-pro`: resumo + markdown do REVIEW + `HANDOFF_CORRECAO` se preciso — **zero** edicao de codigo.
+- Subagent `revisor-codigo`: resumo + markdown do REVIEW + `HANDOFF_CORRECAO` se preciso — **zero** edicao de codigo.
 - Chat direto: **`AskQuestion`**: `Code review ok?`
   - `Sim, seguir para teste de regra de negocio` | `Corrigir achados` | `Outro (eu digito)`
 

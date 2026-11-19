@@ -19,8 +19,8 @@ Referência canônica — **não usar `inherit`**. Sempre slug primário + fallb
 | Camada | Slug | Quando |
 |--------|------|--------|
 | **Sonnet trabalho** | `claude-sonnet-5` | Orquestrador, simples, spec, código, pb-sybase, fallbacks leves |
-| **Sonnet design** | `claude-sonnet-5-thinking-high` | `arquitetura-pro` (1× ARCH), `auditor` e **Descoberta** (Fase 1 — exceção pedida pelo usuário) |
-| **Grok review** | `cursor-grok-4.6-medium` | `review-pro`, `review-testes-pro` |
+| **Sonnet design** | `claude-sonnet-5-thinking-high` | `arquiteto` (1× ARCH), `auditor` e **Descoberta** (Fase 1 — exceção pedida pelo usuário) |
+| **Grok review** | `cursor-grok-4.6-medium` | `revisor-codigo`, `revisor-testes` |
 | **Composer** | `composer-2.5-fast` | PBG, portal, monitor |
 
 **Thinking-high** só com pedido explícito fora de ARCH/auditor — Descoberta (Fase 1) é essa exceção, registrada pelo usuário para investigar melhor o pedido e chegar a soluções melhores. **Opus** só pedido explícito no chat.
@@ -31,9 +31,9 @@ Referência canônica — **não usar `inherit`**. Sempre slug primário + fallb
 |------|----------|----------|------------|------------|
 | 1 | Orquestrador (Descoberta) | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` | `cursor-grok-4.6-medium` |
 | 2, 4, 6, 7, 9, 10 | Orquestrador | `claude-sonnet-5` | `cursor-grok-4.6-medium` | `composer-2.5-fast` |
-| 3 | Task `arquitetura-pro` | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` | `composer-2.5-fast` |
-| 5 | Task `review-pro` | `cursor-grok-4.6-medium` | `claude-sonnet-5` | — |
-| 8 | Task `review-testes-pro` | `cursor-grok-4.6-medium` | `claude-sonnet-5` | — |
+| 3 | Task `arquiteto` | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` | `composer-2.5-fast` |
+| 5 | Task `revisor-codigo` | `cursor-grok-4.6-medium` | `claude-sonnet-5` | — |
+| 8 | Task `revisor-testes` | `cursor-grok-4.6-medium` | `claude-sonnet-5` | — |
 
 ### Regras de fallback
 
@@ -50,8 +50,8 @@ Referência canônica — **não usar `inherit`**. Sempre slug primário + fallb
 | `orquestrador-entrega-guiada` | `claude-sonnet-5` | Grok medium → Composer |
 | `ajuste` | `claude-sonnet-5` | Grok medium → Composer |
 | `construir` (portal) | `composer-2.5-fast` | `claude-sonnet-5` |
-| `arquitetura-pro` | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` |
-| `review-pro` / `review-testes-pro` | `cursor-grok-4.6-medium` | `claude-sonnet-5` |
+| `arquiteto` | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` |
+| `revisor-codigo` / `revisor-testes` | `cursor-grok-4.6-medium` | `claude-sonnet-5` |
 | `auditor` | `claude-sonnet-5-thinking-high` | Grok medium → Composer |
 | `pb-sybase` / `teste-mesa-sybase` | `claude-sonnet-5` | Grok medium |
 | `orquestrador-pb-entrega-guiada` | `claude-sonnet-5` (Fase 2/4 `thinking-high`) | Grok medium |
@@ -67,12 +67,12 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 | Início | orquestrador (sessão) | `opus` | `sonnet` |
 | 1 Descoberta | skill `descoberta` | `opus` | `sonnet` |
 | 2 Especificação | skill `especificacao` / `correcao-erro` | `opus` | `sonnet` |
-| 3 Desenho | Task `arquitetura-pro` | `fable` | `opus` → `sonnet` |
+| 3 Desenho | Task `arquiteto` | `fable` | `opus` → `sonnet` |
 | 4 Código | skills `backend` / `frontend` / `abap` / `fiori` / `ui5` / `java` / `springboot` / `script` | `sonnet` | — |
-| 5 Revisão | Task `review-pro` | `opus` | `sonnet` |
+| 5 Revisão | Task `revisor-codigo` | `opus` | `sonnet` |
 | 6 Aceite de negócio | skill `teste-regra-negocio` | `opus` | `sonnet` |
 | 7 Testes automáticos | skill `teste-automatizado` | `sonnet` | — |
-| 8 Revisão de testes | Task `review-testes-pro` | `opus` | `sonnet` |
+| 8 Revisão de testes | Task `revisor-testes` | `opus` | `sonnet` |
 | 9 Documentação | skill `documentacao` | `sonnet` | — |
 | 10 Encerramento | orquestrador | `sonnet` | — |
 

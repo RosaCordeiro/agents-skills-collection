@@ -185,6 +185,24 @@ function Convert-Text($Text, $Rel) {
         $Text = [regex]::Replace($Text, '(?<![\w/.:\\-])/' + $e + '(?![\w-])', '/' + $prefix + ':' + $fin)
     }
 
+    # mencoes soltas (sem crase nem barra) dos nomes renomeados, deste plugin e de
+    # outros: o nome da fonte vira o nome final com prefixo. Nao mexe em caminhos.
+    foreach ($n in $inSet) {
+        $fin = Get-Final $n
+        if ($fin -ne $n) {
+            # link relativo entre pastas de skills: ../<nome da fonte>/ -> ../<nome final>/
+            $Text = $Text.Replace('../' + $n + '/', '../' + $fin + '/')
+            $Text = [regex]::Replace($Text, '(?<![\w/.:\\-])' + [regex]::Escape($n) + '(?![\w-])', $prefix + ':' + $fin)
+        }
+    }
+    foreach ($n in @($otherMap.Keys)) {
+        $tail = $otherMap[$n].Substring($otherMap[$n].IndexOf(':') + 1)
+        if ($tail -ne $n) {
+            $Text = [regex]::Replace($Text, '(?<![\w/.:\\-])' + [regex]::Escape($n) + '(?![\w-])', $otherMap[$n])
+            $cross[$otherMap[$n]] = $true
+        }
+    }
+
     # citacoes a skills e agents que nao vao neste plugin: se pertencem a outro
     # plugin daqui, ganham o prefixo dele; senao entram no relatorio
     foreach ($n in $allNames) {

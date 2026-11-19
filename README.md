@@ -24,9 +24,9 @@ cursor-kit/
 | `desenvolvimento.md` | **Portal de Desenvolvimento** | Pergunta: Entrega guiada vs Direto ao ponto |
 | `orquestrador-entrega-guiada.md` | **Orquestrador de Entrega** | 10 fases — mapa em `entrega-guiada/fases.md` |
 | `ajuste.md` | **Desenvolvimento Direto** | Sem fases |
-| `arquitetura-pro.md` | Desenho (subagent) | Fase 3 |
-| `review-pro.md` | Revisão código (subagent) | Fase 5 |
-| `review-testes-pro.md` | Revisão testes (subagent) | Fase 8 — abrangência, execução real, anti-adaptação ao bug |
+| `arquiteto.md` | Desenho (subagent) | Fase 3 |
+| `revisor-codigo.md` | Revisão código (subagent) | Fase 5 |
+| `revisor-testes.md` | Revisão testes (subagent) | Fase 8 — abrangência, execução real, anti-adaptação ao bug |
 | `auditor.md` | Auditor 100% (não programa): revalida o sistema, roda a suíte, Validação 1..N, notas 0–10 |
 | `pbg.md` | PowerBuilder 12: altera via MCP (`composer-2.5-fast`); patch importa e compila |
 | `pb-sybase.md` | Consulta PB + Sybase + sybase-objects; spec pequena de chamado (MD → mock → DOCX), sem fases; **não implementa** |
@@ -52,7 +52,7 @@ No Pro: mapa de models em `entrega-guiada/modelos.md` — orquestrador Sonnet; a
 
 ---
 
-## Padrão de nomes (v0.2.0 dos plugins)
+## Padrão de nomes (plugins 0.2.0 e, na segunda fase, 0.3.0)
 
 Canal oficial: os plugins `clamed-dev` e `clamed-pb`, montados por `scripts/build-plugin.ps1`. A cópia solta em `~/.claude` é legado.
 
@@ -70,7 +70,19 @@ Canal oficial: os plugins `clamed-dev` e `clamed-pb`, montados por `scripts/buil
 | Construir, aprovando uma vez só | `entrega-autonoma` (+ agent `implementador`) | (usa a do clamed-dev; implementa PB com `ajuste` e `pb-criar-objeto`) |
 | Mudança pontual já definida | `ajuste` | `ajuste` (objeto PB, com `svn lock`) |
 
-Pendente (2ª fase): os subagents (`arquitetura-pro`, `review-pro`, `review-testes-pro`) e as skills de PB que já começam com `pb-` (`pb-sybase`, `pb-criar-objeto`, `pb-mentor`, `pb-padroes-clamed`).
+Segunda fase (subagents e apoio de PB):
+
+| Fonte (coleção) | Nome no plugin |
+|---|---|
+| agent `arquiteto` (ex-`arquitetura-pro`) | `clamed-dev:arquiteto` |
+| agent `revisor-codigo` (ex-`review-pro`) | `clamed-dev:revisor-codigo` |
+| agent `revisor-testes` (ex-`review-testes-pro`) | `clamed-dev:revisor-testes` |
+| skill e agent `pb-sybase` | `clamed-pb:especificacao` (mesma intenção da `clamed-dev:especificacao`; também consulta PB+Sybase) |
+| skill `pb-criar-objeto` | `clamed-pb:criar-objeto` |
+| skill `pb-padroes-clamed` | `clamed-pb:padroes-tela` |
+| agent `pb-mentor` | `clamed-pb:mentor` |
+
+Ficam como estão: `teste-mesa-sybase`, `mapeador-dados-mestres`, `mapeador-dados-mestres-coluna`, `auditor`, `auditor-saldo-wms`. Os skills `review` e `review-testes` mantêm o nome (termo corrente), embora o agent correspondente já seja `revisor-*`. Os nomes de PB da coleção seguem com `pb-`, para serem únicos; o mapa `rename` do `clamed-pb.json` troca no plugin.
 
 ## Manual: usar em outro PC
 

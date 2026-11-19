@@ -5,7 +5,7 @@ description: >-
   recomendacao, componentes, fluxos, dados, contratos e ADRs, sem implementar
   codigo. Use quando o usuario pedir arquitetura, system design, desenho de
   solucao, ARCH, ou apos a especificacao aprovada. No fluxo Pro roda no
-  subagent arquitetura-pro, uma vez por entrega. Nao usar para levantar
+  subagent arquiteto, uma vez por entrega. Nao usar para levantar
   requisitos (skills descoberta e especificacao).
 ---
 
@@ -13,7 +13,7 @@ description: >-
 
 Skill consultiva. Nao implemente codigo de producao aqui — entregue design completo e aguarde aprovacao. Responda em portugues.
 
-No fluxo **Pro**, esta skill roda no subagent **`arquitetura-pro`** (`claude-sonnet-5-thinking-high` — **só** design; orquestrador usa Sonnet padrão). Opus so se o usuario pedir.
+No fluxo **Pro**, esta skill roda no subagent **`arquiteto`** (`claude-sonnet-5-thinking-high` — **só** design; orquestrador usa Sonnet padrão). Opus so se o usuario pedir.
 
 Fase **3** do Dev All-in-One (apos Descoberta e Especificacao aprovadas).
 
@@ -31,8 +31,8 @@ Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`
 4. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
 5. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.
 5b. **Decisoes fechadas** → gravar em `.ai/decisions/ADR-NNN-<slug>.md` (skill `projeto-ai`). Atualizar `context/stack.md` se o design alterar stack.
-5c. **ARCH já existe** na branch (amend, v0.x, spec evoluiu): o orquestrador **emenda o mesmo arquivo** — **não** relançar `arquitetura-pro` (rule `custo-subagent.mdc`).
-6. Se estiver rodando como subagent `arquitetura-pro`: entregar design + resumo ao orquestrador (**sem** `AskQuestion`).
+5c. **ARCH já existe** na branch (amend, v0.x, spec evoluiu): o orquestrador **emenda o mesmo arquivo** — **não** relançar `arquiteto` (rule `custo-subagent.mdc`).
+6. Se estiver rodando como subagent `arquiteto`: entregar design + resumo ao orquestrador (**sem** `AskQuestion`).
    Se estiver em chat direto (sem orquestrador): aprovar com **`AskQuestion`** — prompt: `O system design esta ok para implementar?`
    - `Sim, seguir para desenvolvimento` | `Ajustar design` | `Outro (eu digito)`
    - Se `AskQuestion` indisponivel: mesmas opcoes em prosa curta.

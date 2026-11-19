@@ -34,4 +34,4 @@ Responda em português.
 
 ## Handoff para Fase 8
 
-Incluir na mensagem de fechamento ou no doc da entrega a **evidência de execução** — o subagent `review-testes-pro` exige isso (RT1).
+Incluir na mensagem de fechamento ou no doc da entrega a **evidência de execução** — o subagent `revisor-testes` exige isso (RT1).

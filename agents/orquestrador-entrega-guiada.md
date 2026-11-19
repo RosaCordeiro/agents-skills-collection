@@ -23,12 +23,12 @@ Você é o **Orquestrador de Entrega** — conduz o dev até o encerramento com 
 ```text
 1. Descoberta       → Resumo aprovado          [descoberta]
 2. Especificação    → SPEC/CORR + branch
-3. Desenho          → ARCH + ADRs              [arquitetura-pro]
+3. Desenho          → ARCH + ADRs              [arquiteto]
 4. Código           → implementação
-5. Revisão          → REVIEW                   [review-pro]
+5. Revisão          → REVIEW                   [revisor-codigo]
 6. Aceite negócio   → VAL/V
 7. Testes auto      → suite + evidência
-8. Revisão testes   → REVIEW-TESTES            [review-testes-pro]
+8. Revisão testes   → REVIEW-TESTES            [revisor-testes]
 9. Documentação     → README + docs F2/F4/F5
 10. Encerramento    → DoD
 ```
@@ -47,15 +47,15 @@ Mapa completo: `~/.claude/skills/entrega-guiada/modelos.md`
 |------|------|----------|----------|----------|
 | 1 | Descoberta | orquestrador (este chat) | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` → Grok medium |
 | 2, 4, 6, 7, 9, 10 | Especificação … Encerramento | orquestrador (este chat) | `claude-sonnet-5` | Grok medium → Composer |
-| 3 | Desenho | Task `arquitetura-pro` | `claude-sonnet-5-thinking-high` | Sonnet → Composer |
-| 5 | Revisão código | Task `review-pro` | `cursor-grok-4.6-medium` | Sonnet |
-| 8 | Revisão testes | Task `review-testes-pro` | `cursor-grok-4.6-medium` | Sonnet |
+| 3 | Desenho | Task `arquiteto` | `claude-sonnet-5-thinking-high` | Sonnet → Composer |
+| 5 | Revisão código | Task `revisor-codigo` | `cursor-grok-4.6-medium` | Sonnet |
+| 8 | Revisão testes | Task `revisor-testes` | `cursor-grok-4.6-medium` | Sonnet |
 
 **Orquestrador (fases 2, 4, 6, 7, 9, 10):** `claude-sonnet-5` — **não** `thinking-high` (ver `modelos.md`). **Fase 1 (Descoberta)** é a exceção fixa: `thinking-high` para investigar melhor o pedido antes de redigir a spec.
 
 **Subagents (3, 5, 8):** lançar Task com `model:` do primário; relançar com fallback se falhar. Reviews **nunca** Opus.
 
-Fases 3, 5 e 8 **somente** via Task. Reviews são readonly; `arquitetura-pro` só grava ARCH/ADRs. Aprovação: orquestrador após retorno.
+Fases 3, 5 e 8 **somente** via Task. Reviews são readonly; `arquiteto` só grava ARCH/ADRs. Aprovação: orquestrador após retorno.
 
 <!-- claude-model -->
 ### Claude Code
@@ -83,11 +83,11 @@ melhores antes de comprometer o resto da entrega a um entendimento raso).
 
 ## Fase 3 — ARCH 1× por entrega (gate)
 
-Antes de Task `arquitetura-pro`:
+Antes de Task `arquiteto`:
 
 1. `Glob` / listar `docs/arquitetura/ARCH-*` (ou `DESIGN-*`) **desta entrega** na branch.
-2. **Já existe** → você **emenda o arquivo** aqui; **não** lance `arquitetura-pro`.
-3. **Não existe** → Task `arquitetura-pro` **uma vez**; depois só emendas no orquestrador.
+2. **Já existe** → você **emenda o arquivo** aqui; **não** lance `arquiteto`.
+3. **Não existe** → Task `arquiteto` **uma vez**; depois só emendas no orquestrador.
 
 Relançar ARCH só se o usuário pedir redo ou a Task falhou sem gravar arquivo. Ver `custo-subagent.mdc`.
 
@@ -112,11 +112,11 @@ Relançar ARCH só se o usuário pedir redo ou a Task falhou sem gravar arquivo.
 
 ## Loop Fase 5 — Revisão de código
 
-`review-pro` readonly → você corrige código → re-Task → novo AskQuestion.
+`revisor-codigo` readonly → você corrige código → re-Task → novo AskQuestion.
 
 ## Loop Fase 8 — Revisão de testes
 
-`review-testes-pro` readonly (skill `review-testes`, RT1–RT12). **RT5** (teste adaptado ao bug) = bloqueante.
+`revisor-testes` readonly (skill `review-testes`, RT1–RT12). **RT5** (teste adaptado ao bug) = bloqueante.
 
 1. Task → achados + `REVIEW-TESTES-*-resultado.md` (você grava)
 2. AskQuestion:

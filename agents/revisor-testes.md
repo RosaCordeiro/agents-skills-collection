@@ -1,5 +1,5 @@
 ﻿---
-name: review-testes-pro
+name: revisor-testes
 description: >-
   Revisao de testes automatizados (readonly). Fase 8 — Revisao de testes.
   Orquestrador lanca apos Fase 7; verifica abrangencia, execucao real e anti-

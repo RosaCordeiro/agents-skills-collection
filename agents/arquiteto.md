@@ -1,5 +1,5 @@
 ﻿---
-name: arquitetura-pro
+name: arquiteto
 description: >-
   System design — Fase 3 Desenho. Orquestrador de Entrega lanca via Task uma
   vez por entrega, apos Descoberta e Especificacao aprovadas. Nao relancar se

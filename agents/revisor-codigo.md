@@ -1,5 +1,5 @@
 ﻿---
-name: review-pro
+name: revisor-codigo
 description: >-
   Code review no fluxo Entrega guiada (readonly). Fase 5 — Revisao.
   Somente o Orquestrador de Entrega lanca via Task apos o Codigo; relancar

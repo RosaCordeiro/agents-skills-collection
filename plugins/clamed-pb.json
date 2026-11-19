@@ -1,11 +1,15 @@
 {
   "name": "clamed-pb",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "PowerBuilder 12 + Sybase ASE na CLAMED: consulta e especificacao de chamado, entrega guiada (so especifica e desenha), ajuste pontual de objeto via PBG, criacao de objeto novo, padroes de tela, mapeamento de dados mestres e teste de mesa de trigger e procedure. Analise, descoberta e Agil vem do plugin clamed-dev.",
   "keepSkillModel": false,
   "rename": {
     "pb-entrega-guiada": "entrega-guiada",
-    "pb-ajuste": "ajuste"
+    "pb-ajuste": "ajuste",
+    "pb-mentor": "mentor",
+    "pb-criar-objeto": "criar-objeto",
+    "pb-padroes-clamed": "padroes-tela",
+    "pb-sybase": "especificacao"
   },
   "skills": [
     "pb-sybase",

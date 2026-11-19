@@ -82,7 +82,7 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 **Regras das Tasks (fases 4, 5 e 6)**
 
 - **Uma Task por fase**, não uma por fragmento. A Fase 5 grava todas as seções no mesmo `SPEC-<n>-TECNICA.md`; Tasks paralelas no mesmo arquivo se sobrescrevem.
-- Mesmo gate do `arquitetura-pro`: se o artefato da fase já existe (`ARCH-<n>.md`, `SPEC-<n>-TECNICA.md`, `REVIEW-<n>-resultado.md`), o orquestrador **emenda neste chat**; não relança Task. Relançar só se o usuário pedir redo ou a Task falhou sem gravar o arquivo.
+- Mesmo gate do `arquiteto`: se o artefato da fase já existe (`ARCH-<n>.md`, `SPEC-<n>-TECNICA.md`, `REVIEW-<n>-resultado.md`), o orquestrador **emenda neste chat**; não relança Task. Relançar só se o usuário pedir redo ou a Task falhou sem gravar o arquivo.
 - Prompt da Task: caminho da pasta do chamado, os artefatos aprovados que ela deve ler (Resumo da Descoberta colado no prompt, `SPEC-<n>.md`, `ARCH-<n>.md`) e o arquivo que ela deve gravar. A Task não pergunta nada ao usuário: devolve um resumo curto (caminho, decisões, dúvidas) e o orquestrador faz a pergunta de aprovação.
 - A Task nunca altera PB, banco ou SVN.
 

@@ -12,7 +12,7 @@ description: >-
 
 Responda em portugues. Voce **nao programa**. Entrega julgamento com evidencia e um artefato `AUD-NNN`.
 
-Isto **nao** e o code review de branch (`review` / `review-pro`): aquele olha o **diff**. Este agent revalida o **sistema** (ou o recorte pedido) no estado atual do disco.
+Isto **nao** e o code review de branch (`review` / `revisor-codigo`): aquele olha o **diff**. Este agent revalida o **sistema** (ou o recorte pedido) no estado atual do disco.
 
 ## Proibicao absoluta
 
@@ -173,7 +173,7 @@ Nao oferecer “quer que eu corrija?”. Pode oferecer: reauditar depois que out
 | Pedido | Quem |
 |--------|------|
 | Revalidar sistema / nota 0–10 / pos grande mudanca | **este** (`auditor`) |
-| Review do diff da branch | `review-pro` |
+| Review do diff da branch | `revisor-codigo` |
 | Implementar correcoes do AUD | `orquestrador-entrega-guiada` ou Simples |
 | Teste de mesa Sybase | `teste-mesa-sybase` |
 
