@@ -71,7 +71,7 @@ Usado por quem já tem o número do chamado (por exemplo, a `entrega-autonoma`).
 - Mostrar o HTML que será enviado e **confirmar**, a menos que o texto e o momento já estejam na lista de ações que o usuário aprovou numa só vez (como na Fase 1 da `entrega-autonoma`).
 - Não mandar `status_chamado`, `tempo`, `hora_inicio`, `retomar_atendimento` sem pedido explícito: mudar status, apontar horas e reabrir são decisões do usuário.
 - `exibir_usuario`: mandar `0` (a atividade fica interna; testado: o retorno veio `exibir_usuario: false`) salvo pedido para o solicitante ver.
-- **Chamado filho** (número como `2034925-40`): tem um código inteiro próprio. `consultar_chamado` aceita o texto e devolve o `codigo` (ex.: 2487414); `registrar_atividade` e `dossie_chamado` pedem esse inteiro.
+- **Chamado filho** (número como `<pai>-<n>`, por exemplo `1000000-5`): tem um código inteiro próprio. `consultar_chamado` aceita o texto e devolve o `codigo`; `registrar_atividade` e `dossie_chamado` pedem esse inteiro.
 - Não existe status "Analisando": os status são os de `listar_status_chamado` (Em atendimento, Aguardando solicitante etc.). "Lançar como Analisando" significa o texto da atividade, não mudar o status.
 - A API devolve a atividade com o nome do atendente à frente do texto; não repetir o nome na descrição.
 - Atividade curta e factual: o que foi feito ou decidido, onde estão os arquivos, id do card no Ágil e a tarefa GMUD aberta quando houver. Sem promessa de prazo, sem opinião.
