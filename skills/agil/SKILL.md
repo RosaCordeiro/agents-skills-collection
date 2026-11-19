@@ -4,8 +4,8 @@ description: >-
   Ensina a usar o MCP do Ágil CLAMED (backlog, sprints, tarefas, horas,
   comentários e a documentação do Atlas): começar o dia, achar e ler itens,
   criar item a partir de chamado, mover status, lançar horas, consultar o
-  Atlas e conduzir o card de uma entrega (3 tarefas, andamento e card de
-  GMUD). Escrita só com confirmação. Use quando o usuario pedir Ágil, backlog,
+  Atlas e conduzir o card de uma entrega (4 tarefas, com a GMUD, e
+  andamento). Escrita só com confirmação. Use quando o usuario pedir Ágil, backlog,
   sprint, meu dia, item do backlog, tarefa, apontar horas, lançar horas,
   comentar item, Atlas, ou /agil. Nao usar para abrir chamado no SoftDesk
   (skill softdesk) nem para desenhar ou implementar MCP (skill mcp).
@@ -94,7 +94,7 @@ Documentação de domínio e integrações (regras de negócio, fluxos, APIs).
 
 ### 9. Card da entrega (usado pela `entrega-autonoma`)
 
-Cada entrega tem **um card de desenvolvimento** no Ágil, com 3 tarefas, e termina abrindo **um card de GMUD**, que fica aberto. O orquestrador mostra a lista completa antes (abaixo, "Lista de ações") e só escreve depois do ok único do usuário.
+Cada entrega tem **um card de desenvolvimento** no Ágil, com 4 tarefas, a última delas "GMUD", que fica aberta no encerramento (não existe card nem módulo de GMUD ainda). O orquestrador mostra a lista completa antes (abaixo, "Lista de ações") e só escreve depois do ok único do usuário.
 
 **Achar o card (leitura).**
 1. Se o usuário deu o id do item: `obter_item_backlog`.
@@ -119,6 +119,7 @@ Cada entrega tem **um card de desenvolvimento** no Ágil, com 3 tarefas, e termi
 | Arquitetura | descoberta, especificação, desenho e pacote (Fases 1 a 5) |
 | Desenvolvimento | implementação e revisão de código (Fases 6 e 7) |
 | Validação | aceite, testes, revisão de testes, infográfico do resultado e teste em contexto novo (Fases 8 e 9) |
+| GMUD | atualização do sistema (deploy e validação pós-deploy); **não** é feita pela entrega, só aberta e descrita (Fase 11) |
 
 **Andamento** (`atualizar_item_backlog` e `atualizar_tarefa_item`):
 
@@ -128,36 +129,31 @@ Cada entrega tem **um card de desenvolvimento** no Ágil, com 3 tarefas, e termi
 | Fase 5: plano aprovado | `em_andamento` | Arquitetura `feito`; Desenvolvimento `fazendo` |
 | Fase 7: revisão de código | `code_review` | Desenvolvimento `fazendo` |
 | Fases 8-9: aceite, testes e resultado | `em_teste` | Desenvolvimento `feito`; Validação `fazendo` |
-| Fase 11: encerramento aprovado | `concluido` | Validação `feito` |
+| Fase 11: encerramento aprovado | `pronto_para_deploy` | Validação `feito`; GMUD continua `fazer` |
 
 - Impedimento real: `impedimento`, com `justificativa`. Entrega abandonada: `cancelado`, com `justificativa`.
 - Card que já está adiante do previsto: nunca voltar status; só avançar.
 
 **Comentários** (`comentar_item`, sem menções) só em marco: plano aprovado, MR aberto, impedimento, resultado validado e encerramento. Texto curto, com o que importa a quem acompanha.
 
-**Card de GMUD** (ao encerrar, uma vez só, depois de o card de desenvolvimento ir a `concluido`):
-- `criar_item_backlog`: título `GMUD · <produto> · <título da entrega>`; mesmo `nm_produto`; `de_tags` = `["gmud"]`; `id_tipo` = null; `id_status` = `pronto_para_deploy`.
-- `de_objetivo_contexto`: resumo do que muda e o id do card de desenvolvimento.
-- `de_entregas_esperadas`: lista dos objetos criados e alterados, conferida no código (do infográfico do resultado), com a ordem de aplicação quando houver banco.
-- `de_criterios_aceite`: checklist de deploy e de validação pós-deploy.
-- Depois, um comentário em cada card com o id do outro (não existe vínculo nativo).
-- O card de GMUD **fica aberto**: quem controla a atualização do sistema o fecha. Não mover além de `pronto_para_deploy`.
+**Tarefa GMUD** (criada junto das outras, em `fazer`; preenchida ao encerrar, uma vez só, quando o card vai a `pronto_para_deploy`):
+- `atualizar_tarefa_item` em `de_comentarios` (substitui o texto todo): resumo do que muda, lista dos objetos criados e alterados conferida no código (do infográfico do resultado), ordem de aplicação quando houver banco, checklist de deploy e de validação pós-deploy.
+- A tarefa **fica em `fazer`**: quem controla a atualização do sistema a conduz e fecha. A entrega nunca a move.
+- O card **não** vai a `concluido` pela entrega; fica em `pronto_para_deploy` até a GMUD ser feita.
 - Quando existir um módulo de GMUD no Ágil, trocar **só esta subseção**.
 
 **Lista de ações** (mostrada junto da aprovação do plano, antes de qualquer escrita). Cada linha diz o quê, onde e com quais valores:
 1. Card de desenvolvimento: usar o id X, ou criar (título, produto, tipo, status inicial).
-2. As 3 tarefas.
+2. As 4 tarefas (Arquitetura, Desenvolvimento, Validação, GMUD).
 3. Cada mudança de status e em qual fase ocorre.
 4. Em que momentos comenta, sem menções.
-5. Encerramento do card.
-6. Card de GMUD: título, tag e status inicial.
-7. O que **não** fará: outros itens, atribuir a outras pessoas, menções, apontar horas e anexos.
-
-8. Se há chamado no SoftDesk: o número vai em `de_chamados` do card (linha 1), e as atividades no chamado (marcos, resumo, o que não fará) são listadas pela `entrega-autonoma` na mesma aprovação (skill `softdesk`, "Chamado existente"). O Ágil não escreve no SoftDesk; cada MCP é chamado pelo orquestrador.
+5. Encerramento do card (`pronto_para_deploy`) e preenchimento da tarefa GMUD, que fica aberta.
+6. O que **não** fará: outros itens, atribuir a outras pessoas, menções, apontar horas e anexos, mover a tarefa GMUD.
+7. Se há chamado no SoftDesk: o número vai em `de_chamados` do card (linha 1), e as atividades no chamado (marcos, resumo, o que não fará) são listadas pela `entrega-autonoma` na mesma aprovação (skill `softdesk`, "Chamado existente"). O Ágil não escreve no SoftDesk; cada MCP é chamado pelo orquestrador.
 
 O usuário aprova a lista inteira ou recusa o Ágil (a entrega segue sem ele).
 
-**Depois de cada escrita:** conferir o retorno, anotar no `ESTADO` (`agil: item <id>, tarefas <ids>, gmud <id>`) e dizer no chat, em uma linha, o que foi feito. Erro do Ágil não trava a entrega: avisar, anotar a pendência e seguir. Nunca repetir uma criação sem conferir antes se ela já existe.
+**Depois de cada escrita:** conferir o retorno, anotar no `ESTADO` (`agil: item <id>, tarefas <ids>, gmud <id da tarefa>`) e dizer no chat, em uma linha, o que foi feito. Erro do Ágil não trava a entrega: avisar, anotar a pendência e seguir. Nunca repetir uma criação sem conferir antes se ela já existe.
 
 ## Boas práticas
 
@@ -174,4 +170,4 @@ O usuário aprova a lista inteira ou recusa o Ágil (a entrega segue sem ele).
 | Abrir ou consultar chamado no SoftDesk | skill `softdesk` |
 | Criar ou manter um MCP server | skill `mcp` |
 | Entrega guiada com fases | skill do fluxo (`entrega-guiada`, `pb-entrega-guiada`) |
-| Entrega autônoma com card, tarefas e GMUD no Ágil | skill `entrega-autonoma` (usa a seção 9 desta skill) |
+| Entrega autônoma com card, 4 tarefas (com GMUD) no Ágil | skill `entrega-autonoma` (usa a seção 9 desta skill) |
