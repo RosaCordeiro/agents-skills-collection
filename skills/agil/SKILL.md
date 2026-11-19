@@ -81,7 +81,8 @@ Atenção a efeitos colaterais:
 1. Achar a tarefa: `listar_tarefas_item` do item.
 2. **Conferir duplicidade**: `listar_apontamentos_tarefa` antes de lançar, para não repetir o mesmo dia.
 3. Confirmar com o usuário: tarefa, data (`AAAA-MM-DD`, pode ser retroativa), total de horas (aceita fração, ex.: `1.5`), e `dh_hora_inicio`/`dh_hora_fim` (`HH:MM`) se ele quiser.
-4. `registrar_apontamento_horas`. Sai em nome do dono do token.
+4. `registrar_apontamento_horas`. Sai em nome do dono do token. Testado em 19/11/2026: o retorno traz `nr_chamado_softdesk` e `dh_enviado_softdesk` (vieram nulos num item sem chamado). Se o item tiver `de_chamados`, o apontamento **pode ser enviado ao chamado do SoftDesk**; avisar o usuário disso antes de lançar e conferir esses dois campos no retorno.
+5. Não existe remover apontamento no MCP: um lançamento errado só se corrige pelo app.
 
 ### 7. Comentar
 `comentar_item` com `id_backlog_item` e `de_texto`; `de_mencoes` recebe UUIDs de `listar_pessoas`; `id_resposta_a` responde a um comentário. Mostrar o texto antes de publicar.
