@@ -26,7 +26,8 @@
     "script",
     "backstage-recursos",
     "backstage-catalog-info",
-    "agil"
+    "agil",
+    "softdesk"
   ],
   "agents": [
     "arquiteto",
@@ -57,6 +58,7 @@
     "Ambiente Windows + WSL Ubuntu: docker, node e python rodam no WSL.",
     "Acesso ao GitLab interno (rede CLAMED ou VPN) para as skills de Backstage.",
     "MCP `agil` (Ágil CLAMED) autorizado pelo `/mcp`, para a skill agil.",
+    "MCP `softdesk` (https://mcp-servicedesk.clamed.com.br/mcp) autorizado pelo `/mcp`, para a skill softdesk. O perfil de cada pessoa fica em ~/.claude/softdesk-perfil.md (modelo em skills/softdesk/perfil-modelo.md); a skill o descobre e oferece gravar na primeira vez.",
     "Entregas em PowerBuilder: o plugin `clamed-pb` instalado junto. A `entrega-autonoma` e a `analista` usam as skills e os agents dele."
   ]
 }

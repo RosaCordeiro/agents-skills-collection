@@ -153,6 +153,8 @@ Cada entrega tem **um card de desenvolvimento** no Ágil, com 3 tarefas, e termi
 6. Card de GMUD: título, tag e status inicial.
 7. O que **não** fará: outros itens, atribuir a outras pessoas, menções, apontar horas e anexos.
 
+8. Se há chamado no SoftDesk: o número vai em `de_chamados` do card (linha 1), e as atividades no chamado (marcos, resumo, o que não fará) são listadas pela `entrega-autonoma` na mesma aprovação (skill `softdesk`, "Chamado existente"). O Ágil não escreve no SoftDesk; cada MCP é chamado pelo orquestrador.
+
 O usuário aprova a lista inteira ou recusa o Ágil (a entrega segue sem ele).
 
 **Depois de cada escrita:** conferir o retorno, anotar no `ESTADO` (`agil: item <id>, tarefas <ids>, gmud <id>`) e dizer no chat, em uma linha, o que foi feito. Erro do Ágil não trava a entrega: avisar, anotar a pendência e seguir. Nunca repetir uma criação sem conferir antes se ela já existe.
