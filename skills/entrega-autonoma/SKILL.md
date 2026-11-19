@@ -124,7 +124,8 @@ lancar nenhuma frente ainda**. Acrescentar:
   atividade (plano aprovado, resultado validado, encerramento), o resumo de
   cada uma (com o id do card e a tarefa GMUD no encerramento) e o que **nao** fara
   (mudar status do chamado, apontar horas, reabrir, texto visivel ao
-  solicitante). O card do Agil leva o chamado em `de_chamados`. Nada e escrito
+  solicitante). O card do Agil leva o chamado em `de_chamados` e a atividade
+  cita o id do card (vinculo nos dois sentidos, revisado na Fase 10). Nada e escrito
   no Agil nem no SoftDesk antes do ok.
 
 Uma pergunta curta ao usuario (`AskUserQuestion`): `Aprovar plano e conectores`
@@ -370,6 +371,28 @@ Antes da documentacao:
 Skill `documentacao`: README e revisao dos docs da especificacao, do codigo e
 da revisao, mais o indice. Em PB, DOCX so se o usuario pedir.
 
+**Revisao dos registros** (so o que foi aprovado na Fase 1; so leitura ate o
+fim da conferencia):
+
+1. Agil: `obter_item_backlog`, `listar_tarefas_item` e
+   `listar_comentarios_item` do card. Conferir: status do card e das tarefas
+   contra a fase real; tarefa GMUD descrita e em `fazer`; comentarios de marco
+   presentes; `de_objetivo_contexto`, `de_criterios_aceite` e
+   `de_entregas_esperadas` batem com o que foi entregue (nao com o plano
+   antigo).
+2. SoftDesk (se houver chamado): `consultar_chamado` / `dossie_chamado`.
+   Conferir: as atividades dos marcos ja lancadas (plano aprovado, resultado
+   validado) existem e dizem o que foi feito; nada contradiz o resultado.
+3. **Vinculo entre os dois** (obrigatorio quando ha chamado): o numero do
+   chamado esta em `de_chamados` do card e a atividade do chamado cita o id do
+   card. Sem o numero no card, ler o item e reenviar a lista completa de
+   `de_chamados` com o numero acrescentado (a lista e substituida inteira).
+   Sem chamado, o vinculo nao se aplica e o registro nao e criado.
+4. Mostrar no chat uma tabela curta: registro, esperado, encontrado, correcao.
+   Corrigir sozinho apenas o que ja consta da lista aprovada na Fase 1 (por
+   exemplo, `de_chamados`, texto do card, status); o resto vira proposta com
+   confirmacao. Registrar a revisao no `ESTADO` (`agil` e `softdesk`).
+
 ### Fase 11 — Encerramento
 
 1. Em repositorio de codigo: `backstage-recursos` e depois
@@ -432,6 +455,7 @@ no plano, com o motivo.
 - [ ] Infografico do resultado validado pelo usuario em contexto novo
 - [ ] Infografico de encerramento entregue
 - [ ] Documentacao
+- [ ] Revisao dos registros (card do Agil e chamado) e vinculo entre os dois conferidos
 - [ ] Backstage (ou pulo registrado por falta de rede)
 - [ ] Card do Agil em `pronto_para_deploy` e tarefa GMUD aberta e descrita (se aprovado na Fase 1)
 - [ ] Atividades lancadas no chamado do SoftDesk (se aprovado na Fase 1)

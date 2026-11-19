@@ -143,6 +143,8 @@ Cada entrega tem **um card de desenvolvimento** no Ágil, com 4 tarefas, a últi
 - O card **não** vai a `concluido` pela entrega; fica em `pronto_para_deploy` até a GMUD ser feita.
 - Quando existir um módulo de GMUD no Ágil, trocar **só esta subseção**.
 
+**Vínculo com o chamado.** Quando há chamado no SoftDesk, o número vai em `de_chamados` do card desde a criação, e a atividade no chamado cita o id do card. Na Fase 10 a `entrega-autonoma` revisa o card (status, tarefas, comentários, textos) e o vínculo; se faltar o número em `de_chamados`, ler o item e reenviar a lista completa com o número acrescentado.
+
 **Lista de ações** (mostrada junto da aprovação do plano, antes de qualquer escrita). Cada linha diz o quê, onde e com quais valores:
 1. Card de desenvolvimento: usar o id X, ou criar (título, produto, tipo, status inicial).
 2. As 4 tarefas (Arquitetura, Desenvolvimento, Validação, GMUD).
@@ -150,7 +152,8 @@ Cada entrega tem **um card de desenvolvimento** no Ágil, com 4 tarefas, a últi
 4. Em que momentos comenta, sem menções.
 5. Encerramento do card (`pronto_para_deploy`) e preenchimento da tarefa GMUD, que fica aberta.
 6. O que **não** fará: outros itens, atribuir a outras pessoas, menções, apontar horas e anexos, mover a tarefa GMUD.
-7. Se há chamado no SoftDesk: o número vai em `de_chamados` do card (linha 1), e as atividades no chamado (marcos, resumo, o que não fará) são listadas pela `entrega-autonoma` na mesma aprovação (skill `softdesk`, "Chamado existente"). O Ágil não escreve no SoftDesk; cada MCP é chamado pelo orquestrador.
+7. Revisão dos registros na Fase 10 (leitura, e correção só do que está nesta lista).
+8. Se há chamado no SoftDesk: o número vai em `de_chamados` do card (linha 1), e as atividades no chamado (marcos, resumo, o que não fará) são listadas pela `entrega-autonoma` na mesma aprovação (skill `softdesk`, "Chamado existente"). O Ágil não escreve no SoftDesk; cada MCP é chamado pelo orquestrador.
 
 O usuário aprova a lista inteira ou recusa o Ágil (a entrega segue sem ele).
 
