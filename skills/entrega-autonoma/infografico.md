@@ -40,7 +40,8 @@ Por tipo de artefato:
   numeros reais de testes e revisoes, mockup da tela real, como testar, o que
   ficou de fora, caixa "O que voce decide".
 - **Encerramento**: o que foi entregue, onde estao os arquivos, decisoes
-  tomadas, pendencias, proximos passos, registros feitos.
+  tomadas, pendencias, proximos passos, registros feitos (ids do card e da
+  GMUD no Agil, quando houver).
 
 ## Linguagem visual
 - Titulos fortes e objetivos; cards com hierarquia; textos curtos.
