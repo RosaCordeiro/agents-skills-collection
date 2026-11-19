@@ -69,6 +69,9 @@ Canal oficial: os plugins `clamed-dev` e `clamed-pb`, montados por `scripts/buil
 | Construir, aprovando cada fase | `entrega-guiada` (10 fases) | `entrega-guiada` (8 fases, só especifica) |
 | Construir, aprovando uma vez só | `entrega-autonoma` (+ agent `implementador`) | (usa a do clamed-dev; implementa PB com `ajuste` e `pb-criar-objeto`) |
 | Mudança pontual já definida | `ajuste` | `ajuste` (objeto PB, com `svn lock`) |
+| Incidente: cobrir com o paliativo (sem a correção definitiva) | `incidente` | (usa a do clamed-dev; aplica em PB com `ajuste`) |
+
+`analista`, `ajuste` e `incidente` leem o chamado do SoftDesk e só escrevem nele dentro de uma lista aprovada de uma vez (skill `softdesk`, "Vínculo leve com chamado"); card do Ágil é opcional nesses modos.
 
 Segunda fase (subagents e apoio de PB):
 

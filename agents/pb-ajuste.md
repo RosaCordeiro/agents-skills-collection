@@ -42,6 +42,10 @@ Não `pbg_send` / git / `pbg_init` / `svn commit` sem pedido.
 - Arquivos que não estão no SVN (`.pbt`) não têm check-out: apenas avisar que foram alterados.
 - Depois de alterar um objeto ancestral (menu ou janela herdada), recompilar também os descendentes, senão o PB dá "Bad runtime function reference" ao abrir.
 
+### Chamado (opcional)
+
+Se o usuário citar um chamado do SoftDesk, ler o dossiê e, **só dentro de uma lista aprovada de uma vez** (marcos: ajuste definido, com os objetos que levarão lock; ajuste aplicado e compilado, com a lista dos objetos travados para o check-in dele), lançar a atividade como na skill `softdesk`, seção "Vínculo leve com chamado" (plugin `clamed-dev`). Sem lista aprovada, nada é escrito no chamado nem no Ágil; não muda status, não encerra, não aponta horas. Card do Ágil só se o usuário citar o id. O número do chamado já entra no `svn lock -m` acima.
+
 Objeto **novo** (PBL, herdar genérica, ícone + no PBSCC): skill `pb-criar-objeto` — não esta. `/pb-ajuste` é patch de objeto já no SCC.
 
 Fallback CLI se MCP falhar (`NOT_INITIALIZED`, `MCP_WORKSPACE_MISMATCH`): `pbg import` + `pbg compile` com `-p C:\Sistemas_PB12\<Sistema>`.

@@ -59,6 +59,10 @@ Se a escolha for diferente do modelo da sessão, pedir para o usuário trocar no
 | Postgres: tabelas/migrations | `modelagem-dados` |
 | Logs Node (`@clamed/logger`) | `logger` |
 
+## Chamado (opcional)
+
+Se o usuário citar um chamado do SoftDesk, ler o dossiê e, **só dentro de uma lista aprovada de uma vez** (marcos: ajuste definido; ajuste aplicado e validado), lançar a atividade, como na skill `softdesk`, seção "Vínculo leve com chamado". Sem lista aprovada, nada é escrito no chamado nem no Ágil; não muda status, não encerra, não aponta horas. Card do Ágil só se o usuário citar o id.
+
 ## Se o pedido crescer
 
 Se no meio do trabalho ficar claro que precisa de spec, desenho ou review formal, **avise** o dev e sugira mudar para **Entrega guiada** (`entrega-guiada`) ou **Entrega autônoma** (`entrega-autonoma`) — não force sozinho.

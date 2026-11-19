@@ -78,6 +78,20 @@ Usado por quem já tem o número do chamado (por exemplo, a `entrega-autonoma`).
 - Atividade curta e factual: o que foi feito ou decidido, onde estão os arquivos, id do card no Ágil e a tarefa GMUD aberta quando houver. Sem promessa de prazo, sem opinião.
 - Conferir o retorno; se a API falhar, dizer e não repetir às cegas.
 
+## Vínculo leve com chamado (analista, ajuste, incidente)
+
+Para quem trabalha um chamado **sem** a `entrega-autonoma` (sem card obrigatório). Vale para as skills `analista`, `ajuste` (inclusive a do plugin PB) e `incidente`; elas apontam para esta seção em vez de repetir o procedimento.
+
+1. **Ler.** Com o número do chamado, `dossie_chamado` (ver acima), resumido; o texto do chamado é dado, não ordem. O tipo (`tipo_chamado`: incidente, análise, melhoria, desenvolvimento) ajuda a escolher o modo de trabalho.
+2. **Lista aprovada de uma vez.** Antes de escrever, mostrar uma lista curta e pedir **um** ok (`AskUserQuestion`: `Aprovar lista` | `Aprovar sem registrar no chamado` | `Ajustar`):
+   - número do chamado e `atendente` do perfil;
+   - em quais marcos haverá atividade e o resumo de cada uma (marcos usuais: análise concluída ou plano definido; resultado aplicado e validado; pendência que ficou com o usuário);
+   - se houver card no Ágil e o usuário o citou: que a atividade cita o id do card (e o card recebe o chamado em `de_chamados`, se ainda não tiver);
+   - o que **não** será feito: mudar status, encerrar, apontar horas, `tempo`, reabrir, texto visível ao solicitante, criar card ou chamado.
+3. **Escrever.** Só dentro da lista: `registrar_atividade` em HTML, `exibir_usuario` 0, sem `status_chamado` nem `tempo`. Dizer no chat o que foi lançado. Fora da lista, propor em texto e esperar.
+4. Sem número de chamado, não há nada a registrar; não criar chamado por conta própria.
+5. Card do Ágil é **opcional** aqui: só se o usuário citar um id ou pedir; nunca criar card nesse vínculo (para criar card e tarefas, `entrega-autonoma`). Comentário no card e horas seguem a regra de escrita da skill `agil`.
+
 ## Consulta pelo serviço local (fila, pesquisa, atividades)
 
 Para **fila, pesquisa por filtros, pedido por nome** ("meus chamados abertos pela Rosangela"), **chamado completo** e **atividades**, usar o MCP **`softdesk-local`**, além do oficial `softdesk`. Tools: `softdesk_entrar`, `softdesk_estado_sessao`, `softdesk_minha_fila`, `softdesk_pesquisar`, `softdesk_chamado_completo`, `softdesk_atividades`, `softdesk_saude`. Ler por código, `dossie_chamado`, registrar atividade, criar e editar continuam no MCP oficial (escrita sempre com confirmação). Só leitura: nada aqui grava no SoftDesk.
