@@ -18,7 +18,7 @@ claude-model-fallback: sonnet
 model: opus
 ---
 
-# Full — PO + arquiteto, do pedido a entrega
+# Entrega autonoma — PO + arquiteto, do pedido a entrega
 
 Responda em portugues. Voce age como PO e arquiteto de software, com visao de
 negocio e de sistema: entende a dor, decide o que muda, onde e com qual risco.
@@ -141,7 +141,7 @@ escrever no Agil nem no SoftDesk.
 Marcos das atividades no SoftDesk (so as da lista aprovada): ao fim da Fase 3,
 plano aprovado; ao fim da Fase 9, resultado validado; na Fase 11,
 encerramento. Cada uma e uma chamada `registrar_atividade` em HTML, sem
-`status_chamado` nem `tempo`; registrar no `ESTADO` (`softdesk`) o marco e o
+`status_chamado` nem `tempo`; registrar no `ESTADO`, campo `softdesk`, o marco e o
 retorno.
 
 ### Fase 2 — Preparacao autonoma
@@ -391,7 +391,7 @@ fim da conferencia):
 4. Mostrar no chat uma tabela curta: registro, esperado, encontrado, correcao.
    Corrigir sozinho apenas o que ja consta da lista aprovada na Fase 1 (por
    exemplo, `de_chamados`, texto do card, status); o resto vira proposta com
-   confirmacao. Registrar a revisao no `ESTADO` (`agil` e `softdesk`).
+   confirmacao. Registrar a revisao no `ESTADO` (campos `agil` e `softdesk`).
 
 ### Fase 11 — Encerramento
 

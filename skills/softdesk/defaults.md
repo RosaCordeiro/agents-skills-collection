@@ -1,6 +1,6 @@
 ﻿# Defaults SoftDesk (produção)
 
-MCP: `https://mcp-servicedesk.clamed.com.br/mcp` (`softdesk`).
+MCP `softdesk`: `https://mcp-servicedesk.clamed.com.br/mcp`.
 
 ## Perfil por usuário (fora do plugin)
 

@@ -181,8 +181,9 @@ function Convert-Text($Text, $Rel) {
     foreach ($n in $inSet) {
         $e = [regex]::Escape($n)
         $fin = Get-Final $n
-        $Text = [regex]::Replace($Text, '`' + $e + '`', '`' + $prefix + ':' + $fin + '`')
-        $Text = [regex]::Replace($Text, '(?<![\w/.:\\-])/' + $e + '(?![\w-])', '/' + $prefix + ':' + $fin)
+        # nao troca o nome de MCP ("MCP `agil`") nem campo ("campo `agil`"): so skill/agent
+        $Text = [regex]::Replace($Text, '(?<!MCP )(?<!MCP \*\*)(?<!MCPs )(?<!campo )`' + $e + '`', '`' + $prefix + ':' + $fin + '`')
+        $Text = [regex]::Replace($Text, '(?<![\w/.:\\<-])/' + $e + '(?![\w-])', '/' + $prefix + ':' + $fin)
     }
 
     # mencoes soltas (sem crase nem barra) dos nomes renomeados, deste plugin e de
