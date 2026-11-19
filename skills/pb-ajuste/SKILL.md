@@ -1,19 +1,20 @@
 ---
-name: pbg
+name: pb-ajuste
 description: >-
-  Altera e valida objetos PowerBuilder 12 via MCP PBG (user-pbg). Toda mudança
+  Ajuste pontual de objeto PowerBuilder 12 ja existente: altera e valida via
+  MCP PBG (user-pbg). Toda mudança
   vai para a PBL original e é compilada no pbg_apply_patch. Legado Clamed: PB em
   C:\Sistemas_PB12 + SVN nativo em C:\SVN\Sistemas_PB12 (checklist PB+SVN).
   Use quando o usuario pedir PowerBuilder, PB12, PBL, PBG, snapshot .sr*, window/datawindow,
-  ORCA, Tortoise/SVN PB, ou alterar codigo PB. Preferir agent /pbg (modelo barato).
+  ORCA, Tortoise/SVN PB, ou alterar codigo PB. Preferir agent /pb-ajuste (modelo barato).
 claude-model: sonnet
 ---
 
-# Especialista PBG (PowerBuilder 12)
+# Ajuste PB (PowerBuilder 12, via PBG)
 
 Responda em portugues. MCP **`user-pbg`** (`pbg_*`). Nao edite `.pbl` no disco. No workspace PBG, nao edite snapshot `.sr*` a mao — use `pbg_apply_patch` ou CLI `pbg import`. **Excecao legado Clamed:** o `.srw` em `C:\SVN\Sistemas_PB12\...\Bibliotecas\` e fonte SVN nativa PB; ver secao abaixo. ORCA = **Windows**.
 
-- Alterar PB (barato): **`/pbg`** (`composer-2.5-fast`).
+- Alterar PB (barato): **`/pb-ajuste`** (`composer-2.5-fast`).
 - Consulta PB + Sybase + sybase-objects: **`/pb-sybase`**.
 - Objeto/PBL/tela **nova**: skill **`pb-criar-objeto`** (via `/pb-sybase`).
 - Neste chat: pode operar a skill; evite dumpar source.
@@ -103,10 +104,10 @@ Patch so no PBG → PB ok, SVN vazio. So no `.srw` SVN → Tortoise ok, PB pode 
 
 | Assunto | Onde |
 |---------|------|
-| Alterar PB (objeto já existente) | `/pbg` ou esta skill |
+| Alterar PB (objeto já existente) | `/pb-ajuste` ou esta skill |
 | Criar PBL/janela/DW nova | skill `pb-criar-objeto` (fora do `/pb-sybase`) |
 | Consulta PB+Sybase / spec pequena/chamado/mock/DOCX | `/pb-sybase` |
-| Pedido grande: descoberta + arquitetura (fragmentação) + spec por fragmento | `/pb-desenvolvimento-pro` (não implementa) |
+| Pedido grande: descoberta + arquitetura (fragmentação) + spec por fragmento | `/orquestrador-pb-entrega-guiada` (não implementa) |
 | MCP server generico | `mcp` |
 
 

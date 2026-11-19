@@ -47,15 +47,15 @@ Referência canônica — **não usar `inherit`**. Sempre slug primário + fallb
 
 | Agent | Primário | Fallback |
 |-------|----------|----------|
-| `desenvolvimento-pro` | `claude-sonnet-5` | Grok medium → Composer |
-| `desenvolvimento-simples` | `claude-sonnet-5` | Grok medium → Composer |
-| `desenvolvimento` (portal) | `composer-2.5-fast` | `claude-sonnet-5` |
+| `orquestrador-entrega-guiada` | `claude-sonnet-5` | Grok medium → Composer |
+| `ajuste` | `claude-sonnet-5` | Grok medium → Composer |
+| `construir` (portal) | `composer-2.5-fast` | `claude-sonnet-5` |
 | `arquitetura-pro` | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` |
 | `review-pro` / `review-testes-pro` | `cursor-grok-4.6-medium` | `claude-sonnet-5` |
 | `auditor` | `claude-sonnet-5-thinking-high` | Grok medium → Composer |
 | `pb-sybase` / `teste-mesa-sybase` | `claude-sonnet-5` | Grok medium |
-| `pb-desenvolvimento-pro` | `claude-sonnet-5` (Fase 2/4 `thinking-high`) | Grok medium |
-| `pbg` | `composer-2.5-fast` | `claude-sonnet-5` |
+| `orquestrador-pb-entrega-guiada` | `claude-sonnet-5` (Fase 2/4 `thinking-high`) | Grok medium |
+| `pb-ajuste` | `composer-2.5-fast` | `claude-sonnet-5` |
 
 <!-- claude-model -->
 ### Claude Code — por fase e agent
@@ -81,7 +81,7 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 | Fase | Skill / Task | Claude Code | Fallback |
 |------|--------------|-------------|----------|
 | Início | orquestrador (sessão) | `opus` | `sonnet` |
-| 1 Sincronismo | skill `pbg` | `sonnet` | — |
+| 1 Sincronismo | skill `pb-ajuste` | `sonnet` | — |
 | 2 Descoberta | skill `descoberta` | `opus` | `sonnet` |
 | 3 Especificação | skill `pb-sybase` | `opus` | `sonnet` |
 | 4 Arquitetura (fragmentação) | Task `general-purpose`, `model: fable` | `fable` | `opus` → `sonnet` |

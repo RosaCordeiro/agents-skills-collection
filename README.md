@@ -22,21 +22,21 @@ cursor-kit/
 | Arquivo | Nome para o dev | Papel |
 |---------|-----------------|--------|
 | `desenvolvimento.md` | **Portal de Desenvolvimento** | Pergunta: Entrega guiada vs Direto ao ponto |
-| `desenvolvimento-pro.md` | **Orquestrador de Entrega** | 10 fases — mapa em `dev-all-in-one/fases.md` |
-| `desenvolvimento-simples.md` | **Desenvolvimento Direto** | Sem fases |
+| `orquestrador-entrega-guiada.md` | **Orquestrador de Entrega** | 10 fases — mapa em `entrega-guiada/fases.md` |
+| `ajuste.md` | **Desenvolvimento Direto** | Sem fases |
 | `arquitetura-pro.md` | Desenho (subagent) | Fase 3 |
 | `review-pro.md` | Revisão código (subagent) | Fase 5 |
 | `review-testes-pro.md` | Revisão testes (subagent) | Fase 8 — abrangência, execução real, anti-adaptação ao bug |
 | `auditor.md` | Auditor 100% (não programa): revalida o sistema, roda a suíte, Validação 1..N, notas 0–10 |
 | `pbg.md` | PowerBuilder 12: altera via MCP (`composer-2.5-fast`); patch importa e compila |
 | `pb-sybase.md` | Consulta PB + Sybase + sybase-objects; spec pequena de chamado (MD → mock → DOCX), sem fases; **não implementa** |
-| `pb-desenvolvimento-pro.md` | Orquestrador de Entrega PB (8 fases) — sincronismo, descoberta, especificação, arquitetura (fragmentação), system design por fragmento, revisão, testes sugeridos, encerramento; **não implementa** |
+| `orquestrador-pb-entrega-guiada.md` | Orquestrador de Entrega PB (8 fases) — sincronismo, descoberta, especificação, arquitetura (fragmentação), system design por fragmento, revisão, testes sugeridos, encerramento; **não implementa** |
 
 ### Skills
 
-`dev-all-in-one`, `descoberta` (Fase 1: perguntas até fechar o entendimento do pedido, antes de qualquer spec), `review-testes` (RT1–RT12 + `REVIEW-TESTES-*`), `monitor-uso-ia` (script + alertas de custo), `especificacao` (documento autocontido: a spec não depende do chat), `projeto-ai` (pasta `.ai` obrigatória em greenfield: context, rules, decisions, docs), `clean-architecture` (Clean + hexagonal — ref. `api-integracao-syb-kafka`; TS/Python), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pbg` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX, sem fases, não implementa), `pb-dev-all-in-one` (8 fases PB: sincronismo, descoberta, especificação, arquitetura/fragmentação, system design por fragmento, revisão, testes sugeridos, encerramento — não implementa), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
+`entrega-guiada`, `descoberta` (Fase 1: perguntas até fechar o entendimento do pedido, antes de qualquer spec), `review-testes` (RT1–RT12 + `REVIEW-TESTES-*`), `monitor-uso-ia` (script + alertas de custo), `especificacao` (documento autocontido: a spec não depende do chat), `projeto-ai` (pasta `.ai` obrigatória em greenfield: context, rules, decisions, docs), `clean-architecture` (Clean + hexagonal — ref. `api-integracao-syb-kafka`; TS/Python), `arquitetura`, `correcao-erro`, `frontend`, `backend`, `script`, `review` (CR1–CR16 + `REVIEW-*-resultado`), `teste-regra-negocio`, `teste-automatizado`, `documentacao`, `abap`, `fiori`, `ui5` (incl. `crud-lista.md`), `mcp`, `rag`, `modelagem-dados`, `logger` (`@clamed/logger`: keywords, `event`, `correlation_id`), `auditor` (AUD-NNN + notas 0–10), `pb-ajuste` (PowerBuilder 12: patch → import PBL → compile; path obrigatório), `pb-sybase` (consulta PB + Sybase + spec MD/mock/DOCX, sem fases, não implementa), `pb-entrega-guiada` (8 fases PB: sincronismo, descoberta, especificação, arquitetura/fragmentação, system design por fragmento, revisão, testes sugeridos, encerramento — não implementa), `liberar-espaco` (C: + WSL Ubuntu + Docker: medir, limpar, compactar ou recriar VHDX), `softdesk` (abrir chamado no MCP: HTML, IDs de produção, crítico + PBG/Sybase)
 
-No Pro: mapa de models em `dev-all-in-one/modelos.md` — orquestrador Sonnet; arquitetura Sonnet (Opus só se pedir; **uma vez** por entrega); reviews Grok→Sonnet (readonly). Pro/Simples **não** são lançados via Task — rodam no chat.
+No Pro: mapa de models em `entrega-guiada/modelos.md` — orquestrador Sonnet; arquitetura Sonnet (Opus só se pedir; **uma vez** por entrega); reviews Grok→Sonnet (readonly). Pro/Simples **não** são lançados via Task — rodam no chat.
 
 ### Rules
 
@@ -51,6 +51,26 @@ No Pro: mapa de models em `dev-all-in-one/modelos.md` — orquestrador Sonnet; a
 | `projeto-ai.mdc` | Greenfield: pasta `.ai` obrigatória (context, rules, decisions, docs) |
 
 ---
+
+## Padrão de nomes (v0.2.0 dos plugins)
+
+Canal oficial: os plugins `clamed-dev` e `clamed-pb`, montados por `scripts/build-plugin.ps1`. A cópia solta em `~/.claude` é legado.
+
+1. O nome diz a **intenção**, em português: sem inglês e sem sufixo de tamanho (`-pro`, `-simples`).
+2. O **prefixo é a stack** (`clamed-dev:` ou `clamed-pb:`); o nome não repete `pb-`. Na fonte, a pasta do PB mantém `pb-` para ser única, e o mapa `rename` do manifesto troca no plugin (`pb-ajuste` vira `clamed-pb:ajuste`).
+3. O mesmo nome nos dois plugins é a mesma intenção.
+4. O nome da **ferramenta** (`pbg`) fica só no MCP e na CLI (`pbg-cli`, `pbg_*`, `user-pbg`); a skill de quem digita descreve o que faz.
+5. Um dono por skill: `analista`, `descoberta` e `agil` ficam só no `clamed-dev`.
+
+| Você quer… | clamed-dev | clamed-pb |
+|---|---|---|
+| Porta de entrada ("o que quer fazer?") | `construir` | (usa a do clamed-dev) |
+| Entender ou investigar, sem construir | `analista` | (usa a do clamed-dev) |
+| Construir, aprovando cada fase | `entrega-guiada` (10 fases) | `entrega-guiada` (8 fases, só especifica) |
+| Construir, aprovando uma vez só | `entrega-autonoma` (+ agent `implementador`) | (usa a do clamed-dev; implementa PB com `ajuste` e `pb-criar-objeto`) |
+| Mudança pontual já definida | `ajuste` | `ajuste` (objeto PB, com `svn lock`) |
+
+Pendente (2ª fase): os subagents (`arquitetura-pro`, `review-pro`, `review-testes-pro`) e as skills de PB que já começam com `pb-` (`pb-sybase`, `pb-criar-objeto`, `pb-mentor`, `pb-padroes-clamed`).
 
 ## Manual: usar em outro PC
 
@@ -132,7 +152,7 @@ Abra um chat novo no Cursor.
 
 1. Você pede um desenvolvimento.
 2. O agent pergunta: **Pro** ou **Simples**.
-3. **Pro** / **Entrega guiada** → orquestra as 10 fases (`dev-all-in-one/fases.md`).
+3. **Pro** / **Entrega guiada** → orquestra as 10 fases (`entrega-guiada/fases.md`).
 4. **Simples** / **Direto ao ponto** → implementa sem fases.
 5. Após grande alteração, peça o **auditor** (não é Pro/Simples): ele só valida e dá nota.
 

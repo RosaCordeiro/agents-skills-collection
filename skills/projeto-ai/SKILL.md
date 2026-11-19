@@ -102,7 +102,7 @@ Toda skill que **cria projeto novo** deve incluir no checklist:
 
 > Greenfield → ler e aplicar `projeto-ai` (`~/.claude/skills/projeto-ai/SKILL.md`).
 
-Skills cobertas: `backend`, `frontend`, `script`, `clean-architecture`, `mcp`, `rag`, `abap`, `fiori`, `ui5`, `pb-criar-objeto`, orquestradores `dev-all-in-one`, agents Pro/Simples.
+Skills cobertas: `backend`, `frontend`, `script`, `clean-architecture`, `mcp`, `rag`, `abap`, `fiori`, `ui5`, `pb-criar-objeto`, orquestradores `entrega-guiada`, agents Pro/Simples.
 
 ## Nao fazer
 

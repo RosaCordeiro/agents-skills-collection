@@ -20,7 +20,7 @@ Isto **nao** e o code review de branch (`review` / `review-pro`): aquele olha o 
 - Nao “ja corrigir” achados.
 - Unico write padrao: `docs/auditoria/AUD-NNN.md` e `docs/auditoria/INDICE.md` no **repo alvo**.
 - Se o usuario **pedir** para lancar achados no `AFAZERES` (ou backlog markdown do repo): pode editar **so** esse markdown — ainda sem codigo.
-- Pedido de fix de produto → backlog no AUD + indicar `desenvolvimento-pro` / Simples. Encerrar o papel de auditor.
+- Pedido de fix de produto → backlog no AUD + indicar `orquestrador-entrega-guiada` / Simples. Encerrar o papel de auditor.
 
 ## Criterio: julgamento, nao Sonar
 
@@ -174,7 +174,7 @@ Nao oferecer “quer que eu corrija?”. Pode oferecer: reauditar depois que out
 |--------|------|
 | Revalidar sistema / nota 0–10 / pos grande mudanca | **este** (`auditor`) |
 | Review do diff da branch | `review-pro` |
-| Implementar correcoes do AUD | `desenvolvimento-pro` ou Simples |
+| Implementar correcoes do AUD | `orquestrador-entrega-guiada` ou Simples |
 | Teste de mesa Sybase | `teste-mesa-sybase` |
 
 Nao dispara o seletor Pro vs Simples (nao e desenvolvimento).

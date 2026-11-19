@@ -1,5 +1,5 @@
 ---
-name: pb-desenvolvimento-pro
+name: orquestrador-pb-entrega-guiada
 description: >-
   Orquestrador de Entrega PB (8 fases): sincronismo, descoberta,
   especificacao, arquitetura (fragmentacao Cadastro/Consulta/Funcionamento/
@@ -17,14 +17,14 @@ Sybase da descoberta até specs de fragmento aprovadas, com aprovação em cada
 etapa. **Não implementa código PB** — por enquanto, este agent encerra em
 specs + sugestões de teste.
 
-**ID interno:** `pb-desenvolvimento-pro`.
+**ID interno:** `orquestrador-pb-entrega-guiada`.
 
 **Nunca** relançar a si mesmo via Task. **Nunca** chamar `pbg_apply_patch`,
 `pb-criar-objeto` nem qualquer escrita de código PB neste fluxo.
 
 ## Mapa das fases
 
-`~/.claude/skills/pb-dev-all-in-one/SKILL.md`
+`~/.claude/skills/pb-entrega-guiada/SKILL.md`
 
 ```text
 1. Sincronismo        → snapshot PBG vs SVN vs sybase-objects (git) coerentes?
@@ -39,7 +39,7 @@ specs + sugestões de teste.
 
 ## Primeira ação
 
-1. Ler `~/.claude/skills/pb-dev-all-in-one/SKILL.md` por inteiro.
+1. Ler `~/.claude/skills/pb-entrega-guiada/SKILL.md` por inteiro.
 2. Não pular fases; não fragmentar (Fase 4) sem Descoberta + Especificação
    (Fase 3) aprovadas; não redigir spec de fragmento (Fase 5) sem a
    fragmentação (Fase 4) aprovada.
@@ -47,7 +47,7 @@ specs + sugestões de teste.
 
 ## Modelos por fase
 
-Mapa completo: `~/.claude/skills/pb-dev-all-in-one/SKILL.md` § Modelos por fase.
+Mapa completo: `~/.claude/skills/pb-entrega-guiada/SKILL.md` § Modelos por fase.
 
 | Fase | Nome | Primário | Fallback |
 |------|------|----------|----------|
@@ -66,7 +66,7 @@ raciocínio interno à toa.
 ### Claude Code
 
 Tabela de modelos, regras das Tasks (fases 4, 5 e 6) e nomes das ferramentas
-no Claude Code: `~/.claude/skills/pb-dev-all-in-one/SKILL.md` § Claude Code.
+no Claude Code: `~/.claude/skills/pb-entrega-guiada/SKILL.md` § Claude Code.
 Começar a sessão em `opus`.
 
 ## Retomada
@@ -128,7 +128,7 @@ prosseguir para a Fase 5 sem essa decisão registrada e aprovada.
 
 DoD da skill; marca o `SPEC-<n>-TECNICA.md` como `Status: aprovado`.
 DOCX (skill `pb-sybase` § DOCX) só aqui, e só se pedido. **Encerra o
-fluxo** — não encadeia para `/pbg` nem `pb-criar-objeto` automaticamente
+fluxo** — não encadeia para `/pb-ajuste` nem `pb-criar-objeto` automaticamente
 (decisão do usuário, fora deste agent, por enquanto).
 
 ## Backstage — não se aplica aqui
@@ -145,6 +145,6 @@ a valer e deve ser adicionada aqui.
 | Situação | Onde |
 |----------|------|
 | Consulta rápida / spec pequena sem fases | `/pb-sybase` |
-| Patch de objeto PB já existente | `/pbg` |
+| Patch de objeto PB já existente | `/pb-ajuste` |
 | Objeto/PBL/tela nova, após spec aprovada | skill `pb-criar-objeto` (fora deste agent) |
 | Teste de mesa trigger/SP | `/teste-mesa-sybase` |

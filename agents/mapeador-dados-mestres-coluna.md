@@ -52,7 +52,7 @@ Preferir existir `MAPA-<tabela>.md` (skill `mapeador-dados-mestres`). Se não ex
 | Situação | Destino |
 |----------|---------|
 | Falta mapa da tabela | `/mapeador-dados-mestres` |
-| Implementar | `/pb`, `/pbg` |
+| Implementar | `/pb`, `/pb-ajuste` |
 
 
 

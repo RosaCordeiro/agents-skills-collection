@@ -1,9 +1,10 @@
 ---
-name: dev-all-in-one
+name: entrega-guiada
 description: >-
   Orquestrador de Entrega (10 fases): descoberta, especificacao, desenho,
   codigo, revisao, aceite, testes, revisao de testes, docs, encerramento.
-  Use com desenvolvimento-pro / entrega guiada / pro / all-in-one.
+  Use quando o usuario quiser aprovar fase a fase, escolher entrega guiada ou
+  pedir as 10 fases.
 ---
 
 # Orquestrador de Entrega (10 fases)
@@ -51,7 +52,7 @@ Fases 3, 5 e 8 **via Task** com `model:` do primário. `review-pro` e `review-te
 
 Agents: `arquitetura-pro`, `review-pro`, `review-testes-pro`.
 
-**Nunca** Task dos orquestradores (`desenvolvimento-pro`, etc.).
+**Nunca** Task dos orquestradores (`orquestrador-entrega-guiada`, etc.).
 
 <!-- claude-model -->
 ### Claude Code

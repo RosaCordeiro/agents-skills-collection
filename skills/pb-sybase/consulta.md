@@ -39,14 +39,14 @@ Usar este formato na resposta ao usuário (completo, sem pular fonte). Omitir se
 - [bloqueante|importante|nit] fato + evidência (objeto + trecho)
 
 ## Próximo passo
-- Consulta encerrada / patch PB (`/pbg`) / editar sybase-objects / deploy DBA / teste de mesa
+- Consulta encerrada / patch PB (`/pb-ajuste`) / editar sybase-objects / deploy DBA / teste de mesa
 ```
 
 ## Receitas de busca
 
 Assunto `pedido_distribuidora` (exemplo):
 
-1. PB: `pbg_search` query `pedido_distribuidora` no `path` do sistema (ou `all: true`). Ambiente Clamed: esse tool le o snapshot `.sr*`, que pode estar desatualizado frente a uma alteração já feita no PB/SVN — antes de concluir estado **atual**, ver skill `pbg` § Ambiente Clamed → Snapshot desatualizado.
+1. PB: `pbg_search` query `pedido_distribuidora` no `path` do sistema (ou `all: true`). Ambiente Clamed: esse tool le o snapshot `.sr*`, que pode estar desatualizado frente a uma alteração já feita no PB/SVN — antes de concluir estado **atual**, ver skill `pb-ajuste` § Ambiente Clamed → Snapshot desatualizado.
 2. Tabela: `sybase_describe_table` `pedido_distribuidora`.
 3. Git (Grep no clone, não varrer 1000 arquivos):
    - `Triggers/Update/tu_pedido_distribuidora.sql`
@@ -80,7 +80,7 @@ O que realmente torna a DW atualizável é a cláusula `update="<tabela>"` dentr
 - Ler: `pbg_read_object` com `startLine`/`endLine`.
 - Validar compile: `pbg_compile` no objeto. Erro ORCA verbatim.
 - Mudar: `pbg_apply_patch` (import+compile). Sem `pbg_build` sem pedido.
-- Snapshot pode estar desatualizado (ambiente Clamed): antes de dar veredito sobre estado atual, comparar a data do `.srw`/`.srd` no SVN com a do snapshot em `.pbg/snapshots`; se o SVN for mais novo, ler direto de lá. Ver skill `pbg` § Ambiente Clamed → Snapshot desatualizado.
+- Snapshot pode estar desatualizado (ambiente Clamed): antes de dar veredito sobre estado atual, comparar a data do `.srw`/`.srd` no SVN com a do snapshot em `.pbg/snapshots`; se o SVN for mais novo, ler direto de lá. Ver skill `pb-ajuste` § Ambiente Clamed → Snapshot desatualizado.
 
 
 

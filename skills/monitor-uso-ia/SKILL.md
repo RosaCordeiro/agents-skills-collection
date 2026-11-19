@@ -35,7 +35,7 @@ Conta apenas paths tipo:
 
 | Alerta | Significado |
 |--------|-------------|
-| Pro aninhado | Task `desenvolvimento-pro` dentro de outro chat — duplica fluxo |
+| Pro aninhado | Task `orquestrador-entrega-guiada` dentro de outro chat — duplica fluxo |
 | Opus em Task | `claude-opus-5-thinking-high` em subagent — caro |
 | ARCH > 1 | `arquitetura-pro` relançado no mesmo chat — emendar ARCH no orquestrador |
 

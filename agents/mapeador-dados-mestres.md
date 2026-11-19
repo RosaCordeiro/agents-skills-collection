@@ -56,7 +56,7 @@ Encaminhar para skill **`mapeador-dados-mestres-coluna`**:
 | Depois | Destino |
 |--------|---------|
 | Coluna em detalhe | `mapeador-dados-mestres-coluna` |
-| Spec / implementar | `/pb-sybase`, `/pb`, `/pbg` |
+| Spec / implementar | `/pb-sybase`, `/pb`, `/pb-ajuste` |
 
 
 

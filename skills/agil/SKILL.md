@@ -103,4 +103,4 @@ Documentação de domínio e integrações (regras de negócio, fluxos, APIs).
 |--------|------|
 | Abrir ou consultar chamado no SoftDesk | skill `softdesk` |
 | Criar ou manter um MCP server | skill `mcp` |
-| Entrega guiada com fases | skill do fluxo (`dev-all-in-one`, `pb-dev-all-in-one`) |
+| Entrega guiada com fases | skill do fluxo (`entrega-guiada`, `pb-entrega-guiada`) |

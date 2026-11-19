@@ -12,7 +12,7 @@ Fase **8** da Entrega guiada — **depois** de `teste-automatizado` (Fase 7) e *
 
 Objetivo: garantir que os testes **protegem** o produto — nao que **escondem** defeitos.
 
-No fluxo Pro: subagent **`review-testes-pro`** (`cursor-grok-4.6-medium` → Sonnet padrão; `readonly`). Orquestrador (`claude-sonnet-5`) grava `REVIEW-TESTES-*-resultado.md`. Mapa: `dev-all-in-one/modelos.md`.
+No fluxo Pro: subagent **`review-testes-pro`** (`cursor-grok-4.6-medium` → Sonnet padrão; `readonly`). Orquestrador (`claude-sonnet-5`) grava `REVIEW-TESTES-*-resultado.md`. Mapa: `entrega-guiada/modelos.md`.
 
 ## Quando aplicar
 

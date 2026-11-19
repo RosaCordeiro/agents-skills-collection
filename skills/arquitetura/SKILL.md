@@ -106,7 +106,7 @@ Se a entrega tiver API e/ou persistencia, as secoes **5, 6, 7 e validacao** deve
 
 ## 10. Riscos e decisoes abertas
 - o que ainda pode mudar o design
-- Duvidas a esclarecer (PowerBuilder: encaminhar para skill `pbg`)
+- Duvidas a esclarecer (PowerBuilder: encaminhar para skill `pb-ajuste`)
 
 ## 11. Plano de implementacao
 - ordem sugerida + skills especialistas + encaixe VAL/testes
@@ -170,7 +170,7 @@ Quando o alvo for aplicativo desktop:
 - Se houver consulta inteligente a dados/docs: decidir explicitamente RAG (`rag`), MCP (`mcp`), SQL/API ou hibrido — nao misturar sem desenho
 - Se for SAP: encadear `fiori` + `ui5` + `abap` (nao usar `frontend`/`backend` genericos para isso)
 - Se for desktop C++: secao **Apps desktop** acima
-- Se for PowerBuilder 12: skill `pbg` (MCP `user-pbg`). Toda alteracao: import na PBL original + `pbg_compile`
+- Se for PowerBuilder 12: skill `pb-ajuste` (MCP `user-pbg`). Toda alteracao: import na PBL original + `pbg_compile`
 - No plano de implementacao, nomear explicitamente quais skills especialistas entram em cada passo
 
 ## Encaminhamento pos-aprovacao
@@ -181,7 +181,7 @@ Ordem tipica na implementacao:
 - Web tipico: `backend` → `frontend` / `ui5` → `script`
 - Dados para agent: `mcp` e/ou `rag`
 - SAP: `fiori` → `abap` → `ui5`
-- PowerBuilder 12: `pbg` (import PBL + compile)
+- PowerBuilder 12: `pb-ajuste` (import PBL + compile)
 - Desktop C++: implementacao alinhada ao design desta skill
 
 Nao pular code review nem as fases de teste.

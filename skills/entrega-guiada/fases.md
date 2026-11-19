@@ -1,6 +1,6 @@
 # Mapa das 10 fases — Entrega guiada
 
-Referência rápida para quem usa o **Orquestrador de Entrega** (`desenvolvimento-pro`).
+Referência rápida para quem usa o **Orquestrador de Entrega** (`orquestrador-entrega-guiada`).
 
 Cada fase termina com **`AskQuestion`**: você aprova antes de avançar.
 

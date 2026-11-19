@@ -5,14 +5,14 @@ description: >-
   via ORCA/PBG e deixa o PBSCC com ícone + para o dev dar Add To Source Control.
   Use when the user asks tela nova, PBL nova, herdar genérica, dc_w_cadastro_lista,
   criar window/DW, WSxxx, ícone + SCC, PBSCC, ou implementar tela após spec
-  /pb-sybase. Não usar para patch de objeto já existente (isso é /pbg).
+  /pb-sybase. Não usar para patch de objeto já existente (isso é /pb-ajuste).
 ---
 
 # Criar objeto PB (PBL / janela / DW)
 
-Responda em português. Skill de **criação**. Patch de objeto que já existe: `/pbg`.
+Responda em português. Skill de **criação**. Patch de objeto que já existe: `/pb-ajuste`.
 
-Consulta/spec de chamado: **`/pb-sybase`** ou **`/pb-desenvolvimento-pro`** (pedido grande). Nenhum dos dois implementa — se o pedido for spec **e** implementar, fechar a spec (e a aprovação) primeiro, num desses agents; **esta skill roda depois, em chat/agent separado**, nunca dentro do `/pb-sybase` ou `/pb-desenvolvimento-pro`.
+Consulta/spec de chamado: **`/pb-sybase`** ou **`/orquestrador-pb-entrega-guiada`** (pedido grande). Nenhum dos dois implementa — se o pedido for spec **e** implementar, fechar a spec (e a aprovação) primeiro, num desses agents; **esta skill roda depois, em chat/agent separado**, nunca dentro do `/pb-sybase` ou `/orquestrador-pb-entrega-guiada`.
 
 ORCA **não tem Inherit**. Janela herdada = `.srw` com `from <genérica>` + `import` + `regenerate`.
 
@@ -58,7 +58,7 @@ Arquivo nesse WC (mesmo `svn status ?`) → PBSCC mostra **verde** e o Check Out
 
 Check Out **não** registra objeto novo. Fluxo do dev no PB: fechar/reabrir workspace se o status estiver velho → Refresh → **Add To Source Control** (aí o PB grava `.srw` no WC, atualiza `.pbg` e registra no SVN).
 
-Objeto novo: não `svn add` / `svn lock` (o usuário dá Add To Source Control). Objeto **existente** que a implementação precisa alterar (ex.: `m_mdi` para ligar a tela no menu): fazer o check-out com `svn lock -m "Chamado <nº>"` antes de alterar (ver skill `pbg`, "Check-out obrigatório"). **Nunca** `svn commit` / `svn unlock` / check-in: é sempre o usuário.
+Objeto novo: não `svn add` / `svn lock` (o usuário dá Add To Source Control). Objeto **existente** que a implementação precisa alterar (ex.: `m_mdi` para ligar a tela no menu): fazer o check-out com `svn lock -m "Chamado <nº>"` antes de alterar (ver skill `pb-ajuste`, "Check-out obrigatório"). **Nunca** `svn commit` / `svn unlock` / check-in: é sempre o usuário.
 
 ## Genéricas (WMS / `classe_comum.pbl`)
 
@@ -113,9 +113,9 @@ Snapshots PBG (`.pbg/snapshots/...`) podem ficar; o PBSCC **não** olha isso. O 
 
 | Pedido | Skill / agent |
 |--------|----------------|
-| Spec/chamado/mock/consulta PB+Sybase | `/pb-sybase` ou `/pb-desenvolvimento-pro` |
-| Tela/PBL/DW **nova**, spec já aprovada | esta skill, em agent/chat separado (não dentro de `/pb-sybase`/`/pb-desenvolvimento-pro`) |
-| Patch de objeto **já no SCC** | `/pbg` |
+| Spec/chamado/mock/consulta PB+Sybase | `/pb-sybase` ou `/orquestrador-pb-entrega-guiada` |
+| Tela/PBL/DW **nova**, spec já aprovada | esta skill, em agent/chat separado (não dentro de `/pb-sybase`/`/orquestrador-pb-entrega-guiada`) |
+| Patch de objeto **já no SCC** | `/pb-ajuste` |
 | Trigger/SP teste de mesa | `/teste-mesa-sybase` |
 
 

@@ -39,7 +39,7 @@ sobrescreve com o que estiver em `agents-skills-collection-import`.
    Para o Claude Code, perguntar tambem `claude-model` (`fable` | `opus` |
    `sonnet`) e `claude-model-fallback` (ex.: `opus, sonnet`) — o sync grava
    esse valor em `model:` no `~/.claude` e mantem o `model:` do Cursor
-   intacto. Vale para agent e skill (mapa em `skills/dev-all-in-one/modelos.md`
+   intacto. Vale para agent e skill (mapa em `skills/entrega-guiada/modelos.md`
    § Claude Code).
    Criar agent so quando ele precisa de contexto isolado, modelo proprio ou
    ferramentas restritas; fluxo que conversa com o usuario fica so como skill.

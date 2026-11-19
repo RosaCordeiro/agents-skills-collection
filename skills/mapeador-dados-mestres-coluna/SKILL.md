@@ -62,7 +62,7 @@ No chat: resumo de 5–8 linhas + link/caminho do arquivo.
 | Situação | Destino |
 |----------|---------|
 | Falta mapa da tabela inteira | `mapeador-dados-mestres` |
-| Implementar mudança | `/pb` ou `/pbg` |
+| Implementar mudança | `/pb` ou `/pb-ajuste` |
 | Alterar trigger/SP | `sybase-objects` + deploy DBA |
 
 

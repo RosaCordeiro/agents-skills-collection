@@ -261,7 +261,7 @@ Checklist do agent ao escrever log novo:
 
 | Agent / skill | Uso |
 |---------------|-----|
-| `desenvolvimento-pro` / `desenvolvimento-simples` | Ler esta skill ao implementar/alterar logs Node |
+| `orquestrador-entrega-guiada` / `ajuste` | Ler esta skill ao implementar/alterar logs Node |
 | `backend` | Logs estruturados em API/worker = esta skill |
 | `especificacao` | Gate herda logger; RNF/obs citam `event` + `correlation_id` se a feat tocar obs |
 | `arquitetura` | Desenhar geracao/propagacao do `correlation_id` e catalogo `event` |

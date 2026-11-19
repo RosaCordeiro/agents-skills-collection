@@ -9,9 +9,9 @@ alwaysApply: true
 
 Nunca lancar Task/subagent com:
 
-- `desenvolvimento-pro`
-- `desenvolvimento-simples`
-- `desenvolvimento` (roteador)
+- `orquestrador-entrega-guiada`
+- `ajuste`
+- `construir` (roteador)
 
 Esses papéis rodam **neste chat**: ler `~/.claude/agents/<nome>.md` e cumprir. Relancar Pro porque “o outro agent travou” duplica Sonnet + ARCH + review.
 

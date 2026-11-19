@@ -18,7 +18,7 @@ isso vem nas fases `teste-regra-negocio`, `teste-automatizado` e `documentacao`.
 - Fase 5 da Entrega guiada (após Código) — via subagent **`review-pro`**
 - Pedido explicito de review / PR
 
-No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.6-medium` → `claude-sonnet-5`; nunca Opus). Correções no orquestrador (Sonnet padrão). Mapa: `dev-all-in-one/modelos.md`.
+No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.6-medium` → `claude-sonnet-5`; nunca Opus). Correções no orquestrador (Sonnet padrão). Mapa: `entrega-guiada/modelos.md`.
 
 ## Processo
 
@@ -32,7 +32,7 @@ No fluxo Pro o orquestrador **deve** lançar Task `review-pro` (`cursor-grok-4.6
 6. Se subagent `review-pro`: devolver resumo + `HANDOFF_CORRECAO` se houver itens a corrigir (**sem** `AskQuestion`).
    Se chat direto: **`AskQuestion`** — prompt: `Code review ok?`
    - `Sim, seguir para teste de regra de negocio` | `Corrigir achados` | `Outro (eu digito)`
-   - Em chat direto, “Corrigir achados” pode ser feito no mesmo chat **depois** do review; no fluxo Pro, só o orquestrador (`desenvolvimento-pro`, Sonnet) corrige.
+   - Em chat direto, “Corrigir achados” pode ser feito no mesmo chat **depois** do review; no fluxo Pro, só o orquestrador (`orquestrador-entrega-guiada`, Sonnet) corrige.
 
 ## Pontos obrigatorios a revisar
 
@@ -128,7 +128,7 @@ HANDOFF_CORRECAO
 - [severidade] path — mudanca sugerida
 ```
 
-O orquestrador `desenvolvimento-pro` (Sonnet) aplica o codigo e **reabre** o `review-pro`.
+O orquestrador `orquestrador-entrega-guiada` (Sonnet) aplica o codigo e **reabre** o `review-pro`.
 O agent de review **nao** gasta turno implementando.
 
 ## Foco extra (stack frequente)

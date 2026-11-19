@@ -23,7 +23,7 @@ Não abra branch nem grave SPEC/CORR nesta fase. Não desenhe solução técnica
 **Model:** `claude-sonnet-5-thinking-high` (exceção fixa do time só para esta
 fase — mais poder de investigação para achar os problemas certos e enxergar
 melhores soluções antes de comprometer o resto da entrega a um entendimento
-raso). Fallback: `claude-sonnet-5` → Grok medium. Ver `dev-all-in-one/modelos.md`.
+raso). Fallback: `claude-sonnet-5` → Grok medium. Ver `entrega-guiada/modelos.md`.
 
 ## Por que existe
 

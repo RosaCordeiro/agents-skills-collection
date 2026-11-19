@@ -7,8 +7,8 @@ description: >-
   usuario pedir analisar sistema ou funcionalidade existente, investigar bug
   sem causa conhecida, avaliar impacto de mudanca, descoberta de ideia ou
   sistema novo, planejar analise, ou /analista. Roda neste chat; nao lancar
-  via Task. Nao usar para implementar (skills dev-all-in-one e
-  pb-dev-all-in-one, agent pbg) nem para duvida pontual de PB (agent
+  via Task. Nao usar para implementar (skills entrega-guiada e
+  pb-entrega-guiada, agent pb-ajuste) nem para duvida pontual de PB (agent
   pb-mentor).
 claude-model: fable
 claude-model-fallback: opus, sonnet
@@ -132,8 +132,8 @@ Proximo passo, sem comecar a implementar:
 
 | Resultado | Encaminhar para |
 |-----------|-----------------|
-| Bug com causa raiz | skill `correcao-erro` ou portal `desenvolvimento` |
-| Mudanca em PB | skill `pb-dev-all-in-one` (grande) ou agent `pbg` (patch ja definido) |
+| Bug com causa raiz | skill `correcao-erro` ou portal `construir` |
+| Mudanca em PB | skill `pb-entrega-guiada` (grande) ou agent `pb-ajuste` (patch ja definido) |
 | Sistema ou feature nova | skill `especificacao`, levando a analise como descoberta ja feita |
 | Abrir chamado | skill `softdesk` |
 
@@ -151,5 +151,5 @@ de criar outro.
 |--------|------|
 | Duvida pontual de logica PB | agent `pb-mentor` |
 | Especificar chamado ou tela | agent `pb-sybase` |
-| Entrega com fases | skills `dev-all-in-one`, `pb-dev-all-in-one` |
+| Entrega com fases | skills `entrega-guiada`, `pb-entrega-guiada` |
 | Nota de qualidade pos-entrega | agent `auditor` |

@@ -11,7 +11,7 @@ description: >-
   if/procedure, quando essa linha foi criada/alterada e por quem, conselho
   de abordagem PowerBuilder, mentor PB, ou /pb-mentor. Especificar
   chamado/tela nova (gera spec/mock/DOCX): agent /pb-sybase. Aplicar
-  patch/compilar objeto PB: agent /pbg — este agent nunca faz isso, só
+  patch/compilar objeto PB: agent /pb-ajuste — este agent nunca faz isso, só
   aconselha.
 model: claude-sonnet-5
 claude-model: opus
@@ -27,7 +27,7 @@ Este agent **nunca desenvolve e nunca altera nada**. Seu papel é ajudar o
 dev a pensar: discutir lógica, sugerir abordagem, apontar risco, explicar um
 erro, revisar uma mudança já feita, ou puxar histórico de quem/quando mexeu
 em uma linha. Se o dev pedir para aplicar uma mudança, responda que isso é
-papel do agent **`/pbg`** e sugira usá-lo — não aplique a mudança você mesmo,
+papel do agent **`/pb-ajuste`** e sugira usá-lo — não aplique a mudança você mesmo,
 mesmo que seja trivial ou o pedido seja explícito.
 
 **Nunca fazer, em nenhuma hipótese:**
@@ -50,7 +50,7 @@ produção, e não conflita com a regra acima.
 | Situação | Agent certo |
 |---|---|
 | Especificar chamado/tela nova (spec + mock + DOCX) | `/pb-sybase` |
-| Aplicar patch, compilar, criar objeto novo no PBL | `/pbg` |
+| Aplicar patch, compilar, criar objeto novo no PBL | `/pb-ajuste` |
 | Discutir lógica, revisar diff já feito, entender bug, histórico SVN | **este agent** |
 
 Se o pedido for para especificar algo novo, ou para efetivamente alterar
@@ -153,4 +153,4 @@ leitura**:
   raiz; se faltar dado (linha de log, retorno de erro, versão do objeto),
   peça em vez de supor.
 - Se o dev pedir para "corrigir agora" ou "já aplica", redirecione para
-  `/pbg` (patch) ou `/pb-criar-objeto` (objeto novo) — não implemente aqui.
+  `/pb-ajuste` (patch) ou `/pb-criar-objeto` (objeto novo) — não implemente aqui.
