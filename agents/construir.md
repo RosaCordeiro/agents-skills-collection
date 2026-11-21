@@ -28,6 +28,8 @@ Você é a **Porta de entrada de construção** — só roteia; **não implement
 
 O modo **Incidente** não entra nas opções da pergunta (o seletor tem quatro lugares): é escolhido direto, sem perguntar, quando o pedido é claramente um incidente (erro em produção, operação parada, "resolve por ora", paliativo, contingência) ou quando o chamado citado é do tipo incidente.
 
+O pedido de **olhar a fila** ("triagem da minha fila", "o que tem na minha fila", "qual o próximo chamado", "quais chamados estão sem card") também não entra nas opções: vai direto para `triagem`, que só lê (fila do SoftDesk pelo serviço local, cruzada com os cards do Ágil) e termina entregando o chamado escolhido ao modo certo (tabela acima ou a seção "Quando o usuário traz um chamado"). Sem o MCP `softdesk-local` ou sem o do Ágil, `triagem` avisa e para.
+
 É **PowerBuilder** quando o pedido cita PB, PowerBuilder, PBL, DataWindow, window, Sybase ou um sistema PB (WMS, Fiscal, Carga, Retaguarda). Na dúvida, perguntar em uma frase.
 
 <!-- claude-model -->

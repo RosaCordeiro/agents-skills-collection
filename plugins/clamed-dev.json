@@ -28,7 +28,8 @@
     "backstage-recursos",
     "backstage-catalog-info",
     "agil",
-    "softdesk"
+    "softdesk",
+    "triagem"
   ],
   "agents": [
     "arquiteto",

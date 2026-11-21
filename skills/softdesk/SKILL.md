@@ -107,13 +107,17 @@ Para **fila, pesquisa por filtros, pedido por nome** ("meus chamados abertos pel
 
 **Fila** (`softdesk_minha_fila`): pedir com `limite` 50 e continuar com `proximo_inicio` no máximo 3 vezes por pedido (até 200 itens); depois perguntar se segue. Descartar repetidos por código. Se `incompleto`, avisar que a leitura parou antes de cobrir tudo. `total_softdesk` é só informativo (inclui fechados).
 
-**Pesquisa** (`softdesk_pesquisar`): mostrar o `total` real e a página; com `filtro_status_no_cliente`, continuar com `proximo_inicio` até vir `null`; avisar `filtros_nao_confirmados`.
+**Todas** (pedido com "todas", "tudo" ou "a fila inteira"): chamar `softdesk_minha_fila` ou `softdesk_pesquisar` com `todas: true` (sem `limite`; `todas` com `limite` é recusado) e **encadear** as chamadas com `inicio` = `proximo_inicio` até vir `null`, sem esperar novo pedido a cada bloco (cada resposta traz até 300 itens ou 60.000 bytes). Mostrar uma tabela compacta por bloco (código, título, status, prioridade; solicitante só se o pedido usar ou filtrar por ele), **descartando repetidos por código** (a continuação só evita repetidos se a lista não mudar). No fim, dizer o total de itens mostrado. Teto de segurança de 5 blocos por pedido: se chegar ao teto com `proximo_inicio` ainda preenchido, perguntar se segue. `incompleto: true` em cada bloco é normal (teto de itens, de tamanho ou de páginas): sempre vem com `proximo_inicio`, então continuar. Parada por `prazo`: avisar o usuário e continuar com `proximo_inicio` (conta como bloco). Se vier `REDE` logo depois de outro pedido longo, repetir uma vez. Resumo ou contagem por status e prioridade pode ser **oferecido ao final**, não no lugar da lista. Lembrete em uma linha: títulos e nomes de pessoas em volume no chat são dado pessoal (norma de IA), sem bloquear o pedido. Nos demais pedidos, manter 50 por vez.
+
+**Pesquisa** (`softdesk_pesquisar`): mostrar o `total` real e a página; com `filtro_status_no_cliente` (sem `todas`), continuar com `proximo_inicio` até vir `null` (com `todas`, vale a regra da seção Todas); avisar `filtros_nao_confirmados`.
 
 **Pedido por nome:** passar o nome como o usuário falou em `solicitante_nome` (e `titulo_contem`, `prioridade_nome`, `tipo_nome` quando o pedido tiver), na fila ou na pesquisa; avisar se `incompleto`.
 
 **Atividades** (`softdesk_atividades`): só sob demanda e resumidas. Com `NAO_DISPONIVEL`, orientar `dossie_chamado` do MCP oficial.
 
-**Listas no chat:** só código, título, status e prioridade; solicitante só se o usuário pedir ou se o pedido filtra por ele. Título e nome de pessoa são dados pessoais: limitar volume e, se pedirem exportar em massa, sugerir anonimizar (norma de IA). Refinar em novas chamadas (filtros de texto, chamado completo) em vez de despejar a lista.
+**Listas no chat** (exceto o modo `todas`, seção acima): só código, título, status e prioridade; solicitante só se o usuário pedir ou se o pedido filtra por ele. Título e nome de pessoa são dados pessoais: limitar volume e, se pedirem exportar em massa, sugerir anonimizar (norma de IA). Refinar em novas chamadas (filtros de texto, chamado completo) em vez de despejar a lista.
+
+**Triagem da fila:** para cruzar a fila com o Ágil (quais chamados já têm card e o que fazer com cada um), usar a skill `triagem`; esta skill só lista e consulta.
 
 ## MCP indisponível
 

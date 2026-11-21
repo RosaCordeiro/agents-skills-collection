@@ -65,6 +65,8 @@ Atenção a efeitos colaterais:
 2. `obter_item_backlog` para objetivo/contexto, critérios de aceite e entregas esperadas.
 3. `historico_item` se a pergunta for "quem mexeu / por que mudou".
 
+**Do chamado para o card.** `listar_itens_backlog` não filtra por chamado nem pagina, e o filtro `status` devolveu HTTP 500 em 21/11/2026: para saber se um chamado já tem card, listar por `produto` (limite 200, uma chamada por vez) e procurar o número em `de_chamados` do resumo; `truncado: true` significa cobertura parcial daquele produto, não "sem card". A resposta de um produto grande passa de 100 KB: fazer essa varredura em um subagent que devolva só a tabela chamado → card. Para a fila inteira do SoftDesk, use a skill `triagem`.
+
 ### 3. Criar item (ex.: a partir de um chamado)
 1. Obrigatórios: `de_titulo` e `nm_produto` (valor exato de `listar_produtos`). Sem `id_status` nasce em `backlog`.
 2. Campos úteis: `id_tipo` (`melhoria`, `bug`, `chamado`), `de_chamados` (números), `de_objetivo_contexto` (HTML), `de_criterios_aceite`, `de_entregas_esperadas`, `id_sprint`, `id_responsavel`, `de_tags`.
