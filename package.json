@@ -1,0 +1,33 @@
+{
+  "name": "softdesk-local",
+  "version": "0.1.0",
+  "description": "Servico local e MCP fino para consulta somente leitura ao SoftDesk (sessao por janela de login local).",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "commonjs",
+  "main": "dist/servico.js",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "tsc",
+    "servico": "node dist/servico.js",
+    "servico:iniciar": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/iniciar-servico.ps1",
+    "servico:parar": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/parar-servico.ps1",
+    "servico:estado": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/estado-servico.ps1",
+    "entrar": "node dist/cli-entrar.js",
+    "capturar-forma": "node dist/cli-capturar-forma.js",
+    "mcp": "node dist/mcp.js",
+    "test": "jest --runInBand"
+  },
+  "dependencies": {
+    "@clamed/logger": "1.0.7",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.11.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.3.3"
+  }
+}

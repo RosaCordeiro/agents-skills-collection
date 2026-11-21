@@ -1,0 +1,494 @@
+{
+  "versao": 1,
+  "descricao": "Contrato dourado da rota nao oficial do SoftDesk (RN-17). Somente nomes de campo, conjuntos de tipos observados e marcas; nenhum valor de chamado.",
+  "fontes": [
+    "forma-softdesk.json",
+    "forma-softdesk-v2.json"
+  ],
+  "capturado_em": [
+    "2026-11-19"
+  ],
+  "login": {
+    "campos": {
+      "dados": {
+        "tipos": [
+          "array"
+        ],
+        "marca": "outro"
+      },
+      "mensagem": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "outro"
+      },
+      "rota": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "outro"
+      },
+      "status": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "essencial"
+      },
+      "tipo_retorno": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      }
+    }
+  },
+  "pesquisa": {
+    "topo": {
+      "barra_ferramenta": {
+        "tipos": [
+          "object"
+        ],
+        "marca": "outro"
+      },
+      "lista": {
+        "tipos": [
+          "array"
+        ],
+        "marca": "essencial"
+      },
+      "painel": {
+        "tipos": [
+          "object"
+        ],
+        "marca": "outro"
+      },
+      "treeview": {
+        "tipos": [
+          "object"
+        ],
+        "marca": "essencial"
+      },
+      "has_faq_aprovada": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      }
+    },
+    "treeview": {
+      "has_interaction": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "total": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "essencial"
+      }
+    },
+    "item": {
+      "cd_atendente": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "essencial"
+      },
+      "cd_area": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_chamado_pai": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_chamado_tarefa": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_chamado_workflow": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_chamado": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "essencial"
+      },
+      "cd_cliente": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_grupo_solucao": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_mudanca": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_prioridade": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_projeto": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_usuario": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_checklist": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "da_chamado": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "usado"
+      },
+      "dt_flag_destaque": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "outro"
+      },
+      "dt_tarefas_encerradas": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "dt_termino_previsto_chamado": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "fl_tarefa_cancelada": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "flag_contabilizar_tempo_gasto_pai": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "flag_destaque": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "flag_execucao": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "flag_problema": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "flag_responsavel_chamado_filho": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "outro"
+      },
+      "flag_tarefas_encerradas": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "ha_chamado": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "usado"
+      },
+      "hr_agendamento_chamado": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "hr_agendamento_tecnico": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "hr_encaminhamento_fornecedor": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "hr_fechamento_chamado": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "hr_resolucao_chamado": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "hr_suspensao_chamado": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "hr_termino_previsto_chamado": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "nr_chamado_filho": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "nr_sequencia": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "qtd_interacoes": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "usado"
+      },
+      "st_chamado": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "essencial"
+      },
+      "tt_chamado": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "usado"
+      },
+      "cd_categoria": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "cd_servico": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "id_chamado": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "nr_anexo": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "nr_despesa": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "nr_base_conhecimento": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "nr_procedimento": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "nm_atendente": {
+        "tipos": [
+          "null",
+          "string"
+        ],
+        "marca": "outro"
+      },
+      "st_atendente": {
+        "tipos": [
+          "null",
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "flag_encaminhado": {
+        "tipos": [
+          "null"
+        ],
+        "marca": "outro"
+      },
+      "ds_prioridade": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "usado"
+      },
+      "cor_prioridade": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "outro"
+      },
+      "ds_grupo_solucao": {
+        "tipos": [
+          "null",
+          "string"
+        ],
+        "marca": "outro"
+      },
+      "ds_tipo_chamado": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "usado"
+      },
+      "nm_usuario": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "usado"
+      },
+      "prioridade": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "st_usuario": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "flag_existe_checklist_cadastrada": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "has_chamados_relacionados": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "cd_pasta": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "ds_status": {
+        "tipos": [
+          "string"
+        ],
+        "marca": "usado"
+      },
+      "has_attachment": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "has_base_conhecimento": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "has_interaction": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "has_procedimento": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "has_despesa": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "is_running": {
+        "tipos": [
+          "boolean"
+        ],
+        "marca": "outro"
+      },
+      "qtd_estrelas": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      },
+      "flag_visivel_execucao": {
+        "tipos": [
+          "number"
+        ],
+        "marca": "outro"
+      }
+    }
+  }
+}
