@@ -5,14 +5,14 @@ alwaysApply: true
 
 # Modelos — slugs e fallbacks
 
-Mapa: `~/.claude/skills/dev-all-in-one/modelos.md`
+Mapa: `~/.claude/skills/entrega-guiada/modelos.md`
 
 ## Sonnet — dois níveis
 
 | Nível | Slug | Uso |
 |-------|------|-----|
 | **Trabalho** | `claude-sonnet-5` | Orquestrador, simples, código, spec, pb-sybase |
-| **Design / auditoria** | `claude-sonnet-5-thinking-high` | `arquitetura-pro` (1× ARCH), `auditor` e **Descoberta** (Fase 1 — exceção pedida pelo usuário, para investigar melhor o pedido) |
+| **Design / auditoria** | `claude-sonnet-5-thinking-high` | `arquiteto` (1× ARCH), `auditor` e **Descoberta** (Fase 1 — exceção pedida pelo usuário, para investigar melhor o pedido) |
 
 **Não** usar `thinking-high` no orquestrador nem no código do dia a dia (fases 2, 4, 6, 7, 9, 10) — gasta tokens de raciocínio interno sem necessidade. Fase 1 (Descoberta) é a exceção registrada acima.
 
@@ -24,7 +24,7 @@ Sonnet **não** tem `high-fast`; isso é Grok (`cursor-grok-4.5-high-fast`). Rev
 |-------|----------|----------|
 | 1 | Orquestrador (Descoberta) | `claude-sonnet-5-thinking-high` |
 | 2, 4, 6, 7, 9, 10 | Orquestrador | `claude-sonnet-5` |
-| 3 | `arquitetura-pro` | `claude-sonnet-5-thinking-high` |
+| 3 | `arquiteto` | `claude-sonnet-5-thinking-high` |
 | 5, 8 | reviews | `cursor-grok-4.6-medium` |
 
 ## Regras

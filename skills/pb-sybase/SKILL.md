@@ -19,9 +19,9 @@ Responda em português. PB e Sybase **andam juntos**: tela/DW no PB, tabela/trig
 Agents:
 
 - Consulta / cruzamento / **spec pequena de chamado PB** (MD → mock → DOCX), sem fases: **`/pb-sybase`**.
-- **Pedido grande** que precisa de descoberta guiada + arquitetura (separar Cadastro de Funcionamento, multi-sistema/banco) + uma spec por fragmento: **`/pb-desenvolvimento-pro`** (skill `pb-dev-all-in-one`). Também não implementa — só especifica e desenha.
+- **Pedido grande** que precisa de descoberta guiada + arquitetura (separar Cadastro de Funcionamento, multi-sistema/banco) + uma spec por fragmento: **`/orquestrador-pb-entrega-guiada`** (skill `pb-entrega-guiada`). Também não implementa — só especifica e desenha.
 - **Tela/PBL/DW nova** (herdar genérica, ícone **+** no PBSCC): skill [`pb-criar-objeto`](../pb-criar-objeto/SKILL.md) — fora deste agent, decisão separada do usuário depois da spec aprovada.
-- Só patch barato de PB (objeto **já existente**): **`/pbg`**.
+- Só patch barato de PB (objeto **já existente**): **`/pb-ajuste`**.
 - Teste de mesa de trigger/SP: **`/teste-mesa-sybase`**.
 
 Não existe mais `/pbg-validacao`. Compile/leitura PB entra neste fluxo (`pbg_compile`).
@@ -97,18 +97,18 @@ Se a mudança for **tabela** (coluna nova, tipo): alterar via MCP é proibido. D
 
 ## Este agent não altera PB
 
-`pb-sybase` (e `pb-desenvolvimento-pro`) **não implementam código PB**, por
+`pb-sybase` (e `orquestrador-pb-entrega-guiada`) **não implementam código PB**, por
 enquanto — nem objeto novo, nem patch de objeto existente, mesmo se o
 usuário pedir explicitamente no meio do chat. Ao final da spec aprovada,
 indicar (sem executar):
 
 - **Objeto novo** (PBL, janela herdada, DW, tela WSxxx) → skill
   **`pb-criar-objeto`**, em outro agent/chat.
-- **Objeto já existente** (patch) → **`/pbg`**, em outro agent/chat.
+- **Objeto já existente** (patch) → **`/pb-ajuste`**, em outro agent/chat.
 
 Se o patch/tela **depende** de coluna/SP nova: documentar na spec o SQL
 proposto no `sybase-objects` (+ aviso de deploy) e a ordem de subida — a
-edição em si fica para quem rodar `/pbg`/`pb-criar-objeto` depois.
+edição em si fica para quem rodar `/pb-ajuste`/`pb-criar-objeto` depois.
 
 ## Fronteiras
 
@@ -116,9 +116,9 @@ edição em si fica para quem rodar `/pbg`/`pb-criar-objeto` depois.
 |---------|------|
 | Consulta PB+Sybase+SQL versionado | `/pb-sybase` ou esta skill |
 | Spec pequena/chamado/mock/DOCX de tela PB, sem fases | `/pb-sybase` + [especificacao.md](especificacao.md) |
-| Pedido grande: descoberta + arquitetura (fragmentação) + spec por fragmento | `/pb-desenvolvimento-pro` (skill `pb-dev-all-in-one`) |
+| Pedido grande: descoberta + arquitetura (fragmentação) + spec por fragmento | `/orquestrador-pb-entrega-guiada` (skill `pb-entrega-guiada`) |
 | Criar PBL/janela/DW nova (ícone + SCC) | skill `pb-criar-objeto` — **fora** deste agent |
-| Patch PB barato, objeto já conhecido | `/pbg` — **fora** deste agent |
+| Patch PB barato, objeto já conhecido | `/pb-ajuste` — **fora** deste agent |
 | Teste de mesa trigger/SP | `/teste-mesa-sybase` |
 | Spec feat/fix de produto Node (Agent Pro) | skill `especificacao` (não esta) |
 | MCP genérico | skill `mcp` |

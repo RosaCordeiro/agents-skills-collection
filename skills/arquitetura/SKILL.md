@@ -5,7 +5,7 @@ description: >-
   recomendacao, componentes, fluxos, dados, contratos e ADRs, sem implementar
   codigo. Use quando o usuario pedir arquitetura, system design, desenho de
   solucao, ARCH, ou apos a especificacao aprovada. No fluxo Pro roda no
-  subagent arquitetura-pro, uma vez por entrega. Nao usar para levantar
+  subagent arquiteto, uma vez por entrega. Nao usar para levantar
   requisitos (skills descoberta e especificacao).
 ---
 
@@ -13,7 +13,7 @@ description: >-
 
 Skill consultiva. Nao implemente codigo de producao aqui — entregue design completo e aguarde aprovacao. Responda em portugues.
 
-No fluxo **Pro**, esta skill roda no subagent **`arquitetura-pro`** (`claude-sonnet-5-thinking-high` — **só** design; orquestrador usa Sonnet padrão). Opus so se o usuario pedir.
+No fluxo **Pro**, esta skill roda no subagent **`arquiteto`** (`claude-sonnet-5-thinking-high` — **só** design; orquestrador usa Sonnet padrão). Opus so se o usuario pedir.
 
 Fase **3** do Dev All-in-One (apos Descoberta e Especificacao aprovadas).
 
@@ -31,8 +31,8 @@ Idealmente a especificacao de regra de negocio ja esta aprovada (`especificacao`
 4. Entregar o system design no formato abaixo (**completo**, nao simplorio — ver **Profundidade obrigatoria**).
 5. Recortes de MVP **somente se o usuario pedir** ou a SPEC tiver fases explicitas; senao foque **so nesta entrega**.
 5b. **Decisoes fechadas** → gravar em `.ai/decisions/ADR-NNN-<slug>.md` (skill `projeto-ai`). Atualizar `context/stack.md` se o design alterar stack.
-5c. **ARCH já existe** na branch (amend, v0.x, spec evoluiu): o orquestrador **emenda o mesmo arquivo** — **não** relançar `arquitetura-pro` (rule `custo-subagent.mdc`).
-6. Se estiver rodando como subagent `arquitetura-pro`: entregar design + resumo ao orquestrador (**sem** `AskQuestion`).
+5c. **ARCH já existe** na branch (amend, v0.x, spec evoluiu): o orquestrador **emenda o mesmo arquivo** — **não** relançar `arquiteto` (rule `custo-subagent.mdc`).
+6. Se estiver rodando como subagent `arquiteto`: entregar design + resumo ao orquestrador (**sem** `AskQuestion`).
    Se estiver em chat direto (sem orquestrador): aprovar com **`AskQuestion`** — prompt: `O system design esta ok para implementar?`
    - `Sim, seguir para desenvolvimento` | `Ajustar design` | `Outro (eu digito)`
    - Se `AskQuestion` indisponivel: mesmas opcoes em prosa curta.
@@ -106,7 +106,7 @@ Se a entrega tiver API e/ou persistencia, as secoes **5, 6, 7 e validacao** deve
 
 ## 10. Riscos e decisoes abertas
 - o que ainda pode mudar o design
-- Duvidas a esclarecer (PowerBuilder: encaminhar para skill `pbg`)
+- Duvidas a esclarecer (PowerBuilder: encaminhar para skill `pb-ajuste`)
 
 ## 11. Plano de implementacao
 - ordem sugerida + skills especialistas + encaixe VAL/testes
@@ -170,7 +170,7 @@ Quando o alvo for aplicativo desktop:
 - Se houver consulta inteligente a dados/docs: decidir explicitamente RAG (`rag`), MCP (`mcp`), SQL/API ou hibrido — nao misturar sem desenho
 - Se for SAP: encadear `fiori` + `ui5` + `abap` (nao usar `frontend`/`backend` genericos para isso)
 - Se for desktop C++: secao **Apps desktop** acima
-- Se for PowerBuilder 12: skill `pbg` (MCP `user-pbg`). Toda alteracao: import na PBL original + `pbg_compile`
+- Se for PowerBuilder 12: skill `pb-ajuste` (MCP `user-pbg`). Toda alteracao: import na PBL original + `pbg_compile`
 - No plano de implementacao, nomear explicitamente quais skills especialistas entram em cada passo
 
 ## Encaminhamento pos-aprovacao
@@ -181,7 +181,7 @@ Ordem tipica na implementacao:
 - Web tipico: `backend` → `frontend` / `ui5` → `script`
 - Dados para agent: `mcp` e/ou `rag`
 - SAP: `fiori` → `abap` → `ui5`
-- PowerBuilder 12: `pbg` (import PBL + compile)
+- PowerBuilder 12: `pb-ajuste` (import PBL + compile)
 - Desktop C++: implementacao alinhada ao design desta skill
 
 Nao pular code review nem as fases de teste.

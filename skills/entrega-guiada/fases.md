@@ -1,6 +1,6 @@
 # Mapa das 10 fases — Entrega guiada
 
-Referência rápida para quem usa o **Orquestrador de Entrega** (`desenvolvimento-pro`).
+Referência rápida para quem usa o **Orquestrador de Entrega** (`orquestrador-entrega-guiada`).
 
 Cada fase termina com **`AskQuestion`**: você aprova antes de avançar.
 
@@ -25,9 +25,9 @@ Cada fase termina com **`AskQuestion`**: você aprova antes de avançar.
 |------|----------|----------------------------|
 | 1 | Orquestrador (Descoberta) | Sonnet **thinking-high** → Sonnet padrão → Grok medium (exceção pedida pelo usuário, para investigar melhor o pedido) |
 | 2, 4, 6, 7, 9, 10 | Orquestrador | `claude-sonnet-5` → Grok medium → Composer |
-| 3 | Subagent `arquitetura-pro` | Sonnet **thinking-high** → Sonnet padrão; **1× Task** se ARCH não existe |
-| 5 | Subagent `review-pro` | Grok **medium** → Sonnet padrão |
-| 8 | Subagent `review-testes-pro` | Grok **medium** → Sonnet padrão |
+| 3 | Subagent `arquiteto` | Sonnet **thinking-high** → Sonnet padrão; **1× Task** se ARCH não existe |
+| 5 | Subagent `revisor-codigo` | Grok **medium** → Sonnet padrão |
+| 8 | Subagent `revisor-testes` | Grok **medium** → Sonnet padrão |
 
 Tabela acima = Cursor. Claude Code e regras de fallback: [modelos.md](modelos.md) (§ Claude Code).
 
@@ -39,7 +39,7 @@ Cada fase pode voltar para ajuste antes de seguir — a aprovação de uma fase 
 |-----------|-------------------|
 | 1 Descoberta | `Ajustar entendimento` → repetir perguntas até novo Resumo aprovado |
 | 2 Especificação | `Ajustar` → orquestrador reescreve o SPEC/CORR e revalida antes de nova aprovação |
-| 5 Revisão | Orquestrador corrige **código** → re-Task `review-pro` |
+| 5 Revisão | Orquestrador corrige **código** → re-Task `revisor-codigo` |
 | 7 Testes automáticos | Corrigir falhas → rodar suite de novo |
 | 8 Revisão de testes | `Corrigir testes` → Fase 7 ou 8 de novo; `Corrigir código` → Fase 4/7 |
 

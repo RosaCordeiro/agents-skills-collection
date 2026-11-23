@@ -43,7 +43,7 @@ Responda em portugues.
    - `Sim, seguir para arquitetura` | `Ajustar entendimento` | `Outro (eu digito)`
 7. Apos aprovacao: `Status: entendimento aprovado`. **Proxima fase = arquitetura** — nao pular para implementacao.
 
-A implementacao so ocorre na fase **Desenvolvimento** do `dev-all-in-one`, apos arquitetura aprovada.
+A implementacao so ocorre na fase **Desenvolvimento** do `entrega-guiada`, apos arquitetura aprovada.
 
 ## Relacao com outras skills
 
@@ -51,7 +51,7 @@ A implementacao so ocorre na fase **Desenvolvimento** do `dev-all-in-one`, apos 
 |----------|--------|
 | Fix / incidente / hotfix | **esta** (`correcao-erro` + modelo-fix) |
 | Feature / regra nova | `especificacao` + modelo-feat |
-| Orquestracao completa | `dev-all-in-one` |
+| Orquestracao completa | `entrega-guiada` |
 
 Hotfix ainda exige este documento — pode ser curto, mas **nunca** sem causa e justificativa.
 

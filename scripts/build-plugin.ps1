@@ -14,6 +14,8 @@
 #   descriptions    descricao trocada por skill ou agent
 #   replacements    trocas literais de texto (de/para)
 #   keepSkillModel  grava `model:` nas skills a partir de claude-model
+#   rename          nome na fonte -> nome final no plugin (permite o mesmo nome em
+#                   plugins diferentes, ex.: pb-ajuste vira clamed-pb:ajuste)
 #
 # O que a montagem faz com cada .md:
 #   - frontmatter: remove os campos do Cursor e os claude-model*; grava
@@ -34,6 +36,14 @@ $defPath = Join-Path $repo "plugins\$Plugin.json"
 if (-not (Test-Path $defPath)) { throw "Definicao nao encontrada: $defPath" }
 $def = [IO.File]::ReadAllText($defPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
 
+function Get-RenameMap($d) {
+    $m = @{}
+    if ($d.rename) { foreach ($p in $d.rename.PSObject.Properties) { $m[$p.Name] = [string]$p.Value } }
+    return $m
+}
+$rename = Get-RenameMap $def
+function Get-Final($n) { if ($rename.ContainsKey($n)) { return $rename[$n] }; return $n }
+
 if (-not $OutRoot) { $OutRoot = Join-Path $repo '..\clamed-plugins' }
 $out = Join-Path ([IO.Path]::GetFullPath($OutRoot)) $def.name
 $prefix = $def.name
@@ -48,7 +58,7 @@ $alias = @{}
 $aliasFile = @{}
 foreach ($c in $chat) {
     $alias[$c.agent] = $c.skill
-    $aliasFile[$c.agent] = "skills/$($c.skill)/$($c.file)"
+    $aliasFile[$c.agent] = "skills/$(Get-Final $c.skill)/$($c.file)"
 }
 $ruleNames = @()
 $ruleInto = $null
@@ -65,11 +75,12 @@ $allNames = @(
 $otherMap = @{}
 Get-ChildItem (Join-Path $repo 'plugins') -Filter *.json | Where-Object { $_.BaseName -ne $Plugin } | ForEach-Object {
     $o = [IO.File]::ReadAllText($_.FullName, [Text.Encoding]::UTF8) | ConvertFrom-Json
+    $orn = Get-RenameMap $o
     foreach ($n in (@($o.skills) + @($o.agents) + @($o.agentsAsSkills))) {
-        if ($n -and -not $otherMap.ContainsKey($n)) { $otherMap[$n] = "$($o.name):$n" }
+        if ($n -and -not $otherMap.ContainsKey($n)) { $f = $n; if ($orn.ContainsKey($n)) { $f = $orn[$n] }; $otherMap[$n] = "$($o.name):$f" }
     }
     foreach ($c in @($o.chatAgents)) {
-        if ($c -and -not $otherMap.ContainsKey($c.agent)) { $otherMap[$c.agent] = "$($o.name):$($c.skill)" }
+        if ($c -and -not $otherMap.ContainsKey($c.agent)) { $f = $c.skill; if ($orn.ContainsKey($c.skill)) { $f = $orn[$c.skill] }; $otherMap[$c.agent] = "$($o.name):$f" }
     }
 }
 $external = @{}
@@ -104,7 +115,7 @@ function Format-Folded($Text, $Nl) {
     return ($lines -join $Nl)
 }
 
-function Convert-Frontmatter($Text, $Name, $IsSkill) {
+function Convert-Frontmatter($Text, $Name, $IsSkill, $Final) {
     $m = [regex]::Match($Text, $fmRegex)
     if (-not $m.Success) { throw "Sem frontmatter: $Name" }
     $fm = $m.Groups[2].Value
@@ -114,6 +125,7 @@ function Convert-Frontmatter($Text, $Name, $IsSkill) {
     $cm = [regex]::Match($fm, '(?m)^claude-model:\s*(\S+)')
     $fm = [regex]::Replace($fm, '(?m)^(model|cursor-model|claude-model|claude-model-fallback|readonly):[^\r\n]*(\r?\n|$)', '')
     $fm = $fm.TrimEnd()
+    if ($Final) { $fm = [regex]::Replace($fm, '(?m)^name:[^\r\n]*', "name: $Final") }
 
     $desc = $def.descriptions.$Name
     if ($desc) {
@@ -138,7 +150,7 @@ function Convert-Text($Text, $Rel) {
     $Text = [regex]::Replace($Text, '~/\.(?:claude|cursor)/skills/([a-z0-9-]+)/([A-Za-z0-9_.-]+)', {
         param($m)
         $n = $m.Groups[1].Value
-        if ($skills -contains $n) { return '${CLAUDE_PLUGIN_ROOT}/skills/' + $n + '/' + $m.Groups[2].Value }
+        if ($skills -contains $n) { return '${CLAUDE_PLUGIN_ROOT}/skills/' + (Get-Final $n) + '/' + $m.Groups[2].Value }
         [void]$warnings.Add("$Rel : caminho para skill fora do plugin ($n)")
         return $m.Value
     })
@@ -148,15 +160,15 @@ function Convert-Text($Text, $Rel) {
         param($m)
         $n = $m.Groups[1].Value
         if ($aliasFile.ContainsKey($n)) { return '${CLAUDE_PLUGIN_ROOT}/' + $aliasFile[$n] }
-        if ($asSkills -contains $n) { return '${CLAUDE_PLUGIN_ROOT}/skills/' + $n + '/SKILL.md' }
-        if ($agents -contains $n) { return '${CLAUDE_PLUGIN_ROOT}/agents/' + $n + '.md' }
+        if ($asSkills -contains $n) { return '${CLAUDE_PLUGIN_ROOT}/skills/' + (Get-Final $n) + '/SKILL.md' }
+        if ($agents -contains $n) { return '${CLAUDE_PLUGIN_ROOT}/agents/' + (Get-Final $n) + '.md' }
         [void]$warnings.Add("$Rel : caminho para agent fora do plugin ($n)")
         return $m.Value
     })
 
     # rules levadas para dentro de uma skill
     foreach ($r in $ruleNames) {
-        $target = '${CLAUDE_PLUGIN_ROOT}/skills/' + $ruleInto + '/regras/' + $r + '.md'
+        $target = '${CLAUDE_PLUGIN_ROOT}/skills/' + (Get-Final $ruleInto) + '/regras/' + $r + '.md'
         $Text = [regex]::Replace($Text, '(?:~/\.(?:claude|cursor)/rules/)?' + [regex]::Escape($r) + '\.mdc', { param($m) $target })
     }
 
@@ -168,8 +180,28 @@ function Convert-Text($Text, $Rel) {
     # prefixo do plugin nos nomes citados
     foreach ($n in $inSet) {
         $e = [regex]::Escape($n)
-        $Text = [regex]::Replace($Text, '`' + $e + '`', '`' + $prefix + ':' + $n + '`')
-        $Text = [regex]::Replace($Text, '(?<![\w/.:\\-])/' + $e + '(?![\w-])', '/' + $prefix + ':' + $n)
+        $fin = Get-Final $n
+        # nao troca o nome de MCP ("MCP `agil`") nem campo ("campo `agil`"): so skill/agent
+        $Text = [regex]::Replace($Text, '(?<!MCP )(?<!MCP \*\*)(?<!MCPs )(?<!campo )`' + $e + '`', '`' + $prefix + ':' + $fin + '`')
+        $Text = [regex]::Replace($Text, '(?<![\w/.:\\<-])/' + $e + '(?![\w-])', '/' + $prefix + ':' + $fin)
+    }
+
+    # mencoes soltas (sem crase nem barra) dos nomes renomeados, deste plugin e de
+    # outros: o nome da fonte vira o nome final com prefixo. Nao mexe em caminhos.
+    foreach ($n in $inSet) {
+        $fin = Get-Final $n
+        if ($fin -ne $n) {
+            # link relativo entre pastas de skills: ../<nome da fonte>/ -> ../<nome final>/
+            $Text = $Text.Replace('../' + $n + '/', '../' + $fin + '/')
+            $Text = [regex]::Replace($Text, '(?<![\w/.:\\-])' + [regex]::Escape($n) + '(?![\w-])', $prefix + ':' + $fin)
+        }
+    }
+    foreach ($n in @($otherMap.Keys)) {
+        $tail = $otherMap[$n].Substring($otherMap[$n].IndexOf(':') + 1)
+        if ($tail -ne $n) {
+            $Text = [regex]::Replace($Text, '(?<![\w/.:\\-])' + [regex]::Escape($n) + '(?![\w-])', $otherMap[$n])
+            $cross[$otherMap[$n]] = $true
+        }
     }
 
     # citacoes a skills e agents que nao vao neste plugin: se pertencem a outro
@@ -204,11 +236,11 @@ foreach ($s in $skills) {
     $src = Join-Path $repo "skills\$s"
     if (-not (Test-Path $src)) { throw "Skill nao existe na fonte: $s" }
     Get-ChildItem $src -Recurse -File | ForEach-Object {
-        $rel = "skills/$s" + ($_.FullName.Substring($src.Length) -replace '\\', '/')
+        $rel = "skills/$(Get-Final $s)" + ($_.FullName.Substring($src.Length) -replace '\\', '/')
         $dst = Join-Path $out ($rel -replace '/', '\')
         if ($_.Extension -eq '.md') {
             $t = Read-Text $_.FullName
-            if ($_.Name -eq 'SKILL.md' -and $_.DirectoryName -eq $src) { $t = Convert-Frontmatter $t $s $true }
+            if ($_.Name -eq 'SKILL.md' -and $_.DirectoryName -eq $src) { $t = Convert-Frontmatter $t $s $true (Get-Final $s) }
             Write-Text $dst (Convert-Text $t $rel)
         } else {
             $dir = Split-Path $dst -Parent
@@ -222,9 +254,10 @@ foreach ($s in $skills) {
 foreach ($a in $agents) {
     $src = Join-Path $repo "agents\$a.md"
     if (-not (Test-Path $src)) { throw "Agent nao existe na fonte: $a" }
-    $rel = "agents/$a.md"
-    $t = Convert-Frontmatter (Read-Text $src) $a $false
-    Write-Text (Join-Path $out "agents\$a.md") (Convert-Text $t $rel)
+    $af = Get-Final $a
+    $rel = "agents/$af.md"
+    $t = Convert-Frontmatter (Read-Text $src) $a $false $af
+    Write-Text (Join-Path $out "agents\$af.md") (Convert-Text $t $rel)
 }
 
 # --- agents que rodam neste chat e viram skill propria ---
@@ -232,19 +265,21 @@ foreach ($a in $asSkills) {
     $src = Join-Path $repo "agents\$a.md"
     if (-not (Test-Path $src)) { throw "Agent nao existe na fonte: $a" }
     if ($skills -contains $a) { throw "agentsAsSkills: ja existe skill com o nome $a" }
-    $rel = "skills/$a/SKILL.md"
-    $t = Convert-Frontmatter (Read-Text $src) $a $true
-    Write-Text (Join-Path $out "skills\$a\SKILL.md") (Convert-Text $t $rel)
+    $af = Get-Final $a
+    $rel = "skills/$af/SKILL.md"
+    $t = Convert-Frontmatter (Read-Text $src) $a $true $af
+    Write-Text (Join-Path $out "skills\$af\SKILL.md") (Convert-Text $t $rel)
 }
 
 # --- agents que rodam neste chat e viram arquivo de uma skill ---
 foreach ($c in $chat) {
     if ($skills -notcontains $c.skill) { throw "chatAgents: skill $($c.skill) nao esta no plugin" }
     $body = Get-Body (Read-Text (Join-Path $repo "agents\$($c.agent).md"))
-    $rel = "skills/$($c.skill)/$($c.file)"
+    $sf = Get-Final $c.skill
+    $rel = "skills/$sf/$($c.file)"
     Write-Text (Join-Path $out ($rel -replace '/', '\')) (Convert-Text $body $rel)
 
-    $skillMd = Join-Path $out "skills\$($c.skill)\SKILL.md"
+    $skillMd = Join-Path $out "skills\$sf\SKILL.md"
     $extra = "`r`n## Conducao neste chat`r`n`r`n" +
         'Antes de comecar, ler `${CLAUDE_SKILL_DIR}/' + $c.file + '`: traz a primeira acao, ' +
         "os gates e as perguntas de aprovacao de cada fase. Este fluxo roda neste chat; nao lancar como subagent.`r`n"
@@ -256,7 +291,7 @@ foreach ($r in $ruleNames) {
     if ($skills -notcontains $ruleInto) { throw "rules: skill $ruleInto nao esta no plugin" }
     $src = Join-Path $repo "rules\$r.mdc"
     if (-not (Test-Path $src)) { throw "Rule nao existe na fonte: $r" }
-    $rel = "skills/$ruleInto/regras/$r.md"
+    $rel = "skills/$(Get-Final $ruleInto)/regras/$r.md"
     Write-Text (Join-Path $out ($rel -replace '/', '\')) (Convert-Text (Get-Body (Read-Text $src)) $rel)
 }
 
@@ -274,8 +309,8 @@ $r += '## Conteudo'
 $r += ''
 $r += '| Tipo | Nome no Claude Code |'
 $r += '|------|---------------------|'
-foreach ($s in ($skills + $asSkills)) { $r += "| Skill | ``/$($prefix):$s`` |" }
-foreach ($a in $agents) { $r += "| Agent | ``$($prefix):$a`` |" }
+foreach ($s in ($skills + $asSkills)) { $r += "| Skill | ``/$($prefix):$(Get-Final $s)`` |" }
+foreach ($a in $agents) { $r += "| Agent | ``$($prefix):$(Get-Final $a)`` |" }
 $r += ''
 if ($def.prerequisites) {
     $r += '## Pre-requisitos'

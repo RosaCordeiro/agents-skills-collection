@@ -1,0 +1,26 @@
+---
+description: No inicio de desenvolvimento, chamar a skill construir (portal que pergunta o modo)
+alwaysApply: true
+---
+
+# Portal de desenvolvimento
+
+Quando o usuário **iniciar um desenvolvimento** (criar, construir, implementar algo, feat ou fix):
+
+1. Carregar a skill **`construir`** (`~/.claude/skills/construir/SKILL.md`) **antes** de skills ou código. Ela faz a pergunta com `AskQuestion` (entrega autônoma, entrega guiada, ajuste pontual ou entender primeiro) e encaminha para o modo escolhido.
+2. Entrega guiada → `~/.claude/agents/orquestrador-entrega-guiada.md`. Nunca Task.
+3. Ajuste pontual → `~/.claude/agents/ajuste.md`. Nunca Task.
+
+Se o usuário já disser o modo na primeira mensagem, não perguntar de novo.
+
+**Não perguntar** em: status, comando isolado, auditoria.
+
+## Fases da Entrega guiada
+
+`1 Descoberta` → `2 Especificação` → `3 Desenho` → `4 Código` → `5 Revisão` → `6 Aceite` → `7 Testes auto` → `8 Revisão testes` → `9 Documentação` → `10 Encerramento`
+
+Detalhe: `~/.claude/skills/entrega-guiada/fases.md`
+
+## Perguntas com seletor
+
+Opções fixas: **`AskQuestion`**, máx. 1 por mensagem.

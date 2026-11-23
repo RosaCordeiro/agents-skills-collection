@@ -1,14 +1,16 @@
 {
   "name": "clamed-dev",
-  "version": "0.1.3",
-  "description": "Fluxo de desenvolvimento da CLAMED: portal que escolhe entre entrega guiada em 10 fases e desenvolvimento direto, com analise orquestrada, descoberta, especificacao, arquitetura, revisao de codigo e de testes, documentacao, auditoria e os padroes do time.",
+  "version": "0.5.0",
+  "description": "Fluxo de desenvolvimento da CLAMED: porta de entrada que leva a analise orquestrada, entrega guiada (10 fases, aprovacao fase a fase), entrega autonoma (uma aprovacao, com infografico do plano) ou ajuste pontual, com descoberta, especificacao, arquitetura, revisao de codigo e de testes, documentacao, auditoria e os padroes do time.",
   "keepSkillModel": true,
   "skills": [
     "analista",
-    "dev-all-in-one",
+    "entrega-guiada",
+    "entrega-autonoma",
     "descoberta",
     "especificacao",
     "correcao-erro",
+    "incidente",
     "arquitetura",
     "review",
     "teste-regra-negocio",
@@ -25,35 +27,40 @@
     "script",
     "backstage-recursos",
     "backstage-catalog-info",
-    "agil"
+    "agil",
+    "softdesk",
+    "triagem"
   ],
   "agents": [
-    "arquitetura-pro",
-    "review-pro",
-    "review-testes-pro",
-    "auditor"
+    "arquiteto",
+    "revisor-codigo",
+    "revisor-testes",
+    "auditor",
+    "implementador"
   ],
   "agentsAsSkills": [
-    "desenvolvimento",
-    "desenvolvimento-simples"
+    "construir",
+    "ajuste"
   ],
   "chatAgents": [
-    { "agent": "desenvolvimento-pro", "skill": "dev-all-in-one", "file": "orquestrador.md" }
+    { "agent": "orquestrador-entrega-guiada", "skill": "entrega-guiada", "file": "orquestrador.md" }
   ],
   "rules": {
-    "into": "dev-all-in-one",
+    "into": "entrega-guiada",
     "names": ["custo-subagent", "sem-mudanca-tecnologia", "execucao-wsl"]
   },
   "replacements": [
     { "from": "ler `~/.claude/agents/<nome>.md` e cumprir", "to": "carregar a skill correspondente e cumprir" },
-    { "from": "Regra `modelo-sonnet.mdc`: Opus so com pedido explicito neste chat.", "to": "Modelos por fase: `~/.claude/skills/dev-all-in-one/modelos.md`." }
+    { "from": "Regra `modelo-sonnet.mdc`: Opus so com pedido explicito neste chat.", "to": "Modelos por fase: `~/.claude/skills/entrega-guiada/modelos.md`." }
   ],
   "descriptions": {
-    "dev-all-in-one": "Orquestrador de Entrega (10 fases): descoberta, especificacao, desenho, codigo, revisao, aceite, testes, revisao de testes, docs, encerramento. Roda neste chat; nao lancar como subagent. Use quando o usuario escolher entrega guiada, pro, all-in-one ou 10 fases."
+    "entrega-guiada": "Orquestrador de Entrega (10 fases, voce aprova cada fase): descoberta, especificacao, desenho, codigo, revisao, aceite, testes, revisao de testes, docs, encerramento. Roda neste chat; nao lancar como subagent. Use quando o usuario quiser aprovar fase a fase, pedir entrega guiada ou as 10 fases."
   },
   "prerequisites": [
     "Ambiente Windows + WSL Ubuntu: docker, node e python rodam no WSL.",
     "Acesso ao GitLab interno (rede CLAMED ou VPN) para as skills de Backstage.",
-    "MCP `agil` (Ágil CLAMED) autorizado pelo `/mcp`, para a skill agil."
+    "MCP `agil` (Ágil CLAMED) autorizado pelo `/mcp`, para a skill agil.",
+    "MCP `softdesk` (https://mcp-servicedesk.clamed.com.br/mcp) autorizado pelo `/mcp`, para a skill softdesk. O perfil de cada pessoa fica em ~/.claude/softdesk-perfil.md (modelo em skills/softdesk/perfil-modelo.md); a skill o descobre e oferece gravar na primeira vez.",
+    "Entregas em PowerBuilder: o plugin `clamed-pb` instalado junto. A `entrega-autonoma` e a `analista` usam as skills e os agents dele."
   ]
 }

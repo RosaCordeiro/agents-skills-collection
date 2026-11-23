@@ -3,7 +3,7 @@ name: review-testes
 description: >-
   Revisao da qualidade dos testes automatizados apos a suite rodar: abrangencia,
   execucao real, anti-padrao de teste adaptado ao bug. Fase 8 da Entrega guiada.
-  Use via subagent review-testes-pro apos teste-automatizado.
+  Use via subagent revisor-testes apos teste-automatizado.
 ---
 
 # Revisao de testes automatizados
@@ -12,7 +12,7 @@ Fase **8** da Entrega guiada — **depois** de `teste-automatizado` (Fase 7) e *
 
 Objetivo: garantir que os testes **protegem** o produto — nao que **escondem** defeitos.
 
-No fluxo Pro: subagent **`review-testes-pro`** (`cursor-grok-4.6-medium` → Sonnet padrão; `readonly`). Orquestrador (`claude-sonnet-5`) grava `REVIEW-TESTES-*-resultado.md`. Mapa: `dev-all-in-one/modelos.md`.
+No fluxo Pro: subagent **`revisor-testes`** (`cursor-grok-4.6-medium` → Sonnet padrão; `readonly`). Orquestrador (`claude-sonnet-5`) grava `REVIEW-TESTES-*-resultado.md`. Mapa: `entrega-guiada/modelos.md`.
 
 ## Quando aplicar
 
@@ -89,7 +89,7 @@ Modelo do artefato: [modelo-resultado.md](modelo-resultado.md).
 
 ## Loop com o orquestrador
 
-1. Task `review-testes-pro` → achados + corpo do REVIEW-TESTES
+1. Task `revisor-testes` → achados + corpo do REVIEW-TESTES
 2. Orquestrador grava arquivo
 3. `AskQuestion`: `Revisao de testes ok?`
    - `Sim, seguir para Documentacao`

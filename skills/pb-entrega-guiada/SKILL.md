@@ -1,18 +1,18 @@
 ﻿---
-name: pb-dev-all-in-one
+name: pb-entrega-guiada
 description: >-
   Orquestrador de Entrega PB (8 fases): sincronismo, descoberta,
   especificacao, arquitetura (fragmentacao), system design por fragmento,
   revisao das specs vs descoberta, sugestoes de teste, encerramento. So
   especifica e desenha — nao implementa PB nesta fase. Use com
-  pb-desenvolvimento-pro / entrega guiada PB.
+  quando o usuario pedir entrega guiada PB.
 ---
 
 # Orquestrador de Entrega PB (8 fases)
 
-Equivalente ao `dev-all-in-one`, mas para pedidos PowerBuilder + Sybase que
+Equivalente ao `entrega-guiada`, mas para pedidos PowerBuilder + Sybase que
 merecem descoberta e arquitetura de verdade — não um patch pontual (isso é
-`/pbg`) nem uma consulta rápida (isso é `/pb-sybase` modo consulta).
+`/pb-ajuste`) nem uma consulta rápida (isso é `/pb-sybase` modo consulta).
 
 **Este fluxo não implementa código PB.** Termina em specs aprovadas +
 sugestões de teste + Encerramento (DoD). Implementação é decisão separada,
@@ -41,7 +41,7 @@ gerar correção antes de avançar (ver loops abaixo).
 | Fase | Motivo | Primário | Fallback |
 |------|--------|----------|----------|
 | 1 Sincronismo | Checagem mecânica | `claude-sonnet-5` | Grok medium |
-| 2 Descoberta | Investigar o pedido a fundo (mesma exceção do `dev-all-in-one`) | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` → Grok medium |
+| 2 Descoberta | Investigar o pedido a fundo (mesma exceção do `entrega-guiada`) | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` → Grok medium |
 | 3 Especificação | Redação/consulta de rotina | `claude-sonnet-5` | Grok medium |
 | 4 Arquitetura (fragmentação) | Decisão de fronteiras entre specs — julgamento, não redação | `claude-sonnet-5-thinking-high` | `claude-sonnet-5` |
 | 5 System design por fragmento | Detalhamento técnico, roda 1x por fragmento (custo multiplica) | `claude-sonnet-5` | Grok medium |
@@ -62,7 +62,7 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 | Fase | Executor | Claude Code | Fallback |
 |------|----------|-------------|----------|
 | Início | orquestrador (sessão) | `opus` | `sonnet` |
-| 1 Sincronismo | skill `pbg` (só checagem) | `sonnet` | — |
+| 1 Sincronismo | skill `pb-ajuste` (só checagem) | `sonnet` | — |
 | 2 Descoberta | skill `descoberta` | `opus` | `sonnet` |
 | 3 Especificação | skill `pb-sybase` | `opus` | `sonnet` |
 | 4 Arquitetura (fragmentação) | Task `general-purpose`, `model: fable` | `fable` | `opus` → `sonnet` |
@@ -82,7 +82,7 @@ No Claude Code vale o campo `claude-model` (o sync grava em `model:` no `~/.clau
 **Regras das Tasks (fases 4, 5 e 6)**
 
 - **Uma Task por fase**, não uma por fragmento. A Fase 5 grava todas as seções no mesmo `SPEC-<n>-TECNICA.md`; Tasks paralelas no mesmo arquivo se sobrescrevem.
-- Mesmo gate do `arquitetura-pro`: se o artefato da fase já existe (`ARCH-<n>.md`, `SPEC-<n>-TECNICA.md`, `REVIEW-<n>-resultado.md`), o orquestrador **emenda neste chat**; não relança Task. Relançar só se o usuário pedir redo ou a Task falhou sem gravar o arquivo.
+- Mesmo gate do `arquiteto`: se o artefato da fase já existe (`ARCH-<n>.md`, `SPEC-<n>-TECNICA.md`, `REVIEW-<n>-resultado.md`), o orquestrador **emenda neste chat**; não relança Task. Relançar só se o usuário pedir redo ou a Task falhou sem gravar o arquivo.
 - Prompt da Task: caminho da pasta do chamado, os artefatos aprovados que ela deve ler (Resumo da Descoberta colado no prompt, `SPEC-<n>.md`, `ARCH-<n>.md`) e o arquivo que ela deve gravar. A Task não pergunta nada ao usuário: devolve um resumo curto (caminho, decisões, dúvidas) e o orquestrador faz a pergunta de aprovação.
 - A Task nunca altera PB, banco ou SVN.
 
@@ -132,13 +132,13 @@ verdade não estão divergentes.
    fica para a Fase 2. Sem sistema não dá para checar nada.
 1. **Snapshot PBG vs SVN vs PBL**: comparar a data do `.srw`/`.srd` em
    `C:\SVN\Sistemas_PB12\<Sistema>\Bibliotecas\` e da `.pbl` com a do
-   snapshot em `.pbg\snapshots\...` do workspace PBG (skill `pbg` § Ambiente
+   snapshot em `.pbg\snapshots\...` do workspace PBG (skill `pb-ajuste` § Ambiente
    Clamed → Snapshot desatualizado). `pbg_svn_status` mostra o estado do SVN.
    Atenção: `pbg_status` **não** atualiza o snapshot — só reexporta a PBL
    via ORCA para `.pbg/<exportFolder>` (pode rodar, não altera nada do
    usuário). Quem regrava o snapshot é o `pbg_send`, que também **commita**
    no workspace PBG — esse só com OK do usuário. Snapshot velho: ler o
-   export fresco direto do disco, como manda a skill `pbg`.
+   export fresco direto do disco, como manda a skill `pb-ajuste`.
 2. **`sybase-objects` (git)**: no clone local, checar se há divergência
    entre o que está versionado e o remoto (`git status`, `git log` local vs
    `origin`), sem fazer `pull`/`fetch` sozinho.
@@ -161,7 +161,7 @@ direto; não editar `.sr*` a mão.
 
 ### Fase 2 — Descoberta
 
-Rodar a skill `descoberta` como está — mesmo processo do `dev-all-in-one`
+Rodar a skill `descoberta` como está — mesmo processo do `entrega-guiada`
 (objetivo, atores, gatilho, escopo, restrições, ROI opcional), adaptado ao
 contexto PB: perguntar também **qual sistema PB** (`path` do workspace),
 quais telas/objetos o usuário já sabe que estão envolvidos, e se há sistemas
@@ -315,7 +315,7 @@ DOCX (skill `pb-sybase` § DOCX) só aqui, e só se o usuário pedir.
 
 **`AskQuestion`**: `DoD completo — encerrar?`
 
-Por enquanto este orquestrador **encerra aqui** — não encadeia para `/pbg`
+Por enquanto este orquestrador **encerra aqui** — não encadeia para `/pb-ajuste`
 nem `/pb-criar-objeto` automaticamente. Implementar é uma decisão separada,
 tomada pelo usuário fora deste fluxo.
 
@@ -346,9 +346,9 @@ tomada pelo usuário fora deste fluxo.
 
 | Situação | Agent / skill |
 |----------|----------------|
-| Pedido grande, quer descoberta + arquitetura + specs por fragmento | **este** (`pb-desenvolvimento-pro`) |
+| Pedido grande, quer descoberta + arquitetura + specs por fragmento | **este** (`orquestrador-pb-entrega-guiada`) |
 | Consulta rápida / cruzamento PB+Sybase | `/pb-sybase` (modo consulta) |
 | Spec pequena e direta, sem fases | `/pb-sybase` (modo especificação, como hoje) |
-| Patch de objeto PB já existente | `/pbg` |
+| Patch de objeto PB já existente | `/pb-ajuste` |
 | Objeto/PBL/tela nova (depois da spec aprovada) | skill `pb-criar-objeto`, fora deste fluxo |
 | Teste de mesa de trigger/SP | `/teste-mesa-sybase` |

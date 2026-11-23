@@ -11,7 +11,7 @@ Copiar e preencher. Substituir NNN / campos.
 | Branch | `feat/…` ou `fix/…` |
 | Alvo | SPEC-NNN vx.y / CORR-NNN |
 | Diff base | `main` / `master` / … |
-| Revisor | agent `review-pro` (model: …) |
+| Revisor | agent `revisor-codigo` (model: …) |
 | Veredito | Pronto para testes de RN / Quase / Bloqueado |
 
 ## Escopo revisado

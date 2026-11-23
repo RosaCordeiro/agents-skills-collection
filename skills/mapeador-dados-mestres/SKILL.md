@@ -22,7 +22,7 @@ Responda em português. Objetivo: **mapear colunas de tabela(s) mestre** com tr�
 
 Consulta pontual (uma coluna): usar skill **`mapeador-dados-mestres-coluna`** (varredura completa + linguagem usuário).
 
-Agent dedicado: **`/mapeador-dados-mestres`**. Não implementar PB/SQL neste fluxo — só mapear. Patch depois: `/pbg` ou Pro.
+Agent dedicado: **`/mapeador-dados-mestres`**. Não implementar PB/SQL neste fluxo — só mapear. Patch depois: `/pb-ajuste` ou Pro.
 
 ## Entrega obrigatória em arquivo
 
@@ -87,7 +87,7 @@ Não inventar coluna, tela nem domínio. Campo sem evidência de gravação PB �
 |----------------|-------------|
 | Aprofundar **uma coluna** (todos PB + triggers, tom usuário) | `mapeador-dados-mestres-coluna` → `MAPA-<tabela>.<coluna>.md` |
 | Spec de tela/campo novo | `/pb-sybase` |
-| Implementar PB | `/pb` ou `/pbg` |
+| Implementar PB | `/pb` ou `/pb-ajuste` |
 | Alterar trigger/SP | editar `sybase-objects` + aviso deploy DBA |
 | Teste de mesa SQL | `/teste-mesa-sybase` |
 
