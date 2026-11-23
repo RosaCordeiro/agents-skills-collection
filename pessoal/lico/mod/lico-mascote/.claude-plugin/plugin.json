@@ -1,0 +1,6 @@
+{
+  "name": "lico-mascote",
+  "version": "0.1.0",
+  "description": "Painel lateral com o Lico, a lontra mascote animada: muda de humor conforme o trabalho e troca de roupinha.",
+  "types": "./types/index.d.ts"
+}
