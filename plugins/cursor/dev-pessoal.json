@@ -1,0 +1,135 @@
+{
+  "name": "dev-pessoal",
+  "displayName": "Dev Pessoal",
+  "version": "0.1.0",
+  "description": "Fluxo de desenvolvimento pessoal: portal que escolhe entre entrega guiada em 10 fases e desenvolvimento direto, com descoberta, especificacao, arquitetura, revisao de codigo e de testes, documentacao, auditoria e os padroes de projeto (.ai, Clean Architecture, modelagem Postgres).",
+  "author": "Guilherme",
+  "installPath": "~/.cursor/plugins/local/dev-pessoal",
+  "skills": [
+    "dev-all-in-one",
+    "descoberta",
+    "especificacao",
+    "correcao-erro",
+    "arquitetura",
+    "review",
+    "teste-regra-negocio",
+    "teste-automatizado",
+    "review-testes",
+    "documentacao",
+    "auditor",
+    "projeto-ai",
+    "modelagem-dados",
+    "clean-architecture",
+    "backend",
+    "frontend",
+    "script"
+  ],
+  "agents": [
+    "arquitetura-pro",
+    "review-pro",
+    "review-testes-pro",
+    "auditor"
+  ],
+  "agentsAsSkills": [
+    "desenvolvimento",
+    "desenvolvimento-simples"
+  ],
+  "chatAgents": [
+    { "agent": "desenvolvimento-pro", "skill": "dev-all-in-one", "file": "orquestrador.md" }
+  ],
+  "rules": [
+    "custo-subagent",
+    "sem-mudanca-tecnologia",
+    "execucao-wsl",
+    "escolha-agent-desenvolvimento",
+    "modelo-sonnet",
+    "projeto-ai"
+  ],
+  "forbid": [
+    "clamed",
+    "backstage",
+    "\\.claude",
+    "claude-model",
+    "claude code",
+    "AskUserQuestion",
+    "CLAUDE_",
+    "10\\.0\\.4\\.67",
+    "git-repo",
+    "[A-Za-z]:\\\\Users\\\\"
+  ],
+  "descriptions": {
+    "especificacao": "Especificacao funcional: classifica feat vs fix, abre a branch (feat/ ou fix/), e grava o documento no modelo correto a partir do entendimento ja aprovado na Descoberta. Use na fase 2 do Dev All-in-One (apos Descoberta aprovada), quando o usuario pedir especificação, RN, BRD/FRD, ou antes de arquitetura.",
+    "clean-architecture": "Clean Architecture com toque hexagonal (ports/adapters) para APIs e servicos TypeScript e Python. Use com backend, script e arquitetura em servicos Node/Python; nao para SAP, PB ou Fiori.",
+    "backend": "Implementa APIs e servicos com Node/TypeScript, Go ou Python (Clean Architecture + hexagonal — skill clean-architecture), Docker Compose e bancos Postgres, Sybase ou MongoDB. Use quando o trabalho for backend, API, banco, migracoes, servicos Docker.",
+    "projeto-ai": "Padrao obrigatorio da pasta .ai em projetos greenfield: context, rules, decisions, docs. Use quando criar repo, servico, app, CLI, MCP server ou sistema novo; ou quando outra skill de desenvolvimento indicar greenfield."
+  },
+  "replacements": [
+    { "from": "ler `~/.claude/agents/<nome>.md` e cumprir", "to": "ler o arquivo do papel no plugin (`~/.cursor/plugins/local/dev-pessoal/skills/<nome>/SKILL.md`, ou `skills/dev-all-in-one/orquestrador.md` para o Pro) e cumprir" }
+  ],
+  "scrub": [
+    { "file": "skills/dev-all-in-one/SKILL.md", "dropLine": "Antes do checklist, nos repositórios tocados, nesta ordem:" },
+    { "file": "skills/dev-all-in-one/SKILL.md", "dropLine": "1. Skill `backstage-recursos`" },
+    { "file": "skills/dev-all-in-one/SKILL.md", "dropLine": "2. Skill `backstage-catalog-info`" },
+    { "file": "skills/dev-all-in-one/SKILL.md", "dropLine": "Único pulo aceito: `backstage-recursos`" },
+    { "file": "skills/dev-all-in-one/SKILL.md", "dropLine": "(ela mesma avisa e pula)." },
+    { "file": "skills/dev-all-in-one/SKILL.md", "dropLine": "- [ ] Backstage:" },
+    { "file": "skills/dev-all-in-one/SKILL.md", "from": " Delegando por Task: ver Regras de custo no Claude Code.", "to": "" },
+    { "file": "skills/dev-all-in-one/SKILL.md", "from": " (correções em lote e re-review só do diff — ver Regras de custo no Claude Code)", "to": "" },
+
+    { "file": "skills/dev-all-in-one/modelos.md", "dropLine": "| `pb-sybase` / `teste-mesa-sybase` |" },
+    { "file": "skills/dev-all-in-one/modelos.md", "dropLine": "| `pb-desenvolvimento-pro` |" },
+    { "file": "skills/dev-all-in-one/modelos.md", "dropLine": "| `pbg` |" },
+    { "file": "skills/dev-all-in-one/modelos.md", "from": "Orquestrador, simples, spec, código, pb-sybase, fallbacks leves", "to": "Orquestrador, simples, spec, código, fallbacks leves" },
+    { "file": "skills/dev-all-in-one/modelos.md", "from": "PBG, portal, monitor", "to": "portal" },
+
+    {
+      "file": "skills/especificacao/SKILL.md",
+      "dropSection": "### 3. Gate Node.js",
+      "with": "### 3. Gate Node.js — logger e métricas\n\nSe o trabalho for (ou o projeto alvo for) **Node.js / TypeScript no Node**:\n\n- Projeto que **ja** tem logger/metricas padrao (dependencia no `package.json`, `GET /metrics`, pasta `observability/`): **herdar** sem perguntar de novo e registrar em Premissas: *“Observabilidade: herdada do projeto.”*\n- Greenfield Node (sem evidencia): **`AskQuestion`** (maximo um por mensagem) perguntando se inclui logger estruturado e metricas neste MVP; registrar a decisao. Nao aprovar a spec sem ela.\n- Stack nao-Node: gate **N/A** — nao perguntar.\n"
+    },
+    { "file": "skills/especificacao/SKILL.md", "from": "- Stack Node: observabilidade **herdada** se o projeto ja usa; so perguntar em greenfield (§3)", "to": "- Stack Node: observabilidade **herdada** do projeto; so decidir em greenfield (§3)" },
+    { "file": "skills/especificacao/validacao.md", "from": "decisao sobre `@clamed/logger` e/ou `light-node-metrics` registrada (Sim ambos / so um / Nao / Outro)", "to": "decisao sobre logger e metricas registrada (herdada do projeto ou decidida na spec)" },
+    { "file": "skills/especificacao/modelo-feat.md", "from": "**ja** usa `@clamed/logger` / `light-node-metrics`, **herdar** (nao perguntar de novo). So perguntar em greenfield Node.", "to": "**ja** tem logger/metricas padrao, **herdar** (nao perguntar de novo). So decidir em greenfield Node." },
+
+    { "file": "skills/dev-all-in-one/fases.md", "from": "Tabela acima = Cursor. Claude Code e regras de fallback: [modelos.md](modelos.md) (§ Claude Code).", "to": "Regras de fallback: [modelos.md](modelos.md)." },
+
+    { "file": "skills/arquitetura/SKILL.md", "dropLine": "2b. Se houver **logs Node" },
+    { "file": "skills/arquitetura/SKILL.md", "from": "2c. Se houver **API/servico", "to": "2b. Se houver **API/servico" },
+    { "file": "skills/arquitetura/SKILL.md", "from": " (como em `clamed.dev/docs/arquitetura/ARCH-001.md` v0.2+)", "to": "" },
+    { "file": "skills/arquitetura/SKILL.md", "from": "Referencia de bom exemplo: monorepo/docs de arquitetura no estilo ARCH-001 do clamed.dev (fluxos F1–Fn, catalogo de rotas em tabela, modelo 5.1–5.3, checklist 12.x).", "to": "Referencia de bom exemplo: docs de arquitetura com fluxos F1–Fn, catalogo de rotas em tabela, modelo 5.1–5.3 e checklist 12.x." },
+
+    { "file": "skills/review/SKILL.md", "dropLine": "- `@clamed/logger` / light-node-metrics quando o projeto Node ja usa" },
+    { "file": "skills/review/checklist-detalhado.md", "from": "- Se o projeto ja usa `@clamed/logger` / metrics: novos fluxos relevantes logam/medem", "to": "- Se o projeto ja tem logger/metrics padrao: novos fluxos relevantes logam/medem" },
+    { "file": "skills/review/checklist-detalhado.md", "dropLine": "- Skill `logger`: novos logs" },
+
+    { "file": "skills/auditor/SKILL.md", "dropLine": "| Teste de mesa Sybase | `teste-mesa-sybase` |" },
+    { "file": "skills/auditor/validacoes.md", "from": "Se o projeto **ja** usa `@clamed/logger` (ou o logger padrao do repo)", "to": "Se o projeto **ja** tem logger padrao" },
+    { "file": "skills/auditor/validacoes.md", "from": " Avaliar aderencia a skill `logger` (`keywords`, niveis, `event`, `correlation_id` automatico) quando a entrega ja deveria seguir o padrao novo.", "to": "" },
+    { "file": "skills/auditor/validacoes.md", "from": "nao exigir `@clamed/logger` em greenfield Python/Go/SAP so porque a skill Node cita.", "to": "nao exigir um logger especifico em greenfield so porque outra stack usa." },
+    { "file": "skills/auditor/notas.md", "from": "(`users/`, `softdesk/`)", "to": "(`users/`, `chamados/`)" },
+    { "file": "skills/auditor/notas.md", "from": "pastas `softdesk/` e `uat/`", "to": "pastas `chamados/` e `uat/`" },
+    { "file": "skills/auditor/notas.md", "from": "Nao comparar xml-translog com clamed.dev.", "to": "Nao comparar repos diferentes entre si." },
+
+    { "file": "skills/clean-architecture/SKILL.md", "from": "(padrao Clamed)", "to": "(padrao hexagonal)" },
+    { "file": "skills/clean-architecture/SKILL.md", "dropLine": "**Referencia canonica:** `api-integracao-syb-kafka`" },
+    { "file": "skills/clean-architecture/typescript.md", "dropLine": "Alinhado a `api-integracao-syb-kafka`" },
+    { "file": "skills/clean-architecture/typescript.md", "dropLine": "- **Logs:** `@clamed/logger`" },
+
+    { "file": "skills/backend/SKILL.md", "from": "(PowerBuilder → skill `pbg`; C++ desktop → `arquitetura`)", "to": "(C++ desktop → `arquitetura`)" },
+    { "file": "skills/backend/SKILL.md", "from": "Padrao Clamed (referencia: `api-integracao-syb-kafka`):", "to": "Estrutura de camadas:" },
+    { "file": "skills/backend/SKILL.md", "dropLine": "- **Logs Node (`@clamed/logger`):**" },
+
+    { "file": "skills/projeto-ai/SKILL.md", "dropLine": "| Novo sistema PB (workspace/PBL nova)" },
+    { "file": "skills/projeto-ai/SKILL.md", "from": "`mcp`, `rag`, `abap`, `fiori`, `ui5`, `pb-criar-objeto`, orquestradores", "to": "orquestradores" },
+    { "file": "skills/projeto-ai/SKILL.md", "from": "(complementam `~/.claude/rules/`)", "to": "(complementam as rules globais)" },
+    { "file": "skills/projeto-ai/templates/rules/README.md", "from": "rules globais do Cursor (`~/.claude/rules/`)", "to": "rules globais do Cursor" },
+    { "file": "skills/projeto-ai/templates/context/stack.md", "from": "@clamed/logger + light-node-metrics, ou N/A", "to": "logger padrao do projeto, ou N/A" },
+
+    { "file": "skills/desenvolvimento/SKILL.md", "dropSection": "## Etapa final obrigatória em ambos os fluxos" },
+    { "file": "skills/desenvolvimento-simples/SKILL.md", "dropSection": "## Etapa final obrigatória (todo pedido" },
+    { "file": "skills/desenvolvimento-simples/SKILL.md", "dropLine": "| Logs Node (`@clamed/logger`) | `logger` |" },
+    { "file": "skills/dev-all-in-one/orquestrador.md", "dropSection": "## Etapa final obrigatória (Fase 10" },
+    { "file": "skills/dev-all-in-one/orquestrador.md", "from": "## Stack / Postgres / Logger", "to": "## Stack / Postgres" },
+    { "file": "skills/dev-all-in-one/orquestrador.md", "from": "`modelagem-dados`, `logger`, `especificacao` §3.", "to": "`modelagem-dados`." }
+  ]
+}
