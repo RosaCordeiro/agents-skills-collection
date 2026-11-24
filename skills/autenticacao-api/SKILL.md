@@ -23,7 +23,7 @@ colaborador, fornecedor).
   `HUB_URL`, `HUB_SISTEMA`, `HUB_SEGREDO` (nunca no codigo nem no git).
 - Cache da validacao de **60 s**. **Falha fechada**: sem token ou token invalido
   = `401`; hub indisponivel = `503`. Nunca liberar a rota porque o hub caiu.
-- O filtro e registrado **uma vez**, no roteador raiz, antes de qualquer rota
+- O filtro e registrado **uma vez**, como primeira camada do modulo (ou no roteador raiz), antes de qualquer rota
   (fechado por padrao). Rota nova ja nasce protegida; nao repetir a checagem
   rota a rota. Ver `clean-architecture` (presentation).
 
@@ -55,14 +55,14 @@ excecao por conta propria, nem por "e so interno".
 Teste automatizado que lista **todas** as rotas registradas e falha se alguma
 fora da lista de excecoes responder diferente de `401` sem token. A lista de
 excecoes fica no proprio teste. Modelo: `test/autenticacao-rotas.spec.ts` do
-repo `api_compras` (branch `compras-exigir-token`).
+repo `api_compras` (branch `fix/compras-exigir-token`, ate o MR ser mesclado).
 
 ## Onde cada fase aplica
 
 | Fase / skill | O que fazer |
 |--------------|-------------|
 | `especificacao` | RNF de acesso: o que a API devolve, quem acessa, procedimento `SC`, excecoes pedidas |
-| `arquitetura` | ARCH §7.2: filtro no roteador raiz, hub, procedimentos por rota, excecoes registradas |
+| `arquitetura` | ARCH §7.2: filtro como primeira camada do modulo, hub, procedimentos por rota, excecoes registradas |
 | `backend` / `clean-architecture` | Implementar o filtro e o teste de contrato; segredos so em env |
 | `frontend` | Enviar o Bearer em toda chamada; token fora da URL |
 | `review` (CR5) | Reprovar rota aberta fora da lista, token em URL, dado pessoal em log |

@@ -51,7 +51,7 @@ Nao colocar SQL, cliente HTTP ou regra de negocio em controllers; use cases inje
 - Implemente a melhor opcao planejada, com codigo legivel (sem complexidade gratuita)
 - Durante o desenvolvimento: cobrir cenarios de **regra de negocio** da especificacao (RN-xx). Suíte ampla fica apos o desenvolvimento.
 - Secrets apenas via env / secrets do Compose — nunca no codigo
-- **API autenticada por padrao:** ler e seguir `autenticacao-api` — Bearer do hub no roteador raiz, permissao `SC`, teste de contrato; nenhuma rota nasce aberta
+- **API autenticada por padrao:** ler e seguir `autenticacao-api` — Bearer do hub como primeira camada do modulo, permissao `SC`, teste de contrato; nenhuma rota nasce aberta
 - Camadas conforme `clean-architecture` (nao “separar quando couber” — padrao desde o inicio em TS/Python)
 - Migracoes/versionamento de schema quando houver DB relacional
 - **Postgres:** ler e seguir `modelagem-dados` (`~/.claude/skills/modelagem-dados/SKILL.md`) — PK/FK `uuid`, `varchar(n)`, `TEXT` só para texto longo

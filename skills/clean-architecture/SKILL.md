@@ -85,7 +85,7 @@ Python: mesma logica em [python.md](python.md) (`core/`, `infrastructure/`, `pre
 
 - Controllers/routes **finos**: validar entrada HTTP, chamar use case, mapear resposta/erro
 - Sem regra de negocio nem acesso direto a DB
-- Autenticacao: filtro do hub registrado uma vez no roteador raiz, antes das rotas (`autenticacao-api`)
+- Autenticacao: filtro do hub registrado uma vez como primeira camada do modulo (ou no roteador raiz), antes das rotas (`autenticacao-api`)
 
 ### 5. Workers / cron
 
