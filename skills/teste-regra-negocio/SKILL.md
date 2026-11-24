@@ -23,7 +23,7 @@ Se existir `REVIEW-*-resultado.md` com bloqueantes abertos, nao iniciar VAL/V �
 ## Processo
 
 1. Listar os cenarios obrigatorios do documento aprovado (MVP / severidade).
-2. Executar cada um (manual, script focado ou teste pontual — o que o projeto ja tiver).
+2. Executar cada um (manual, script focado ou teste pontual — o que o projeto ja tiver). Se a feat tem API, incluir o cenario de acesso sem token (esperado `401`) e sem permissao `SC` (`autenticacao-api`).
 3. Registrar resultado: passou / falhou / bloqueado + evidencia curta.
 4. Se falhar: **`AskQuestion`** — `Corrigir agora` | `Registrar debito e seguir` | `Outro (eu digito)`.
 5. Atualizar o doc da especificação/correção com o resultado dos VAL/V.

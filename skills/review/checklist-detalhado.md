@@ -28,7 +28,10 @@ No artefato e no chat, basta o status + nota curta.
 
 ## CR5 — Auth / dados
 
-- Rotas mutaveis exigem auth; IDOR (acessar recurso de outro usuario) considerado
+- **Todas** as rotas exigem token do hub; rota aberta so `/health`, `/itsAlive`, `/metrics` ou com decisao do usuario registrada na spec/ARCH (`autenticacao-api`) — senao FALHA
+- Rota com dado pessoal ou escrita checa procedimento `SC`; teste de contrato presente e cobrindo todos os prefixos
+- IDOR (acessar recurso de outro usuario) considerado
+- Sem token ou dado pessoal em URL/query
 - Logs sem PII sensivel desnecessaria
 
 ## CR6 — Injecao

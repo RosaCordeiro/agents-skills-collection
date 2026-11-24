@@ -91,6 +91,7 @@ Se a entrega tiver API e/ou persistencia, as secoes **5, 6, 7 e validacao** deve
 - cobrir TODOS os recursos desta entrega (CRUD + acoes especiais)
 ### 7.2 Auth, formato de erro, versionamento
 - prefixo, headers, shape `{ code, message }`, codigos alinhados a SPEC
+- **Auth obrigatoria** (skill `autenticacao-api`): filtro do hub como primeira camada do modulo (ou no roteador raiz), procedimento `SC` por rota que devolve dado pessoal ou escreve, excecoes so da lista fechada ou com decisao do usuario registrada aqui
 - OpenAPI/contrato: obrigatorio na implementacao se houver API REST
 - Se nao houver API (CLI/batch): descrever invocacao/IO com o mesmo rigor
 
@@ -130,6 +131,7 @@ Checklist acionavel para o usuario aprovar. Incluir no minimo (quando couber):
 - [ ] Catalogo completo (nao resumo)
 - [ ] Codigos de erro alinhados a SPEC
 - [ ] Auth/versionamento/health
+- [ ] Filtro de autenticacao previsto para todas as rotas; excecoes registradas (`autenticacao-api`)
 
 ### 12.5 Fluxos SPEC
 - [ ] Cada US/VAL principal tem fluxo F# correspondente

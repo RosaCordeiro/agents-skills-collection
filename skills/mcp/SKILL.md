@@ -28,7 +28,7 @@ Responda em portugues. Estilo consultivo. Prefira WSL/Linux e Docker. Nao invent
 1. **Objetivo** — quais perguntas/acoes o agent precisa?
 2. **Superficie** — tools (acoes) vs resources (leitura); menos tools, nomes claros.
 3. **Permissoes** — read-only por padrao; escrita so com aprovacao explicita e scoping.
-4. **Auth** — tokens/URLs so em env; nunca hardcode.
+4. **Auth** — tokens/URLs so em env; nunca hardcode. MCP HTTP que devolve dado de negocio ou pessoal segue `autenticacao-api`.
 5. Desenhar contrato das tools → aprovar → implementar.
 6. Testar tools isoladamente (args → resultado) antes de plugar no agent.
 

@@ -147,4 +147,4 @@ rede Clamed (sem acesso a `git-repo.clamed.com.br/devops/recursos-backstage`)
 
 ## Stack / Postgres / Logger
 
-Regras existentes: `sem-mudanca-tecnologia`, `modelagem-dados`, `logger`, `especificacao` §3.
+Regras existentes: `sem-mudanca-tecnologia`, `modelagem-dados`, `logger`, `autenticacao-api` (toda API autenticada), `especificacao` §3.

@@ -116,6 +116,7 @@ Usar `correcao-erro` + [modelo-fix.md](../correcao-erro/modelo-fix.md).
 - IDs: `RN-xx`, `RF-xx`, `RNF-xx`, `US-xx`, `CA-xx`, `VAL-xx`
 - Fora de escopo claro; rastreabilidade US → RF/RN → CA
 - Stack Node: observabilidade **herdada** se o projeto ja usa; so perguntar em greenfield (§3)
+- API na feat: RNF de acesso obrigatorio (o que devolve, quem acessa, procedimento `SC`, excecoes) — skill `autenticacao-api`
 - **Documento autocontido** (§6) — o leitor nao viu o chat
 - Greenfield: `.ai/` criado (§4) antes de pedir aprovacao da spec
 

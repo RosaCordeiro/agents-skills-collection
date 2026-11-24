@@ -85,6 +85,7 @@ Python: mesma logica em [python.md](python.md) (`core/`, `infrastructure/`, `pre
 
 - Controllers/routes **finos**: validar entrada HTTP, chamar use case, mapear resposta/erro
 - Sem regra de negocio nem acesso direto a DB
+- Autenticacao: filtro do hub registrado uma vez como primeira camada do modulo (ou no roteador raiz), antes das rotas (`autenticacao-api`)
 
 ### 5. Workers / cron
 
@@ -142,6 +143,7 @@ Tipos/DTOs de wire podem viver no adapter **desde que** o dominio nao dependa de
 - [ ] Novo fluxo tem use case dedicado
 - [ ] Persistencia/mensageria/API externa atras de porta + adapter
 - [ ] Controller/worker fino
+- [ ] Roteador raiz com filtro de autenticacao; rota nova nao fica aberta (`autenticacao-api`)
 - [ ] Binding no container (TS) ou modulo de DI (Python)
 - [ ] Teste de dominio ou use case com porta mockada
 - [ ] `.ai/rules/desenvolvimento.md` atualizado se convencao local divergir

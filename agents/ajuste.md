@@ -1,4 +1,4 @@
----
+﻿---
 name: ajuste
 description: >-
   Ajuste pontual: implementa sem fases uma mudanca ja definida (hotfix, patch,
@@ -58,6 +58,7 @@ Se a escolha for diferente do modelo da sessão, pedir para o usuário trocar no
 | Projeto/serviço **novo** (greenfield) | `projeto-ai` — `.ai/` antes do código |
 | Postgres: tabelas/migrations | `modelagem-dados` |
 | Logs Node (`@clamed/logger`) | `logger` |
+| API/rota que devolve dado de negocio ou pessoal | `autenticacao-api` |
 
 ## Chamado (opcional)
 

@@ -45,7 +45,7 @@ Nao marcar `OK` sem ter olhado o trecho relevante do diff.
 | CR2 | Aderencia SPEC/DESIGN | Comportamentos, contratos, regras e limites do MVP presentes; nada contradizendo CA/VAL/V |
 | CR3 | Corretude | Logica, edge cases, estados invalidos, races obvias; retornos/erros coerentes |
 | CR4 | Seguranca — secrets | Sem credenciais, tokens, `.env` real ou chaves no codigo/diff |
-| CR5 | Seguranca — auth/dados | Authz/authn, exposicao de PII, IDs internos; endpoints sem bypass |
+| CR5 | Seguranca — auth/dados | Toda rota autenticada (Bearer do hub); rota aberta fora de `/health`, `/itsAlive`, `/metrics` sem decisao registrada = FALHA; permissao `SC` onde ha dado pessoal ou escrita; teste de contrato presente; exposicao de PII, IDs internos; token/PII em URL ou log (`autenticacao-api`) |
 | CR6 | Seguranca — injecao | SQL/Sybase parametrizado; XSS/HTML; path traversal; command injection em scripts |
 | CR7 | API / contratos | Breaking changes conscientes; status HTTP; validacao de input; mensagens de erro estaveis |
 | CR8 | Dados / migrations | Schema, FKs, defaults, backfill; migrations idempotentes/seguras; tipagem (UUID, VARCHAR) |
