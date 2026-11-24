@@ -81,7 +81,8 @@ Comportamentos do sistema observaveis pelo usuario ou por outro sistema.
 ## 8. Requisitos nao funcionais (RNF)
 
 Performance, seguranca, auditoria, disponibilidade, usabilidade, conformidade, etc.  
-Cada RNF deve ter metrica ou criterio verificavel.
+Cada RNF deve ter metrica ou criterio verificavel.  
+Se a feat tem API: incluir RNF de acesso (skill `autenticacao-api`): o que a API devolve, quem acessa, token do hub, procedimento `SC` por rota e excecoes pedidas, com motivo.
 
 | ID | Categoria | Requisito | Criterio / metrica |
 |----|-----------|-----------|--------------------|

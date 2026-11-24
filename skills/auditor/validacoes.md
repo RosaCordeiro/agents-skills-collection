@@ -107,9 +107,9 @@ Nenhum segredo real no git: `.env` commitado com valor, token em codigo, connect
 
 ### Validacao 15 — Auth e dados
 
-Rotas mutaveis autenticadas se o sistema tem usuarios. IDOR considerado. PII demais em log. Endpoints de debug expostos.
+Toda rota de API autenticada (Bearer do hub), salvo `/health`, `/itsAlive`, `/metrics` ou excecao com decisao do usuario registrada; teste de contrato cobrindo todos os prefixos (skill `autenticacao-api`). Permissao `SC` onde ha dado pessoal ou escrita. IDOR considerado. PII demais em log ou URL. Endpoints de debug expostos.
 
-N/A so se o sistema e interno sem auth **por design documentado**.
+`FAIL` se existir rota com dado de negocio ou pessoal sem autenticacao. N/A so se o sistema nao expoe API.
 
 ### Validacao 16 — Injecao
 

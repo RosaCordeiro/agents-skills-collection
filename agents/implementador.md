@@ -1,4 +1,4 @@
----
+﻿---
 name: implementador
 description: >-
   Implementa um fragmento ja aprovado de uma entrega (codigo nao-PB ou objetos
@@ -30,7 +30,8 @@ parar e devolver a duvida, sem inventar.
   devolucao.
 - Escolher a skill pela stack: `backend`, `frontend`, `script`, `abap`,
   `fiori`, `ui5`, `java`, `springboot`; banco Postgres com `modelagem-dados`;
-  logs com `logger` quando o projeto usa `@clamed/logger`.
+  logs com `logger` quando o projeto usa `@clamed/logger`; API com `autenticacao-api`
+  (toda rota autenticada, sem excecao fora da lista).
 - Sem segredo em codigo, log ou resposta: variavel de ambiente ou placeholder.
 - Nao commitar, nao dar push, nao mudar de branch. Quem decide e a
   orquestracao e o usuario.
