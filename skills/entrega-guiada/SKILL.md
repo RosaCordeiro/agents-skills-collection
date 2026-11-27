@@ -180,6 +180,10 @@ Orquestrador grava `REVIEW-TESTES-*-resultado.md`.
 - `Corrigir código` → orquestrador ajusta produto → voltar **Fase 7** (rodar suite) → Fase 8 de novo
 - `Outro (eu digito)`
 
+**Guardrail da SI:** a pré-validação de segurança (SI-5) roda na Fase 7 com
+`teste-automatizado`; o resultado entra em `SEGURANCA-SI.md` (skill
+`seguranca-si`). Item `PENDENTE` é mostrado ao usuário aqui, antes da Documentação.
+
 ### Fase 9 — Documentação
 
 Skill `documentacao` — README R1–R10 **e** revisão obrigatória dos docs das fases **2, 4 e 5** (DOC-F2/F4/F5): SPEC/CORR, operação do código, fechamento do REVIEW.
@@ -198,7 +202,15 @@ Antes do checklist, nos repositórios tocados, nesta ordem:
 Único pulo aceito: `backstage-recursos` detectar que está fora da rede Clamed
 (ela mesma avisa e pula).
 
-Checklist DoD; AskQuestion `DoD completo — encerrar?`
+**Gate da SI (skill `seguranca-si`, "Gate antes do deploy"):** reler
+`SEGURANCA-SI.md` contra o código final. `PENDENTE` de pré-deploy sem aceite
+registrado da SI **impede o DoD**: mostrar a lista ao usuário e parar. Itens de
+go-live (SI-6.3, SI-7.1, SI-8.x) não impedem o DoD: ficam como lista de
+verificação pós-deploy e bloqueiam a divulgação. Entrega nova ou que muda
+exposição, autenticação ou dados pessoais: propor o chamado de reteste para a
+SI (SI-8), aberto só com confirmação.
+
+Checklist DoD (inclui o item da SI); AskQuestion `DoD completo — encerrar?`
 
 ---
 

@@ -23,7 +23,14 @@ Responda em português.
    - Resumo pass / fail / skip
    - Path do log ou trecho relevante
 5. Corrigir falhas **introduzidas por esta branch** (não mascarar com teste fraco).
-6. **`AskQuestion`**: `Testes automáticos ok — seguir para Revisão de testes?`
+6. **Pré-validação de segurança (SI-5, skill `seguranca-si`)**: rodar no WSL, no
+   que o projeto tiver, `trivy fs --scanners vuln,secret .`, `trivy image <imagem>`
+   (se há container), `npm audit` ou equivalente e `semgrep scan --config auto`.
+   Registrar comando, exit code e achados críticos e altos. Ferramenta
+   indisponível = item `PENDENTE` com o motivo, nunca `OK`. Se a feat tem API,
+   conferir também que o teste de contrato cobre rota sem token e com token
+   falso (esperado `401`). Atualizar `SEGURANCA-SI.md`.
+7. **`AskQuestion`**: `Testes automáticos ok — seguir para Revisão de testes?`
    - `Sim, seguir` | `Corrigir falhas` | `Outro (eu digito)`
 
 ## Limites

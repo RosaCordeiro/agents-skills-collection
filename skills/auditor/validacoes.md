@@ -111,6 +111,8 @@ Toda rota de API autenticada (Bearer do hub), salvo `/health`, `/itsAlive`, `/me
 
 `FAIL` se existir rota com dado de negocio ou pessoal sem autenticacao. N/A so se o sistema nao expoe API.
 
+Conferir tambem o relatorio `SEGURANCA-SI.md` (skill `seguranca-si`) contra o codigo: CORS `*`, resposta com campo alem do necessario, erro com stack ou mensagem do banco, consulta pesada sem paginacao, limite e timeout, build de producao com localhost ou hmg. `FAIL` se existir item `PENDENTE` de pre-deploy sem aceite registrado da SI em sistema que vai a producao, ou se o relatorio nao existir. Itens de go-live (SI-6.3, SI-7.1, SI-8.x) `PENDENTE` antes do deploy nao sao FAIL, mas precisam estar listados como verificacao pos-deploy.
+
 ### Validacao 16 — Injecao
 
 SQL/Sybase parametrizado. Sem concatenar input em query/comando. XSS se houver UI. Path traversal em leitura de arquivo. `eval` de input.

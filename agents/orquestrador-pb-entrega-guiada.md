@@ -126,7 +126,10 @@ prosseguir para a Fase 5 sem essa decisão registrada e aprovada.
 
 ## Encerramento (Fase 8)
 
-DoD da skill; marca o `SPEC-<n>-TECNICA.md` como `Status: aprovado`.
+DoD da skill; marca o `SPEC-<n>-TECNICA.md` como `Status: aprovado`. O DoD
+inclui a secao de SI da spec (skill `seguranca-si`, SI-1) preenchida e sem
+`PENDENTE`: responsaveis, dados e classificacao, integracoes, exposicao e
+perfis. Aceite de `PENDENTE` e so da SI, informado pelo usuario.
 DOCX (skill `pb-sybase` § DOCX) só aqui, e só se pedido. **Encerra o
 fluxo** — não encadeia para `/pb-ajuste` nem `pb-criar-objeto` automaticamente
 (decisão do usuário, fora deste agent, por enquanto).

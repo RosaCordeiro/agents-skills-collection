@@ -92,6 +92,7 @@ Se a entrega tiver API e/ou persistencia, as secoes **5, 6, 7 e validacao** deve
 ### 7.2 Auth, formato de erro, versionamento
 - prefixo, headers, shape `{ code, message }`, codigos alinhados a SPEC
 - **Auth obrigatoria** (skill `autenticacao-api`): filtro do hub como primeira camada do modulo (ou no roteador raiz), procedimento `SC` por rota que devolve dado pessoal ou escreve, excecoes so da lista fechada ou com decisao do usuario registrada aqui
+- **Seguranca da SI** (skill `seguranca-si`, SI-2 a SI-4 e SI-6): CORS restrito a origem do front (nunca `*`), campos devolvidos so os da tela, erro sem detalhe interno, paginacao, limite e timeout em consulta pesada, validacao de entrada, destinos permitidos para URL informada, segredos so em env ou cofre, conta de servico por integracao com privilegio minimo, homologacao e producao separadas
 - OpenAPI/contrato: obrigatorio na implementacao se houver API REST
 - Se nao houver API (CLI/batch): descrever invocacao/IO com o mesmo rigor
 
@@ -132,6 +133,7 @@ Checklist acionavel para o usuario aprovar. Incluir no minimo (quando couber):
 - [ ] Codigos de erro alinhados a SPEC
 - [ ] Auth/versionamento/health
 - [ ] Filtro de autenticacao previsto para todas as rotas; excecoes registradas (`autenticacao-api`)
+- [ ] Itens SI-2 a SI-4 e SI-6 atendidos no desenho ou marcados `PENDENTE` em `SEGURANCA-SI.md` (`seguranca-si`)
 
 ### 12.5 Fluxos SPEC
 - [ ] Cada US/VAL principal tem fluxo F# correspondente

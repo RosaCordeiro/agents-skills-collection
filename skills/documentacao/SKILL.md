@@ -86,6 +86,10 @@ Para cada item: `OK` | `ATUALIZADO` | `N/A` (motivo).
 
 **Gate:** R2–R6 aplicáveis sem lacuna; DOC-F2/F4/F5 sem `FALHA` pendente.
 
+**SI (skill `seguranca-si`, SI-7):** o README e o Backstage trazem responsável
+técnico, rotas sem autenticação (se houver), integrações e variáveis de
+ambiente (só os nomes). `SEGURANCA-SI.md` entra no índice de docs da entrega.
+
 ### 4. Sincronizar `.ai/docs/`
 
 `indice.md` com links reais (SPEC, ARCH, CORR, REVIEW, REVIEW-TESTES, README).

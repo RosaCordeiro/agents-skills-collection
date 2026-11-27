@@ -33,6 +33,11 @@ parar e devolver a duvida, sem inventar.
   logs com `logger` quando o projeto usa `@clamed/logger`; API com `autenticacao-api`
   (toda rota autenticada, sem excecao fora da lista).
 - Sem segredo em codigo, log ou resposta: variavel de ambiente ou placeholder.
+- **Guardrail de SI (`seguranca-si`, obrigatorio):** CORS restrito, query
+  parametrizada, erro sem detalhe interno, paginacao e limite em consulta
+  pesada, build de producao sem localhost nem hmg. Item do checklist que o
+  fragmento nao consegue cumprir: devolver como `PENDENTE`, nunca marcar `OK`
+  nem aceitar pela SI.
 - Nao commitar, nao dar push, nao mudar de branch. Quem decide e a
   orquestracao e o usuario.
 - Alteracao de objeto de banco tambem vai para o repositorio de objetos de

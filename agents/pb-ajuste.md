@@ -42,6 +42,17 @@ Não `pbg_send` / git / `pbg_init` / `svn commit` sem pedido.
 - Arquivos que não estão no SVN (`.pbt`) não têm check-out: apenas avisar que foram alterados.
 - Depois de alterar um objeto ancestral (menu ou janela herdada), recompilar também os descendentes, senão o PB dá "Bad runtime function reference" ao abrir.
 
+### Guardrail de SI (skill `seguranca-si`, plugin `clamed-dev`)
+
+Vale para o que o patch toca, antes de dar o ajuste por pronto:
+
+- Sem senha, usuário de conexão, string de conexão ou token em script de objeto, DataWindow, `.ini` ou texto de patch (SI-3). Conexão pelo mecanismo que o sistema já usa; conta de serviço, nunca pessoal.
+- SQL dinâmico sem concatenar entrada do usuário: argumentos de retrieve, SQL embutido com variáveis ligadas (`:variavel`) ou parâmetros de procedure (SI-4.5).
+- Sem senha, token ou dado pessoal desnecessário em `MessageBox`, arquivo de log ou tabela de log (SI-7.3).
+- Permissão de tela e menu pelo padrão da skill `pb-padroes-clamed`; não criar caminho que contorne a permissão (SI-2.4).
+
+Item que o ajuste não cumprir: reportar como `PENDENTE` na devolução. Quem aceita um `PENDENTE` é a SI, nunca este agent.
+
 ### Chamado (opcional)
 
 Se o usuário citar um chamado do SoftDesk, ler o dossiê e, **só dentro de uma lista aprovada de uma vez** (marcos: ajuste definido, com os objetos que levarão lock; ajuste aplicado e compilado, com a lista dos objetos travados para o check-in dele), lançar a atividade como na skill `softdesk`, seção "Vínculo leve com chamado" (plugin `clamed-dev`). Sem lista aprovada, nada é escrito no chamado nem no Ágil; não muda status, não encerra, não aponta horas. Card do Ágil só se o usuário citar o id. O número do chamado já entra no `svn lock -m` acima.
