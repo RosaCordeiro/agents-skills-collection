@@ -82,7 +82,8 @@ Comportamentos do sistema observaveis pelo usuario ou por outro sistema.
 
 Performance, seguranca, auditoria, disponibilidade, usabilidade, conformidade, etc.  
 Cada RNF deve ter metrica ou criterio verificavel.  
-Se a feat tem API: incluir RNF de acesso (skill `autenticacao-api`): o que a API devolve, quem acessa, token do hub, procedimento `SC` por rota e excecoes pedidas, com motivo.
+Se a feat tem API: incluir RNF de acesso (skill `autenticacao-api`): o que a API devolve, quem acessa, token do hub, procedimento `SC` por rota e excecoes pedidas, com motivo.  
+Toda feat: incluir RNF de seguranca da SI (skill `seguranca-si`, SI-1): responsaveis tecnico e de negocio, dados tratados e classificacao (pessoal, financeiro, estoque/compras, publico; so os campos necessarios), integracoes e tipo de acesso (leitura ou escrita), exposicao (padrao: so rede interna; acesso externo exige avaliacao previa da SI) e perfis de acesso com o que cada um ve e faz.
 
 | ID | Categoria | Requisito | Criterio / metrica |
 |----|-----------|-----------|--------------------|

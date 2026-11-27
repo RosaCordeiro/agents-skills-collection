@@ -32,6 +32,7 @@ Responda e documente em portugues. Espere aprovacao de plano se a mudanca for gr
 - Componentes pequenos, um proposito por arquivo
 - Acesse APIs via camada clara (`services/`, `api/`, hooks) — **adapter de saida** fino: HTTP/DTO aqui, sem regra de negocio duplicada do backend
 - Chamada a API da Clamed envia `Authorization: Bearer <token do hub>`; token nunca na URL (`autenticacao-api`)
+- **Guardrail de SI (`seguranca-si`):** build de producao sem referencia a localhost, enderecos de homologacao (hmg) nem source maps; sem segredo no bundle; sem dado pessoal em log do navegador; so os campos que a tela usa
 - Tipos de request/response alinhados ao contrato da API; mapear DTO → view model na camada de servico, nao espalhado em componentes
 - Para o padrao de camadas do backend (use cases, portas), ver skill `clean-architecture` — o frontend espelha so a borda de consumo
 - Caminhos e scripts de build pensados para Linux/WSL
@@ -44,6 +45,7 @@ Responda e documente em portugues. Espere aprovacao de plano se a mudanca for gr
 - [ ] Tipos/lint ok se existirem no projeto
 - [ ] Estados de loading/erro cobertos no fluxo tocado
 - [ ] Sem credenciais hardcoded
+- [ ] Build de producao sem localhost, hmg nem source maps (`seguranca-si`)
 
 ## Ao terminar
 

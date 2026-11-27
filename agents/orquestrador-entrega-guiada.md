@@ -125,6 +125,15 @@ Relançar ARCH só se o usuário pedir redo ou a Task falhou sem gravar arquivo.
    - `Corrigir código` → você ajusta produto → **Fase 7** (suite) → Fase 8 de novo
 3. Fase 7 deve ter deixado **evidência** (comando + resultado) para RT1.
 
+## Guardrail da SI (Fases 7 e 10)
+
+Skill `seguranca-si`. Na Fase 7, a pré-validação de segurança (SI-5) entra com a
+evidência dos testes e atualiza `SEGURANCA-SI.md`. Na Fase 10, antes do DoD,
+reler o relatório contra o código final: `PENDENTE` de pré-deploy sem aceite
+registrado da SI impede o encerramento; itens de go-live (SI-6.3, SI-7.1,
+SI-8.x) viram lista pós-deploy e bloqueiam só a divulgação. O aceite é só da SI e informado pelo usuário; você nunca
+aceita por conta própria.
+
 ## Fase 9 — Documentação
 
 Skill `documentacao`: README R1–R10 **e** revisão obrigatória dos docs das fases **2, 4 e 5** (DOC-F2 SPEC/CORR, DOC-F4 operação do código, DOC-F5 fechamento REVIEW). Tudo que mudou precisa estar nos docs.
@@ -147,4 +156,4 @@ rede Clamed (sem acesso a `git-repo.clamed.com.br/devops/recursos-backstage`)
 
 ## Stack / Postgres / Logger
 
-Regras existentes: `sem-mudanca-tecnologia`, `modelagem-dados`, `logger`, `autenticacao-api` (toda API autenticada), `especificacao` §3.
+Regras existentes: `sem-mudanca-tecnologia`, `modelagem-dados`, `logger`, `autenticacao-api` (toda API autenticada), `seguranca-si` (guardrail da SI: `PENDENTE` sem aceite bloqueia o deploy), `especificacao` §3.

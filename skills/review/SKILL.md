@@ -44,9 +44,9 @@ Nao marcar `OK` sem ter olhado o trecho relevante do diff.
 | CR1 | Branch / escopo | Branch `feat/` ou `fix/` correta; diff alinhado ao documento aprovado; sem scope creep |
 | CR2 | Aderencia SPEC/DESIGN | Comportamentos, contratos, regras e limites do MVP presentes; nada contradizendo CA/VAL/V |
 | CR3 | Corretude | Logica, edge cases, estados invalidos, races obvias; retornos/erros coerentes |
-| CR4 | Seguranca — secrets | Sem credenciais, tokens, `.env` real ou chaves no codigo/diff |
+| CR4 | Seguranca — secrets | Sem credenciais, tokens, `.env` real ou chaves no codigo/diff; conta de servico por integracao, nunca conta pessoal (`seguranca-si` SI-3) |
 | CR5 | Seguranca — auth/dados | Toda rota autenticada (Bearer do hub); rota aberta fora de `/health`, `/itsAlive`, `/metrics` sem decisao registrada = FALHA; permissao `SC` onde ha dado pessoal ou escrita; teste de contrato presente; exposicao de PII, IDs internos; token/PII em URL ou log (`autenticacao-api`) |
-| CR6 | Seguranca — injecao | SQL/Sybase parametrizado; XSS/HTML; path traversal; command injection em scripts |
+| CR6 | Seguranca — injecao | SQL/Sybase parametrizado; XSS/HTML; path traversal; command injection em scripts; URL informada pelo usuario sem lista de destinos (SSRF) (`seguranca-si` SI-4) |
 | CR7 | API / contratos | Breaking changes conscientes; status HTTP; validacao de input; mensagens de erro estaveis |
 | CR8 | Dados / migrations | Schema, FKs, defaults, backfill; migrations idempotentes/seguras; tipagem (UUID, VARCHAR) |
 | CR9 | Observabilidade | Logger/metrics do projeto usados quando ja for padrao; sem `console.log` de ruido em prod path |
@@ -57,10 +57,11 @@ Nao marcar `OK` sem ter olhado o trecho relevante do diff.
 | CR14 | Docker / ops | Ports/volumes/env expostos demais; Compose coerente com a mudanca; se o diff tocou `.gitlab-ci.yml`/`Dockerfile`/`docker-compose*`/scripts de deploy num repo que roda em runner Linux, checar `file <arquivo>` ou `git show HEAD:<arquivo> \| ... conta \r\n` para CRLF (ver skill `docker-cicd-review` §8) — CRLF nesses arquivos ja quebrou deploy em producao com erros sem relacao aparente com a causa real |
 | CR15 | Paths / runtime | Scripts Linux sem path Windows; WSL/Compose respeitados; sem forcar troca de stack |
 | CR16 | SAP (se aplicavel) | Fronteiras `fiori` / `ui5` / `abap` respeitadas; sem misturar com frontend/backend genericos |
+| CR17 | Seguranca — checklist da SI | Diff contra `SEGURANCA-SI.md` (skill `seguranca-si`): CORS `*`, resposta com campo alem do da tela, erro com stack, tabela ou mensagem do banco, consulta pesada sem paginacao, limite e timeout, localhost ou hmg em build de producao, Dockerfile como root, dado pessoal em log. Item violado ou `PENDENTE` sem aceite da SI = FALHA |
 
 Detalhes e exemplos por ponto: [checklist-detalhado.md](checklist-detalhado.md).
 
-**Gate:** qualquer `FALHA` em CR4–CR6 ou achado **bloqueante** em CR1–CR3/CR7–CR8 impede seguir para teste de RN ate corrigir ou o usuario aceitar debito explicito.
+**Gate:** qualquer `FALHA` em CR4–CR6 ou CR17 ou achado **bloqueante** em CR1–CR3/CR7–CR8 impede seguir para teste de RN ate corrigir ou o usuario aceitar debito explicito.
 
 ## Formato de saida (chat)
 

@@ -117,6 +117,7 @@ Usar `correcao-erro` + [modelo-fix.md](../correcao-erro/modelo-fix.md).
 - Fora de escopo claro; rastreabilidade US → RF/RN → CA
 - Stack Node: observabilidade **herdada** se o projeto ja usa; so perguntar em greenfield (§3)
 - API na feat: RNF de acesso obrigatorio (o que devolve, quem acessa, procedimento `SC`, excecoes) — skill `autenticacao-api`
+- Toda feat: RNF de seguranca da SI (skill `seguranca-si`, SI-1): responsaveis tecnico e de negocio, classificacao dos dados tratados, integracoes com leitura ou escrita, exposicao (padrao: so rede interna) e perfis de acesso. Abrir `SEGURANCA-SI.md` ao lado da spec
 - **Documento autocontido** (§6) — o leitor nao viu o chat
 - Greenfield: `.ai/` criado (§4) antes de pedir aprovacao da spec
 

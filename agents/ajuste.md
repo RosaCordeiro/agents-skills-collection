@@ -59,6 +59,7 @@ Se a escolha for diferente do modelo da sessão, pedir para o usuário trocar no
 | Postgres: tabelas/migrations | `modelagem-dados` |
 | Logs Node (`@clamed/logger`) | `logger` |
 | API/rota que devolve dado de negocio ou pessoal | `autenticacao-api` |
+| Qualquer codigo que vai para producao | `seguranca-si` — so os itens que o ajuste toca; `PENDENTE` sem aceite da SI bloqueia o deploy |
 
 ## Chamado (opcional)
 
